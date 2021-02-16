@@ -1,0 +1,78 @@
+
+<!doctype html>
+<!-- Desenvolvido por Guilherme Albuquerque 2020 -->
+<html lang="pt">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" type="image/png" href="imagens/favicon.png"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<script defer src="node_modules/swup/dist/swup.min.js"></script>
+		<script defer src="node_modules/@swup/scripts-plugin/dist/SwupScriptsPlugin.min.js"></script>
+		<script defer src="script.js"></script>
+		<script src="node_modules/animejs/lib/anime.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="estilo.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		<title>drena</title>
+		<meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">	</head>
+	<body>
+		<header class='navbar-dark bg-dark'>
+	<nav class="col-xl-6 offset-xl-3 navbar navbar-expand-sm">
+		<a class="navbar-brand" href="/">
+			<img src="imagens/logo.png" height="32" alt="" loading="lazy">
+		</a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abtir menu">
+			<span fill="#fff" class="navbar-toggler-icon text-light"></span>
+		</button>
+
+		<div class='collapse navbar-collapse justify-content-end text-center' id='menu'>
+			<ul class='navbar-nav'>
+				<li class='nav-item'><a class='nav-link' href='/criar'>Criar </a></li>
+						<li class='nav-item'><a class='nav-link' href='/pro/sair'>Sair</a></li>
+						<li class='nav-item'><a href='/perfil?uti=guilhae'><img class='mx-2 rounded-circle' src='imagens/padrao.jpg' width='40' height='40' alt=''></a></li>			</ul>
+		</div>
+	</nav>
+</header>		<div id="swup" class="transition-fade">
+		
+			<style>
+			:root{
+				--perfil-foto: url('imagens/padrao.jpg');
+				--cor1: #00ccdd;
+				--cor2: #00cc99;
+			}
+			</style>
+			
+			<div class='shadow p-0 my-4 col-xl-6 offset-xl-3'>
+				<div class='bg-primary text-light p-xl-5 p-4 caixa-perfil-foto'>
+					<a id='ami' class='float-right btn btn-light' href='pro/ami.php?uti=drenado'>São conhecidos <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg></a>
+					<script>
+					$('#ami').hover(function(){
+						$(this).html("Remover conhecido <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-x-fill'/></svg>");
+						}, function(){
+						$(this).html("São conhecidos <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg>");
+					});
+					</script><h1>drenado</h1>
+					<text class='h2'>Testes</text><br>Utilizador desde novembro.
+				</div>
+				<div class='bg-dark text-light p-xl-5 p-4'>
+					<h2>Amigos</h2>
+					<div class="d-flex flex-wrap">
+						<div class="m-2 text-center"><a href='/perfil?uti=guilhae'>
+						<img class='rounded-circle' src='imagens/padrao.jpg' width='64'><br>drenado</a></div>
+
+						<div class="m-2 text-center"><a href='/perfil?uti=guilhae'>
+						<img class='rounded-circle' src='imagens/padrao.jpg' width='64'><br>drenado</a></div>
+
+						<div class="m-2 text-center"><a href='/perfil?uti=guilhae'>
+						<img class='rounded-circle' src='imagens/padrao.jpg' width='64'><br>drenado</a></div>
+
+						<div class="m-2 text-center"><a href='/perfil?uti=guilhae'>
+						<img class='rounded-circle' src='imagens/padrao.jpg' width='64'><br>drenado</a></div>
+					</div>
+				</div>
+			</div>
+	</body>
+</html>

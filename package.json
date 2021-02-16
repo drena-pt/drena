@@ -1,0 +1,20 @@
+{
+  "name": "2.drena",
+  "version": "1.0.0",
+  "description": "Rede social drena",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guilherme Albuquerque",
+  "license": "ISC",
+  "dependencies": {
+    "@silvermine/videojs-quality-selector": "^1.2.4",
+    "@swup/scripts-plugin": "^1.1.0",
+    "animejs": "^3.2.1",
+    "bootstrap": "^4.5.3",
+    "bootstrap-icons": "^1.1.0",
+    "swup": "^2.0.11",
+    "video.js": "^7.10.1"
+  }
+}

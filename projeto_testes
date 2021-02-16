@@ -1,0 +1,56 @@
+<!--<div class='row'>
+					<div class='col-md-9 p-0 m-0'>
+						<video poster='imagens/thumb.jpg' id='video_1' class='video-js vjs-default-skin' controls preload='auto' data-setup='{}'>
+						<source src='imagens/P1010445-4k.mp4' type='video/mp4' label='4K'>
+						<source src='imagens/P1010445-720.mp4' type='video/mp4' label='720P'>
+						<source src='imagens/P1010445-480.mp4' type='video/mp4' label='480P' selected='true'>
+						</video>
+						<script>
+						videojs('video_1', {}, function() {
+							var player = this;
+							player.fluid(true);
+							player.controlBar.addChild('QualitySelector');
+						});
+						</script>
+					</div>
+
+					<div class='col p-3 d-flex flex-column'>
+						<h5>Título do vídeo</h5>
+
+						<section class='mt-auto'>
+							<div class='row mb-1'>
+								<div class='col-auto col-md-3 pr-0 text-center'>
+									<img src='imagens/padrao.jpg' class='rounded-circle' width='40'>
+								</div>
+								<div class='col d-flex'>
+									<span class='justify-content-center align-self-center'>Publicado por: ".$pro_uti['nut']."</span>
+								</div>
+							</div>
+							<div class='row mb-1'>
+								<div class='col-auto col-md-3 pr-0 text-center'>
+									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#bar-chart'/></svg>
+								</div>
+								<div class='col'>
+									1234 visualizações
+								</div>
+							</div>
+							<div class='row mb-1'>
+								<div class='col-auto col-md-3 pr-0 text-center'>
+									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#star'/></svg>
+								</div>
+								<div class='col'>
+									567 gostos
+								</div>
+							</div>
+							<div class='row mb-1'>
+								<div class='col-auto col-md-3 pr-0 text-center'>
+									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg>
+								</div>
+								<div class='col'>
+									25/03/2021
+								</div>
+							</div>
+						</section>
+						
+					</div>
+				</div>-->
