@@ -1,10 +1,14 @@
 ﻿@font-face{
+	font-family: "MADE TOMMY Regular";
+	src: url("fontes/MADE TOMMY Regular.otf");
+}
+@font-face{
 	font-family: "MADE TOMMY Medium";
 	src: url("fontes/MADE TOMMY Medium.otf");
 }
 @font-face{
-	font-family: "MADE TOMMY Regular";
-	src: url("fontes/MADE TOMMY Regular.otf");
+	font-family: "MADE TOMMY Medium Outline";
+	src: url("fontes/MADE TOMMY Medium Outline.otf");
 }
 @font-face{
 	font-family: "SourceSansPro";
@@ -12,6 +16,9 @@
 }
 .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: "MADE TOMMY Regular"!important;
+}
+.text-outline{
+	font-family: "MADE TOMMY Medium Outline";
 }
 input[type='radio']:after {
 	width: 15px;
