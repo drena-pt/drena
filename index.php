@@ -1,7 +1,7 @@
 		<?php 
 			require('head.php');
 			$ultimo_video = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med ORDER BY den DESC LIMIT 1"));
-			header("Location: video?id=".$ultimo_video['id']);
+			header("Location: /video?id=".$ultimo_video['id']);
 		?>
 	</head>
 	<body>

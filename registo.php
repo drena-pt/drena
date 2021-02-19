@@ -131,7 +131,7 @@
 								</div>
 							</div>
 							";
-							if ($mai['con']==0){
+							if ($mai){
 								echo "<a href='/registo' class='cor2 btn btn-light'>Confirmar email</a>";
 							}
 							echo "
@@ -157,10 +157,14 @@
 							</div>
 						</form>
 						";
-						if ($mai['ree']==3){
+						$tempoUltimoEmail = (strtotime(date("Y-m-d H:i:s"))-strtotime($mai['ure']));
+
+						if ($mai['ree']<=2 AND $tempoUltimoEmail>=300){
 							echo "<a href='pro/registo.mai?ac=reenviarMail' class='cor2 btn btn-light'>Reenviar mail</a>";
+						} else if ($mai['ree']<=2){
+							echo "<span data-toggle='tooltip' data-placement='bottom' title='Espera 5 minutos antes de reenviar um mail.'><a class='disabled cor2 btn btn-light'>Reenviar mail</a></span>";
 						} else {
-							echo "<a class='disabled cor2 btn btn-light'>Reenviar mail</a>";
+							echo "<span data-toggle='tooltip' data-placement='bottom' title='Excedeste o limite de 3 mails diários.'><a class='disabled cor2 btn btn-light'>Reenviar mail</a></span>";
 						}
 						echo "
 						<a href='/registo?ac=alterarMail' class='cor2 btn btn-light'>Alterar email</a>

@@ -32,19 +32,24 @@ if ($_SESSION["pre_uti"]){					# Se houver sessão de pre-utilizador iniciada.
 		if ($bd->query("UPDATE uti SET mai='".$mai['id']."' WHERE id='".$uti['id']."'") === FALSE){
 			echo "Erro ao registar novo id de email no utilizador: ".$bd->error;
 			exit;
-		} else {
-			echo "fase 2";
 		}
 
 		$enviarMail = true;
 		goto enviarMail;
 	} else if ($_GET["ac"]=='reenviarMail'){
-		echo "oi";
-		exit;
+		# Tempo desdo envio do ultimo mail.
+		$tempoUltimoEmail = (strtotime(date("Y-m-d H:i:s"))-strtotime($mai_atual['ure']));
+		if ($mai_atual AND $mai_atual['ree']<=2 AND $tempoUltimoEmail>=300){
+			$mai = $mai_atual;
+			$enviarMail = true;
+			goto enviarMail;
+		} else {
+			echo "Erro: não podes reenviar o mail.";
+		}
 	} else if ($_GET["ac"]=='confirmar'){
 		$con = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE cod='".$_POST['cod']."' AND mai='".$mai_atual['mai']."' AND con=0"));
 		if ($con){
-			$bd->query("UPDATE uti_mai SET con='1' WHERE id='".$con['id']."'");
+			$bd->query("UPDATE uti_mai SET con='1', dco='".date("Y-m-d H:i:s")."' WHERE id='".$con['id']."'");
 			$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$con['uti']."'"));
 			session_start();
 			$_SESSION["pre_uti"] = null;
@@ -62,6 +67,7 @@ exit;
 
 enviarMail:
 if ($enviarMail==true){
+	
 	$mail = new PHPMailer(true);
 	try {
 		$mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -81,8 +87,15 @@ if ($enviarMail==true){
 		$mail->send();
 	} catch (Exception $e) {
 		echo "Erro, o mail não pode ser enviado: {$mail->ErrorInfo}";
+		exit;
 	}
-	header("Location: ".$_SERVER['HTTP_REFERER']);
+
+	# SQL - Registar envio e hora do mail.
+	if ($bd->query("UPDATE uti_mai SET ree=ree+1, ure='".date("Y-m-d H:i:s")."' WHERE id='".$mai['id']."'") === FALSE){
+		echo "Erro ao registar envio e hora do mail: ".$bd->error;
+		exit;
+	}
+	header("Location: /registo");
 	exit;
 }
 
