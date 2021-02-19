@@ -51,12 +51,6 @@
 							<input type='text' class='form-control ".temErro($erros["nut"])."' aria-describedby='erro_nut' name='nut' placeholder='Nome de utilizador'>
 							<div id='erro_nut' class='invalid-feedback'>".nomeErro($erros["nut"])."</div>
 						</div>
-
-						<div class='form-group'>
-							<input type='email' class='form-control ".temErro($erros["mai"])."' aria-describedby='erro_mai' name='mai' placeholder='Email'>
-							<div id='erro_mai' class='invalid-feedback'>".nomeErro($erros["mai"])."</div>
-						</div>
-
 						
 						<div class='form-group form-row'>
 							<div class='col mb-3 mb-sm-auto'>
