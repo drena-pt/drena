@@ -112,7 +112,7 @@ html.is-leaving .transition-fade{
 	opacity: 0.8;
 }
 button.close{
-	outline: none;
+	outline: none !important;
 }
 .navbar-dark .navbar-nav .nav-link{
 	color: #fff !important;

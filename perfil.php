@@ -30,8 +30,8 @@
 				echo "
 				<div id='bem_vindo' class='collapse show gradiente rounded-xl shadow text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
 					<div class='p-4'>
-						<button type='button' fill='white' class='close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
-							<img fill='red' src='node_modules/bootstrap-icons/icons/x-circle.svg'/>
+						<button type='button' class='close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
+							<svg class='bi' width='1em' height='1em'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#x-square-fill'/></svg>
 						</button>
 						<h4 class='alert-heading'>Bem vindo!</h4>
 						<p>Obrigado por te registares na drena! Fica à vontade para partilhares os teus projetos.</p>
