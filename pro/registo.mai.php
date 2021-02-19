@@ -9,10 +9,9 @@ session_start();
 $post_mai = $_POST['mai'];
 
 if ($_SESSION["pre_uti"]){					# Se houver sessão de pre-utilizador iniciada.
+	$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["pre_uti"]."'"));
+	$mai_atual = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti['mai']."' AND uti='".$uti['id']."'"));
 	if ($_GET["ac"]=='registarMail'){
-		$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["pre_uti"]."'"));
-		$mai_atual = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti['mai']."' AND uti='".$uti['id']."'"));
-
 		# Procurar na base de dados pelo mail já confirmado por outro utilizador.
 		$mai_confirmado = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE mai='".$post_mai."' AND con=1"));
 		if ($mai_confirmado){$erro_mai=3;goto erros;}				# Se o email já estiver confirmado e em uso.
@@ -42,8 +41,24 @@ if ($_SESSION["pre_uti"]){					# Se houver sessão de pre-utilizador iniciada.
 	} else if ($_GET["ac"]=='reenviarMail'){
 		echo "oi";
 		exit;
+	} else if ($_GET["ac"]=='confirmar'){
+		$con = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE cod='".$_POST['cod']."' AND mai='".$mai_atual['mai']."' AND con=0"));
+		if ($con){
+			$bd->query("UPDATE uti_mai SET con='1' WHERE id='".$con['id']."'");
+			$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$con['uti']."'"));
+			session_start();
+			$_SESSION["pre_uti"] = null;
+			$_SESSION["uti"] = $uti['nut'];
+			setcookie('bem-vindo', 1, time() + (4), "/");
+			header("Location: ../perfil?uti=".$uti['nut']);
+			exit;
+		} else {
+			$erro_cod=6;
+			goto erros;
+		}
 	}
 }
+exit;
 
 enviarMail:
 if ($enviarMail==true){
@@ -67,14 +82,15 @@ if ($enviarMail==true){
 	} catch (Exception $e) {
 		echo "Erro, o mail não pode ser enviado: {$mail->ErrorInfo}";
 	}
-	#header("Location: ".$_SERVER['HTTP_REFERER']);
+	header("Location: ".$_SERVER['HTTP_REFERER']);
 	exit;
 }
 
 
 erros:
 $erros = array(
-	"mai" => $erro_mai
+	"mai" => $erro_mai,
+	"cod" => $erro_cod
 );
 setcookie('erros', serialize($erros), time() + (4), "/");
 header("Location: ".$_SERVER['HTTP_REFERER']);

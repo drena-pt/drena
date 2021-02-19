@@ -29,7 +29,7 @@
 					case 5:
 						return "O nome de utilizador só pode conter letras e números.";break;
 					case 6:
-						return "Código de verificação incorreto.";break;
+						return "Código de verificação inválido.";break;
 					case 7:
 						return "Não podes utilizar o mesmo email.";break;
 				}
@@ -144,14 +144,14 @@
 						<h2>Confirmar ativação da conta</h2>
 						<text>Olá <b>".$pre_uti['nut']."</b>.<br>Enviámos um código de verificação para <b>".$mai['mai']."</b><br>Pode demorar algum tempo até chegar o mail, verifica na caixa de spam.</text>
 
-						<form action='pro/registo.con.php' method='get'>
+						<form action='pro/registo.mai?ac=confirmar' method='post'>
 							<div class='form-row align-items-center my-3'>
 								<div class='col-8'>
 									<input type='text' maxlength='8' class='form-control ".temErro($erros["cod"])."' aria-describedby='erro_cod' name='cod' placeholder='Código de verificação'>
 									<div id='erro_cod' class='invalid-feedback'>".nomeErro($erros["cod"])."</div>
 								</div>
 
-								<div class='col-3'>
+								<div class='col-3 align-self-start'>
 									<button type='submit' class='cor1 btn btn-light'>Verificar</button>
 								</div>
 							</div>
