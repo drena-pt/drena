@@ -125,7 +125,7 @@
 								</div>
 							</div>
 							";
-							if ($mai){
+							if ($mai AND !$mai_confirmado){
 								echo "<a href='/registo' class='cor2 btn btn-light'>Confirmar email</a>";
 							}
 							echo "

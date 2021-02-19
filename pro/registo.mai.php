@@ -47,6 +47,10 @@ if ($_SESSION["pre_uti"]){					# Se houver sessão de pre-utilizador iniciada.
 			echo "Erro: não podes reenviar o mail.";
 		}
 	} else if ($_GET["ac"]=='confirmar'){
+		# Se o email já estiver confirmado e em uso.
+		$mai_confirmado = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE mai='".$mai_atual['mai']."' AND con=1"));
+		if ($mai_confirmado){echo "Erro, este mail já foi confirmado noutra conta.";exit;}		
+				
 		$con = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE cod='".$_POST['cod']."' AND mai='".$mai_atual['mai']."' AND con=0"));
 		if ($con){
 			$bd->query("UPDATE uti_mai SET con='1', dco='".date("Y-m-d H:i:s")."' WHERE id='".$con['id']."'");
