@@ -9,7 +9,9 @@
   "author": "Guilherme Albuquerque",
   "license": "ISC",
   "dependencies": {
+    "@editorjs/editorjs": "^2.19.1",
     "@silvermine/videojs-quality-selector": "^1.2.4",
+    "@swup/head-plugin": "^1.1.0",
     "@swup/scripts-plugin": "^1.1.0",
     "animejs": "^3.2.1",
     "bootstrap": "^4.6.0",

@@ -38,7 +38,7 @@ require('head.php');
                         <div class='col mb-4'>
                             <div class='card border-0 shadow'>
                                 <a href='/video?id=".$campo['id']."'>
-                                    <img src='http://media.drena.xyz/thumb/".$campo['id'].".jpg' class='card-img-top' alt='...'>
+                                    <img src='https://media.drena.xyz/thumb/".$campo['id'].".jpg' class='card-img-top' alt='...'>
                                 </a>
                                 <div class='card-body bg-dark text-left'>
                                     <p class='text-light card-text'>".encurtarNome($campo['nom'])."</p>
