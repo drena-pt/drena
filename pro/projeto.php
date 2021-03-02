@@ -13,8 +13,8 @@ VALUES ('".$uti["id"]."', '".$_POST['tit_input']."')";
 if (mysqli_query($bd, $sql)) {
 	$ultimo = mysqli_insert_id($bd);
 	header("location: ../projeto?id=".base64_encode($ultimo));
-	exit();
 } else {
-	echo "Error: " . $sql . "<br>" . $bd->error;
+	echo "Erro: " . $sql . "<br>" . $bd->error;
 }
+exit;
 ?>

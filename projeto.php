@@ -10,7 +10,7 @@
 		<?php require('cabeçalho.php'); ?>
 		<div id="swup" class="transition-fade">
 		<?php
-		if ($vis AND $pro){
+		if ($pro AND $vis){ #Se o projeto existir e for visivel.
 
 			echo "
 			<div class='p-xl-5 p-4 offset-xl-3 col-xl-6'>
@@ -34,6 +34,8 @@
 							success: function(result) {
 								if (result){
 									alert('Ocorreu um erro.');
+								} else {
+									location.reload();
 								}
 							},
 							error: function(){
@@ -125,7 +127,14 @@
 									</button>
 								</div>";
 							}
-							echo "</section>";
+
+							echo "
+							<div id='editorjs'></div>
+							<script>
+								import EditorJS from '@editorjs/editorjs';
+								const editor = new EditorJS('editorjs');
+							</script>
+							</section>";
 						}
 						$num_sec--;
 

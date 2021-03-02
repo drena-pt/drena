@@ -27,17 +27,7 @@
 				<form action='pro/projeto.php' method='post'>
 					<div class='row'>
 						<div class='col'>
-							<!--<label for='tit_input'>Título</label>-->
 							<input type='text' class='form-control w-100' id='tit_input' name='tit_input' placeholder='Título do novo projeto'>
-							<script>
-							$('#tit_input').on('input', function() { 
-								if($(this).val()){
-									$('#tit').text($(this).val())
-								} else {
-									$('#tit').text('Novo projeto')
-								}
-							});
-							</script>
 						</div>
 						<div class='col-2'>
 							<button type='submit' class='btn btn-light'>Criar</button>
@@ -47,13 +37,38 @@
 			</div>
 		</div>
 
-		<script> 
+		<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
+			<div class='p-xl-5 p-4 bg-primary text-light'>
+				<h2 id='tit'>Carregar vídeo</h2>
+			</div>
+			<div class='p-xl-5 p-4 bg-dark text-light'>
+				<form id='carregar_video' action='pro/carregar_video.php' method='post' enctype='multipart/form-data'>
+					<input type='file' name='myfile'><br>
+					<input type='submit' value='Upload File to Server'>
+				</form>
+				<div class='progress'>
+					<div style='background-color:red;' class='bar'></div >
+					<div style='color:blue;' class='percent'>0%</div >
+				</div>
+				<div id='status'></div>
+			</div>
+		</div>
+		
+		<script>
+		$('#tit_input').on('input', function() { 
+			if($(this).val()){
+				$('#tit').text($(this).val())
+			} else {
+				$('#tit').text('Novo projeto')
+			}
+		});
+
 		$(function() {
 			var bar = $('.bar');
 			var percent = $('.percent');
 			var status = $('#status');
 
-			$('form').ajaxForm({
+			$('#carregar_video').ajaxForm({
 				beforeSend: function() {
 					status.empty();
 					var percentVal = '0%';
@@ -84,23 +99,6 @@
 			});
 		}); 
 		</script>
-
-		<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
-			<div class='p-xl-5 p-4 bg-primary text-light'>
-				<h2 id='tit'>Carregar vídeo</h2>
-			</div>
-			<div class='p-xl-5 p-4 bg-dark text-light'>
-				<form action='pro/carregar_video.php' method='post' enctype='multipart/form-data'>
-					<input type='file' name='myfile'><br>
-					<input type='submit' value='Upload File to Server'>
-				</form>
-				<div class='progress'>
-					<div style='background-color:red;' class='bar'></div >
-					<div style='color:blue;' class='percent'>0%</div >
-				</div>
-				<div id='status'></div>
-			</div>
-		</div>
 		";
 		?>
 		</div>
