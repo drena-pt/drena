@@ -5,8 +5,8 @@
 		<div id="swup" class="transition-fade">
 			<style>
 			:root{
-				--cor1: #cc00cc;
-				--cor2: #990099;
+				--cor1: #00cacc;
+				--cor2: #009686;
 			}
 			</style>
 			<?php

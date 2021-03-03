@@ -35,29 +35,35 @@ input[type='radio']:checked:after {
 	border: 2px solid white;
 }
 :root {
-	--cor0: 0, 0, 0;
+	--preto: 0, 0, 0;
 	--azul: 0, 102, 255;
-	--cor2: 0, 255, 179;
-	--cor3: 0, 255, 0;
-	--cor4: 255, 208, 0;
-	--cor5: 255, 0, 64;
-	--cor6: 108, 79, 255;
+	--verdeAgua: 0, 255, 179;
+	--verde: 0, 255, 0;
+	--amarelo: 255, 208, 0;
+	--vermelho: 255, 0, 64;
+	--roxo: 108, 79, 255;
 }
-input[type='radio'].cor0:after {background-color: rgb(var(--cor0));}
+body::-webkit-scrollbar{
+	display: none;
+}
+input[type='radio'].cor0:after {background-color: rgb(var(--preto));}
 input[type='radio'].cor1:after {background-color: rgb(var(--azul));}
-input[type='radio'].cor2:after {background-color: rgb(var(--cor2));}
-input[type='radio'].cor3:after {background-color: rgb(var(--cor3));}
-input[type='radio'].cor4:after {background-color: rgb(var(--cor4));}
-input[type='radio'].cor5:after {background-color: rgb(var(--cor5));}
-input[type='radio'].cor6:after {background-color: rgb(var(--cor6));}
+input[type='radio'].cor2:after {background-color: rgb(var(--verdeAgua));}
+input[type='radio'].cor3:after {background-color: rgb(var(--verde));}
+input[type='radio'].cor4:after {background-color: rgb(var(--amarelo));}
+input[type='radio'].cor5:after {background-color: rgb(var(--vermelho));}
+input[type='radio'].cor6:after {background-color: rgb(var(--roxo));}
 
-.bg-0{background-color: rgba(var(--cor0),0.2) !important;}
+.bg-0{background-color: rgba(var(--preto),0.2) !important;}
 .bg-1{background-color: rgba(var(--azul),0.6) !important;}
-.bg-2{background-color: rgba(var(--cor2),0.6) !important;}
-.bg-3{background-color: rgba(var(--cor3),0.6) !important;}
-.bg-4{background-color: rgba(var(--cor4),0.6) !important;}
-.bg-5{background-color: rgba(var(--cor5),0.6) !important;}
-.bg-6{background-color: rgba(var(--cor6),1) !important;}
+.bg-2{background-color: rgba(var(--verdeAgua),0.6) !important;}
+.bg-3{background-color: rgba(var(--verde),0.6) !important;}
+.bg-4{background-color: rgba(var(--amarelo),0.6) !important;}
+.bg-5{background-color: rgba(var(--vermelho),0.6) !important;}
+.bg-6{background-color: rgba(var(--roxo),1) !important;}
+.bg-0,.bg-1,.bg-2,.bg-3,.bg-4,.bg-5,.bg-6{
+	transition-duration: 0.2s;
+}
 
 a.perfil{
 	text-decoration: none!important;
@@ -75,10 +81,10 @@ a.perfil:hover{
 	color: var(--cor1) !important;
 }
 .cor2{
-	color: var(--cor2) !important;
+	color: var(--verdeAgua) !important;
 }
 .gradiente{
-	background-image: linear-gradient(-45deg,var(--cor2),var(--cor1)) !important;
+	background-image: linear-gradient(-45deg,var(--verdeAgua),var(--cor1)) !important;
 }
 .caixa-perfil-foto{
 	height: 400px;
@@ -131,4 +137,10 @@ button.close{
 .btn-dark,
 .btn-primary{
 	border: none !important;
+}
+
+.bi{
+	width: 1.5em;
+	height: 1.5em;
+	margin: 0 0.2em;
 }

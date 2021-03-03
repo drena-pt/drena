@@ -21,19 +21,19 @@
 			<style>
 			:root{
 				--perfil-foto: url('fpe/".base64_encode($uti_perfil["fot"])."');
-				--cor1: #00ccdd;
-				--cor2: #00cc99; 
+				--cor1: #00cacc;
+				--cor2: #009686; 
 			}
 			</style>
 			";
 			if ($_COOKIE['bem-vindo']){
 				echo "
-				<div id='bem_vindo' class='collapse show gradiente rounded-xl shadow text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
-					<div class='p-4'>
+				<div id='bem_vindo' class='collapse show '>
+					<div class='p-4 p-xl-5 gradiente rounded-xl shadow my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
 						<button type='button' class='close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
 							<svg class='bi' width='1em' height='1em'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#x-square-fill'/></svg>
 						</button>
-						<h4 class='alert-heading'>Bem vindo!</h4>
+						<text class='h2'>Bem vindo!</text>
 						<p>Obrigado por te registares na drena! Fica à vontade para partilhares os teus projetos.</p>
 					</div>
 				</div>
@@ -225,24 +225,26 @@
 				echo "</div>";
 			}
 
-			echo "
+			if ($result = $bd->query("SELECT * FROM pro WHERE uti='".$uti_perfil['id']."'")) {
+				echo "
 				<div class='p-xl-5 p-4'><text class='h5'>Projetos</text></div>
-				<div class='row m-0'>";
+				<div class='row m-0'>
+				";
 
-				if ($result = $bd->query("SELECT * FROM pro WHERE uti='".$uti['id']."'")) {
-					while ($row = $result->fetch_assoc()) {
-						echo" 
-						<section class='col-md-4 col-6 p-xl-5 p-4 bg-".$row['cor']."'>
+				while ($row = $result->fetch_assoc()) {
+					echo" 
+					<section class='col-md-4 col-6 p-xl-5 p-4 bg-".$row['cor']."'>
 						<a href='/projeto?id=".base64_encode($row['id'])."' class='text-light'>
 							<text class='h5'>".$row['tit']."</text>
-						</a></section>
-						";
-					}
-					$result->close();
+						</a>
+					</section>
+					";
 				}
+				$result->close();
 
-			echo "</div>
-			</div>";
+				echo "</div>
+				</div>";
+			}
 
 		} else {
 			echo "<h2 class='my-4 text-center'>O utilizador não existe</h2>";

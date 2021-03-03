@@ -38,6 +38,7 @@ if ($uti AND $uti['ati']==0){ echo "A tua conta foi desativada por um administra
 
 		<!-- EditorJS -->
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+		<script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.0.3/build/edjsHTML.js"></script>
 
 		<!-- AnimeJS -->
 		<script src="node_modules/animejs/lib/anime.min.js"></script>

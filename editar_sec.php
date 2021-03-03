@@ -21,11 +21,11 @@
 				echo "
 				<section class='text-right'>
 					
-					<button class='btn btn-dark  text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>Configurações
-					<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
+					<button class='btn btn-dark bg-".$pro['cor']."' text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>Configurações
+					<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
 					</button>
 					<button class='btn btn-dark bg-".$pro['cor']."' id='criar_sec'>Nova secção
-					<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
+					<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
 					</button>
 					<script>
 					$('#criar_sec').click(function(){
@@ -49,49 +49,45 @@
 			</div>
 
 			<div class='p-0 my-0 offset-xl-3 col-xl-6'>
-				<section id='collapseExample' class='my-2 bg-dark text-light collapse'>
-					<div class='p-xl-5 p-4 '>
-						<h3>Configurações</h3>
-					
-						<text class='h5'>Cor tema</text>
-						<div id='pro_cor' class='form-check'>
-						";
-						for ($n = 0; $n <= 6; $n++) {
-							echo "<input ";
-							if ($n==$pro['cor']){ echo "checked ";}
-							echo "class='form-check-input cor".$n."' type='radio' name='pro_cor' id='bg-".$n."'>
-							<label class='form-check-label mr-4' for='bg-".$n."'>";
-							switch ($n){
-								case 0: echo "Preto"; break;
-								case 1: echo "Azul"; break;
-								case 2: echo "Verde Água"; break;
-								case 3: echo "Verde"; break;
-								case 4: echo "Amarelo"; break;
-								case 5: echo "Vermelho"; break;
-								case 6: echo "Roxo"; break;
-							}
-							echo "</label><br>";
+				<section id='collapseExample' class='my-2 p-xl-5 p-4 bg-dark text-light collapse'>
+					<h3>Configurações</h3>
+				
+					<text class='h5'>Cor tema</text>
+					<div id='pro_cor' class='form-check'>
+					";
+					for ($n = 0; $n <= 6; $n++) {
+						echo "<input ";
+						if ($n==$pro['cor']){ echo "checked ";}
+						echo "class='form-check-input cor".$n."' type='radio' name='pro_cor' id='cor".$n."'>
+						<label class='form-check-label mr-4' for='cor".$n."'>";
+						switch ($n){
+							case 0: echo "Preto"; break;
+							case 1: echo "Azul"; break;
+							case 2: echo "Verde Água"; break;
+							case 3: echo "Verde"; break;
+							case 4: echo "Amarelo"; break;
+							case 5: echo "Vermelho"; break;
+							case 6: echo "Roxo"; break;
 						}
-						echo "
-						</div>
-						<script>
-						$(':radio').change(function(){
-							if (this.id.includes('bg-')){
-								$('*[id*=sec]').removeClass('bg-0 bg-1 bg-2 bg-3 bg-4 bg-5 bg-6');
-								$('*[id*=sec]').addClass(this.id);
-								$.ajax({
-									url: 'pro/pro_cor.php?pro=".$_GET["id"]."&cor='+this.id,
-									success: function(data){
-										console.log(data);
-									},
-									error: function(){
-										alert('Ocorreu um erro');
-									}
-								});
-							}
-						});   
-						</script>
+						echo "</label><br>";
+					}
+					echo "
 					</div>
+					<script>
+					$(':radio').change(function(){
+						if (this.id.includes('cor')){
+							$.ajax({
+								url: 'pro/pro_cor.php?pro=".$_GET["id"]."&cor='+this.id,
+								success: function(data){
+									console.log(data);
+								},
+								error: function(){
+									alert('Ocorreu um erro');
+								}
+							});
+						}
+					});   
+					</script>
 				</section>
 			";
 			} else {
@@ -121,26 +117,20 @@
 									echo "
 									<div class='float-right'>
 										<button class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Alterar título'>
-											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
+											<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
 										</button>
 										<button class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Visíbilidade do título' onclick=\"tit_ati('".base64_encode($campo['id'])."',".$num_sec.")\">
-											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#";
+											<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#";
 											if ($campo['tit_ati']==0){ echo "eye"; } else { echo "eye-slash"; }
 											echo "'/></svg>
 										</button>
 										<button class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar' onclick=\"apagar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
-											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+											<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
 										</button>
 									</div>";
 								}
+
 							echo "
-								</div>
-								<div id='tex_".$campo['id']."'>
-									<script>
-										const edjsParser = edjsHTML();
-										let html = edjsParser.parse(".$campo['tex'].");
-										$('#tex_".$campo['id']."').html(html);
-									</script>
 								</div>
 							</section>";
 						}
@@ -189,6 +179,49 @@
 		} else {
 			echo "<h2 class='my-4 text-center'>Não é possivel localizar o projeto ☹️</h2>";
 		}
+
+		$pro_sec1 = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro_sec WHERE id='1'"));
+
+		echo "
+		<div class='bg-light text-dark mb-4'>
+			<div id='editorjs'></div>
+		</div>
+		<div class='text-right'>
+			<button class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Guardar' onclick=\"guardar()\">
+				Guardar	<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#save'/></svg>
+			</button>
+		</div>
+
+		<div id='finaliz' class='text-light'>.
+		</div>
+
+		<script>
+			const editor1 = new EditorJS({
+				 holder: 'editorjs',
+				 data: ".$pro_sec1['tex']."
+			});
+			const edjsParser = edjsHTML();
+
+  			let html = edjsParser.parse(".$pro_sec1['tex'].");
+
+  			$('#finaliz').html(html);
+
+			function guardar(){
+				editor1.save().then((outputData) => {
+					$.post('guardar_projeto.php',
+					{
+					  id: '1',
+					  texto: JSON.stringify(outputData)
+					},
+					function(data){
+						alert(data);
+					});
+				}).catch((error) => {
+				  console.log('Saving failed: ', error)
+				});
+			}
+		</script>
+		";
 		?>
 		</div>
 	</body>
