@@ -4,6 +4,7 @@
 		$pro_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$pro["uti"]."'"));				#Informações Utilizador do projeto
 		if ($pro_uti['id']==$uti['id']){ $per = 1; $vis = 1; }	#Dar premissão e visualização
 		if ($pro['pri']==0){ $vis = 1; }						#Dar visualização
+		$vis = 1; 
 		?>
 	</head>
 	<body>
@@ -20,29 +21,30 @@
 			if ($per){
 				echo "
 				<section class='text-right'>
-					
-					<button class='btn btn-dark  text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>Configurações
-					<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
+					<button class='btn btn-dark text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
+						Configurações <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
 					</button>
-					<button class='btn btn-dark bg-".$pro['cor']."' id='criar_sec'>Nova secção
-					<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
+
+					<button class='btn btn-dark bg-".$pro['cor']."' id='criar_sec'>
+						Nova secção <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
 					</button>
+
 					<script>
-					$('#criar_sec').click(function(){
-						$.ajax({
-							url: 'pro/criar_sec.php?pro=+".$_GET["id"]."',
-							success: function(result) {
-								if (result){
-									alert('Ocorreu um erro.');
-								} else {
-									location.reload();
-								}
-							},
-							error: function(){
-								alert('Ocorreu um erro.');
-							}
+						$('#criar_sec').click(function(){
+						  $.ajax({
+						  	url: 'pro/criar_sec.php?pro=+".$_GET["id"]."',
+						  	success: function(result) {
+						  	  if (result){
+						  	  	alert('Ocorreu um erro.');
+						  	  } else {
+						  	  	location.reload();
+						  	  }
+						  	},
+						  	error: function(){
+						  	  alert('Ocorreu um erro.');
+						  	}
+						  });
 						});
-					});
 					</script>
 					<br>
 				</section>
@@ -50,7 +52,7 @@
 
 			<div class='p-0 my-0 offset-xl-3 col-xl-6'>
 				<section id='collapseExample' class='my-2 bg-dark text-light collapse'>
-					<div class='p-xl-5 p-4 '>
+					<div class='p-xl-5 p-4'>
 						<h3>Configurações</h3>
 					
 						<text class='h5'>Cor tema</text>
@@ -95,55 +97,62 @@
 				</section>
 			";
 			} else {
-				echo "</div>
-				<div class='p-0 my-0 offset-xl-3 col-xl-6'>";
+				echo "
+							<div class='row mb-1'>
+								<div class='col-auto pr-0 text-center'>
+									<a href='/perfil?uti=".$pro_uti['nut']."'><img src='fpe/".base64_encode($pro_uti["fot"])."' class='rounded-circle' width='40'></a>
+								</div>
+								<div class='col d-flex'>
+									<span class='justify-content-center align-self-center'>Criado por: ".$pro_uti['nut']."</span>
+								</div>
+							</div>
+				</div>
+				<div class='p-0 my-0 offset-xl-3 col-xl-6'>
+				";
 			}
-
-				$pesquisa = "SELECT * FROM pro_sec WHERE pro=".$pro['id']." ORDER BY id DESC";
+				#
+				$pesquisa = "SELECT * FROM pro_sec WHERE pro=".$pro['id']." AND ati='1' ORDER BY id DESC";
                 if ($resultado = $bd->query($pesquisa)) {
 					$num_sec = $resultado->num_rows;
                     while ($campo = $resultado->fetch_assoc()) {
-						if ($campo['ati']==1){
-							echo "
-							<section class='my-2 p-xl-5 p-4 bg-".$pro['cor']."' id='sec_".$num_sec."'>
-								<div class='mb-4'>
-									<text class='h5' id='tit_".$num_sec."'>";
-									if (!$campo['tit_ati']){
-										echo "‎ ";
-									} else if ($campo['tit']){
-										echo $campo['tit'];
-									} else {
-										echo "Secção ".$num_sec;
-									}
-									echo "</text>";
+						echo "
+						<section class='my-2 p-xl-5 p-4 bg-".$pro['cor']."' id='sec_".$num_sec."'>";
 
-								if ($per){
-									echo "
-									<div class='float-right'>
-										<button class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Alterar título'>
-											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
-										</button>
-										<button class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Visíbilidade do título' onclick=\"tit_ati('".base64_encode($campo['id'])."',".$num_sec.")\">
-											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#";
-											if ($campo['tit_ati']==0){ echo "eye"; } else { echo "eye-slash"; }
-											echo "'/></svg>
-										</button>
-										<button class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar' onclick=\"apagar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
-											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
-										</button>
-									</div>";
-								}
+						if ($per){
 							echo "
+							<div class='d-flex flex-row-reverse mb-3'>
+								<div>
+									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar' onclick=\"apagar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
+										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+									</button>
+
+									<button onclick=\"window.open('editar_sec.php?id=".base64_encode($campo['id'])."','_blank')\"  class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Editar texto'>
+										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
+									</button>
 								</div>
-								<div id='tex_".$campo['id']."'>
-									<script>
-										const edjsParser = edjsHTML();
-										let html = edjsParser.parse(".$campo['tex'].");
-										$('#tex_".$campo['id']."').html(html);
-									</script>
-								</div>
-							</section>";
+
+								<text class='my-auto mr-auto h5 mb-3' id='tit_".$num_sec."'>
+									Secção ".$num_sec."
+								</text>
+							</div>
+							<hr>
+							";
 						}
+
+						echo "
+							<div class='texto' id='tex_".$campo['id']."'>
+								";
+								if ($campo['tex']){
+									echo "
+									<script>
+										var edjsParser = edjsHTML();
+										$('#tex_".$campo['id']."').html(edjsParser.parse(".$campo['tex']."));
+									</script>
+									";
+								}
+								echo "
+							</div>
+						</section>";
 						$num_sec--;
 
                     } 
@@ -151,21 +160,6 @@
 					if ($per){
 						echo "
 						<script>
-						function tit_ati(id,num){
-							$.ajax({
-								url: 'pro/sec_tit_ati.php?sec='+id,
-								success: function(result) {
-									if (result){
-										$('#tit_'+num).text(result);
-									} else {
-										$('#tit_'+num).text('Secção '+num);
-									}
-								},
-								error: function(){
-									alert('Ocorreu um erro. Secção ID: '+id);
-								}
-							});
-						}
 						function apagar_sec(id,num){
 							$('#sec_'+num).remove();
 							$.ajax({
