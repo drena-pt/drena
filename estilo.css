@@ -88,7 +88,7 @@ a.perfil:hover{
 	color: var(--cor1) !important;
 }
 .cor2{
-	color: var(--verdeAgua) !important;
+	color: var(--cor2) !important;
 }
 .gradiente{
 	background-image: linear-gradient(-45deg,var(--cor2),var(--cor1)) !important;

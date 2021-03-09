@@ -5,6 +5,19 @@ $img_original = $_FILES['fpe']['tmp_name'];
 $nome = $_FILES['fpe']['name'];
 $img_original = file_get_contents($img_original);
 
+#Verificar se o ficheiro é uma imagem
+$file_type = $_FILES['image']['type']; //returns the mimetype
+
+$allowed = array("image/jpeg", "image/gif", "image/png");
+if(!in_array($file_type, $allowed)) {
+  $error_message = 'Only jpg, gif, and png files are allowed.';
+
+  echo $error_message;
+
+  exit();
+
+}
+
 //Criar miniatura (512x512)px 
 $img = imagecreatefromstring($img_original);
 $width  = imagesx($img);

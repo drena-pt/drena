@@ -4,6 +4,7 @@
 
 		if ($med){
 			$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));
+			$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';"));	#Informações do gosto
 			echo "
 			<meta property='og:title' content='".$med['nom']."' />
 			<meta property='og:type' content='video.other' />
@@ -93,10 +94,13 @@
 							</div>
 							<div class='row mb-1'>
 								<div class='col-auto pr-0 text-center'>
-									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up'/></svg>
+									<svg onclick='gosto()' class='bi' style='cursor:pointer;' width='1em' height='1em' fill='currentColor'>
+										<use id='botao_gosto' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up-fill' "; if(!$med_gos){echo"hidden";} echo"/>
+										<use id='botao_naogosto' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up' "; if($med_gos){echo"hidden";} echo"/>
+									</svg>
 								</div>
-								<div class='col'>
-									0 gostos
+								<div class='col' >
+									<span id='texto_gostos'>".$med['gos']."</span> gostos
 								</div>
 							</div>
 							<div class='row mb-1'>
@@ -112,7 +116,42 @@
 
 				</section>
 
-			</div>";
+			</div>
+			";
+			if ($uti){
+				echo "
+				<script>
+				function gosto(){
+					$.ajax({
+						url: 'pro/med_gos.php?id=".$med['id']."',
+						success: function(result) {
+							var gostos = +$('#texto_gostos').text();
+							if (result==='true'){
+								$('#botao_gosto').removeAttr('hidden');
+								$('#botao_naogosto').attr('hidden', true);
+								$('#texto_gostos').text(gostos + 1);
+							} else {
+								$('#botao_gosto').attr('hidden', true);
+								$('#botao_naogosto').removeAttr('hidden');
+								$('#texto_gostos').text(gostos - 1);
+							}
+						},
+						error: function(){
+							alert('Ocorreu um erro.');
+						}
+					});
+				}
+				</script>
+				";
+			} else {
+				echo "
+				<script>
+				function gosto(){
+					window.open('/entrar','_self');
+				}
+				</script>
+				";
+			}
 		?>
 		</div>
 	</body>
