@@ -98,23 +98,24 @@
 			";
 			} else {
 				echo "
-							<div class='row mb-1'>
-								<div class='col-auto pr-0 text-center'>
-									<a href='/perfil?uti=".$pro_uti['nut']."'><img src='fpe/".base64_encode($pro_uti["fot"])."' class='rounded-circle' width='40'></a>
-								</div>
-								<div class='col d-flex'>
-									<span class='justify-content-center align-self-center'>Criado por: ".$pro_uti['nut']."</span>
-								</div>
-							</div>
+					<div class='row mb-1'>
+						<div class='col-auto pr-0 text-center'>
+							<a href='/perfil?uti=".$pro_uti['nut']."'><img src='fpe/".base64_encode($pro_uti["fot"])."' class='rounded-circle' width='40'></a>
+						</div>
+						<div class='col d-flex'>
+							<span class='justify-content-center align-self-center'>Criado por: ".$pro_uti['nut']."</span>
+						</div>
+					</div>
 				</div>
 				<div class='p-0 my-0 offset-xl-3 col-xl-6'>
 				";
 			}
-				#
-				$pesquisa = "SELECT * FROM pro_sec WHERE pro=".$pro['id']." AND ati='1' ORDER BY id DESC";
-                if ($resultado = $bd->query($pesquisa)) {
-					$num_sec = $resultado->num_rows;
-                    while ($campo = $resultado->fetch_assoc()) {
+			#Secções
+			$pesquisa = "SELECT * FROM pro_sec WHERE pro=".$pro['id']." AND ati='1' ORDER BY id DESC";
+            if ($resultado = $bd->query($pesquisa)) {
+				$num_sec = $resultado->num_rows;
+                while ($campo = $resultado->fetch_assoc()) {
+					if ($per OR $campo['vis']==1){
 						echo "
 						<section class='my-2 p-xl-5 p-4 bg-".$pro['cor']."' id='sec_".$num_sec."'>";
 
@@ -122,23 +123,38 @@
 							echo "
 							<div class='d-flex flex-row-reverse mb-3'>
 								<div>
-									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar' onclick=\"apagar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
-										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Visibilidade' onclick=\"visibilidade('".base64_encode($campo['id'])."',".$num_sec.")\">
+										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#eye'/></svg>
 									</button>
 
 									<button onclick=\"window.open('editar_sec.php?id=".base64_encode($campo['id'])."','_blank')\"  class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Editar texto'>
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
 									</button>
+
+									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar' onclick=\"apagar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
+										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+									</button>
+
+									<div class='btn-group ml-1' role='group' aria-label='Basic example'>
+										<button type='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Mover para baixo'>
+											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-down'/></svg>
+										</button>
+										<button type='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Mover para cima'>
+											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-up'/></svg>
+										</button>
+									</div>
 								</div>
 
+
 								<text class='my-auto mr-auto h5 mb-3' id='tit_".$num_sec."'>
-									Secção ".$num_sec."
+									Secção ".$num_sec;
+									if ($campo['vis']==0){echo" (invisível)";}
+									echo "
 								</text>
 							</div>
 							<hr>
 							";
 						}
-
 						echo "
 							<div class='texto' id='tex_".$campo['id']."'>
 								";
@@ -152,31 +168,47 @@
 								}
 								echo "
 							</div>
-						</section>";
+						</section>
+						";
 						$num_sec--;
-
-                    } 
-					$resultado->free();
-					if ($per){
-						echo "
-						<script>
-						function apagar_sec(id,num){
-							$('#sec_'+num).remove();
-							$.ajax({
-								url: 'pro/apagar_sec.php?id='+id,
-								success: function(result) {
-									if (result){
-										alert(result);
-									}
-								},
-								error: function(){
-									alert('Ocorreu um erro. Secção ID: '+id);
-								}
-							});
-						}
-						</script>";
 					}
+                } 
+				$resultado->free();
+				if ($per){
+					echo "
+					<script>
+					function apagar_sec(id,num){
+						$('#sec_'+num).remove();
+						$.ajax({
+							url: 'pro/apagar_sec.php?id='+id,
+							success: function(result) {
+								if (result){
+									alert(result);
+								}
+							},
+							error: function(){
+								alert('Ocorreu um erro. Secção ID: '+id);
+							}
+						});
+					}
+					function visibilidade(id,num){
+						$.ajax({
+							url: 'pro/sec_visibilidade.php?sec='+id,
+							success: function(result) {
+								if (result==='true'){
+									$('#tit_'+num).text('Secção '+num);
+								} else {
+									$('#tit_'+num).text('Secção '+num+' (invisível)');
+								}
+							},
+							error: function(){
+								alert('Ocorreu um erro. Secção ID: '+id);
+							}
+						});
+					}
+					</script>";
 				}
+			}
 				
 			echo "</div>";
 
