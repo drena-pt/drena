@@ -86,13 +86,18 @@
 				},
 				complete: function(xhr) {
 					var json1 = JSON.parse(xhr.responseText);
-					status.html('Upload feito: '+json1.codigo+'<br>https://2.drena.xyz/video?id='+json1.codigo+'<br>A começar compressão...');
+					status.html('Carregamento completo: <br><b>https://2.drena.xyz/video?id='+json1.codigo+'</b><br>A começar compressão...');
 					$.ajax({
 						type: 'GET',
 						url: 'pro/pro_video.php?cod='+json1.codigo+'&ext='+json1.ext,
+						timeout: 8000,
+						complete: function(data){
+							window.onbeforeunload = null;
+							$(window).unbind('beforeunload');
+							window.location.replace('https://2.drena.xyz/video?id='+json1.codigo);
+						},
 						success: function(data){
-							//if(data != null) $('#content').text(data)
-							console.log('ain');
+							if(data != null){console.log(data);}
 						}
 					});
 				}

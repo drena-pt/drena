@@ -21,6 +21,7 @@
                 $pesquisa = "SELECT * FROM med ORDER by den DESC";
                 if ($resultado = $bd->query($pesquisa)) {
                     while ($campo = $resultado->fetch_assoc()) {
+                        if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
                         echo "
                         <div class='col mb-4'>
                             <div class='card border-0 shadow'>
@@ -28,7 +29,7 @@
                                     <img src='http://media.drena.xyz/thumb/".$campo['id'].".jpg' class='card-img-top' alt='...'>
                                 </a>
                                 <div class='card-body bg-dark'>
-                                    <p class='text-light card-text'>".encurtarNome($campo['nom'])."</p>
+                                    <p class='text-light card-text'>".encurtarNome($video_tit)."</p>
                                 </div>
                             </div>
                         </div>

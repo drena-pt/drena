@@ -3,7 +3,8 @@
 		$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 
 		if ($med){
-			$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));
+			if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															#Definir título do vídeo
+			$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									#Utilizador dono do vídeo
 			$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';"));	#Informações do gosto
 			echo "
 			<meta property='og:title' content='".$med['nom']."' />
@@ -61,37 +62,72 @@
 						if ('mediaSession' in navigator) {
 							navigator.mediaSession.metadata = new MediaMetadata({
 							title: '".$med['nom']."',
-							artist: 'Testes',
+							artist: '".$med_uti['nut']."',
 							artwork: [
 								{ src: 'https://media.drena.xyz/thumb/".$_GET["id"].".jpg', sizes: '800x450',   type: 'image/png' },
 							]
 							});
 						}
 						</script>
-						<!--https://developers.google.com/web/updates/2017/02/media-session#gimme_what_i_want-->
 					</div>
 
 					<div class='p-4'>
-						<h5 class=''>".$med['nom']."</h5>
-						<br>
+						<div class='d-flex flex-row-reverse mb-3'>";
+						if ($uti['id']==$med_uti['id']){
+							echo "
+							<span data-toggle='modal' data-target='#modal_alerar_tit'>
+								<button class='btn btn-light ml-2' data-toggle='tooltip' data-placement='bottom' data-original-title='Alterar título'>
+										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#input-cursor-text'/></svg>
+								</button>
+							</span>
+							<!-- Modal -->
+							<div class='modal fade' id='modal_alerar_tit' tabindex='-1' role='dialog' aria-labelledby='modal_alerar_tit_label' aria-hidden='true'>
+								<div class='modal-dialog' role='document'>
+									<div class='modal-content bg-dark'>
+										<form action='pro/video.php?ac=titulo&id=".$_GET['id']."' method='post'>
+											<div class='modal-header'>
+												<h5 class='modal-title' id='modal_alerar_tit_label'>Alterar título</h5>
+												<button type='button' class='close text-light' data-dismiss='modal' aria-label='Close'>
+													<span aria-hidden='true'>&times;</span>
+												</button>
+											</div>
+											<div class='modal-body'>
+												<input type='text' class='form-control' name='tit' placeholder='Título' value='".$med_tit."'>
+											</div>
+											<div class='modal-footer'>
+												<button type='button' class='btn btn-light' data-dismiss='modal'>Fechar</button>
+												<button type='submit' class='btn btn-primary'>Alterar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
 
+							<button onclick=\"window.open('pro/video.php?ac=eliminar&id=".$_GET['id']."','_blank')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar vídeo'>
+									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+							</button>
+							";
+						}
+							echo "
+							<text class='h5 my-auto mr-auto'>".$med_tit."</text>
+						</div>
 						<section class='mt-auto'>
 							<div class='row mb-1'>
 								<div class='col-auto pr-0 text-center'>
-									<img src='fpe/".base64_encode($med_uti["fot"])."' class='rounded-circle' width='40'>
+									<a href='/perfil?uti=".$med_uti['nut']."'><img src='fpe/".base64_encode($med_uti["fot"])."' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
 									<span class='justify-content-center align-self-center'>Publicado por: ".$med_uti['nut']."</span>
 								</div>
 							</div>
-							<div class='row mb-1'>
+							<!--<div class='row mb-1'>
 								<div class='col-auto pr-0 text-center'>
 									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#bar-chart'/></svg>
 								</div>
 								<div class='col'>
 									 visualizações
 								</div>
-							</div>
+							</div>-->
 							<div class='row mb-1'>
 								<div class='col-auto pr-0 text-center'>
 									<svg onclick='gosto()' class='bi' style='cursor:pointer;' width='1em' height='1em' fill='currentColor'>
@@ -129,11 +165,11 @@
 							if (result==='true'){
 								$('#botao_gosto').removeAttr('hidden');
 								$('#botao_naogosto').attr('hidden', true);
-								$('#texto_gostos').text(gostos + 1);
+								$('#texto_gostos').text(gostos+1);
 							} else {
 								$('#botao_gosto').attr('hidden', true);
 								$('#botao_naogosto').removeAttr('hidden');
-								$('#texto_gostos').text(gostos - 1);
+								$('#texto_gostos').text(gostos-1);
 							}
 						},
 						error: function(){
