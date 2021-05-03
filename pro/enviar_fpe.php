@@ -1,21 +1,16 @@
 <?php
 require('fun.php');//FUNÇÕES
 
-$img_original = $_FILES['fpe']['tmp_name'];
+$img_upload = $_FILES['fpe']['tmp_name'];
 $nome = $_FILES['fpe']['name'];
-$img_original = file_get_contents($img_original);
+$img_original = file_get_contents($img_upload);
 
 #Verificar se o ficheiro é uma imagem
-$file_type = $_FILES['image']['type']; //returns the mimetype
+$tipo = exif_imagetype($img_upload);
 
-$allowed = array("image/jpeg", "image/gif", "image/png");
-if(!in_array($file_type, $allowed)) {
-  $error_message = 'Only jpg, gif, and png files are allowed.';
-
-  echo $error_message;
-
-  exit();
-
+if (!$tipo){
+	echo "Apenas são premitidas imagens.";
+	exit;
 }
 
 //Criar miniatura (512x512)px 

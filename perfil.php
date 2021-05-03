@@ -61,7 +61,7 @@
 					background-color: #000;
 				}
 				</style>
-				<label for='fpe' class='float-right btn btn-light' style='cursor:pointer;'>
+				<label for='fpe' class='float-end btn btn-light' style='cursor:pointer;'>
 					<span id='fpe_carregar'>Alterar foto
 						<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#image'/></svg>
 					</span>

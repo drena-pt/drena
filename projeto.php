@@ -20,7 +20,7 @@
 			
 			if ($per){
 				echo "
-				<section class='text-right'>
+				<section class='text-start'>
 					<button class='btn btn-dark text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
 						Configurações <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
 					</button>
@@ -62,7 +62,7 @@
 							echo "<input ";
 							if ($n==$pro['cor']){ echo "checked ";}
 							echo "class='form-check-input cor".$n."' type='radio' name='pro_cor' id='bg-".$n."'>
-							<label class='form-check-label mr-4' for='bg-".$n."'>";
+							<label class='form-check-label me-4' for='bg-".$n."'>";
 							switch ($n){
 								case 0: echo "Preto"; break;
 								case 1: echo "Azul"; break;
@@ -103,7 +103,7 @@
 							<a href='/perfil?uti=".$pro_uti['nut']."'><img src='fpe/".base64_encode($pro_uti["fot"])."' class='rounded-circle' width='40'></a>
 						</div>
 						<div class='col d-flex'>
-							<span class='justify-content-center align-self-center'>Criado por: ".$pro_uti['nut']."</span>
+							<span class='justify-content-center align-self-center'>Criado por ".$pro_uti['nut']."</span>
 						</div>
 					</div>
 				</div>
@@ -146,7 +146,7 @@
 								</div>
 
 
-								<text class='my-auto mr-auto h5 mb-3' id='tit_".$num_sec."'>
+								<text class='my-auto me-auto h5 mb-3' id='tit_".$num_sec."'>
 									Secção ".$num_sec;
 									if ($campo['vis']==0){echo" (invisível)";}
 									echo "

@@ -1,10 +1,22 @@
+$roxo: #6c4fff;
+$ciano: #00cee9;
+$rosa: #ff4fff;
+$dark: #333;
+$white:    #fff;
+
 $theme-colors: (
-  "primary": #6c4fff,
-  "dark": #333333
+  "primary": $roxo,
+  "ciano": $ciano,
+  "rosa": $rosa,
+  "dark": $dark,
+  "light": $white
 );
 
-$body-bg:                   #444444 !default;
-$body-color:                #ffffff !default;
+$body-bg: #444444 !default;
+$body-color: $white !default;
+
+$enable-shadows: true;
+$gradient: linear-gradient(-45deg, rgba($dark, .4), rgba($dark, 0));
 
 $headings-font-family: "MADE TOMMY Medium" !default;
 $font-family-sans-serif:  "SourceSansPro", Helvetica, Arial, sans-serif !default;
@@ -22,19 +34,16 @@ $input-btn-focus-box-shadow: $box-shadow !important;
 $navbar-dark-toggler-icon-bg: url("svg/bootstrap/list-white.svg");
 $form-feedback-icon-invalid: url("svg/bootstrap/exclamation-square-fill-white.svg");
 
-$form-feedback-invalid-color: #fff !default;
+$form-feedback-invalid-color: $white !default;
 
 $input-bg: transparent;
-$input-color: #fff;
-$input-border-color: #fff;
+$input-color: $white;
+$input-border-color: $white;
 $input-placeholder-color: rgba(255,255,255,0.8);
 $input-btn-font-family: "MADE TOMMY Regular";
 $input-btn-font-size: 16px;
 $input-btn-padding-y: .4rem !default;
 $input-btn-padding-x: 1.2rem !default;
-
-
-$enable-shadows: true;
 
 $tooltip-font-size: 1rem !default;
 $tooltip-arrow-color: transparent !default;

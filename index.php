@@ -22,7 +22,7 @@ require('head.php');
             echo "
             <div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3 text-center'>
 				<h1 class='display-3 m-5'>ULTIMOS VÍDEOS</h1>
-                <div class='row row-cols-3 row-cols-md-4'>
+                <div class='row row-cols-2 row-cols-md-3'>
                 ";
                 function encurtarNome($nome){
                     if (strlen($nome)>=30){
@@ -41,7 +41,7 @@ require('head.php');
                                 <a href='/video?id=".$campo['id']."'>
                                     <img src='https://media.drena.xyz/thumb/".$campo['id'].".jpg' class='card-img-top' alt='...'>
                                 </a>
-                                <div class='card-body bg-dark text-left'>
+                                <div class='card-body bg-dark text-start'>
                                     <p class='text-light card-text'>".encurtarNome($video_tit)."</p>
                                 </div>
                             </div>
