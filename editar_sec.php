@@ -51,7 +51,8 @@
 										  byUrl: 'upload_imagem.php?por=link', // Your endpoint that provides uploading by Url
 										}
 									  }
-									}
+									},
+									embed: Embed
 								}
 							});
 
