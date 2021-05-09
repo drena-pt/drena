@@ -3,12 +3,6 @@
 	<body>
 		<?php require('cabeçalho.php'); ?>
 		<div id="swup" class="transition-fade">
-			<style>
-			:root{
-				--cor1: #6600ff;
-				--cor2: #330099;
-			}
-			</style>
 			<?php	
 			$erros = unserialize($_COOKIE["erros"]);
 			function temErro($erro){
@@ -30,7 +24,7 @@
 			#var_dump($erros); #Mostrar erros
 			
 			echo "
-			<div class='gradiente rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
+			<div class='bg-primary bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
 				<form action='/pro/entrar.php' method='post'>
 					<h1>Entrar</h1>
 
@@ -45,7 +39,7 @@
 					</div>
 
 					<div class='form-group text-center'>
-						<button class='cor1 btn btn-light'>Iniciar sessão</button>
+						<button class='text-primary btn btn-light'>Iniciar sessão</button>
 					</div>
 				</form>
 			</div>

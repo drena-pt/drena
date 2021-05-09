@@ -15,17 +15,18 @@
 
 			echo "
 			<div class='p-xl-5 p-4 offset-xl-3 col-xl-6'>
-				<h1>".$pro['tit']."</h1>
+				<h1 id='pro_tit'>".$pro['tit']."</h1>
 			";
 			
 			if ($per){
+			
 				echo "
 				<section class='text-start'>
 					<button class='btn btn-dark text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
 						Configurações <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
 					</button>
 
-					<button class='btn btn-dark bg-".$pro['cor']."' id='criar_sec'>
+					<button class='btn btn-dark bg-".numeroParaCor($pro['cor'])."' id='criar_sec'>
 						Nova secção <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
 					</button>
 
@@ -55,43 +56,70 @@
 					<div class='p-xl-5 p-4'>
 						<h3>Configurações</h3>
 					
+						<text class='h5'>Título</text>
+						<form class='row'>
+							<div class='col-sm-6 col-auto'>
+								<input type='text' class='form-control' id='pro_tit_input' name='pro_tit' placeholder='Título do projeto' maxlength='40' value='".$pro['tit']."'>
+							</div>
+							<div class='col-auto'>
+								<button class='btn btn-light'>Alterar</button>
+							</div>
+						</form>
+						<br>
+
 						<text class='h5'>Cor tema</text>
-						<div id='pro_cor' class='form-check'>
-						";
-						for ($n = 0; $n <= 6; $n++) {
-							echo "<input ";
-							if ($n==$pro['cor']){ echo "checked ";}
-							echo "class='form-check-input cor".$n."' type='radio' name='pro_cor' id='bg-".$n."'>
-							<label class='form-check-label me-4' for='bg-".$n."'>";
-							switch ($n){
-								case 0: echo "Preto"; break;
-								case 1: echo "Azul"; break;
-								case 2: echo "Verde Água"; break;
-								case 3: echo "Verde"; break;
-								case 4: echo "Amarelo"; break;
-								case 5: echo "Vermelho"; break;
-								case 6: echo "Roxo"; break;
-							}
-							echo "</label><br>";
-						}
-						echo "
+						<div class='row'>
+							<div class='col-auto'>
+								<button class='btn text-light btn-dark' onclick=\"pro_cor('dark')\">Preto</button>
+							</div>
+							<div class='col-auto'>
+								<button class='btn text-light btn-azul' onclick=\"pro_cor('azul')\">Azul</button>
+							</div>
+							<div class='col-auto'>
+								<button class='btn text-light btn-verde' onclick=\"pro_cor('verde')\">Verde</button>
+							</div>
+							<div class='col-auto'>
+								<button class='btn text-light btn-amarelo' onclick=\"pro_cor('amarelo')\">Amarelo</button>
+							</div>
+							<div class='col-auto'>
+								<button class='btn text-light btn-vermelho' onclick=\"pro_cor('vermelho')\">Vermelho</button>
+							</div>
+							<div class='col-auto'>
+								<button class='btn text-light btn-rosa' onclick=\"pro_cor('rosa')\">Rosa</button>
+							</div>
+							<div class='col-auto'>
+								<button class='btn text-light btn-ciano' onclick=\"pro_cor('ciano')\">Ciano</button>
+							</div>
+							<div class='col-auto'>
+								<button class='btn text-light btn-primary' onclick=\"pro_cor('primary')\">Roxo</button>
+							</div>
 						</div>
 						<script>
-						$(':radio').change(function(){
-							if (this.id.includes('bg-')){
-								$('*[id*=sec]').removeClass('bg-0 bg-1 bg-2 bg-3 bg-4 bg-5 bg-6');
-								$('*[id*=sec]').addClass(this.id);
-								$.ajax({
-									url: 'pro/pro_cor.php?pro=".$_GET["id"]."&cor='+this.id,
-									success: function(data){
-										console.log(data);
-									},
-									error: function(){
-										alert('Ocorreu um erro');
-									}
-								});
+						cor = '".numeroParaCor($pro['cor'])."';
+						console.log('cor: '+cor);
+
+						function pro_cor(nova_cor){
+							$('*[id*=sec], #criar_sec').addClass('bg-'+nova_cor);
+							$('*[id*=sec], #criar_sec').removeClass('bg-'+cor);
+							cor = nova_cor;
+							$.ajax({
+								url: 'pro/pro_cor.php?pro=".$_GET["id"]."&cor='+nova_cor,
+								success: function(data){
+									console.log(data);
+								},
+								error: function(){
+									alert('Ocorreu um erro');
+								}
+							});
+						}
+
+						$('#pro_tit_input').on('input', function() { 
+							if($(this).val()){
+								$('#pro_tit').text($(this).val())
+							} else {
+								$('#pro_tit').text('Projeto')
 							}
-						});   
+						});
 						</script>
 					</div>
 				</section>
@@ -117,7 +145,7 @@
                 while ($campo = $resultado->fetch_assoc()) {
 					if ($per OR $campo['vis']==1){
 						echo "
-						<section class='my-2 p-xl-5 p-4 bg-".$pro['cor']."' id='sec_".$num_sec."'>";
+						<section class='my-2 p-xl-5 p-4 bg-".numeroParaCor($pro['cor'])."' id='sec_".$num_sec."'>";
 
 						if ($per){
 							echo "

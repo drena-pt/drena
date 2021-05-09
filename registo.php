@@ -3,12 +3,6 @@
 	<body>
 		<?php require('cabeçalho.php'); ?>
 		<div id="swup" class="transition-fade">
-			<style>
-			:root{
-				--cor1: #00cacc;
-				--cor2: #009686;
-			}
-			</style>
 			<?php
 			$erros = unserialize($_COOKIE["erros"]);
 			function temErro($erro){
@@ -38,7 +32,7 @@
 
 			if (!$_SESSION['pre_uti']){
 				echo "
-				<div class='gradiente rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
+				<div class='bg-ciano bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
 					<form action='/pro/registo.php' method='post' autocomplete='off' autocomplete='chrome-off'>
 						<h1 aria-describedby='erro_campos'>Registo</h1>
 
@@ -65,7 +59,7 @@
 						</div>
 
 						<div class='form-group text-center'>
-							<button class='cor1 btn btn-light'>Criar conta</button>
+							<button class='text-ciano btn btn-light'>Criar conta</button>
 						</div>
 					</form>
 				</div>

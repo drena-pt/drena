@@ -76,7 +76,7 @@
 						if ($uti['id']==$med_uti['id']){
 							echo "
 							<span data-toggle='modal' data-target='#modal_alerar_tit'>
-								<button class='btn btn-light ml-2' data-toggle='tooltip' data-placement='bottom' data-original-title='Alterar título'>
+								<button class='btn btn-light ms-2' data-toggle='tooltip' data-placement='bottom' data-original-title='Alterar título'>
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#input-cursor-text'/></svg>
 								</button>
 							</span>
@@ -109,7 +109,7 @@
 							";
 						}
 							echo "
-							<text class='h5 my-auto mr-auto'>".$med_tit."</text>
+							<text class='h5 my-auto me-auto'>".$med_tit."</text>
 						</div>
 						<section class='mt-auto'>
 							<div class='row mb-1'>

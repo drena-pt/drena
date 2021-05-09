@@ -49,9 +49,9 @@
 					#cartao_4:before{background-image: url('node_modules/bootstrap-icons/icons/volume-up.svg');}
 				</style>
 
-				<div class='col'><div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
+				<div class='col'><a class='text-decoration-none' href='pro/projeto.php'><div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
 					<h2>Projeto</h2>
-				</div></div>
+				</div></a></div>
 
 				<div class='col'><div id='cartao_2' class='bg-primary p-xl-5 p-4 mb-4 rounded-xl shadow'>
 					<h2>Vídeo</h2>

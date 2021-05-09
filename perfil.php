@@ -21,27 +21,27 @@
 			<style>
 			:root{
 				--perfil-foto: url('fpe/".base64_encode($uti_perfil["fot"])."');
-				--cor1: #00cacc;
-				--cor2: #009686; 
 			}
 			</style>
 			";
 			if ($_COOKIE['bem-vindo']){
 				echo "
-				<div id='bem_vindo' class='collapse show '>
-					<div class='p-4 p-xl-5 gradiente rounded-xl shadow my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
-						<button type='button' class='close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
-							<svg class='bi' width='1em' height='1em'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#x-square-fill'/></svg>
-						</button>
-						<text class='h2'>Bem vindo!</text>
-						<p>Obrigado por te registares na drena! Fica à vontade para partilhares os teus projetos.</p>
+				<div id='bem_vindo' class='collapse show'>
+					<div class='bg-rosa bg-gradient shadow p-4 p-xl-5 rounded-xl my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
+						<text class='h2'>
+							Bem vindo!
+							<button type='button' class='btn close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
+								<svg class='bi' width='1em' height='1em'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#x-square-fill'/></svg>
+							</button>
+						</text>
+						<p>Obrigado por te registares na drena,<br>fica à vontade para partilhares os teus projetos.</p>
 					</div>
 				</div>
 				";
 			}
 			
 			echo "
-			<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
+			<div class='shadow p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
 				<div class='bg-primary text-light p-xl-5 p-4 caixa-perfil-foto'>";
 			
 			if ($uti_perfil['id']==$uti['id']){
@@ -111,7 +111,7 @@
 				";
 			} else if ($uti){
 				$ami_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM ami WHERE (a_id='".$uti["id"]."' AND b_id='".$uti_perfil["id"]."') OR (a_id='".$uti_perfil["id"]."' AND b_id='".$uti["id"]."')"));
-				echo "<a id='ami' class='float-right btn btn-light' href='pro/ami.php?uti=".$uti_perfil['nut']."'>";
+				echo "<a id='ami' class='float-end btn btn-light' href='pro/ami.php?uti=".$uti_perfil['nut']."'>";
 				if (!$ami_uti['id']){
 					echo "Adicionar conhecido <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-plus-fill'/></svg></a>";
 				} else {
@@ -183,7 +183,7 @@
 			}
 			
 			if ($conhecidos OR $pedidos AND $uti_perfil['nut']==$_SESSION["uti"]){
-				echo "<div class='bg-dark text-light p-xl-5 p-4'>";
+				echo "<div class='bg-gradient bg-dark text-light p-xl-5 p-4'>";
 
 				if ($conhecidos){
 					if ($result = $bd->query("SELECT a_id, b_id FROM ami WHERE a_id='".$uti_perfil["id"]."' AND sim='1' OR b_id='".$uti_perfil["id"]."' AND sim='1' ORDER by b_dat DESC")) {
@@ -222,22 +222,22 @@
 						$result->close();
 					}
 				}
-				echo "</div>";
+				echo "</div>
+				</div>";
 			}
 
 			if ($result = $bd->query("SELECT * FROM pro WHERE uti='".$uti_perfil['id']."'")) {
 				echo "
-				<div class='p-xl-5 p-4'><text class='h5'>Projetos</text></div>
-				<div class='row m-0'>
+				<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
+				<div class='p-xl-5 p-4'><h1>Projetos</h1></div>
+				<div class='row row-cols-1 row-cols-md-2'>
 				";
 
 				while ($row = $result->fetch_assoc()) {
-					echo" 
-					<section class='col-md-4 col-6 p-xl-5 p-4 bg-".$row['cor']."'>
-						<a href='/projeto?id=".base64_encode($row['id'])."' class='text-light'>
-							<text class='h5'>".$row['tit']."</text>
-						</a>
-					</section>
+					echo"
+					<div class='col'><a class='text-decoration-none' href='/projeto?id=".base64_encode($row['id'])."' ><div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
+						<h3 class='text-".numeroParaCor($row['cor'])."'>".$row['tit']."</h3>
+					</div></a></div>
 					";
 				}
 				$result->close();

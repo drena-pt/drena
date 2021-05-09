@@ -7,4 +7,5 @@ require('pro_sec.php');     #Projetos   - Secções
 require('ami.php');         #Amigos
 require('med.php');         #Média
 require('med_gos.php');     #Média      - Gostos
+require('mes.php');     #Mensagens
 ?>

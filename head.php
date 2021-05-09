@@ -5,6 +5,19 @@ ob_get_clean();
 session_start();
 $uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["uti"]."'"));
 if ($uti AND $uti['ati']==0){ echo "A tua conta foi desativada por um administrador."; session_destroy(); exit; } #Verificar se a conta está ativa
+
+function numeroParaCor($num){
+	switch ($num) {
+		case 1: return 'azul'; break;
+		case 2: return 'verde'; break;
+		case 3: return 'amarelo'; break;
+		case 4: return 'vermelho'; break;
+		case 5: return 'rosa'; break;
+		case 6: return 'ciano'; break;
+		case 7: return 'primary'; break;
+		default: return 'dark';
+	}
+}
 ?>
 <!doctype html>
 <!-- Desenvolvido por Guilherme Albuquerque 2018/2021 -->

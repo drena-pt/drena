@@ -1,26 +1,4 @@
-﻿@font-face{
-	font-family: "MADE TOMMY Regular";
-	src: url("fontes/MADE TOMMY Regular.otf");
-}
-@font-face{
-	font-family: "MADE TOMMY Medium";
-	src: url("fontes/MADE TOMMY Medium.otf");
-}
-@font-face{
-	font-family: "MADE TOMMY Medium Outline";
-	src: url("fontes/MADE TOMMY Medium Outline.otf");
-}
-@font-face{
-	font-family: "SourceSansPro";
-	src: url("fontes/SourceSansPro.ttf");
-}
-.h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: "MADE TOMMY Regular"!important;
-}
-.text-outline{
-	font-family: "MADE TOMMY Medium Outline";
-}
-input[type='radio']:after {
+﻿input[type='radio']:after {
 	width: 15px;
 	height: 15px;
 	border-radius: 15px;
@@ -34,36 +12,7 @@ input[type='radio']:after {
 input[type='radio']:checked:after {
 	border: 2px solid white;
 }
-:root {
-	--preto: 0, 0, 0;
-	--azul: 0, 102, 255;
-	--verdeAgua: 0, 255, 179;
-	--verde: 0, 255, 0;
-	--amarelo: 255, 208, 0;
-	--vermelho: 255, 0, 64;
-	--roxo: 108, 79, 255;
-}
-/*body::-webkit-scrollbar{
-	display: none;
-}*/
-input[type='radio'].cor0:after {background-color: rgb(var(--preto));}
-input[type='radio'].cor1:after {background-color: rgb(var(--azul));}
-input[type='radio'].cor2:after {background-color: rgb(var(--verdeAgua));}
-input[type='radio'].cor3:after {background-color: rgb(var(--verde));}
-input[type='radio'].cor4:after {background-color: rgb(var(--amarelo));}
-input[type='radio'].cor5:after {background-color: rgb(var(--vermelho));}
-input[type='radio'].cor6:after {background-color: rgb(var(--roxo));}
 
-.bg-0{background-color: rgba(var(--preto),0.2) !important;}
-.bg-1{background-color: rgba(var(--azul),0.2) !important;}
-.bg-2{background-color: rgba(var(--verdeAgua),0.2) !important;}
-.bg-3{background-color: rgba(var(--verde),0.2) !important;}
-.bg-4{background-color: rgba(var(--amarelo),0.2) !important;}
-.bg-5{background-color: rgba(var(--vermelho),0.2) !important;}
-.bg-6{background-color: rgba(var(--roxo),0.2) !important;}
-.bg-0,.bg-1,.bg-2,.bg-3,.bg-4,.bg-5,.bg-6{
-	transition-duration: 0.2s;
-}
 .texto a{
 	color: rgba(255, 255, 255, 0.6) !important;
 }
@@ -82,16 +31,6 @@ a.perfil{
 a.perfil:hover{
 	color: rgb(255, 255, 255);
 	opacity: 0.8;
-}
-
-.cor1{
-	color: var(--cor1) !important;
-}
-.cor2{
-	color: var(--cor2) !important;
-}
-.gradiente{
-	background-image: linear-gradient(-45deg,var(--cor2),var(--cor1)) !important;
 }
 .caixa-perfil-foto{
 	height: 400px;
@@ -139,11 +78,6 @@ button.close{
 }
 .navbar-dark:hover .navbar-nav:hover .nav-link:hover{
 	opacity: 0.8 !important;
-}
-.btn-light,
-.btn-dark,
-.btn-primary{
-	border: none !important;
 }
 
 .bi{
