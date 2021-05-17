@@ -21,7 +21,7 @@ $theme-colors: (
   "vermelho": $vermelho
 );
 
-$body-bg: rgba($dark, .9) !default;
+$body-bg: rgba($dark, .95) !default;
 $body-color: $white !default;
 $enable-shadows: true;
 $gradient: linear-gradient(-45deg, rgba($dark, .4), rgba($dark, 0));
@@ -58,6 +58,7 @@ $btn-border-radius: $border-radius;
 $btn-box-shadow: $box-shadow;
 $btn-padding-y: 0.4rem !default;
 $btn-padding-x: 1.2rem !default;
+$btn-transition: none !default;
 
 .btn{
 	border: none !important;
