@@ -36,12 +36,13 @@ function numeroParaCor($num){
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
 		
-		<!-- swup -->
+		<!-- swup
 		<script defer src="./node_modules/swup/dist/swup.min.js"></script>
 		<script defer src="./node_modules/@swup/head-plugin/dist/SwupHeadPlugin.min.js"></script>
 		<script defer src="./node_modules/@swup/scripts-plugin/dist/SwupScriptsPlugin.min.js"></script>
 		<script defer src="swup.js"></script>
-
+		 -->
+		 
 		<!-- Bootstrap -->
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -50,8 +51,8 @@ function numeroParaCor($num){
 		</script>
 
 		<!-- EditorJS -->
-		<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.19.3"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
 		<script src="edjsHTML.browser.js"></script>
@@ -65,5 +66,4 @@ function numeroParaCor($num){
 		<link href='node_modules/@silvermine/videojs-quality-selector/dist/css/quality-selector.css' rel='stylesheet'>
 		<script src='node_modules/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js'></script>
 		<link href="node_modules\@videojs\themes\fantasy\tema.css" rel="stylesheet" type="text/css">
-
 		

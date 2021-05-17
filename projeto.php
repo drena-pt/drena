@@ -4,7 +4,17 @@
 		$pro_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$pro["uti"]."'"));				#Informações Utilizador do projeto
 		if ($pro_uti['id']==$uti['id']){ $per = 1; $vis = 1; }	#Dar premissão e visualização
 		if ($pro['pri']==0){ $vis = 1; }						#Dar visualização
-		$vis = 1; 
+		$vis = 1;
+		
+		if ($_POST['pro_tit']){
+			if ($per){
+				if ($bd->query("UPDATE pro SET tit='".$_POST['pro_tit']."' WHERE id='".$pro['id']."'") === FALSE) {
+					echo "Erro:".$bd->error;
+					exit;
+				}
+				$pro['tit'] = $_POST['pro_tit'];
+			}
+		}
 		?>
 	</head>
 	<body>
@@ -13,25 +23,27 @@
 		<?php
 		if ($pro AND $vis){ #Se o projeto existir e for visivel.
 
+			if (!$pro['tit']){$pro_tit='Projeto';}else{$pro_tit=$pro['tit'];}
+
 			echo "
-			<div class='p-xl-5 p-4 offset-xl-3 col-xl-6'>
-				<h1 id='pro_tit'>".$pro['tit']."</h1>
+			<div class='p-xl-5 p-4 offset-xl-3 col-xl-6 text-light rounded-xl my-0 my-xl-4 shadow bg-".numeroParaCor($pro['cor'])."' id='pro_header'>
+				<h1 id='pro_tit'>".$pro_tit."</h1>
 			";
 			
 			if ($per){
 			
 				echo "
 				<section class='text-start'>
-					<button class='btn btn-dark text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
+					<button class='btn btn-light text-".numeroParaCor($pro['cor'])."' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample' id='header_btn'>
 						Configurações <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
 					</button>
 
-					<button class='btn btn-dark bg-".numeroParaCor($pro['cor'])."' id='criar_sec'>
+					<button class='btn btn-light text-".numeroParaCor($pro['cor'])."' id='header_btn_criar'>
 						Nova secção <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
 					</button>
 
 					<script>
-						$('#criar_sec').click(function(){
+						$('#header_btn_criar').click(function(){
 						  $.ajax({
 						  	url: 'pro/criar_sec.php?pro=+".$_GET["id"]."',
 						  	success: function(result) {
@@ -52,12 +64,12 @@
 			</div>
 
 			<div class='p-0 my-0 offset-xl-3 col-xl-6'>
-				<section id='collapseExample' class='my-2 bg-dark text-light collapse'>
+				<section id='collapseExample' class='mb-2 bg-dark text-light collapse'>
 					<div class='p-xl-5 p-4'>
 						<h3>Configurações</h3>
 					
 						<text class='h5'>Título</text>
-						<form class='row'>
+						<form class='row' method='post'>
 							<div class='col-sm-6 col-auto'>
 								<input type='text' class='form-control' id='pro_tit_input' name='pro_tit' placeholder='Título do projeto' maxlength='40' value='".$pro['tit']."'>
 							</div>
@@ -99,18 +111,24 @@
 						console.log('cor: '+cor);
 
 						function pro_cor(nova_cor){
-							$('*[id*=sec], #criar_sec').addClass('bg-'+nova_cor);
-							$('*[id*=sec], #criar_sec').removeClass('bg-'+cor);
-							cor = nova_cor;
-							$.ajax({
-								url: 'pro/pro_cor.php?pro=".$_GET["id"]."&cor='+nova_cor,
-								success: function(data){
-									console.log(data);
-								},
-								error: function(){
-									alert('Ocorreu um erro');
-								}
-							});
+							if (nova_cor!=cor){
+								//$('*[id*=sec], #criar_sec').addClass('bg-'+nova_cor);
+								//$('*[id*=sec], #criar_sec').removeClass('bg-'+cor);
+								$('#pro_header').addClass('bg-'+nova_cor);
+								$('#pro_header').removeClass('bg-'+cor);
+								$('*[id*=header_btn]').addClass('text-'+nova_cor);
+								$('*[id*=header_btn]').removeClass('text-'+cor);
+								cor = nova_cor;
+								$.ajax({
+									url: 'pro/pro_cor.php?pro=".$_GET["id"]."&cor='+nova_cor,
+									success: function(data){
+										console.log(data);
+									},
+									error: function(){
+										alert('Ocorreu um erro');
+									}
+								});
+							}
 						}
 
 						$('#pro_tit_input').on('input', function() { 
@@ -145,7 +163,7 @@
                 while ($campo = $resultado->fetch_assoc()) {
 					if ($per OR $campo['vis']==1){
 						echo "
-						<section class='my-2 p-xl-5 p-4 bg-".numeroParaCor($pro['cor'])."' id='sec_".$num_sec."'>";
+						<section class='bg-dark mb-2 p-xl-5 p-4' id='sec_".$num_sec."'>";
 
 						if ($per){
 							echo "
@@ -180,7 +198,6 @@
 									echo "
 								</text>
 							</div>
-							<hr>
 							";
 						}
 						echo "
@@ -191,6 +208,7 @@
 									<script>
 										var edjsParser = edjsHTML();
 										$('#tex_".$campo['id']."').html(edjsParser.parse(".$campo['tex']."));
+										console.log('".$campo['tex']."');
 									</script>
 									";
 								}

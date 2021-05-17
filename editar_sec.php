@@ -52,7 +52,21 @@
 										}
 									  }
 									},
-									embed: Embed
+									embed: {
+									  class: Embed,
+									  config: {
+									    services: {
+										  youtube: {
+											embedUrl: 'https://www.youtube-nocookie.com/embed/<%= remote_id %>'
+										  },
+										  drena: {
+										 	regex: /https:\/\/2.drena.xyz\/video\?id=([^\/\?\&]*)/,
+										 	embedUrl: 'https://2.drena.xyz/embed?id=<%= remote_id %>',
+										 	html: \"<iframe style='height:340px;' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>\"
+										  }
+									    }
+									  }
+									},
 								}
 							});
 

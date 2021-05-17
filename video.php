@@ -6,12 +6,6 @@
 			if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															#Definir título do vídeo
 			$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									#Utilizador dono do vídeo
 			$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';"));	#Informações do gosto
-			echo "
-			<meta property='og:title' content='".$med['nom']."' />
-			<meta property='og:type' content='video.other' />
-			<meta property='og:image' content='https://media.drena.xyz/thumb/".$_GET["id"].".jpg' />
-			<meta property='og:video' content='https://media.drena.xyz/webm/".$_GET["id"].".webm' />
-			";
 		}
 		?>
 	</head>
@@ -46,30 +40,12 @@
 				<h3><br></h3>
 
 				<section class='bg-dark'>
-					<div class='mw-100'>
-						<video poster='https://media.drena.xyz/thumb/".$_GET["id"].".jpg' id='video_1' class='video-js vjs-theme-fantasy js-focus-invisible vjs-16-9' controls preload='auto' data-setup=\"{'language':'pt'}\">
-							<source src='https://media.drena.xyz/ori/".$_GET["id"].".".end((explode(".", $med['nom'])))."' label='Original' selected='true'>
-							<source src='https://media.drena.xyz/webm/".$_GET["id"].".webm' label='240P'>
-						</video>
-						<script>
-						videojs('video_1', {}, function() {
-							var player = this;
-							player.fluid(true);
-							player.controlBar.addChild('QualitySelector');
-						});
-						</script>
-						<script>
-						if ('mediaSession' in navigator) {
-							navigator.mediaSession.metadata = new MediaMetadata({
-							title: '".$med['nom']."',
-							artist: '".$med_uti['nut']."',
-							artwork: [
-								{ src: 'https://media.drena.xyz/thumb/".$_GET["id"].".jpg', sizes: '800x450',   type: 'image/png' },
-							]
-							});
-						}
-						</script>
+					
+				<div class='mw-100'>
+					<div style='position:relative;padding-bottom:56.25%;'>
+						<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$_GET['id']."'></iframe>
 					</div>
+				</div>
 
 					<div class='p-4'>
 						<div class='d-flex flex-row-reverse mb-3'>";

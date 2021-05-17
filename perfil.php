@@ -27,7 +27,7 @@
 			if ($_COOKIE['bem-vindo']){
 				echo "
 				<div id='bem_vindo' class='collapse show'>
-					<div class='bg-rosa bg-gradient shadow p-4 p-xl-5 rounded-xl my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
+					<div class='bg-rosa bg-gradient shadow p-4 p-xl-5 rounded-xl my-4 col-xl-4 col-sm-8 offset-xl-4 offset-sm-2'>
 						<text class='h2'>
 							Bem vindo!
 							<button type='button' class='btn close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
@@ -234,9 +234,10 @@
 				";
 
 				while ($row = $result->fetch_assoc()) {
+					if (!$row['tit']){$pro_tit='Projeto';}else{$pro_tit=$row['tit'];}
 					echo"
-					<div class='col'><a class='text-decoration-none' href='/projeto?id=".base64_encode($row['id'])."' ><div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h3 class='text-".numeroParaCor($row['cor'])."'>".$row['tit']."</h3>
+					<div class='col'><a class='text-decoration-none' href='/projeto?id=".base64_encode($row['id'])."' ><div id='cartao_1' class='bg-".numeroParaCor($row['cor'])." text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
+						<h3 class='text-light'>".$pro_tit."</h3>
 					</div></a></div>
 					";
 				}
