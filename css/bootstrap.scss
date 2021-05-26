@@ -29,19 +29,23 @@ $box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 
 @font-face{
 	font-family: "MADE TOMMY Regular";
-	src: url("fontes/MADE TOMMY Regular.otf");
+	src: url("../fontes/MADE TOMMY Regular.otf");
 }
 @font-face{
 	font-family: "MADE TOMMY Medium";
-	src: url("fontes/MADE TOMMY Medium.otf");
+	src: url("../fontes/MADE TOMMY Medium.otf");
 }
 @font-face{
 	font-family: "MADE TOMMY Medium Outline";
-	src: url("fontes/MADE TOMMY Medium Outline.otf");
+	src: url("../fontes/MADE TOMMY Medium Outline.otf");
 }
 @font-face{
 	font-family: "SourceSansPro";
-	src: url("fontes/SourceSansPro.ttf");
+	src: url("../fontes/SourceSansPro.ttf");
+}
+@font-face{
+	font-family: "bootstrap-icons";
+	src: url("/fontes/bootstrap-icons.woff");
 }
 
 $font-family-sans-serif: "SourceSansPro", Helvetica, Arial, sans-serif !default;
@@ -83,9 +87,15 @@ input, .btn{
 $input-btn-focus-box-shadow: $box-shadow !important;
 
 $close-text-shadow: none;
-$navbar-dark-toggler-icon-bg: url("svg/bootstrap/list-white.svg");
-$form-feedback-icon-invalid: url("svg/bootstrap/exclamation-square-fill-white.svg");
+$navbar-dark-toggler-icon-bg: url("../svg/bootstrap/list-white.svg");
+
+$form-feedback-icon-invalid: url("../svg/bootstrap/exclamation-square-fill-white.svg");
 $form-feedback-invalid-color: $white !default;
+$form-feedback-margin-top: 0px;
+
+.invalid-feedback{
+	margin-bottom: 10px !important;
+}
 
 $tooltip-font-size: 1rem !default;
 $tooltip-arrow-color: transparent !default;
@@ -98,4 +108,4 @@ $card-border-radius: 0px;
 	font-family: "MADE TOMMY Medium Outline";
 }
 
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";

@@ -1,4 +1,8 @@
-﻿input[type='radio']:after {
+﻿body{
+	overflow-x: hidden;
+}
+
+input[type='radio']:after {
 	width: 15px;
 	height: 15px;
 	border-radius: 15px;
