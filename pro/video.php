@@ -4,39 +4,50 @@ require('fun.php');     #Obter funções
 $ac = $_GET['ac'];      #Ação
 
 $video = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET['id']."'"));
-if (!$video){           #Se o vídeo não existir
-	echo"Erro: O vídeo não foi encontrado.";
+if ($uti['adm']==1){ #Se for admin
+    $video_id = $_GET['id'];
+    $video_ext = "mp4";
+    echo "Olá admin";
+} else if ($video){ #Se o video existir
+    if ($video['uti']==$uti['id']){ #Se for o dono do video
+        $video_id = $video['id'];
+        $video_ext = $video['ext'];
+    } else { #Se não for o dono do video
+        echo "Erro: Não és o dono do vídeo.";
+        exit;
+    }
+} else { #Se o vídeo não existir
+	echo "Erro: O vídeo não foi encontrado.";
 	exit;
 }
 
-/* $video = array(
-    "id"  => $_GET['id'],
-    "ext" => "mp4"
-); */
-
 if ($ac=='eliminar'){
-    if ($uti['adm']==0){    #Se o utilizador for administrador
-        echo"Erro: Não és administrador.";
-        exit;
-    }
-    $pasta='/home/root/media.drena.xyz';
+    $pasta='/home/guilha/www/media.drena.xyz/';
 
-    $ori = $pasta.'/ori/'.$video['id'].'.'.$video['ext'];
+    $ori = $pasta.'ori/'.$video_id.'.'.$video_ext;
     unlink($ori);               #Original
-    $webm = $pasta.'/webm/'.$video['id'].'.webm';
+    $webm = $pasta.'webm/'.$video_id.'.webm';
     unlink($webm);              #Processado
-    $thumb = $pasta.'/thumb/'.$video['id'].'.jpg';
+    $thumb = $pasta.'thumb/'.$video_id.'.jpg';
     unlink($thumb);             #Thumb
+
+    echo "<br>".$ori;
+    echo "<br>".$webm;
+    echo "<br>".$thumb;
 
     if (file_exists($ori) OR file_exists($webm) OR file_exists($thumb)){
         echo "Erro: Não foi possivel remover os ficheiros.";
-    } else if ($bd->query("DELETE FROM med_gos WHERE med='".$video['id']."'") === FALSE) {
+    } else if ($bd->query("DELETE FROM med_gos WHERE med='".$video_id."'") === FALSE) {
         echo "Erro:".$bd->error;
         exit;
-    } else if ($bd->query("DELETE FROM med WHERE id='".$video['id']."'") === FALSE) {
+    } else if ($bd->query("DELETE FROM med WHERE id='".$video_id."'") === FALSE) {
         echo "Erro:".$bd->error;
         exit;
     }
+
+    header("Location: /");
+    exit;
+
 } else if ($ac=='titulo'){
     if ($video['uti']==$uti['id']){
         if ($_POST['tit']){

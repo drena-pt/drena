@@ -44,7 +44,12 @@
 				</form>
 			</div>
 			
-			<h6 class='text-center'>ou <a href='/registo' class='btn btn-dark'>Cria uma conta</a></h6>
+			<div class='text-center'>
+				";
+				if ($erros["ppa"]){echo "<a href='#' class='btn btn-light text-primary'>Recuperar conta</a>";}
+				echo "
+				<a href='/registo' class='btn btn-primary'>Cria uma conta</a>
+			</div>
 			";
 			?>
 		</div>

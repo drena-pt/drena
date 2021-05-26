@@ -27,8 +27,7 @@ function numeroParaCor($num){
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" type="image/png" href="imagens/favicon.png"/>
-		<link rel="stylesheet" type="text/css" href="estilo.css">
-		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 		<meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
 		<title>drena</title>
 
@@ -46,6 +45,8 @@ function numeroParaCor($num){
 		<!-- Bootstrap -->
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-icons.css">
 		<script>
 			$(function (){ $('[data-toggle="tooltip"]').tooltip() })
 		</script>
@@ -55,15 +56,8 @@ function numeroParaCor($num){
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
-		<script src="edjsHTML.browser.js"></script>
+		<script src="js/edjsHTML.browser.js"></script>
 		
 		<!-- AnimeJS -->
 		<script src="node_modules/animejs/lib/anime.min.js"></script>
-
-		<!-- VideoJS -->
-		<link href='node_modules/video.js/dist/video-js.css' rel='stylesheet'/>
-		<script src='node_modules/video.js/dist/video.min.js'></script>
-		<link href='node_modules/@silvermine/videojs-quality-selector/dist/css/quality-selector.css' rel='stylesheet'>
-		<script src='node_modules/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js'></script>
-		<link href="node_modules\@videojs\themes\fantasy\tema.css" rel="stylesheet" type="text/css">
 		

@@ -20,7 +20,7 @@
 			echo "
 			<style>
 			:root{
-				--perfil-foto: url('fpe/".base64_encode($uti_perfil["fot"])."');
+				--perfil-foto: url('/fpe/".base64_encode($uti_perfil["fot"])."');
 			}
 			</style>
 			";
@@ -65,9 +65,9 @@
 					<span id='fpe_carregar'>Alterar foto
 						<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#image'/></svg>
 					</span>
-				<div style='display:none;' id='fpe_a_carregar' data-placement='bottom' data-toggle='tooltip' title='A carregar...'>
-					<div class='box'></div>
-				</div>
+					<div style='display:none;' id='fpe_a_carregar' data-placement='bottom' data-toggle='tooltip' title='A carregar...'>
+						<div class='box'></div>
+					</div>
 				</label>
 				<form hidden enctype='multipart/form-data' action='pro/enviar_fpe.php' method='post'>
 					<input type='file' id='fpe' name='fpe'/>
@@ -222,11 +222,13 @@
 						$result->close();
 					}
 				}
-				echo "</div>
-				</div>";
+				echo "</div>";
 			}
+			echo "</div>";
 
-			if ($result = $bd->query("SELECT * FROM pro WHERE uti='".$uti_perfil['id']."'")) {
+			$projetos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE uti='".$uti_perfil['id']."' LIMIT 1"));
+			
+			if ($projetos AND $result = $bd->query("SELECT * FROM pro WHERE uti='".$uti_perfil['id']."'")) {
 				echo "
 				<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
 				<div class='p-xl-5 p-4'><h1>Projetos</h1></div>

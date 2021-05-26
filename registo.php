@@ -64,7 +64,9 @@
 					</form>
 				</div>
 				
-				<h6 class='text-center'>ou <a href='/entrar' class='btn btn-dark'>Inicia sessão</a></h6>
+				<div class='text-center'>
+					<a href='/entrar' class='btn btn-ciano text-light'>Inicia sessão</a>
+				</div>
 				";
 			} else {
 				$pre_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION['pre_uti']."'"));

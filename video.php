@@ -43,7 +43,7 @@
 					
 				<div class='mw-100'>
 					<div style='position:relative;padding-bottom:56.25%;'>
-						<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$_GET['id']."'></iframe>
+						<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$_GET['id']."&titulo=0'></iframe>
 					</div>
 				</div>
 
@@ -79,7 +79,7 @@
 								</div>
 							</div>
 
-							<button onclick=\"window.open('pro/video.php?ac=eliminar&id=".$_GET['id']."','_blank')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar vídeo'>
+							<button onclick=\"window.open('pro/video.php?ac=eliminar&id=".$_GET['id']."','_self')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar vídeo'>
 									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
 							</button>
 							";
