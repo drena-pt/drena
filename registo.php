@@ -30,6 +30,7 @@
 			}
 			#var_dump($erros); #Mostrar erros
 
+			#Se não existir uma sessão de um utilizador com mail por confirmar
 			if (!$_SESSION['pre_uti']){
 				echo "
 				<div class='bg-ciano bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
@@ -81,17 +82,17 @@
 
 				$mai_confirmado = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE mai='".$mai['mai']."' AND con=1"));		# Procurar na base de dados pelo mail já confirmado por outro utilizador.
 				
-				if ($mai_confirmado OR $_GET['ac']=='alterarMail' OR !$mai){																			# Caso o mail estiver confirmado noutra conta ou o utilizador pedir para trocar o mail.
+				if ($mai_confirmado OR $_GET['ac']=='alterarMail' OR !$mai){																			# Se o mail estiver confirmado noutra conta ou o utilizador pedir para trocar o mail.
 					echo "
-					<div class='gradiente rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>";
+					<div class='bg-ciano bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>";
 
 						if (!$mai){
-							echo "<h2>Adicionar um mail</h2>
-							<text>Olá <b>".$pre_uti['nut']."</b>.<br>";
+							echo "<h2>Adicionar um mail</h2>";
 						} else {
-							echo "<h2>Alterar email</h2>
-							<text>Olá <b>".$pre_uti['nut']."</b>.<br>";
+							echo "<h2>Alterar email</h2>";
 						}
+
+						echo "<text>Olá <b>".$pre_uti['nut']."</b>,<br>";
 
 						if ($mai_confirmado){
 							echo "O mail <b>".$mai['mai']."</b> já fó registado e está a ser utilizado por outra conta.<br>Por favor utiliza outro email.</text>";
@@ -105,12 +106,12 @@
 						<form action='pro/registo.mai?ac=registarMail' method='post'>
 							<div class='form-row align-items-center my-3'>
 								<div class='col-8'>
-									<input type='email' class='form-control ".temErro($erros["mai"])."' aria-describedby='erro_mai' name='mai' placeholder='Novo endereço de mail'>
+									<input type='email' class='form-control ".temErro($erros["mai"])."' aria-describedby='erro_mai' name='mai' placeholder='Novo endereço de email'>
 									<div id='erro_mai' class='invalid-feedback'>".nomeErro($erros["mai"])."</div>
 								</div>
 
 								<div class='col-3 align-self-start'>
-									<button type='submit' class='cor1 btn btn-light'>";
+									<button type='submit' class='btn btn-light text-ciano'>";
 									if (!$mai){
 										echo "Adicionar";
 									} else {
@@ -122,7 +123,7 @@
 							</div>
 							";
 							if ($mai AND !$mai_confirmado){
-								echo "<a href='/registo' class='cor2 btn btn-light'>Confirmar email</a>";
+								echo "<a href='/registo' class='btn btn-light text-ciano'>Confirmar email</a>";
 							}
 							echo "
 						</form>
@@ -130,7 +131,7 @@
 					";
 				} else {
 					echo "
-					<div class='gradiente rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
+					<div class='bg-ciano bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
 						<h2>Confirmar ativação da conta</h2>
 						<text>Olá <b>".$pre_uti['nut']."</b>.<br>Enviámos um código de verificação para <b>".$mai['mai']."</b><br>Pode demorar algum tempo até chegar o mail, verifica na caixa de spam.</text>
 
@@ -142,7 +143,7 @@
 								</div>
 
 								<div class='col-3 align-self-start'>
-									<button type='submit' class='cor1 btn btn-light'>Verificar</button>
+									<button type='submit' class='btn btn-light text-ciano'>Verificar</button>
 								</div>
 							</div>
 						</form>
@@ -150,14 +151,14 @@
 						$tempoUltimoEmail = (strtotime(date("Y-m-d H:i:s"))-strtotime($mai['ure']));
 
 						if ($mai['ree']<=2 AND $tempoUltimoEmail>=300){
-							echo "<a href='pro/registo.mai?ac=reenviarMail' class='cor2 btn btn-light'>Reenviar mail</a>";
+							echo "<a href='pro/registo.mai?ac=reenviarMail' class='btn btn-light text-ciano'>Reenviar mail</a>";
 						} else if ($mai['ree']<=2){
-							echo "<span data-toggle='tooltip' data-placement='bottom' title='Espera 5 minutos antes de reenviar um mail.'><a class='disabled cor2 btn btn-light'>Reenviar mail</a></span>";
+							echo "<span data-toggle='tooltip' data-placement='bottom' title='Espera 5 minutos antes de reenviar um mail.'><a class='disabled btn btn-light text-ciano'>Reenviar mail</a></span>";
 						} else {
-							echo "<span data-toggle='tooltip' data-placement='bottom' title='Excedeste o limite de 3 mails diários.'><a class='disabled cor2 btn btn-light'>Reenviar mail</a></span>";
+							echo "<span data-toggle='tooltip' data-placement='bottom' title='Excedeste o limite de emails.'><a class='disabled btn btn-light text-ciano'>Reenviar mail</a></span>";
 						}
 						echo "
-						<a href='/registo?ac=alterarMail' class='cor2 btn btn-light'>Alterar email</a>
+						<a href='/registo?ac=alterarMail' class='btn btn-light text-ciano'>Alterar email</a>
 					</div>
 					";
 				}

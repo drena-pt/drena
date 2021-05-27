@@ -3,7 +3,7 @@ ob_start();
 require_once ('ligarbd.php');
 ob_get_clean();
 
-# Torna os posts em variáveis
+# Torna os inputs em variáveis
 $nut = $_POST["nut"];
 $ppa = $_POST["ppa"];
 
