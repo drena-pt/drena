@@ -17,7 +17,7 @@ if (!$rppa){$erro_rppa=1;}							# Vaziu - Palavra-passe repetida
 if ($ppa!=$rppa){$erro_ppa = 2;}																					# Erro - Palavras-passe diferentes.
 if ($nut){																											# Se o utilizador não for null:
 	if (mysqli_num_rows(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$nut."'"))){$erro_nut = 4;}				# Erro - Nome de utilizador já registado.
-	if (!ctype_alnum($nut)){$erro_nut = 5;}																			# Erro - Nome de utilizador não alfanumérico.
+	if (preg_match('/[^a-zA-Z0-9çÇ_]/', $nut)){$erro_nut=5;} 														# Erro - Utilizador contem caracteres especiais.
 }
 if ($erro_nut OR $erro_nco OR $erro_ppa OR $erro_rppa){												# Se houver erros, volta para a página com um cookie dos erros.
 	$erros = array(

@@ -22,29 +22,46 @@ require('head.php');
             echo "
             <div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3 text-center'>
 				<h1 class='display-3 m-5'>ULTIMOS VÍDEOS</h1>
+                <style>
+                .thumb {
+                    filter: brightness(75%);
+                }
+                .container {
+                    position: relative;
+                }
+                .top-left {
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    transform: translate(-100%, -50%);
+                }
+                .centered {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                  }
+                </style>
                 <div class='row row-cols-2 row-cols-md-3'>
                 ";
                 function encurtarNome($nome){
-                    if (strlen($nome)>=30){
-                        return (substr($nome, 0, 28)."…");
+                    if (strlen($nome)>=48){
+                        return (substr($nome, 0, 46)."…");
                     } else {
                         return ($nome);
                     }
                 }
-                $pesquisa = "SELECT * FROM med ORDER by den DESC LIMIT 12";
+                $pesquisa = "SELECT * FROM med WHERE tip='1' ORDER by den DESC LIMIT 12";
                 if ($resultado = $bd->query($pesquisa)) {
                     while ($campo = $resultado->fetch_assoc()) {
                         if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
                         echo "
-                        <div class='col mb-4'>
-                            <div class='card border-0 shadow'>
-                                <a href='/video?id=".$campo['id']."'>
-                                    <img src='https://media.drena.xyz/thumb/".$campo['id'].".jpg' class='card-img-top' alt='...'>
-                                </a>
-                                <div class='card-body bg-dark text-start'>
-                                    <p class='text-light card-text'>".encurtarNome($video_tit)."</p>
-                                </div>
-                            </div>
+                        <div class='col mb-4 container'>
+                            <a style='text-shadow: rgb(0, 0, 0) 0px 0px 10px;' class=' text-light' href='/video?id=".$campo['id']."'>
+                                <img class='thumb shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['id'].".jpg'>
+                                <div class='centered'><text class='h6'>".encurtarNome($video_tit)."</text></div>
+                                <!--<div class='top-left'><h1><i class='bi bi-play'></i></h1></div>-->
+                            </a>
                         </div>
                         ";
                     } 

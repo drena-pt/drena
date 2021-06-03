@@ -3,11 +3,11 @@ ob_start();
 require_once('pro/ligarbd.php');
 ob_get_clean();
 session_start();
-$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
+$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."' AND tip='1'"));
 $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));	#Utilizador dono do vídeo
 if ($med){
 	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}						#Definir título do vídeo
-	if ($_GET['titulo']=='0'){$tem_titulo='//';}														#Se a variavel passada pelo o url "titulo" for 0, comenta o script.
+	if ($_GET['titulo']=='0'){$tem_titulo='//';}													#Se a variavel passada pelo o url "titulo" for 0, comenta o script.
 	echo "
 	<head>
 		<title>".$med_tit."</title> 

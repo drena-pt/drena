@@ -19,7 +19,6 @@
 		<div id="swup" class="transition-fade">
 		<?php
 		echo "
-		<script src='/js/jquery.filedrop.js'></script>
 		<div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
 
 			<div class='shadow p-0 my-0 mb-xl-4'>
@@ -53,15 +52,15 @@
 
 					<div class='row'>
 						<div class='col-12 col-sm mb-2'>
-							<img id='video_thumb' class='mw-100 shadow rounded-xl' src='/imagens/thumb_carregar.jpg'/>
+							<img id='video_thumb' class='mw-100 shadow rounded-xl' src='/imagens/carregar_video.jpg'/>
 						</div>
 						<div class='col-12 col-sm mb-2'>
 						
-							<text class='h5' id='tit'>Nenhum vídeo selecionado</text>
+							<text class='h5' id='tit'>Nenhum vídeo selecionado</text><br><br>
 							<label id='botao_input_video' for='input_video' class='btn btn-primary' style='cursor:pointer;'>
 								<span id='fpe_carregar'>
-									Selecionar um vídeo
-									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-play'/></svg>
+									Selecionar um vídeo 
+									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#upload'/></svg>
 								</span>
 							</label>
 
@@ -70,6 +69,26 @@
 								<input type='submit' value='Carregar'>
 							</form>
 
+							<section class='mt-auto' id='video_info' hidden>
+								<div class='row mb-1'>
+									<div class='col-auto pr-0 text-center'>
+										<svg class='bi' width='1em' height='1em' fill='currentColor'>
+											<use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-play'/>
+										</svg>
+									</div>
+									<div class='col' >
+										<span>Informações do vídeo:</span><br>
+										<span id='video_info_tamanho'></span><br>
+										<span id='video_info_duracao'></span>
+									</div>
+								</div>
+								<br>
+							</section>
+
+							<a hidden id='botao_ver_video' href='/videos' class='btn btn-primary'>
+								Ver vídeo <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#play'/></svg>
+							</a>
+
 						</div>
 					</div>	
 
@@ -77,7 +96,23 @@
 			</div>
 		
 			<script>
+			function formatBytes(a,b=2){if(0===a)return'0 Bytes';const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return parseFloat((a/Math.pow(1024,d)).toFixed(c))+' '+['Bytes','KB','MB','GB','TB','PB','EB','ZB','YB'][d]}
+
 			$(function() {
+				function secondsToHms(d) {
+					d = Number(d);
+					var h = Math.floor(d / 3600);
+					var m = Math.floor(d % 3600 / 60);
+					var s = Math.floor(d % 3600 % 60);
+				
+					var hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : '';
+					var mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : '';
+					var sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : '';
+					return hDisplay + mDisplay + sDisplay; 
+				}
+
+				var myVideos = [];
+
 				var bar = $('#style_bar_before');
 				var status = $('#status');
 				var titulo = $('#tit');
@@ -86,6 +121,23 @@
 
 				input.change(function() {
 					$('#form_video').submit();
+					$('#video_info_tamanho').html(formatBytes(this.files[0].size));
+
+						var files = this.files;
+						myVideos.push(files[0]);
+						var video = document.createElement('video');
+						video.preload = 'metadata';
+					  
+						video.onloadedmetadata = function() {
+						  window.URL.revokeObjectURL(video.src);
+						  var duration = video.duration;
+						  myVideos[myVideos.length - 1].duration = duration;
+						  $('#video_info_duracao').html(secondsToHms(video.duration));
+						}
+					  
+						video.src = URL.createObjectURL(files[0]);;
+
+					$('#video_info').removeAttr('hidden');
 				});
 
 				$('#form_video').ajaxForm({
@@ -113,6 +165,8 @@
 						} else {
 							status.html('Carregamento completo');
 							imagem.attr('src','https://media.drena.xyz/thumb/'+json.codigo+'.jpg');
+							$('#botao_ver_video').removeAttr('hidden');
+							$('#botao_ver_video').attr('href', '/video?id='+json.codigo);
 						}
 
 						/*$.ajax({

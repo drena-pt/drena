@@ -43,10 +43,6 @@ $box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 	font-family: "SourceSansPro";
 	src: url("../fontes/SourceSansPro.ttf");
 }
-@font-face{
-	font-family: "bootstrap-icons";
-	src: url("/fontes/bootstrap-icons.woff");
-}
 
 $font-family-sans-serif: "SourceSansPro", Helvetica, Arial, sans-serif !default;
 $headings-font-family: "MADE TOMMY Medium" !default;
@@ -103,9 +99,15 @@ $tooltip-arrow-color: transparent !default;
 $card-deck-margin: 0px;
 $card-border-radius: 0px;
 
+$modal-content-border-radius: 10px;
+$modal-content-border-width: 0;
+
 //Criado por mim:
 .text-outline{
 	font-family: "MADE TOMMY Medium Outline";
+}
+.rounded-xl{
+	border-radius: 10px;
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap";

@@ -15,10 +15,6 @@
   font-family: "SourceSansPro";
   src: url("../fontes/SourceSansPro.ttf");
 }
-@font-face {
-  font-family: "bootstrap-icons";
-  src: url("/fontes/bootstrap-icons.woff");
-}
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "MADE TOMMY Regular" !important;
 }
@@ -41,6 +37,10 @@ input, .btn {
 
 .text-outline {
   font-family: "MADE TOMMY Medium Outline";
+}
+
+.rounded-xl {
+  border-radius: 10px;
 }
 
 /*!
@@ -5350,8 +5350,8 @@ textarea.form-control-lg {
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
+  border: 0 solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   outline: 0;
 }
@@ -5378,9 +5378,9 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1rem;
-  border-bottom: 2px solid #dee2e6;
-  border-top-left-radius: calc(0.3rem - 2px);
-  border-top-right-radius: calc(0.3rem - 2px);
+  border-bottom: 0 solid #dee2e6;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .modal-header .btn-close {
   padding: 0.5rem 0.5rem;
@@ -5405,9 +5405,9 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 2px solid #dee2e6;
-  border-bottom-right-radius: calc(0.3rem - 2px);
-  border-bottom-left-radius: calc(0.3rem - 2px);
+  border-top: 0 solid #dee2e6;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .modal-footer > * {
   margin: 0.25rem;
@@ -6113,7 +6113,7 @@ textarea.form-control-lg {
   top: 0;
   left: 0;
   width: 400px;
-  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  border-right: 0 solid rgba(0, 0, 0, 0.2);
   transform: translateX(-100%);
 }
 
@@ -6121,7 +6121,7 @@ textarea.form-control-lg {
   top: 0;
   right: 0;
   width: 400px;
-  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  border-left: 0 solid rgba(0, 0, 0, 0.2);
   transform: translateX(100%);
 }
 
@@ -6131,7 +6131,7 @@ textarea.form-control-lg {
   left: 0;
   height: 30vh;
   max-height: 100%;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 0 solid rgba(0, 0, 0, 0.2);
   transform: translateY(-100%);
 }
 
@@ -6140,7 +6140,7 @@ textarea.form-control-lg {
   left: 0;
   height: 30vh;
   max-height: 100%;
-  border-top: 2px solid rgba(0, 0, 0, 0.2);
+  border-top: 0 solid rgba(0, 0, 0, 0.2);
   transform: translateY(100%);
 }
 

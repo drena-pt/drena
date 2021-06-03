@@ -1,6 +1,6 @@
 		<?php 
 		require('head.php');
-		$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
+		$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."' AND tip='1'"));
 
 		if ($med){
 			if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															#Definir título do vídeo
@@ -13,6 +13,10 @@
 		<?php require('cabeçalho.php'); ?>
 		<div id="swup" class="transition-fade">
 		<?php
+			if (!$med){
+				echo "<h2 class='my-5 text-center'>Vídeo não encontrado! 😵</h2>‍";
+				exit;
+			}
 			function tempoHumano($time){
 			
 				$time = time() - $time; // to get the time since that moment
@@ -35,17 +39,15 @@
 			
 			}
 			echo "
-			<div class='p-0 my-0 offset-xl-3 col-xl-6'>
+			<div class='p-0 my-0 offset-xl-3 col-xl-6 mt-0 mt-xl-4'>
 
-				<h3><br></h3>
-
-				<section class='bg-dark'>
+				<section class='bg-dark shadow'>
 					
-				<div class='mw-100'>
-					<div style='position:relative;padding-bottom:56.25%;'>
-						<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$_GET['id']."&titulo=0'></iframe>
+					<div class='mw-100'>
+						<div style='position:relative;padding-bottom:56.25%;'>
+							<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$_GET['id']."&titulo=0'></iframe>
+						</div>
 					</div>
-				</div>
 
 					<div class='p-4'>
 						<div class='d-flex flex-row-reverse mb-3'>";
@@ -93,7 +95,7 @@
 									<a href='/perfil?uti=".$med_uti['nut']."'><img src='fpe/".base64_encode($med_uti["fot"])."' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
-									<span class='justify-content-center align-self-center'>Publicado por: ".$med_uti['nut']."</span>
+									<span class='justify-content-center align-self-center'>Publicado por ".$med_uti['nut']."</span>
 								</div>
 							</div>
 							<!--<div class='row mb-1'>

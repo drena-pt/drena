@@ -117,8 +117,9 @@ if ($_SESSION["pre_uti"]){ # Se houver sessão de pre-utilizador iniciada.
 				goto erros;
 			} else {
 				$bd->query("UPDATE uti SET ppa='".password_hash($ppa, PASSWORD_DEFAULT)."' WHERE nut='".$get_uti['nut']."'");
+				$bd->query("UPDATE uti_mai SET cod='".substr(md5(uniqid(rand(), true)), 8, 8)."', ree=0 WHERE id='".$get_uti["mai"]."'");
 				
-				setcookie('passeAlterada', 1, time() + (60), "/");
+				setcookie('passeAlterada', 1, time() + (4), "/");
 				header("Location: /../entrar?ac=alterarPasse");
 				exit;
 			}

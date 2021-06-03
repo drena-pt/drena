@@ -59,9 +59,7 @@ html.is-leaving .transition-fade{
 /*html.is-rendering .transition-fade{
 	transform: translateX(-100%);
 }*/
-.rounded-xl{
-	border-radius: 10px;
-}
+
 
 .navbar-toggler,
 .navbar-toggler:focus,

@@ -21,7 +21,7 @@
 					case 4:
 						return "Este utilizador já está registado.";break;
 					case 5:
-						return "O nome de utilizador só pode conter letras e números.";break;
+						return "Não podes usar caracteres especiais.";break;
 					case 6:
 						return "Código de verificação inválido.";break;
 					case 7:
