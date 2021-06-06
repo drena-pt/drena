@@ -182,12 +182,37 @@
 				}
 			}
 			
+			$uti_perfil_projetos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM pro WHERE uti='".$uti_perfil['id']."';"));
+			$uti_perfil_audios = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE tip=2 AND uti='".$uti_perfil['id']."';"));
+			$uti_perfil_imagens = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE tip=3 AND uti='".$uti_perfil['id']."';"));
+			$uti_perfil_videos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE tip=1 AND uti='".$uti_perfil['id']."';"));
+
+			if ($uti_perfil_projetos!=0 OR $uti_perfil_audios!=0 OR $uti_perfil_imagens!=0 OR $uti_perfil_videos!=0){
+			echo "
+			<div class='bg-dark text-light p-xl-5 p-4'>
+				<section class='row'>";
+				if ($uti_perfil_projetos!=0){
+					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span> Projetos</text>";
+				}
+				if ($uti_perfil_audios!=0){
+					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span> Áudios</text>";
+				}
+				if ($uti_perfil_imagens!=0){
+					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span> Imagens</text>";
+				}
+				if ($uti_perfil_videos!=0){
+					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span> Vídeos</text>";
+				}
+			echo "</section>
+			</div>";
+			}
+
 			if ($conhecidos OR $pedidos AND $uti_perfil['nut']==$_SESSION["uti"]){
-				echo "<div class='bg-gradient bg-dark text-light p-xl-5 p-4'>";
+				echo "<div class='bg-dark text-light p-xl-5 px-4'>";
 
 				if ($conhecidos){
 					if ($result = $bd->query("SELECT a_id, b_id FROM ami WHERE a_id='".$uti_perfil["id"]."' AND sim='1' OR b_id='".$uti_perfil["id"]."' AND sim='1' ORDER by b_dat DESC")) {
-						echo "<text class='h5'>Conhecidos</text>
+						echo "<text class='h5'>Lista de conhecidos</text>
 						<div class='row my-2'>";
 						while ($row = $result->fetch_row()) {
 							echo "<div class='col-md-2 col-4 my-3 text-center'>";
@@ -209,7 +234,7 @@
 
 				if ($uti_perfil['nut']==$_SESSION["uti"] AND $pedidos){
 					if ($result = $bd->query("SELECT a_id FROM ami WHERE b_id='".$uti["id"]."' AND sim='0' ORDER by id DESC")){
-						echo "<text class='h5'>Pedidos</text>
+						echo "<text class='h5'>Pedidos de utilizadores</text>
 						<div class='row my-2'>";
 						while ($row = $result->fetch_row()) {
 							$uti_a = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[0]."'"));
@@ -224,7 +249,8 @@
 				}
 				echo "</div>";
 			}
-			echo "</div>";
+			echo "</div>			
+			";
 
 			$projetos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE uti='".$uti_perfil['id']."' LIMIT 1"));
 			

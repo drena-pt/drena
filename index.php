@@ -8,14 +8,15 @@ require('head.php');
 			<style>
 			.jumbotron{
 				height: 90vh;
-				background-image: linear-gradient(-90deg,rgba(0,0,0,0.6),rgba(0,0,0,0.3),rgba(0,0,0,0.6)),url("imagens/fundo3.jpg");
+				background-image: linear-gradient(-90deg,rgba(0,0,0,0.6),rgba(0,0,0,0),rgba(0,0,0,0.6)),url("imagens/fundo.jpg");
 				background-position: center;
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
 			</style>
             <div class="jumbotron bg-dark d-flex align-items-center text-center justify-content-center align-items-center">
-                <h1 class="display-3 text-outline">MOSTRA O QUE FAZES.<br>
+                <h1 class="display-3">MOSTRA O QUE FAZES.<br>
+                <span class='text-outline'>MOSTRA O QUE FAZES.<br>MOSTRA O QUE FAZES.<br>MOSTRA O QUE FAZES.<br>MOSTRA O QUE FAZES.</span>
 				<!--<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#play'/></svg>--></h1>
             </div>
 			<?php
@@ -57,10 +58,9 @@ require('head.php');
                         if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
                         echo "
                         <div class='col mb-4 container'>
-                            <a style='text-shadow: rgb(0, 0, 0) 0px 0px 10px;' class=' text-light' href='/video?id=".$campo['id']."'>
+                            <a style='text-shadow: rgb(0, 0, 0) 0px 0px 10px;' class='text-light' href='/video?id=".$campo['id']."'>
                                 <img class='thumb shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['id'].".jpg'>
                                 <div class='centered'><text class='h6'>".encurtarNome($video_tit)."</text></div>
-                                <!--<div class='top-left'><h1><i class='bi bi-play'></i></h1></div>-->
                             </a>
                         </div>
                         ";
