@@ -35,7 +35,7 @@ if ($med){
 	<body>
 		<table>
 			<tr>
-				<td role='button' class='align-middle bg-rosa bg-gradient text-light' onclick='wavesurfer.playPause()'>
+				<td role='button' class='align-middle bg-rosa bg-gradient text-light' onclick='wavesurfer.playPause()' style=\"background-image:url('https://drena.xyz/imagens/carregar_som.jpg');background-size:cover;\">
 					<h1 id='botao' class='bi-play m-auto mx-4'></h1>
 				</td>
 				<td class='w-100 bg-light'><div id='waveform'></div></td>

@@ -1,6 +1,6 @@
 		<?php 
 		require('head.php');
-		$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."' AND tip='2'"));
+		$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."' AND tip='3'"));
 
 		if ($med){
 			if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															#Definir título do vídeo
@@ -44,7 +44,7 @@
 			<section class='bg-dark shadow'>
 
 				<div class='p-4'>
-					<iframe height='108px' class='w-100' src='/audio_embed?id=".$_GET['id']."&titulo=0'></iframe>
+					<img class='w-100 mb-3' src='https://media.drena.xyz/teste/".$_GET['id'].".".end(explode(".", $med['nom']))."'></img>
 
 					<div class='d-flex flex-row-reverse mb-3'>";
 					if ($uti['id']==$med_uti['id']){
@@ -55,7 +55,7 @@
 							</button>
 						</span>
 						<span data-toggle='modal' data-target='#modal_eliminar_med'>
-							<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar áudio'>
+							<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar imagem'>
 								<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
 							</button>
 						</span>
@@ -73,18 +73,18 @@
 										</div>
 										<div class='modal-footer text-end'>
 											<button type='button' class='btn btn-light' data-dismiss='modal'>Fechar</button>
-											<button type='submit' class='btn btn-rosa text-light'>Alterar</button>
+											<button type='submit' class='btn btn-ciano text-light'>Alterar</button>
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
-						<!-- Modal Eliminar áudio-->
+						<!-- Modal Eliminar imagem-->
 						<div class='modal fade' id='modal_eliminar_med' tabindex='-1' role='dialog' aria-labelledby='modal_eliminar_med_label' aria-hidden='true'>
 							<div class='modal-dialog' role='document'>
 								<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
 									<div class='modal-header'>
-										<h2 class='modal-title' id='modal_eliminar_med_label'>Eliminar áudio<br></h2><br>
+										<h2 class='modal-title' id='modal_eliminar_med_label'>Eliminar imagem<br></h2><br>
 									</div>
 									<div class='modal-body'>
 										<text><span class='h5'>".$med_tit."</span><br>Esta ação é irreversível!</text>

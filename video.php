@@ -58,32 +58,48 @@
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#input-cursor-text'/></svg>
 								</button>
 							</span>
+							<span data-toggle='modal' data-target='#modal_eliminar_med'>
+								<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar vídeo'>
+									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+								</button>
+							</span>
+
 							<!-- Modal -->
 							<div class='modal fade' id='modal_alerar_tit' tabindex='-1' role='dialog' aria-labelledby='modal_alerar_tit_label' aria-hidden='true'>
 								<div class='modal-dialog' role='document'>
-									<div class='modal-content bg-dark'>
+									<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
 										<form action='pro/video.php?ac=titulo&id=".$_GET['id']."' method='post'>
 											<div class='modal-header'>
-												<h5 class='modal-title' id='modal_alerar_tit_label'>Alterar título</h5>
-												<button type='button' class='close text-light' data-dismiss='modal' aria-label='Close'>
-													<span aria-hidden='true'>&times;</span>
-												</button>
+												<h2 class='modal-title' id='modal_alerar_tit_label'>Alterar título<br></h2><br>
 											</div>
 											<div class='modal-body'>
 												<input type='text' class='form-control' name='tit' placeholder='Título' value='".$med_tit."'>
 											</div>
-											<div class='modal-footer'>
+											<div class='modal-footer text-end'>
 												<button type='button' class='btn btn-light' data-dismiss='modal'>Fechar</button>
-												<button type='submit' class='btn btn-primary'>Alterar</button>
+												<button type='submit' class='btn btn-primary text-light'>Alterar</button>
 											</div>
 										</form>
 									</div>
 								</div>
 							</div>
-
-							<button onclick=\"window.open('pro/video.php?ac=eliminar&id=".$_GET['id']."','_self')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar vídeo'>
-									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
-							</button>
+							<!-- Modal Eliminar áudio-->
+							<div class='modal fade' id='modal_eliminar_med' tabindex='-1' role='dialog' aria-labelledby='modal_eliminar_med_label' aria-hidden='true'>
+								<div class='modal-dialog' role='document'>
+									<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
+										<div class='modal-header'>
+											<h2 class='modal-title' id='modal_eliminar_med_label'>Eliminar vídeo<br></h2><br>
+										</div>
+										<div class='modal-body'>
+											<text><span class='h5'>".$med_tit."</span><br>Esta ação é irreversível!</text>
+										</div>
+										<div class='modal-footer text-end'>
+											<button type='button' class='btn btn-light' data-dismiss='modal'>Cancelar</button>
+											<a href='pro/video.php?ac=eliminar&id=".$_GET['id']."' role='button' class='btn btn-vermelho text-light'>Eliminar</a>
+										</div>
+									</div>
+								</div>
+							</div>
 							";
 						}
 							echo "
@@ -95,7 +111,7 @@
 									<a href='/perfil?uti=".$med_uti['nut']."'><img src='fpe/".base64_encode($med_uti["fot"])."' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
-									<span class='justify-content-center align-self-center'>Publicado por ".$med_uti['nut']."</span>
+									<span class='justify-content-center align-self-center'>"._('Publicado por')." ".$med_uti['nut']."</span>
 								</div>
 							</div>
 							<!--<div class='row mb-1'>
@@ -114,7 +130,7 @@
 									</svg>
 								</div>
 								<div class='col' >
-									<span id='texto_gostos'>".$med['gos']."</span> gostos
+									<span id='texto_gostos'>".$med['gos']."</span> "._('gostos')."
 								</div>
 							</div>
 							<div class='row mb-1'>

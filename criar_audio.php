@@ -5,14 +5,6 @@
 			exit;
 		}
 		?>
-		<style>
-		.bar{
-			background-color: red;
-		}
-		.percent{
-			color: blue;
-		}
-		</style>
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
@@ -40,7 +32,7 @@
 				</style>
 				<style id='style_bar_before'></style>
 				
-				<div class='p-xl-5 p-4 bg-rosa text-light bar'>
+				<div class='p-xl-5 p-4 bg-rosa bg-gradient text-light bar'>
 					<h2 id='status'>Carregar áudio</h2>
 				</div>
 
@@ -52,7 +44,7 @@
 						</div>
 						<div class='col-12 col-sm-8 mb-2'>
 						
-							<text class='h5' id='tit'>Nenhum áudio selecionado<br></text><br>
+							<text class='h5' id='tit'>Nenhum áudio selecionado</text><br><br>
 							<label id='botao_input_audio' for='input_audio' class='btn btn-rosa text-light' style='cursor:pointer;'>
 								<span id='fpe_carregar'>
 									Selecionar um áudio
@@ -65,17 +57,17 @@
 								<input type='submit' value='Carregar'>
 							</form>
 
-							<section class='mt-auto' id='video_info' hidden>
+							<section class='mt-auto' id='audio_info' hidden>
 								<div class='row mb-1'>
 									<div class='col-auto pr-0 text-center'>
 										<svg class='bi' width='1em' height='1em' fill='currentColor'>
-											<use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-play'/>
+											<use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-music'/>
 										</svg>
 									</div>
-									<div class='col' >
-										<span>Informações do vídeo:</span><br>
-										<span id='video_info_tamanho'></span><br>
-										<span id='video_info_duracao'></span>
+									<div class='col'>
+										<span>Informações do áudio:</span><br>
+										<span id='audio_info_tamanho'></span><br>
+										<span id='audio_info_duracao'></span>
 									</div>
 								</div>
 								<br>
@@ -93,6 +85,21 @@
 		
 			<script>
 			$(function() {
+				function formatBytes(a,b=2){if(0===a)return'0 Bytes';const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return parseFloat((a/Math.pow(1024,d)).toFixed(c))+' '+['Bytes','KB','MB','GB','TB','PB','EB','ZB','YB'][d]}
+
+				function secondsToHms(d) {
+					d = Number(d);
+					var h = Math.floor(d / 3600);
+					var m = Math.floor(d % 3600 / 60);
+					var s = Math.floor(d % 3600 % 60);
+				
+					var hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : '';
+					var mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : '';
+					var sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : '';
+					return hDisplay + mDisplay + sDisplay; 
+				}
+				var myaudios = [];
+
 				var bar = $('#style_bar_before');
 				var status = $('#status');
 				var titulo = $('#tit');
@@ -101,6 +108,23 @@
 
 				input.change(function() {
 					$('#form_audio').submit();
+					$('#audio_info_tamanho').html(formatBytes(this.files[0].size));
+
+						var files = this.files;
+						myaudios.push(files[0]);
+						var audio = document.createElement('audio');
+						audio.preload = 'metadata';
+					  
+						audio.onloadedmetadata = function() {
+						  window.URL.revokeObjectURL(audio.src);
+						  var duration = audio.duration;
+						  myaudios[myaudios.length - 1].duration = duration;
+						  $('#audio_info_duracao').html(secondsToHms(audio.duration));
+						}
+					  
+						audio.src = URL.createObjectURL(files[0]);;
+
+					$('#audio_info').removeAttr('hidden');
 				});
 
 				$('#form_audio').ajaxForm({

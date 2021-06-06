@@ -5377,14 +5377,14 @@ textarea.form-control-lg {
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 0 0;
   border-bottom: 0 solid #dee2e6;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 .modal-header .btn-close {
-  padding: 0.5rem 0.5rem;
-  margin: -0.5rem -0.5rem -0.5rem auto;
+  padding: 0 0;
+  margin: 0 0 0 auto;
 }
 
 .modal-title {
@@ -5395,7 +5395,7 @@ textarea.form-control-lg {
 .modal-body {
   position: relative;
   flex: 1 1 auto;
-  padding: 1rem;
+  padding: 0;
 }
 
 .modal-footer {
@@ -5404,7 +5404,7 @@ textarea.form-control-lg {
   flex-shrink: 0;
   align-items: center;
   justify-content: flex-end;
-  padding: 0.75rem;
+  padding: -0.25rem;
   border-top: 0 solid #dee2e6;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -6091,11 +6091,11 @@ textarea.form-control-lg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 0 0;
 }
 .offcanvas-header .btn-close {
-  padding: 0.5rem 0.5rem;
-  margin: -0.5rem -0.5rem -0.5rem auto;
+  padding: 0 0;
+  margin: 0 0 0 auto;
 }
 
 .offcanvas-title {
@@ -6105,7 +6105,7 @@ textarea.form-control-lg {
 
 .offcanvas-body {
   flex-grow: 1;
-  padding: 1rem 1rem;
+  padding: 0 0;
   overflow-y: auto;
 }
 

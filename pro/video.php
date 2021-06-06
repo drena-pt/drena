@@ -4,14 +4,13 @@ require('fun.php');     #Obter funções
 $ac = $_GET['ac'];      #Ação
 
 $video = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET['id']."'"));
-if ($uti['adm']==1){ #Se for admin
-    $video_id = $_GET['id'];
-    $video_ext = "mp4";
-    echo "Olá admin";
-} else if ($video){ #Se o video existir
+if ($video OR $uti['adm']==1){ #Se o video existir ou o utilizador for admin
     if ($video['uti']==$uti['id']){ #Se for o dono do video
         $video_id = $video['id'];
-        $video_ext = $video['ext'];
+        $video_ext = end(explode(".", $video['nom']));
+    } else if ($uti['adm']==1) { #Se for admin
+        $video_id = $_GET['id'];
+        $video_ext = $_GET['ext'];
     } else { #Se não for o dono do video
         echo "Erro: Não és o dono do vídeo.";
         exit;
@@ -31,11 +30,15 @@ if ($ac=='eliminar'){
     $thumb = $pasta.'thumb/'.$video_id.'.jpg';
     unlink($thumb);             #Thumb
 
+    $som = $pasta.'som/'.$video_id.'.'.$video_ext;
+    unlink($som);               #Som
+
     echo "<br>".$ori;
     echo "<br>".$webm;
     echo "<br>".$thumb;
+    echo "<br>".$som;
 
-    if (file_exists($ori) OR file_exists($webm) OR file_exists($thumb)){
+    if (file_exists($ori) OR file_exists($webm) OR file_exists($thumb) OR file_exists($som)){
         echo "Erro: Não foi possivel remover os ficheiros.";
     } else if ($bd->query("DELETE FROM med_gos WHERE med='".$video_id."'") === FALSE) {
         echo "Erro:".$bd->error;

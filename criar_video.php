@@ -5,14 +5,6 @@
 			exit;
 		}
 		?>
-		<style>
-		.bar{
-			background-color: red;
-		}
-		.percent{
-			color: blue;
-		}
-		</style>
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
@@ -40,12 +32,8 @@
 				</style>
 				<style id='style_bar_before'></style>
 				
-				<div class='p-xl-5 p-4 bg-primary text-light bar'>
+				<div class='p-xl-5 p-4 bg-primary bg-gradient text-light bar'>
 					<h2 id='status'>Carregar vídeo</h2>
-					<!--<div id='progresso_barra' class='progress percent'>
-						<div style='background-color:red;' class='bar'></div >
-					</div>
-					<div id='status'></div>-->
 				</div>
 
 				<div class='p-xl-5 p-4 bg-dark text-light'>
@@ -96,9 +84,9 @@
 			</div>
 		
 			<script>
-			function formatBytes(a,b=2){if(0===a)return'0 Bytes';const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return parseFloat((a/Math.pow(1024,d)).toFixed(c))+' '+['Bytes','KB','MB','GB','TB','PB','EB','ZB','YB'][d]}
-
 			$(function() {
+				function formatBytes(a,b=2){if(0===a)return'0 Bytes';const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return parseFloat((a/Math.pow(1024,d)).toFixed(c))+' '+['Bytes','KB','MB','GB','TB','PB','EB','ZB','YB'][d]}
+
 				function secondsToHms(d) {
 					d = Number(d);
 					var h = Math.floor(d / 3600);
@@ -110,7 +98,6 @@
 					var sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : '';
 					return hDisplay + mDisplay + sDisplay; 
 				}
-
 				var myVideos = [];
 
 				var bar = $('#style_bar_before');

@@ -61,15 +61,15 @@
 					</div></a>
 				</div>
 
-				<div class='col'>
+				<div class='col'><a class='text-decoration-none' href='/criar_imagem.php'>
 					<div id='cartao_3' class='bg-ciano text-light p-xl-5 p-4 mb-4 rounded-xl shadow'>
 						<h2>Imagem</h2>
-					</div>
+					</div></a>
 				</div>
 
 				<div class='col'><a class='text-decoration-none' href='/criar_audio.php'>
 					<div id='cartao_4' class='bg-rosa text-light p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h2>Som</h2>
+						<h2>Áudio</h2>
 					</div></a>
 				</div>
 
