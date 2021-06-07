@@ -22,13 +22,13 @@
 				$time = time() - $time; // to get the time since that moment
 				$time = ($time<1)? 1 : $time;
 				$tokens = array (
-					31536000 => 'ano',
-					2592000 => 'mês',
-					604800 => 'semana',
-					86400 => 'dia',
-					3600 => 'hora',
-					60 => 'minuto',
-					1 => 'segundo'
+					31536000 => _('ano'),
+					2592000 => _('mês'),
+					604800 => _('semana'),
+					86400 => _('dia'),
+					3600 => _('hora'),
+					60 => _('minuto'),
+					1 => _('segundo')
 				);
 			
 				foreach ($tokens as $unit => $text) {
@@ -138,7 +138,7 @@
 									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg>
 								</div>
 								<div class='col'>
-									há ".tempoHumano(strtotime($med['den']))."
+									".sprintf(_('há %s'),tempoHumano(strtotime($med['den'])))."
 								</div>
 							</div>
 						</section>

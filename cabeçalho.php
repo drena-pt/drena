@@ -10,14 +10,14 @@
 			<ul class='navbar-nav'>
 				<?php
 					if (!$uti['id']){
-						echo "<li class='nav-item'><a class='nav-link' href='/entrar'>Entrar</a></li>";
+						echo "<li class='nav-item'><a class='nav-link' href='/entrar'>"._('Entrar')."</a></li>";
 					} else {
 						if ($uti['adm']==1){
-							echo "<li class='nav-item'><a class='nav-link mx-1' href='/adm'>Administrar</a></li>";
+							echo "<li class='nav-item'><a class='nav-link mx-1' href='/adm'>"._('Administrar')."</a></li>";
 						}
-						echo "<li class='nav-item'><a class='nav-link mx-1' href='/criar'>Criar</a></li>
-						<li class='nav-item'><a class='nav-link mx-1' href='pro/sair'>Sair</a></li>
-						<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."' data-toggle='tooltip' data-placement='bottom' title='Perfil'><img class='ms-2 rounded-circle' src='fpe/".base64_encode($uti["fot"])."' width='40' height='40'></a></li>";
+						echo "<li class='nav-item'><a class='nav-link mx-1' href='/criar'>"._('Criar')."</a></li>
+						<li class='nav-item'><a class='nav-link mx-1' href='pro/sair'>"._('Sair')."</a></li>
+						<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."' data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."'><img class='ms-2 rounded-circle' src='fpe/".base64_encode($uti["fot"])."' width='40' height='40'></a></li>";
 					}
 				?>
 			</ul>

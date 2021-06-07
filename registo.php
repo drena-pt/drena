@@ -13,19 +13,19 @@
 			function nomeErro($erro){
 				switch ($erro){
 					case 1:
-						return "Campo vazio.";break;
+						return _('Campo vazio.');break;
 					case 2:
-						return "As palavras-passe não podem ser diferentes.";break;
+						return _('As palavras-passe não podem ser diferentes.');break;
 					case 3:
-						return "Este mail já está em uso.";break;
+						return _('Este email já está em uso.');break;
 					case 4:
-						return "Este utilizador já está registado.";break;
+						return _('Este utilizador já está registado.');break;
 					case 5:
-						return "Não podes usar caracteres especiais.";break;
+						return _('Não podes usar caracteres especiais.');break;
 					case 6:
-						return "Código de verificação inválido.";break;
+						return _('Código de verificação inválido.');break;
 					case 7:
-						return "Não podes utilizar o mesmo email.";break;
+						return _('Não podes utilizar o mesmo email.');break;
 				}
 			}
 			#var_dump($erros); #Mostrar erros
@@ -35,38 +35,38 @@
 				echo "
 				<div class='bg-ciano bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
 					<form action='/pro/registo.php' method='post' autocomplete='off' autocomplete='chrome-off'>
-						<h1 aria-describedby='erro_campos'>Registo</h1>
+						<h1 aria-describedby='erro_campos'>"._('Registo')."</h1>
 
 						<div class='form-group'>
-							<input type='text' class='form-control ".temErro($erros["nco"])."' aria-describedby='erro_nco' name='nco' placeholder='O teu nome verdadeiro'>
+							<input type='text' class='form-control ".temErro($erros["nco"])."' aria-describedby='erro_nco' name='nco' placeholder='"._('O teu nome verdadeiro')."'>
 							<div id='erro_nco' class='invalid-feedback'>".nomeErro($erros["nco"])."</div>
 						</div>
 
 						<div class='form-group'>
-							<input type='text' class='form-control ".temErro($erros["nut"])."' aria-describedby='erro_nut' name='nut' placeholder='Nome de utilizador'>
+							<input type='text' class='form-control ".temErro($erros["nut"])."' aria-describedby='erro_nut' name='nut' placeholder='"._('Nome de utilizador')."'>
 							<div id='erro_nut' class='invalid-feedback'>".nomeErro($erros["nut"])."</div>
 						</div>
 						
 						<div class='form-group form-row'>
 							<div class='col mb-3 mb-sm-auto'>
-								<input type='password' class='form-control ".temErro($erros["ppa"])."' aria-describedby='erro_ppa' name='ppa' placeholder='Palavra-passe'>
+								<input type='password' class='form-control ".temErro($erros["ppa"])."' aria-describedby='erro_ppa' name='ppa' placeholder='"._('Palavra-passe')."'>
 								<div id='erro_ppa' class='invalid-feedback'>".nomeErro($erros["ppa"])."</div>
 							</div>
 							
 							<div class='col-sm'>
-								<input type='password' class='form-control ".temErro($erros["rppa"])."' aria-describedby='erro_rppa' name='rppa' placeholder='Repetir a palavra-passe'>
+								<input type='password' class='form-control ".temErro($erros["rppa"])."' aria-describedby='erro_rppa' name='rppa' placeholder='"._('Repetir a palavra-passe')."'>
 								<div id='erro_rppa' class='invalid-feedback'>".nomeErro($erros["rppa"])."</div>
 							</div>
 						</div>
 
 						<div class='form-group text-center'>
-							<button class='text-ciano btn btn-light'>Criar conta</button>
+							<button class='text-ciano btn btn-light'>"._('Criar conta')."</button>
 						</div>
 					</form>
 				</div>
 				
 				<div class='text-center'>
-					<a href='/entrar' class='btn btn-ciano text-light'>Inicia sessão</a>
+					<a href='/entrar' class='btn btn-ciano text-light'>"._('Iniciar sessão')."</a>
 				</div>
 				";
 			} else {
@@ -87,35 +87,35 @@
 					<div class='bg-ciano bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>";
 
 						if (!$mai){
-							echo "<h2>Adicionar um mail</h2>";
+							echo "<h2>"._('Adicionar um email')."</h2>";
 						} else {
-							echo "<h2>Alterar email</h2>";
+							echo "<h2>"._('Alterar email')."</h2>";
 						}
 
-						echo "<text>Olá <b>".$pre_uti['nut']."</b>,<br>";
+						echo "<text>". sprintf(_('Olá %s'),'<b>'.$pre_uti['nut'].'</b>') ."<br>";
 
 						if ($mai_confirmado){
-							echo "O mail <b>".$mai['mai']."</b> já fó registado e está a ser utilizado por outra conta.<br>Por favor utiliza outro email.</text>";
+							echo sprintf(_('O email %s já foi registado e está a ser utilizado por outra conta. Por favor utiliza outro email.'),'<b>'.$mai['mai'].'</b>') ."</text>";
 						} else if (!$mai){
-							echo "Atualmente não tens nenhum email para recuperação e contacto da tua conta. Adiciona um email abaixo.";
+							echo _('Atualmente não tens nenhum email para recuperação e contacto da tua conta. Adiciona um email abaixo.')."</text>";
 						} else {
-							echo "O mail teu mail atual é <b>".$mai['mai']."</b>, regista o novo email desejado abaixo.</text>";
+							echo sprintf(_('O teu email atual é %s, regista o novo email abaixo.'),'<b>'.$mai['mai'].'</b>')."</text>";
 						}
 						
 						echo "
 						<form action='pro/registo.mai?ac=registarMail' method='post'>
 							<div class='form-row align-items-center my-3'>
 								<div class='col-8'>
-									<input type='email' class='form-control ".temErro($erros["mai"])."' aria-describedby='erro_mai' name='mai' placeholder='Novo endereço de email'>
+									<input type='email' class='form-control ".temErro($erros["mai"])."' aria-describedby='erro_mai' name='mai' placeholder='"._('Novo endereço de email')."'>
 									<div id='erro_mai' class='invalid-feedback'>".nomeErro($erros["mai"])."</div>
 								</div>
 
 								<div class='col-3 align-self-start'>
 									<button type='submit' class='btn btn-light text-ciano'>";
 									if (!$mai){
-										echo "Adicionar";
+										echo _('Adicionar');
 									} else {
-										echo "Alterar";
+										echo _('Alterar');
 									}
 									echo "
 									</button>
@@ -123,7 +123,7 @@
 							</div>
 							";
 							if ($mai AND !$mai_confirmado){
-								echo "<a href='/registo' class='btn btn-light text-ciano'>Confirmar email</a>";
+								echo "<a href='/registo' class='btn btn-light text-ciano'>"._('Confirmar email')."</a>";
 							}
 							echo "
 						</form>
@@ -132,18 +132,18 @@
 				} else {
 					echo "
 					<div class='bg-ciano bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
-						<h2>Confirmar ativação da conta</h2>
-						<text>Olá <b>".$pre_uti['nut']."</b>.<br>Enviámos um código de verificação para <b>".$mai['mai']."</b><br>Pode demorar algum tempo até chegar o mail, verifica na caixa de spam.</text>
+						<h2>"._('Confirmar ativação da conta')."</h2>
+						<text>". sprintf(_('Olá %s'),'<b>'.$pre_uti['nut'].'</b>') ."<br>". sprintf(_('Enviámos um código de verificação para %s'),'<b>'.$mai['mai'].'</b>') ."<br>"._('Pode demorar algum tempo até o email chegar, verifica na caixa de spam.')."</text>
 
 						<form action='pro/registo.mai?ac=confirmar' method='post'>
 							<div class='form-row align-items-center my-3'>
 								<div class='col-8'>
-									<input type='text' maxlength='8' class='form-control ".temErro($erros["cod"])."' aria-describedby='erro_cod' name='cod' placeholder='Código de verificação'>
+									<input type='text' maxlength='8' class='form-control ".temErro($erros["cod"])."' aria-describedby='erro_cod' name='cod' placeholder='"._('Código de verificação')."'>
 									<div id='erro_cod' class='invalid-feedback'>".nomeErro($erros["cod"])."</div>
 								</div>
 
 								<div class='col-3 align-self-start'>
-									<button type='submit' class='btn btn-light text-ciano'>Verificar</button>
+									<button type='submit' class='btn btn-light text-ciano'>"._('Verificar')."</button>
 								</div>
 							</div>
 						</form>
@@ -151,14 +151,14 @@
 						$tempoUltimoEmail = (strtotime(date("Y-m-d H:i:s"))-strtotime($mai['ure']));
 
 						if ($mai['ree']<=2 AND $tempoUltimoEmail>=300){
-							echo "<a href='pro/registo.mai?ac=reenviarMail' class='btn btn-light text-ciano'>Reenviar mail</a>";
+							echo "<a href='pro/registo.mai?ac=reenviarMail' class='btn btn-light text-ciano'>"._('Reenviar email')."</a>";
 						} else if ($mai['ree']<=2){
-							echo "<span data-toggle='tooltip' data-placement='bottom' title='Espera 5 minutos antes de reenviar um mail.'><a class='disabled btn btn-light text-ciano'>Reenviar mail</a></span>";
+							echo "<span data-toggle='tooltip' data-placement='bottom' title='"._('Espera 5 minutos antes de reenviar um email').".'><a class='disabled btn btn-light text-ciano'>"._('Reenviar email')."</a></span>";
 						} else {
-							echo "<span data-toggle='tooltip' data-placement='bottom' title='Excedeste o limite de emails.'><a class='disabled btn btn-light text-ciano'>Reenviar mail</a></span>";
+							echo "<span data-toggle='tooltip' data-placement='bottom' title='"._('Excedeste o limite de emails.')."'><a class='disabled btn btn-light text-ciano'>"._('Reenviar email')."</a></span>";
 						}
 						echo "
-						<a href='/registo?ac=alterarMail' class='btn btn-light text-ciano'>Alterar email</a>
+						<a href='/registo?ac=alterarMail' class='btn btn-light text-ciano'>"._('Alterar email')."</a>
 					</div>
 					";
 				}

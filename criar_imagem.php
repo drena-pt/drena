@@ -15,14 +15,14 @@
 			<div class='shadow p-0 my-0 mb-xl-4'>
 				
 				<div class='p-xl-5 p-4 bg-ciano bg-gradient text-light bar'>
-					<h2 id='status'>Carregar imagem</h2>
+					<h2 id='status'>"._('Carregar imagens')."</h2>
 				</div>
 
 				<div class='p-xl-5 p-4 bg-dark text-light text-center '>
 
 					<label for='files' class='btn btn-ciano text-light' style='cursor:pointer;'>
 						<span id='fpe_carregar'>
-							Selecionar imagens
+							"._('Selecionar imagens')."
 							<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#upload'/></svg>
 						</span>
 					</label>
@@ -30,7 +30,7 @@
 								
 					<form hidden method='post' action='' enctype='multipart/form-data'>
 						<input type='file' id='files' name='files[]'' multiple accept='image/*><br>
-						<input type='button' id='submit' value='Carregar'>
+						<input type='button' id='submit'>
 					</form>
 
 					<div class='row row-cols-2 row-cols-md-3' id='preview'></div>

@@ -33,7 +33,7 @@
 				<style id='style_bar_before'></style>
 				
 				<div class='p-xl-5 p-4 bg-primary bg-gradient text-light bar'>
-					<h2 id='status'>Carregar vídeo</h2>
+					<h2 id='status'>"._('Carregar vídeo')."</h2>
 				</div>
 
 				<div class='p-xl-5 p-4 bg-dark text-light'>
@@ -44,17 +44,17 @@
 						</div>
 						<div class='col-12 col-sm mb-2'>
 						
-							<text class='h5' id='tit'>Nenhum vídeo selecionado</text><br><br>
+							<text class='h5' id='tit'>"._('Nenhum vídeo selecionado')."</text><br><br>
 							<label id='botao_input_video' for='input_video' class='btn btn-primary' style='cursor:pointer;'>
 								<span id='fpe_carregar'>
-									Selecionar um vídeo 
+									"._('Selecionar um vídeo')." 
 									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#upload'/></svg>
 								</span>
 							</label>
 
 							<form hidden id='form_video' action='pro/carregar_video.php' method='post' enctype='multipart/form-data'>
 								<input type='file' id='input_video' name='input_video' accept='video/*'>
-								<input type='submit' value='Carregar'>
+								<input type='submit'>
 							</form>
 
 							<section class='mt-auto' id='video_info' hidden>
@@ -65,7 +65,7 @@
 										</svg>
 									</div>
 									<div class='col' >
-										<span>Informações do vídeo:</span><br>
+										<span>"._('Informações do vídeo')."</span><br>
 										<span id='video_info_tamanho'></span><br>
 										<span id='video_info_duracao'></span>
 									</div>
@@ -74,7 +74,7 @@
 							</section>
 
 							<a hidden id='botao_ver_video' href='/videos' class='btn btn-primary'>
-								Ver vídeo <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#play'/></svg>
+								"._('Ver vídeo')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#play'/></svg>
 							</a>
 
 						</div>
@@ -93,9 +93,9 @@
 					var m = Math.floor(d % 3600 / 60);
 					var s = Math.floor(d % 3600 % 60);
 				
-					var hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : '';
-					var mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : '';
-					var sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : '';
+					var hDisplay = h > 0 ? h + (h == 1 ? ' "._('hora').", ' : ' "._('horas').", ') : '';
+					var mDisplay = m > 0 ? m + (m == 1 ? ' "._('minuto').", ' : ' "._('minutos').", ') : '';
+					var sDisplay = s > 0 ? s + (s == 1 ? ' "._('segundo')."' : ' "._('segundos')."') : '';
 					return hDisplay + mDisplay + sDisplay; 
 				}
 				var myVideos = [];
@@ -140,7 +140,7 @@
 
 						var percentVal = percentComplete + '%';
 						bar.html('.bar:before{width:'+percentVal+';}');
-						status.html(percentVal + ' carregado');
+						status.html(percentVal + ' "._('carregado')."');
 					},
 					complete: function(xhr) {
 						//Executa quando terminar o upload:
@@ -150,7 +150,7 @@
 						if (json.erro){
 							status.html(json.erro);
 						} else {
-							status.html('Carregamento completo');
+							status.html('"._('Carregamento completo')."');
 							imagem.attr('src','https://media.drena.xyz/thumb/'+json.codigo+'.jpg');
 							$('#botao_ver_video').removeAttr('hidden');
 							$('#botao_ver_video').attr('href', '/video?id='+json.codigo);

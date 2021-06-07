@@ -62,7 +62,8 @@
 				}
 				</style>
 				<label for='fpe' class='float-end btn btn-light' style='cursor:pointer;'>
-					<span id='fpe_carregar'>Alterar foto
+					<span id='fpe_carregar'>
+						"._('Alterar foto')."
 						<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#image'/></svg>
 					</span>
 					<div style='display:none;' id='fpe_a_carregar' data-placement='bottom' data-toggle='tooltip' title='A carregar...'>
@@ -113,29 +114,29 @@
 				$ami_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM ami WHERE (a_id='".$uti["id"]."' AND b_id='".$uti_perfil["id"]."') OR (a_id='".$uti_perfil["id"]."' AND b_id='".$uti["id"]."')"));
 				echo "<a id='ami' class='float-end btn btn-light' href='pro/ami.php?uti=".$uti_perfil['nut']."'>";
 				if (!$ami_uti['id']){
-					echo "Adicionar conhecido <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-plus-fill'/></svg></a>";
+					echo _('Adicionar conhecido')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-plus-fill'/></svg></a>";
 				} else {
 					if ($ami_uti['sim']==1){ #Se já forem conhecidos
-						echo "São conhecidos <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg></a>
+						echo _('São conhecidos')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg></a>
 						<script>
 						$('#ami').hover(function(){
-							$(this).html(\"Remover conhecido <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-x-fill'/></svg>\");
+							$(this).html(\""._('Remover conhecido')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-x-fill'/></svg>\");
 							}, function(){
-							$(this).html(\"São conhecidos <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg>\");
+							$(this).html(\""._('São conhecidos')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg>\");
 						});
 						</script>";
 					} else {
 						if ($ami_uti['a_id']==$uti['id']){
-							echo "Pedido enviado <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill'/></svg></a>
+							echo _('Pedido enviado')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill'/></svg></a>
 							<script>
 							$('#ami').hover(function(){
-								$(this).html(\"Cancelar pedido <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-x-fill'/></svg>\");
+								$(this).html(\""._('Cancelar pedido')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-x-fill'/></svg>\");
 								}, function(){
-								$(this).html(\"Pedido enviado <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill'/></svg>\");
+								$(this).html(\""._('Pedido enviado')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill'/></svg>\");
 							});
 							</script>";
 						} else if ($ami_uti['b_id']==$uti['id']){
-							echo "Aceitar pedido <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg></a>";
+							echo _('Aceitar pedido')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg></a>";
 						}
 					}
 				}
@@ -146,31 +147,24 @@
 			
 			function mes($x){
 				switch ($x){
-					case 1: return "janeiro"; break;
-					case 2: return "fevereiro"; break;
-					case 3: return "março"; break;
-					case 4: return "abril"; break;
-					case 5: return "maio"; break;
-					case 6: return "junho"; break;
-					case 7: return "julho"; break;
-					case 8: return "agosto"; break;
-					case 9: return "setembro"; break;
-					case 10: return "outubro"; break;
-					case 11: return "novembro"; break;
-					case 12: return "dezembro";  break;
-				}
-			}
-
-			function ano($x){
-				if (date('Y')==$x){
-					return ".";
-				} else {
-					return " de ".$x.".";
+					case 1: return _('janeiro'); break;
+					case 2: return _('fevereiro'); break;
+					case 3: return _('março'); break;
+					case 4: return _('abril'); break;
+					case 5: return _('maio'); break;
+					case 6: return _('junho'); break;
+					case 7: return _('julho'); break;
+					case 8: return _('agosto'); break;
+					case 9: return _('setembro'); break;
+					case 10: return _('outubro'); break;
+					case 11: return _('novembro'); break;
+					case 12: return _('dezembro');  break;
 				}
 			}
 			
 			$dat = strtotime($uti_perfil['dcr']);
-			echo "<br>Utilizador desde ".mes(date('m',$dat)).ano(date('Y',$dat))."</div>";
+
+			echo "<br>".sprintf(_('Utilizador desde %s de'),mes(date('m',$dat)))." ".date('Y',$dat)."</div>";
 
 			$conhecidos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM ami WHERE a_id='".$uti_perfil["id"]."' AND sim=1 OR b_id='".$uti_perfil["id"]."' AND sim=1 LIMIT 1"));
 			$pedidos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM ami WHERE b_id='".$uti_perfil["id"]."' AND sim=0 LIMIT 1"));
@@ -192,16 +186,16 @@
 			<div class='bg-dark text-light p-xl-5 p-4'>
 				<section class='row'>";
 				if ($uti_perfil_projetos!=0){
-					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span> Projetos</text>";
+					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span> "._('Projetos')."</text>";
 				}
 				if ($uti_perfil_audios!=0){
-					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span> Áudios</text>";
+					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span> "._('Áudios')."</text>";
 				}
 				if ($uti_perfil_imagens!=0){
-					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span> Imagens</text>";
+					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span> "._('Imagens')."</text>";
 				}
 				if ($uti_perfil_videos!=0){
-					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span> Vídeos</text>";
+					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span> "._('Vídeos')."</text>";
 				}
 			echo "</section>
 			</div>";
@@ -212,7 +206,7 @@
 
 				if ($conhecidos){
 					if ($result = $bd->query("SELECT a_id, b_id FROM ami WHERE a_id='".$uti_perfil["id"]."' AND sim='1' OR b_id='".$uti_perfil["id"]."' AND sim='1' ORDER by b_dat DESC")) {
-						echo "<text class='h5'>Lista de conhecidos</text>
+						echo "<text class='h5'>"._('Lista de conhecidos')."</text>
 						<div class='row my-2'>";
 						while ($row = $result->fetch_row()) {
 							echo "<div class='col-md-2 col-4 my-3 text-center'>";
@@ -234,7 +228,7 @@
 
 				if ($uti_perfil['nut']==$_SESSION["uti"] AND $pedidos){
 					if ($result = $bd->query("SELECT a_id FROM ami WHERE b_id='".$uti["id"]."' AND sim='0' ORDER by id DESC")){
-						echo "<text class='h5'>Pedidos de utilizadores</text>
+						echo "<text class='h5'>"._('Pedidos')."</text>
 						<div class='row my-2'>";
 						while ($row = $result->fetch_row()) {
 							$uti_a = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[0]."'"));
@@ -257,7 +251,7 @@
 			if ($projetos AND $result = $bd->query("SELECT * FROM pro WHERE uti='".$uti_perfil['id']."'")) {
 				echo "
 				<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
-				<div class='p-xl-5 p-4'><h1>Projetos</h1></div>
+				<div class='p-xl-5 p-4'><h1>"._('Projetos')."</h1></div>
 				<div class='row row-cols-1 row-cols-md-2'>
 				";
 

@@ -1,0 +1,407 @@
+
+
+
+#. -------- LOGIN & REGISTER --------
+
+msgid "Entrar"
+msgstr "Login"
+
+msgid "Utilizador"
+msgstr "Username"
+
+msgid "Palavra-passe"
+msgstr "Password"
+
+msgid "Iniciar sessão"
+msgstr "Login"
+
+msgid "Criar uma conta"
+msgstr "Create an account"
+
+msgid "Sair"
+msgstr "Logout"
+
+msgid "Registo"
+msgstr "Register"
+
+msgid "O teu nome verdadeiro"
+msgstr "Your real name"
+
+msgid "Nome de utilizador"
+msgstr "Username"
+
+msgid "Repetir a palavra-passe"
+msgstr "Repeat password"
+
+msgid "Adicionar um email"
+msgstr "Add an email"
+
+msgid "Alterar email"
+msgstr "Change email"
+
+msgid "Endereço de email"
+msgstr "Email address"
+
+msgid "Novo endereço de email"
+msgstr "New email address"
+
+msgid "Confirmar email"
+msgstr "Confirm email"
+
+msgid "Confirmar ativação da conta"
+msgstr "Confirm account activation"
+
+msgid "Enviámos um código de verificação para %s"
+msgstr "A verification email has been sent to %s"
+
+msgid "Pode demorar algum tempo até o email chegar, verifica na caixa de spam."
+msgstr "It can take awhile for the email to reach your inbox, check the spam."
+
+msgid "Código de verificação"
+msgstr "Verification code"
+
+msgid "Reenviar email"
+msgstr "Resend email"
+
+msgid "Enviar email de recuperação"
+msgstr "Send recovery email"
+
+msgid "Email enviado"
+msgstr "Email sent"
+
+msgid "Foi enviado um email com o link para recuperação da conta associada ao email."
+msgstr "An email with the link for the account recovery has been sent"
+
+msgid "Recuperar conta"
+msgstr "Recover account"
+
+msgid "Se não te lembras da tua palavra-passe, insere o teu email associado à conta."
+msgstr "If you cannot remember your password, type in the email associated with the account"
+
+msgid "Palavra-passe alterada"
+msgstr "Password changed"
+
+msgid "A palavra-passe foi alterada com sucesso, já podes iniciar sessão!"
+msgstr "The password has been changed successfuly, you can log in!"
+
+msgid "Alterar a palavra-passe"
+msgstr "Change password"
+
+msgid "Insere a nova palavra-passe."
+msgstr "Insert new password"
+
+msgid "Nova palavra-passe"
+msgstr "New password"
+
+msgid "O teu email atual é %s, regista o novo email abaixo."
+msgstr "Your current email is %s, register your new email here"
+
+
+
+#. -------- MAIN --------
+
+msgid "Criar"
+msgstr "Create"
+
+msgid "Mostra o que fazes."
+msgstr "Show what you make."
+
+msgid "Ultimos vídeos"
+msgstr "Latest videos"
+
+msgid "Administrar"
+msgstr "Manage"
+
+msgid "Configurações"
+msgstr "Settings"
+
+msgid "Alterar título"
+msgstr "Change title"
+
+msgid "Cancelar"
+msgstr "Cancel"
+
+msgid "Fechar"
+msgstr "Close"
+
+msgid "Alterar"
+msgstr "Change"
+
+msgid "Eliminar"
+msgstr "Delete"
+
+msgid "Verificar"
+msgstr "Confirm"
+
+msgid "Adicionar"
+msgstr "Add"
+
+msgid "Esta ação é irreversível!"
+msgstr "This action is irreversible!"
+
+#. ---- %s is a variable
+msgid "Olá %s"
+msgstr "Hi %s"
+
+
+
+#. -------- PROFILE --------
+
+msgid "Perfil"
+msgstr "Profile"
+
+msgid "Alterar foto"
+msgstr "Change photo"
+
+msgid "Utilizador desde %s de"
+msgstr "User since %s"
+
+msgid "Lista de conhecidos"
+msgstr "Acquaintances list"
+
+msgid "São conhecidos"
+msgstr "Are acquaintances"
+
+msgid "Remover conhecido"
+msgstr "Remove acquaintance"
+
+msgid "Aceitar pedido"
+msgstr "Accept request"
+
+msgid "Pedidos"
+msgstr "Requests"
+
+msgid "Pedido enviado"
+msgstr "Request sent"
+
+msgid "Cancelar pedido"
+msgstr "Cancel request"
+
+
+
+#. -------- AUDIO --------
+
+msgid "Áudio"
+msgstr "Audio"
+
+msgid "Áudios"
+msgstr "Audios"
+
+msgid "Carregar áudio"
+msgstr "Upload audio"
+
+msgid "Nenhum áudio selecionado"
+msgstr "No audios selected"
+
+msgid "Selecionar um áudio"
+msgstr "Select an audio"
+
+msgid "Ouvir áudio"
+msgstr "Listen to audio"
+
+msgid "Informações do áudio"
+msgstr "Audio info"
+
+msgid "Eliminar áudio"
+msgstr "Delete audio"
+
+
+
+#. -------- IMAGE --------
+
+msgid "Imagem"
+msgstr "Image"
+
+msgid "Imagens"
+msgstr "Images"
+
+msgid "Carregar imagens"
+msgstr "Upload images"
+
+msgid "Selecionar imagens"
+msgstr "Select images"
+
+msgid "Eliminar imagem"
+msgstr "Delete image"
+
+
+
+#. -------- VIDEO --------
+
+msgid "Vídeo"
+msgstr "Video"
+
+msgid "Vídeos"
+msgstr "Videos"
+
+msgid "Carregar vídeo"
+msgstr "Upload videos"
+
+msgid "Nenhum vídeo selecionado"
+msgstr "No videos selected"
+
+msgid "Selecionar um vídeo"
+msgstr "Select a video"
+
+msgid "Ver vídeo"
+msgstr "Watch video"
+
+msgid "Informações do vídeo"
+msgstr "Video info"
+
+msgid "Eliminar vídeo"
+msgstr "Delete video"
+
+
+
+#. -------- MEDIA --------
+
+msgid "carregado"
+msgstr "uploaded"
+
+msgid "Carregamento completo"
+msgstr "Upload complete"
+
+msgid "Publicado por"
+msgstr "Published by"
+
+msgid "gostos"
+msgstr "likes"
+
+msgid "há %s"
+msgstr "%s ago"
+
+
+
+#. -------- PROJECTS --------
+
+msgid "Projeto"
+msgstr "Project"
+
+msgid "Projetos"
+msgstr "Projects"
+
+
+
+#. -------- ERRORS --------
+
+msgid "Campo vazio."
+msgstr "Empty field"
+
+msgid "As palavras-passe não podem ser diferentes."
+msgstr "The passwords cannot differ"
+
+msgid "Este email já está em uso."
+msgstr "This email has already been used"
+
+msgid "Este utilizador já está registado."
+msgstr "This user is already registered"
+
+msgid "Não podes usar caracteres especiais."
+msgstr "You cannot use special characters"
+
+msgid "Código de verificação inválido."
+msgstr "Verification code is not valid."
+
+msgid "Não podes utilizar o mesmo email."
+msgstr "You cannot use the same email adress."
+
+msgid "O email %s já foi registado e está a ser utilizado por outra conta. Por favor utiliza outro email."
+msgstr "This email has already been used in a different account. Please use another email address."
+
+msgid "Atualmente não tens nenhum email para recuperação e contacto da tua conta. Adiciona um email abaixo."
+msgstr "At this time you do not have a recovery email"
+
+msgid "Espera 5 minutos antes de reenviar um email."
+msgstr "Wait 5 minutes before sending a new email."
+
+msgid "Excedeste o limite de emails."
+msgstr "You have exceded the limit of emails."
+
+msgid "Utilizador inválido."
+msgstr "This user is not valid."
+
+msgid "A palavra-passe está errada."
+msgstr "Incorrect password."
+
+msgid "Email inválido."
+msgstr "Email not valid."
+
+
+
+#. -------- TIME --------
+
+msgid "ano"
+msgstr "year"
+msgid "anos"
+msgstr "years"
+
+msgid "mês"
+msgstr "month"
+msgid "mêses"
+msgstr "months"
+
+msgid "semana"
+msgstr "week"
+msgid "semanas"
+msgstr "weeks"
+
+msgid "dia"
+msgstr "day"
+msgid "dias"
+msgstr "days"
+
+msgid "hora"
+msgstr "hour"
+msgid "horas"
+msgstr "hours"
+
+msgid "minuto"
+msgstr "minute"
+msgid "minutos"
+msgstr "minutes"
+
+msgid "segundo"
+msgstr "second"
+msgid "segundos"
+msgstr "seconds"
+
+
+
+#. -------- MONTHS --------
+
+msgid "janeiro"
+msgstr "January"
+
+msgid "fevereiro"
+msgstr "February"
+
+msgid "março"
+msgstr "March"
+
+msgid "abril"
+msgstr "April"
+
+msgid "maio"
+msgstr "May"
+
+msgid "junho"
+msgstr "June"
+
+msgid "julho"
+msgstr "July"
+
+msgid "agosto"
+msgstr "August"
+
+msgid "setembro"
+msgstr "September"
+
+msgid "outubro"
+msgstr "October"
+
+msgid "novembro"
+msgstr "November"
+
+msgid "dezembro"
+msgstr "December"

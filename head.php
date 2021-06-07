@@ -1,4 +1,30 @@
 <?php
+function get_browser_language($available=['pt','en','de','it'],$default='en') {
+	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+		$langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        if (empty($available)) {
+        return $langs[ 0 ];
+        }
+		foreach ( $langs as $lang ){
+			$lang = substr( $lang, 0, 2 );
+			if( in_array( $lang, $available ) ) {
+				return $lang;
+			}
+		}
+	}
+	return $default;
+}
+switch (get_browser_language()) {
+	case 'pt': $locale = "pt_PT.UTF-8"; break;
+    case 'en': $locale = "en_GB.UTF-8"; break;
+    case 'de': $locale = "de_CH.UTF-8"; break;
+    case 'it': $locale = "it_IT.UTF-8"; break;
+}
+
+setlocale(LC_ALL, $locale);
+bindtextdomain("messages", "locale");
+textdomain("messages");
+
 ob_start();
 require_once('pro/ligarbd.php');
 ob_get_clean();
@@ -21,7 +47,7 @@ function numeroParaCor($num){
 ?>
 <!doctype html>
 <!-- Desenvolvido por Guilherme Albuquerque 2018/2021 -->
-<html lang="pt">
+<html>
 	<head>
 		<!-- Coisas básicas -->
 		<meta charset="utf-8">

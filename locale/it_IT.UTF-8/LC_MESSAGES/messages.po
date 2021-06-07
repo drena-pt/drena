@@ -1,0 +1,228 @@
+
+
+
+#. -------- LOGIN & REGISTER --------
+
+msgid "Entrar"
+msgstr "Entrare"
+
+msgid "Utilizador"
+msgstr "Nome utente"
+
+msgid "Palavra-passe"
+msgstr "Password"
+
+msgid "Iniciar sessão"
+msgstr "Entrare"
+
+msgid "Criar uma conta"
+msgstr "Creare un account"
+
+msgid "Sair"
+msgstr "Disconnettersi"
+
+
+
+#. -------- MAIN --------
+
+msgid "Criar"
+msgstr "Creare"
+
+msgid "Mostra o que fazes."
+msgstr "Mostra cosa fai."
+
+msgid "Ultimos vídeos"
+msgstr "ultimi video"
+
+
+
+#. -------- PROFILE --------
+
+msgid "Perfil"
+msgstr "Profilo"
+
+msgid "Alterar foto"
+msgstr "Cambia foto"
+
+msgid "Utilizador desde %s de"
+msgstr "Conto dal %s"
+
+msgid "Lista de conhecidos"
+msgstr "Elenco conosciuto"
+
+msgid "São conhecidos"
+msgstr "Sono conoscenti"
+
+msgid "Remover conhecido"
+msgstr "Rimuovere il conoscente"
+
+msgid "Aceitar pedido"
+msgstr "accettare la richiesta"
+
+msgid "Pedidos"
+msgstr "Richieste"
+
+
+
+#. -------- AUDIO --------
+
+msgid "Áudio"
+msgstr "Audio"
+
+msgid "Áudios"
+msgstr "Audios"
+
+msgid "Carregar áudio"
+msgstr "Caricare l'audio"
+
+msgid "Nenhum áudio selecionado"
+msgstr "Nessun audio selezionato"
+
+msgid "Selecionar um áudio"
+msgstr "Selezionare l'audio"
+
+msgid "Ouvir áudio"
+msgstr "Ascolta l'audio"
+
+
+
+#. -------- IMAGE --------
+
+msgid "Imagem"
+msgstr "Immagine"
+
+msgid "Imagens"
+msgstr "Immagini"
+
+msgid "Carregar imagens"
+msgstr "Carica immagini"
+
+msgid "Selecionar imagens"
+msgstr "Selezionare l'immagine"
+
+
+
+#. -------- VIDEO --------
+
+msgid "Vídeo"
+msgstr "Video"
+
+msgid "Vídeos"
+msgstr "Video"
+
+msgid "Carregar vídeo"
+msgstr "Carica i video"
+
+msgid "Nenhum vídeo selecionado"
+msgstr "Nessun video selezionato"
+
+msgid "Selecionar um vídeo"
+msgstr "Seleziona il video"
+
+msgid "Ver vídeo"
+msgstr "Guarda il video"
+
+
+
+#. -------- MEDIA --------
+
+msgid "carregado"
+msgstr "caricato"
+
+msgid "Carregamento completo"
+msgstr "Carica completato"
+
+msgid "Publicado por"
+msgstr "Pubblicato da"
+
+msgid "gostos"
+msgstr "Come"
+
+
+
+#. -------- PROJECTS --------
+
+msgid "Projeto"
+msgstr "Progetto"
+
+msgid "Projetos"
+msgstr "Progetti"
+
+
+
+#. -------- TIME --------
+
+msgid "ano"
+msgstr "anno"
+msgid "anos"
+msgstr "anni"
+
+msgid "mês"
+msgstr "mese"
+msgid "mêses"
+msgstr "mesi"
+
+msgid "semana"
+msgstr "settimana"
+msgid "semanas"
+msgstr "settimane"
+
+msgid "dia"
+msgstr "giorno"
+msgid "dias"
+msgstr "giorni"
+
+msgid "hora"
+msgstr "ora"
+msgid "horas"
+msgstr "ore"
+
+msgid "minuto"
+msgstr "minuto"
+msgid "minutos"
+msgstr "minuti"
+
+msgid "segundo"
+msgstr "secondo"
+msgid "segundos"
+msgstr "secondi"
+
+
+
+#. -------- MONTHS --------
+
+msgid "janeiro"
+msgstr "gennaio"
+
+msgid "fevereiro"
+msgstr "febbraio"
+
+msgid "março"
+msgstr "marzo"
+
+msgid "abril"
+msgstr "aprile"
+
+msgid "maio"
+msgstr "maggio"
+
+msgid "junho"
+msgstr "giugno"
+
+msgid "julho"
+msgstr "luglio"
+
+msgid "agosto"
+msgstr "agosto"
+
+msgid "setembro"
+msgstr "settembre"
+
+msgid "outubro"
+msgstr "ottobre"
+
+msgid "novembro"
+msgstr "novembre"
+
+msgid "dezembro"
+msgstr "dicembre"

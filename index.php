@@ -14,15 +14,18 @@ require('head.php');
 				background-size: cover;
 			}
 			</style>
-            <div class="jumbotron bg-dark d-flex align-items-center text-center justify-content-center align-items-center">
-                <h1 class="display-3">MOSTRA O QUE FAZES.<br>
-                <span class='text-outline'>MOSTRA O QUE FAZES.<br>MOSTRA O QUE FAZES.<br>MOSTRA O QUE FAZES.<br>MOSTRA O QUE FAZES.</span>
-				<!--<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#play'/></svg>--></h1>
-            </div>
 			<?php
             echo "
+            <div class='jumbotron bg-dark d-flex align-items-center text-center justify-content-center align-items-center'>
+                <h1 class='display-4'>".strtoupper(_("Mostra o que fazes."))."<br>
+                <span class='text-outline'>";
+                for ($i = 1, $j = 0; $i <= 4; $j += $i, print strtoupper(_("Mostra o que fazes."))."<br>", $i++);
+                echo "</span>
+                </h1>
+            </div>
+
             <div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3 text-center'>
-				<h1 class='display-3 m-5'>ULTIMOS VÍDEOS</h1>
+				<h1 class='display-3 m-5'>".strtoupper(_('Ultimos vídeos'))."</h1>
                 <style>
                 .thumb {
                     filter: brightness(75%);

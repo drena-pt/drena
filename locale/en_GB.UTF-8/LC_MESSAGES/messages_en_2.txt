@@ -1,0 +1,200 @@
+
+
+
+#. -------- LOGIN & REGISTER --------
+
+msgid "Registo"
+msgstr ""
+
+msgid "O teu nome verdadeiro"
+msgstr ""
+
+msgid "Nome de utilizador"
+msgstr ""
+
+msgid "Repetir a palavra-passe"
+msgstr ""
+
+msgid "Adicionar um email"
+msgstr ""
+
+msgid "Alterar email"
+msgstr ""
+
+msgid "Endereço de email"
+msgstr ""
+
+msgid "Novo endereço de email"
+msgstr ""
+
+msgid "Confirmar email"
+msgstr ""
+
+msgid "Confirmar ativação da conta"
+msgstr ""
+
+msgid "Enviámos um código de verificação para %s"
+msgstr ""
+
+msgid "Pode demorar algum tempo até o email chegar, verifica na caixa de spam."
+msgstr ""
+
+msgid "Código de verificação"
+msgstr ""
+
+msgid "Reenviar email"
+msgstr ""
+
+msgid "Enviar email de recuperação"
+msgstr ""
+
+msgid "Email enviado"
+msgstr ""
+
+msgid "Foi enviado um email com o link para recuperação da conta associada ao email."
+msgstr ""
+
+msgid "Recuperar conta"
+msgstr ""
+
+msgid "Se não te lembras da tua palavra-passe, insere o teu email associado à conta."
+msgstr ""
+
+msgid "Palavra-passe alterada"
+msgstr ""
+
+msgid "A palavra-passe foi alterada com sucesso, já podes iniciar sessão!"
+msgstr ""
+
+msgid "Alterar a palavra-passe"
+msgstr ""
+
+msgid "Insere a nova palavra-passe."
+msgstr ""
+
+msgid "Nova palavra-passe"
+msgstr ""
+
+msgid "O teu email atual é %s, regista o novo email abaixo."
+msgstr ""
+
+
+
+#. -------- ERRORS --------
+
+msgid "Campo vazio."
+msgstr ""
+
+msgid "As palavras-passe não podem ser diferentes."
+msgstr ""
+
+msgid "Este email já está em uso."
+msgstr ""
+
+msgid "Este utilizador já está registado."
+msgstr ""
+
+msgid "Não podes usar caracteres especiais."
+msgstr ""
+
+msgid "Código de verificação inválido."
+msgstr ""
+
+msgid "Não podes utilizar o mesmo email."
+msgstr ""
+
+msgid "O email %s já foi registado e está a ser utilizado por outra conta. Por favor utiliza outro email."
+msgstr ""
+
+msgid "Atualmente não tens nenhum email para recuperação e contacto da tua conta. Adiciona um email abaixo."
+msgstr ""
+
+msgid "Espera 5 minutos antes de reenviar um email."
+msgstr ""
+
+msgid "Excedeste o limite de emails."
+msgstr ""
+
+msgid "Utilizador inválido."
+msgstr ""
+
+msgid "A palavra-passe está errada."
+msgstr ""
+
+msgid "Email inválido."
+msgstr ""
+
+
+
+#. -------- MAIN --------
+
+msgid "Administrar"
+msgstr ""
+
+msgid "Configurações"
+msgstr ""
+
+msgid "Alterar título"
+msgstr ""
+
+msgid "Cancelar"
+msgstr ""
+
+msgid "Fechar"
+msgstr ""
+
+msgid "Alterar"
+msgstr ""
+
+msgid "Eliminar"
+msgstr ""
+
+msgid "Verificar"
+msgstr ""
+
+msgid "Adicionar"
+msgstr "Add"
+
+msgid "Esta ação é irreversível!"
+msgstr ""
+
+#. ---- %s is a variable
+msgid "Olá %s"
+msgstr "Hi %s"
+
+
+
+#. -------- PROFILE --------
+
+msgid "Pedido enviado"
+msgstr ""
+
+msgid "Cancelar pedido"
+msgstr ""
+
+
+
+#. -------- VIDEO --------
+
+msgid "Informações do vídeo"
+msgstr ""
+
+msgid "Eliminar vídeo"
+msgstr ""
+
+
+
+#. -------- AUDIO --------
+
+msgid "Informações do áudio"
+msgstr ""
+
+msgid "Eliminar áudio"
+msgstr ""
+
+
+
+#. -------- IMAGE --------
+
+msgid "Eliminar imagem"
+msgstr ""

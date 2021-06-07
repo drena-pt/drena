@@ -33,7 +33,7 @@
 				<style id='style_bar_before'></style>
 				
 				<div class='p-xl-5 p-4 bg-rosa bg-gradient text-light bar'>
-					<h2 id='status'>Carregar áudio</h2>
+					<h2 id='status'>"._('Carregar áudio')."</h2>
 				</div>
 
 				<div class='p-xl-5 p-4 bg-dark text-light'>
@@ -44,17 +44,17 @@
 						</div>
 						<div class='col-12 col-sm-8 mb-2'>
 						
-							<text class='h5' id='tit'>Nenhum áudio selecionado</text><br><br>
+							<text class='h5' id='tit'>"._('Nenhum áudio selecionado')."</text><br><br>
 							<label id='botao_input_audio' for='input_audio' class='btn btn-rosa text-light' style='cursor:pointer;'>
 								<span id='fpe_carregar'>
-									Selecionar um áudio
+									"._('Selecionar um áudio')." 
 									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#upload'/></svg>
 								</span>
 							</label>
 
 							<form hidden id='form_audio' action='pro/carregar_audio.php' method='post' enctype='multipart/form-data'>
 								<input type='file' id='input_audio' name='input_audio' accept='audio/*'>
-								<input type='submit' value='Carregar'>
+								<input type='submit'>
 							</form>
 
 							<section class='mt-auto' id='audio_info' hidden>
@@ -65,7 +65,7 @@
 										</svg>
 									</div>
 									<div class='col'>
-										<span>Informações do áudio:</span><br>
+										<span>"._('Informações do áudio')."</span><br>
 										<span id='audio_info_tamanho'></span><br>
 										<span id='audio_info_duracao'></span>
 									</div>
@@ -74,7 +74,7 @@
 							</section>
 
 							<a hidden id='botao_ver_audio' class='btn btn-rosa text-light'>
-								Ouvir áudio <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#play'/></svg>
+								"._('Ouvir áudio')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#play'/></svg>
 							</a>
 
 						</div>
@@ -140,7 +140,7 @@
 
 						var percentVal = percentComplete + '%';
 						bar.html('.bar:before{width:'+percentVal+';}');
-						status.html(percentVal + ' carregado');
+						status.html(percentVal + ' "._('carregado')."');
 					},
 					complete: function(xhr) {
 						//Executa quando terminar o upload:
@@ -150,7 +150,7 @@
 						if (json.erro){
 							status.html(json.erro);
 						} else {
-							status.html('Carregamento completo');
+							status.html('"._('Carregamento completo')."');
 							$('#botao_ver_audio').removeAttr('hidden');
 							$('#botao_ver_audio').attr('href', '/audio?id='+json.codigo);
 						}
