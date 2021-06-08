@@ -4,7 +4,7 @@
 		
 		if ($uti_perfil){
 			echo "
-			<meta property='og:image' content='https://2.drena.xyz/fpe/".base64_encode($uti_perfil['fot'])."'>
+			<meta property='og:image' content='https://drena.xyz/fpe/".base64_encode($uti_perfil['fot'])."'>
 			<meta property='og:description' content='Perfil de ".$uti_perfil['nut']."'>
 			";
 		} else {
@@ -29,12 +29,12 @@
 				<div id='bem_vindo' class='collapse show'>
 					<div class='bg-rosa bg-gradient shadow p-4 p-xl-5 rounded-xl my-4 col-xl-4 col-sm-8 offset-xl-4 offset-sm-2'>
 						<text class='h2'>
-							Bem vindo!
+							"._('Bem vindo!')."
 							<button type='button' class='btn close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
 								<svg class='bi' width='1em' height='1em'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#x-square-fill'/></svg>
 							</button>
 						</text>
-						<p>Obrigado por te registares na drena,<br>fica à vontade para partilhares os teus projetos.</p>
+						<p>"._('Obrigado por te registares na drena, fica à vontade para partilhares as tuas coisas.')."</p>
 					</div>
 				</div>
 				";
@@ -186,16 +186,16 @@
 			<div class='bg-dark text-light p-xl-5 p-4'>
 				<section class='row'>";
 				if ($uti_perfil_projetos!=0){
-					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span> "._('Projetos')."</text>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(0)' class='text-decoration-none col h5 text-center text-light'><span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span> "._('Projetos')."</a>";
 				}
 				if ($uti_perfil_audios!=0){
-					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span> "._('Áudios')."</text>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(2)' class='text-decoration-none col h5 text-center text-light'><span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span> "._('Áudios')."</a>";
 				}
 				if ($uti_perfil_imagens!=0){
-					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span> "._('Imagens')."</text>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(3)' class='text-decoration-none col h5 text-center text-light'><span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span> "._('Imagens')."</a>";
 				}
 				if ($uti_perfil_videos!=0){
-					echo "<text class='col h5 text-center'><span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span> "._('Vídeos')."</text>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(1)' class='text-decoration-none col h5 text-center text-light'><span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span> "._('Vídeos')."</a>";
 				}
 			echo "</section>
 			</div>";
@@ -243,31 +243,16 @@
 				}
 				echo "</div>";
 			}
-			echo "</div>			
-			";
+			echo "</div>";
 
-			$projetos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE uti='".$uti_perfil['id']."' LIMIT 1"));
-			
-			if ($projetos AND $result = $bd->query("SELECT * FROM pro WHERE uti='".$uti_perfil['id']."'")) {
-				echo "
-				<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
-				<div class='p-xl-5 p-4'><h1>"._('Projetos')."</h1></div>
-				<div class='row row-cols-1 row-cols-md-2'>
-				";
-
-				while ($row = $result->fetch_assoc()) {
-					if (!$row['tit']){$pro_tit='Projeto';}else{$pro_tit=$row['tit'];}
-					echo"
-					<div class='col'><a class='text-decoration-none' href='/projeto?id=".base64_encode($row['id'])."' ><div id='cartao_1' class='bg-".numeroParaCor($row['cor'])." text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h3 class='text-light'>".$pro_tit."</h3>
-					</div></a></div>
-					";
-				}
-				$result->close();
-
-				echo "</div>
-				</div>";
+			echo "
+			<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3' id='conteudo'></div>
+			<script>
+			function mostrarConteudo(tip){
+				$('#conteudo').load('media.php?ac=lista&tip='+tip+'&uti=".$_GET["uti"]."', function(){ location.href = '#conteudo'; });
 			}
+			</script>
+			";
 
 		} else {
 			echo "<h2 class='my-4 text-center'>O utilizador não existe</h2>";

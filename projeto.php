@@ -23,7 +23,7 @@
 		<?php
 		if ($pro AND $vis){ #Se o projeto existir e for visivel.
 
-			if (!$pro['tit']){$pro_tit='Projeto';}else{$pro_tit=$pro['tit'];}
+			if (!$pro['tit']){$pro_tit=_('Projeto');}else{$pro_tit=$pro['tit'];}
 
 			echo "
 			<div class='p-xl-5 p-4 offset-xl-3 col-xl-6 text-light rounded-xl my-0 my-xl-4 shadow bg-".numeroParaCor($pro['cor'])."' id='pro_header'>
@@ -106,6 +106,12 @@
 								<button class='btn text-light btn-primary' onclick=\"pro_cor('primary')\">Roxo</button>
 							</div>
 						</div>
+						<br>
+
+						<button class='btn btn-light ml-1' data-toggle='modal' data-target='#modal_eliminar_pro'>
+							"._('Eliminar projeto')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+						</button>
+
 						<script>
 						cor = '".numeroParaCor($pro['cor'])."';
 						console.log('cor: '+cor);
@@ -135,12 +141,30 @@
 							if($(this).val()){
 								$('#pro_tit').text($(this).val())
 							} else {
-								$('#pro_tit').text('Projeto')
+								$('#pro_tit').text('"._('Projeto')."')
 							}
 						});
 						</script>
 					</div>
 				</section>
+
+				<!-- Modal Eliminar Projeto-->
+				<div class='modal fade' id='modal_eliminar_pro' tabindex='-1' role='dialog' aria-labelledby='modal_eliminar_pro_label' aria-hidden='true'>
+					<div class='modal-dialog' role='document'>
+						<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
+							<div class='modal-header'>
+								<h2 class='modal-title' id='modal_eliminar_pro_label'>"._('Eliminar projeto')."<br></h2><br>
+							</div>
+							<div class='modal-body'>
+								<text><span class='h5'>".$pro_tit."</span><br>"._('Esta ação é irreversível!')."</text>
+							</div>
+							<div class='modal-footer text-end'>
+								<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
+								<a href='pro/projeto.php?ac=eliminar&id=".$_GET['id']."' role='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			";
 			} else {
 				echo "
@@ -149,7 +173,7 @@
 							<a href='/perfil?uti=".$pro_uti['nut']."'><img src='fpe/".base64_encode($pro_uti["fot"])."' class='rounded-circle' width='40'></a>
 						</div>
 						<div class='col d-flex'>
-							<span class='justify-content-center align-self-center'>Criado por ".$pro_uti['nut']."</span>
+							<span class='justify-content-center align-self-center'>".sprintf(_('Criado por %s'),$pro_uti['nut'])."</span>
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,5 @@
 <?php
-function get_browser_language($available=['pt','en','de','it'],$default='en') {
+function get_browser_language($available=['pt','en','de','it','fr'],$default='en') {
 	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 		$langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
         if (empty($available)) {
@@ -19,6 +19,7 @@ switch (get_browser_language()) {
     case 'en': $locale = "en_GB.UTF-8"; break;
     case 'de': $locale = "de_CH.UTF-8"; break;
     case 'it': $locale = "it_IT.UTF-8"; break;
+    case 'fr': $locale = "fr_CH.UTF-8"; break;
 }
 
 setlocale(LC_ALL, $locale);

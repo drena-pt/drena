@@ -48,7 +48,7 @@ if ($ac=='eliminar'){
         exit;
     }
 
-    header("Location: /");
+    header("Location: /perfil?uti=".$uti['nut']);
     exit;
 
 } else if ($ac=='titulo'){

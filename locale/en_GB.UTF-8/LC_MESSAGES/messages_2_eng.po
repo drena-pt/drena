@@ -1,0 +1,208 @@
+
+
+
+#. -------- LOGIN & REGISTER --------
+
+msgid "Registo"
+msgstr "Register"
+
+msgid "O teu nome verdadeiro"
+msgstr "Your real name"
+
+msgid "Nome de utilizador"
+msgstr "Username"
+
+msgid "Repetir a palavra-passe"
+msgstr "Repeat password"
+
+msgid "Adicionar um email"
+msgstr "Add an email"
+
+msgid "Alterar email"
+msgstr "Change email"
+
+msgid "Endereço de email"
+msgstr "Email address"
+
+msgid "Novo endereço de email"
+msgstr "New email address"
+
+msgid "Confirmar email"
+msgstr "Confirm email"
+
+msgid "Confirmar ativação da conta"
+msgstr "Confirm account activation"
+
+msgid "Enviámos um código de verificação para %s"
+msgstr "A verification email has been sent to %s"
+
+msgid "Pode demorar algum tempo até o email chegar, verifica na caixa de spam."
+msgstr "It can take awhile for the email to reach your inbox, check the spam."
+
+msgid "Código de verificação"
+msgstr "Verification code"
+
+msgid "Reenviar email"
+msgstr "Resend email"
+
+msgid "Enviar email de recuperação"
+msgstr "Send recovery email"
+
+msgid "Email enviado"
+msgstr "Email sent"
+
+msgid "Foi enviado um email com o link para recuperação da conta associada ao email."
+msgstr "An email with the link for the account recovery has been sent"
+
+msgid "Recuperar conta"
+msgstr "Recover account"
+
+msgid "Se não te lembras da tua palavra-passe, insere o teu email associado à conta."
+msgstr "If you cannot remember your password, type in the email associated with the account"
+
+msgid "Palavra-passe alterada"
+msgstr "Password changed"
+
+msgid "A palavra-passe foi alterada com sucesso, já podes iniciar sessão!"
+msgstr "The password has been changed successfuly, you can log in!"
+
+msgid "Alterar a palavra-passe"
+msgstr "Change password"
+
+msgid "Insere a nova palavra-passe."
+msgstr "Insert new password"
+
+msgid "Nova palavra-passe"
+msgstr "New password"
+
+msgid "O teu email atual é %s, regista o novo email abaixo."
+msgstr "Your current email is %s, register your new email here"
+
+
+
+#. -------- MAIN --------
+
+msgid "Administrar"
+msgstr "Manage"
+
+msgid "Configurações"
+msgstr "Settings"
+
+msgid "Alterar título"
+msgstr "Change title"
+
+msgid "Cancelar"
+msgstr "Cancel"
+
+msgid "Fechar"
+msgstr "Close"
+
+msgid "Alterar"
+msgstr "Change"
+
+msgid "Eliminar"
+msgstr "Delete"
+
+msgid "Verificar"
+msgstr "Confirm"
+
+msgid "Adicionar"
+msgstr "Add"
+
+msgid "Esta ação é irreversível!"
+msgstr "This action is irreversible!"
+
+#. ---- Roberto is a variable
+msgid "Olá (Roberto)"
+msgstr "Hi (Roberto)"
+
+
+
+#. -------- PROFILE --------
+
+msgid "Pedido enviado"
+msgstr "Request sent"
+
+msgid "Cancelar pedido"
+msgstr "Cancel request"
+
+
+
+#. -------- AUDIO --------
+
+msgid "Informações do áudio"
+msgstr "Audio info"
+
+msgid "Eliminar áudio"
+msgstr "Delete audio"
+
+
+
+#. -------- IMAGE --------
+
+msgid "Eliminar imagem"
+msgstr "Delete image"
+
+
+
+#. -------- VIDEO --------
+
+msgid "Informações do vídeo"
+msgstr "Video info"
+
+msgid "Eliminar vídeo"
+msgstr "Delete video"
+
+
+
+#. -------- MEDIA --------
+
+#. ---- 10 hours is a variable
+msgid "há (10 hours)"
+msgstr "(10 hours) ago"
+
+
+
+#. -------- ERRORS --------
+
+msgid "Campo vazio."
+msgstr "Empty field"
+
+msgid "As palavras-passe não podem ser diferentes."
+msgstr "The passwords cannot differ"
+
+msgid "Este email já está em uso."
+msgstr "This email has already been used"
+
+msgid "Este utilizador já está registado."
+msgstr "This user is already registered"
+
+msgid "Não podes usar caracteres especiais."
+msgstr "You cannot use special characters"
+
+msgid "Código de verificação inválido."
+msgstr "Verification code is not valid."
+
+msgid "Não podes utilizar o mesmo email."
+msgstr "You cannot use the same email adress."
+
+msgid "O email %s já foi registado e está a ser utilizado por outra conta. Por favor utiliza outro email."
+msgstr "This email has already been used in a different account. Please use another email address."
+
+msgid "Atualmente não tens nenhum email para recuperação e contacto da tua conta. Adiciona um email abaixo."
+msgstr "At this time you do not have a recovery email"
+
+msgid "Espera 5 minutos antes de reenviar um email."
+msgstr "Wait 5 minutes before sending a new email."
+
+msgid "Excedeste o limite de emails."
+msgstr "You have exceded the limit of emails."
+
+msgid "Utilizador inválido."
+msgstr "This user is not valid."
+
+msgid "A palavra-passe está errada."
+msgstr "Incorrect password."
+
+msgid "Email inválido."
+msgstr "Email not valid."

@@ -15,13 +15,22 @@ require('head.php');
 			}
 			</style>
 			<?php
+
+            $index_titulos = ['pt' => "MOSTRA O QUE FAZES.",'en' => "SHOW WHAT YOU MAKE.",'de' => "ZEIG WAS DU MACHST.",'it' => "MOSTRA COSA FAI.",'fr' => "MONTREZ CE QUE VOUS FAITES."];
+            unset($index_titulos[get_browser_language()]);
+
             echo "
             <div class='jumbotron bg-dark d-flex align-items-center text-center justify-content-center align-items-center'>
                 <h1 class='display-4'>".strtoupper(_("Mostra o que fazes."))."<br>
                 <span class='text-outline'>";
-                for ($i = 1, $j = 0; $i <= 4; $j += $i, print strtoupper(_("Mostra o que fazes."))."<br>", $i++);
-                echo "</span>
+                foreach($index_titulos as $titulo){
+                    echo $titulo."<br>";
+                }
+                echo "
+                </span>
                 </h1>
+
+                
             </div>
 
             <div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3 text-center'>

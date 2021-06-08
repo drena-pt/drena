@@ -49,7 +49,7 @@
 					#cartao_4:before{background-image: url('node_modules/bootstrap-icons/icons/volume-up.svg');}
 				</style>
 
-				<div class='col'><a class='text-decoration-none' href='pro/projeto.php'>
+				<div class='col'><a class='text-decoration-none' href='pro/projeto.php?ac=criar'>
 					<div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
 						<h2>"._('Projeto')."</h2>
 					</div></a>

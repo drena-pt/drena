@@ -1,0 +1,17 @@
+
+
+
+#. -------- PROFILE --------
+
+msgid "Obrigado por te registares na drena, fica à vontade para partilhares as tuas coisas."
+msgstr ""
+
+
+
+#. -------- MAIN --------
+
+msgid "Criado por %s"
+msgstr "Created by %s"
+
+msgid "Bem vindo!"
+msgstr ""

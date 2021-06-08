@@ -1,0 +1,407 @@
+
+
+
+#. -------- LOGIN & REGISTER --------
+
+msgid "Entrar"
+msgstr "Connexion"
+
+msgid "Utilizador"
+msgstr "Nom d'utilisateur"
+
+msgid "Palavra-passe"
+msgstr "Mot de passe"
+
+msgid "Iniciar sessão"
+msgstr "Commencer la session"
+
+msgid "Criar uma conta"
+msgstr "Créer un compte"
+
+msgid "Sair"
+msgstr "Déconnexion"
+
+msgid "Registo"
+msgstr "Registre"
+
+msgid "O teu nome verdadeiro"
+msgstr "Votre nom réel"
+
+msgid "Nome de utilizador"
+msgstr "Nom d'utilisateur"
+
+msgid "Repetir a palavra-passe"
+msgstr "Répéter le mot de passe"
+
+msgid "Adicionar um email"
+msgstr "Ajouter un email"
+
+msgid "Alterar email"
+msgstr "Changer d'email"
+
+msgid "Endereço de email"
+msgstr "Adress e-mail"
+
+msgid "Novo endereço de email"
+msgstr "Nouvelle adresse e-mail"
+
+msgid "Confirmar email"
+msgstr "Confirme l'email"
+
+msgid "Confirmar ativação da conta"
+msgstr "Confirmer les activations de compte"
+
+msgid "Enviámos um código de verificação para %s"
+msgstr "Un courriel de vérification a été envoyé à %s"
+
+msgid "Pode demorar algum tempo até o email chegar, verifica na caixa de spam."
+msgstr "L'e-mail peut prendre un certain temps avant d'arriver dans votre boîte de réception, vérifiez les spams."
+
+msgid "Código de verificação"
+msgstr "Code de vérification"
+
+msgid "Reenviar email"
+msgstr "Renvoyer l'email"
+
+msgid "Enviar email de recuperação"
+msgstr "Envoyer un e-mail de récupération"
+
+msgid "Email enviado"
+msgstr "Email envoyé"
+
+msgid "Foi enviado um email com o link para recuperação da conta associada ao email."
+msgstr "Un courriel contenant le lien pour la récupération du compte a été envoyé."
+
+msgid "Recuperar conta"
+msgstr "Récupérer le compte"
+
+msgid "Se não te lembras da tua palavra-passe, insere o teu email associado à conta."
+msgstr "Si vous ne vous souvenez pas de votre mot de passe, tapez l'adresse électronique associée au compte."
+
+msgid "Palavra-passe alterada"
+msgstr "Mot de passe modifié"
+
+msgid "A palavra-passe foi alterada com sucesso, já podes iniciar sessão!"
+msgstr "Le mot de passe a été changé avec succès, vous pouvez vous connecter !"
+
+msgid "Alterar a palavra-passe"
+msgstr "Modifier le mot de passe"
+
+msgid "Insere a nova palavra-passe."
+msgstr "Insérer un nouveau mot de passe"
+
+msgid "Nova palavra-passe"
+msgstr "Nouveau mot de passe"
+
+msgid "O teu email atual é %s, regista o novo email abaixo."
+msgstr "Votre adresse électronique actuelle est %s, enregistrez votre nouvelle adresse ici."
+
+
+
+#. -------- MAIN --------
+
+msgid "Criar"
+msgstr "Créer"
+
+msgid "Mostra o que fazes."
+msgstr "Montrez ce que vous faites."
+
+msgid "Ultimos vídeos"
+msgstr "Dernières vidéos"
+
+msgid "Administrar"
+msgstr "Gérer"
+
+msgid "Configurações"
+msgstr "Paramètres"
+
+msgid "Alterar título"
+msgstr "Changer de titre"
+
+msgid "Cancelar"
+msgstr "Annuler"
+
+msgid "Fechar"
+msgstr "Fermer"
+
+msgid "Alterar"
+msgstr "Changement"
+
+msgid "Eliminar"
+msgstr "Supprimer"
+
+msgid "Verificar"
+msgstr "Confirmer"
+
+msgid "Adicionar"
+msgstr "Ajouter"
+
+msgid "Esta ação é irreversível!"
+msgstr "Cette action est irréversible!"
+
+#. ---- %s is a variable
+msgid "Olá %s"
+msgstr "Bonjour %s"
+
+
+
+#. -------- PROFILE --------
+
+msgid "Perfil"
+msgstr "Profil"
+
+msgid "Alterar foto"
+msgstr "Changer de photo"
+
+msgid "Utilizador desde %s de"
+msgstr "Utilisateur depuis %s"
+
+msgid "Lista de conhecidos"
+msgstr "Acquaintances list"
+
+msgid "São conhecidos"
+msgstr "Sont des connaissances"
+
+msgid "Remover conhecido"
+msgstr "Supprimer une connaissance"
+
+msgid "Aceitar pedido"
+msgstr "Accepter la demande"
+
+msgid "Pedidos"
+msgstr "Demandes"
+
+msgid "Pedido enviado"
+msgstr "Demande envoyée"
+
+msgid "Cancelar pedido"
+msgstr "Annuler la demande"
+
+
+
+#. -------- AUDIO --------
+
+msgid "Áudio"
+msgstr "Audio"
+
+msgid "Áudios"
+msgstr "Audios"
+
+msgid "Carregar áudio"
+msgstr "Télécharger l'audio"
+
+msgid "Nenhum áudio selecionado"
+msgstr "Aucun audios sélectionnés"
+
+msgid "Selecionar um áudio"
+msgstr "Sélectionnez un fichier audio"
+
+msgid "Ouvir áudio"
+msgstr "Écouter l'audio"
+
+msgid "Informações do áudio"
+msgstr "Infos audio"
+
+msgid "Eliminar áudio"
+msgstr "Supprimer l'audio"
+
+
+
+#. -------- IMAGE --------
+
+msgid "Imagem"
+msgstr "Image"
+
+msgid "Imagens"
+msgstr "Images"
+
+msgid "Carregar imagens"
+msgstr "Télécharger des images"
+
+msgid "Selecionar imagens"
+msgstr "Sélectionner les images"
+
+msgid "Eliminar imagem"
+msgstr "Supprimer l'image"
+
+
+
+#. -------- VIDEO --------
+
+msgid "Vídeo"
+msgstr "Vidéo"
+
+msgid "Vídeos"
+msgstr "Vidéos"
+
+msgid "Carregar vídeo"
+msgstr "Télécharger des vidéos"
+
+msgid "Nenhum vídeo selecionado"
+msgstr "Aucune vidéo sélectionnée"
+
+msgid "Selecionar um vídeo"
+msgstr "Sélectionnez une vidéo"
+
+msgid "Ver vídeo"
+msgstr "Regarder la vidéo"
+
+msgid "Informações do vídeo"
+msgstr "Infos vidéo"
+
+msgid "Eliminar vídeo"
+msgstr "Supprimer la vidéo"
+
+
+
+#. -------- MEDIA --------
+
+msgid "carregado"
+msgstr "téléchargé"
+
+msgid "Carregamento completo"
+msgstr "Téléchargement complet"
+
+msgid "Publicado por"
+msgstr "Publié par"
+
+msgid "gostos"
+msgstr "aime"
+
+msgid "há %s"
+msgstr "%s depuis"
+
+
+
+#. -------- PROJECTS --------
+
+msgid "Projeto"
+msgstr "Projet"
+
+msgid "Projetos"
+msgstr "Projets"
+
+
+
+#. -------- ERRORS --------
+
+msgid "Campo vazio."
+msgstr "Champ vide."
+
+msgid "As palavras-passe não podem ser diferentes."
+msgstr "Les mots de passe ne peuvent pas être différents."
+
+msgid "Este email já está em uso."
+msgstr "Cet e-mail a déjà été utilisé."
+
+msgid "Este utilizador já está registado."
+msgstr "Cet utilisateur est déjà enregistré."
+
+msgid "Não podes usar caracteres especiais."
+msgstr "Vous ne pouvez pas utiliser de caractères spéciaux."
+
+msgid "Código de verificação inválido."
+msgstr "Le code de vérification n'est pas valide."
+
+msgid "Não podes utilizar o mesmo email."
+msgstr "Vous ne pouvez pas utiliser la même adresse électronique."
+
+msgid "O email %s já foi registado e está a ser utilizado por outra conta. Por favor utiliza outro email."
+msgstr "Cette adresse électronique a déjà été utilisée dans un autre compte. Veuillez utiliser une autre adresse e-mail."
+
+msgid "Atualmente não tens nenhum email para recuperação e contacto da tua conta. Adiciona um email abaixo."
+msgstr "Pour l'instant, vous n'avez pas d'email de récupération."
+
+msgid "Espera 5 minutos antes de reenviar um email."
+msgstr "Attendez 5 minutes avant d'envoyer un nouvel e-mail."
+
+msgid "Excedeste o limite de emails."
+msgstr "Vous avez dépassé la limite des emails."
+
+msgid "Utilizador inválido."
+msgstr "Cet utilisateur n'est pas valide."
+
+msgid "A palavra-passe está errada."
+msgstr "Mot de passe incorrect."
+
+msgid "Email inválido."
+msgstr "Courriel non valide."
+
+
+
+#. -------- TIME --------
+
+msgid "ano"
+msgstr "année"
+msgid "anos"
+msgstr "années"
+
+msgid "mês"
+msgstr "mois"
+msgid "mêses"
+msgstr "mois"
+
+msgid "semana"
+msgstr "semaine"
+msgid "semanas"
+msgstr "semaines"
+
+msgid "dia"
+msgstr "jour"
+msgid "dias"
+msgstr "jours"
+
+msgid "hora"
+msgstr "heure"
+msgid "horas"
+msgstr "heures"
+
+msgid "minuto"
+msgstr "minute"
+msgid "minutos"
+msgstr "minutes"
+
+msgid "segundo"
+msgstr "seconde"
+msgid "segundos"
+msgstr "secondes"
+
+
+
+#. -------- MONTHS --------
+
+msgid "janeiro"
+msgstr "janvier"
+
+msgid "fevereiro"
+msgstr "février"
+
+msgid "março"
+msgstr "mars"
+
+msgid "abril"
+msgstr "avril"
+
+msgid "maio"
+msgstr "mai"
+
+msgid "junho"
+msgstr "juin"
+
+msgid "julho"
+msgstr "juillet"
+
+msgid "agosto"
+msgstr "août"
+
+msgid "setembro"
+msgstr "septembre"
+
+msgid "outubro"
+msgstr "octobre"
+
+msgid "novembro"
+msgstr "novembre"
+
+msgid "dezembro"
+msgstr "décembre"

@@ -111,7 +111,7 @@
 						<h1>"._('Entrar')."</h1>
 
 						<div class='form-group'>
-							<input type='text' class='form-control ".temErro($erros["nut"])."' aria-describedby='erro_nut' name='nut' placeholder='"._('Utilizador')."'>
+							<input type='text' class='form-control ".temErro($erros["nut"])."' aria-describedby='erro_nut' name='nut' placeholder=\""._('Utilizador')."\">
 							<div id='erro_nut' class='invalid-feedback'>".nomeErro($erros["nut"])."</div>
 						</div>
 
