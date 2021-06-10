@@ -14,7 +14,7 @@
 		<div id='swup' class='transition-fade'>
 		<?php
 		if (!$med){
-			echo "<h2 class='my-5 text-center'>Áudio não encontrado! 😵</h2>‍";
+			echo "<h2 class='my-5 text-center'>"._('Áudio não encontrado!')." 😵</h2>‍";
 			exit;
 		}
 		function tempoPassado($ptime){

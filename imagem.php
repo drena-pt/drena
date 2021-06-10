@@ -14,7 +14,7 @@
 		<div id='swup' class='transition-fade'>
 		<?php
 		if (!$med){
-			echo "<h2 class='my-5 text-center'>Imagem não encontrada! 😵</h2>‍";
+			echo "<h2 class='my-5 text-center'>"._('Imagem não encontrada!')." 😵</h2>‍";
 			exit;
 		}
 		function tempoPassado($ptime){

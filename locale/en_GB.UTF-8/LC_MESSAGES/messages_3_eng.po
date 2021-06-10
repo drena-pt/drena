@@ -15,3 +15,24 @@ msgstr "Created by %s"
 
 msgid "Bem vindo!"
 msgstr ""
+
+
+
+#. -------- AUDIO --------
+
+msgid "Áudio não encontrado!"
+msgstr ""
+
+
+
+#. -------- IMAGE --------
+
+msgid "Imagem não encontrada!"
+msgstr ""
+
+
+
+#. -------- VIDEO --------
+
+msgid "Vídeo não encontrado!"
+msgstr ""

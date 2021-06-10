@@ -45,7 +45,7 @@
 					<script>
 						$('#header_btn_criar').click(function(){
 						  $.ajax({
-						  	url: 'pro/criar_sec.php?pro=+".$_GET["id"]."',
+						  	url: 'pro/sec.php?ac=criar&pro=+".$_GET["id"]."',
 						  	success: function(result) {
 						  	  if (result){
 						  	  	alert('Ocorreu um erro.');
@@ -181,9 +181,9 @@
 				";
 			}
 			#Secções
-			$pesquisa = "SELECT * FROM pro_sec WHERE pro=".$pro['id']." AND ati='1' ORDER BY id DESC";
+			$pesquisa = "SELECT * FROM pro_sec WHERE pro=".$pro['id']." ORDER BY ord ASC";
             if ($resultado = $bd->query($pesquisa)) {
-				$num_sec = $resultado->num_rows;
+				$num_sec = 0;
                 while ($campo = $resultado->fetch_assoc()) {
 					if ($per OR $campo['vis']==1){
 						echo "
@@ -197,21 +197,21 @@
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#eye'/></svg>
 									</button>
 
-									<button onclick=\"window.open('editar_sec.php?id=".base64_encode($campo['id'])."','_blank')\"  class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Editar texto'>
+									<button onclick=\"window.open('editar_sec.php?id=".base64_encode($campo['id'])."','_blank')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Editar texto'>
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
 									</button>
 
-									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Eliminar' onclick=\"apagar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
+									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Eliminar')."\" onclick=\"eliminar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
 									</button>
 
 									<div class='btn-group ml-1' role='group' aria-label='Basic example'>
-										<button type='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Mover para baixo'>
+										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverBaixo' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Mover para baixo'>
 											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-down'/></svg>
-										</button>
-										<button type='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Mover para cima'>
+										</a>
+										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverCima' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Mover para cima'>
 											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-up'/></svg>
-										</button>
+										</a>
 									</div>
 								</div>
 
@@ -240,20 +240,21 @@
 							</div>
 						</section>
 						";
-						$num_sec--;
+						$num_sec++;
 					}
                 } 
 				$resultado->free();
 				if ($per){
 					echo "
 					<script>
-					function apagar_sec(id,num){
-						$('#sec_'+num).remove();
+					function eliminar_sec(id,num){
 						$.ajax({
-							url: 'pro/apagar_sec.php?id='+id,
+							url: 'pro/sec.php?sec='+id+'&ac=eliminar',
 							success: function(result) {
 								if (result){
 									alert(result);
+								} else {
+									$('#sec_'+num).remove();
 								}
 							},
 							error: function(){
@@ -263,7 +264,7 @@
 					}
 					function visibilidade(id,num){
 						$.ajax({
-							url: 'pro/sec_visibilidade.php?sec='+id,
+							url: 'pro/sec.php?sec='+id+'&ac=visibilidade',
 							success: function(result) {
 								if (result==='true'){
 									$('#tit_'+num).text('Secção '+num);

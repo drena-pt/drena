@@ -15,7 +15,7 @@ if ($_GET['por']=='ficheiro'){
     gerarCodigo:
     $codigodobem = gerarCodigo(16);
 
-    $ficheiro_ori_caminho = "/home/root/media.drena.xyz/img/".$codigodobem.".".$ficheiro_ext;
+    $ficheiro_ori_caminho = "/home/guilha/www/media.drena.xyz/img/".$codigodobem.".".$ficheiro_ext;
 
     if (!(move_uploaded_file($imagem['tmp_name'],$ficheiro_ori_caminho))){
         echo "Não foi possivel carregar o ficheiro: ".$imagem['name'];

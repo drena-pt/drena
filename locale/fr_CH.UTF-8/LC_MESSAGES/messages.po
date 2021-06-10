@@ -157,7 +157,7 @@ msgid "Utilizador desde %s de"
 msgstr "Utilisateur depuis %s"
 
 msgid "Lista de conhecidos"
-msgstr "Acquaintances list"
+msgstr "Liste de connaissances"
 
 msgid "São conhecidos"
 msgstr "Sont des connaissances"
