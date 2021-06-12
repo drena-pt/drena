@@ -249,7 +249,7 @@
 			<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3' id='conteudo'></div>
 			<script>
 			function mostrarConteudo(tip){
-				$('#conteudo').load('media.php?ac=lista&tip='+tip+'&uti=".$_GET["uti"]."', function(){ location.href = '#conteudo'; });
+				$('#conteudo').load('/pro/media.php?ac=lista&tip='+tip+'&uti=".$_GET["uti"]."', function(){ location.href = '#conteudo'; });
 			}
 			</script>
 			";

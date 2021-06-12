@@ -2,7 +2,7 @@
 /* error_reporting(E_ALL);
 ini_set('display_errors', 'On'); */
 # Conectar à base de dados
-require 'pro/fun.php';
+require 'fun.php';
 
 # Função para gerar um código
 function gerarCodigo($length){   
@@ -40,7 +40,7 @@ for($index = 0;$index < $countfiles;$index++){
             }
 
             // File path
-            $path = "../media.drena.xyz/teste/".$codigo.".".$ficheiro_ext;
+            $path = "/home/guilha/www/media.drena.xyz/teste/".$codigo.".".$ficheiro_ext;
 
             // Upload file
             if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
@@ -51,7 +51,7 @@ for($index = 0;$index < $countfiles;$index++){
                   goto criarJson;
                }
 
-               $files_arr[] = array("link"=>"https://drena.xyz/imagem?id=".$codigo,"img"=>"https://media.drena.xyz/teste/".$codigo.".".$ficheiro_ext,"tit"=>$_FILES['files']['name'][$index]);
+               $files_arr[] = array("link"=>"https://drena.xyz/media?id=".$codigo,"img"=>"https://media.drena.xyz/teste/".$codigo.".".$ficheiro_ext,"tit"=>$_FILES['files']['name'][$index]);
             } else {
                $erro = "Não foi possivel carregar o ficheiro.";
                goto criarJson;

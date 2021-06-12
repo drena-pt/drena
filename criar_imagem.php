@@ -73,7 +73,7 @@
 					
 					   // AJAX request
 					   $.ajax({
-						 url: 'ajaxfile.php', 
+						 url: 'pro/carregar_imagens.php', 
 						 type: 'post',
 						 data: form_data,
 						 dataType: 'json',

@@ -153,7 +153,7 @@
 							status.html('"._('Carregamento completo')."');
 							imagem.attr('src','https://media.drena.xyz/thumb/'+json.codigo+'.jpg');
 							$('#botao_ver_video').removeAttr('hidden');
-							$('#botao_ver_video').attr('href', '/video?id='+json.codigo);
+							$('#botao_ver_video').attr('href', '/media?id='+json.codigo);
 						}
 
 						/*$.ajax({
@@ -163,7 +163,6 @@
 							complete: function(data){
 								window.onbeforeunload = null;
 								$(window).unbind('beforeunload');
-								//window.location.replace('https://drena.xyz/video?id='+json.codigo);
 							},
 							success: function(data){
 								if(data != null){console.log(data);}

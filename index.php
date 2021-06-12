@@ -70,7 +70,7 @@ require('head.php');
                         if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
                         echo "
                         <div class='col mb-4 container'>
-                            <a style='text-shadow: rgb(0, 0, 0) 0px 0px 10px;' class='text-light' href='/video?id=".$campo['id']."'>
+                            <a style='text-shadow: rgb(0, 0, 0) 0px 0px 10px;' class='text-light' href='/media?id=".$campo['id']."'>
                                 <img class='thumb shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['id'].".jpg'>
                                 <div class='centered'><text class='h6'>".encurtarNome($video_tit)."</text></div>
                             </a>
