@@ -17,14 +17,6 @@ input[type='radio']:checked:after {
 	border: 2px solid white;
 }
 
-.texto a{
-	color: rgba(255, 255, 255, 0.6) !important;
-}
-.texto img{
-	max-width: 100%;
-	text-align: center;
-}
-
 a.perfil{
 	text-decoration: none!important;
 	display: block;

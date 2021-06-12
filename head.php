@@ -80,7 +80,6 @@ function numeroParaCor($num){
 
 		<!-- EditorJS -->
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.19.3"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
 		<script src="js/edjsHTML.browser.js"></script>

@@ -42,7 +42,7 @@ if ($med){
 		<script>
 		videojs('video', {}, function() {
 			var player = this;
-			player.controlBar.addChild('QualitySelector');
+			//player.controlBar.addChild('QualitySelector');
 			".$tem_titulo."player.titleoverlay({title: '".$med_tit."'});
 		});
 		if ('mediaSession' in navigator) {

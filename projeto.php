@@ -71,7 +71,7 @@
 						<text class='h5'>Título</text>
 						<form class='row' method='post'>
 							<div class='col-sm-6 col-auto'>
-								<input type='text' class='form-control' id='pro_tit_input' name='pro_tit' placeholder='Título do projeto' maxlength='40' value='".$pro['tit']."'>
+								<input type='text' class='form-control' id='pro_tit_input' name='pro_tit' placeholder=\""._('Título do projeto')."\" maxlength='40' value='".$pro['tit']."'>
 							</div>
 							<div class='col-auto'>
 								<button class='btn btn-light'>Alterar</button>
@@ -80,32 +80,16 @@
 						<br>
 
 						<text class='h5'>Cor tema</text>
-						<div class='row'>
-							<div class='col-auto'>
+						<section>
 								<button class='btn text-light btn-dark' onclick=\"pro_cor('dark')\">Preto</button>
-							</div>
-							<div class='col-auto'>
 								<button class='btn text-light btn-azul' onclick=\"pro_cor('azul')\">Azul</button>
-							</div>
-							<div class='col-auto'>
 								<button class='btn text-light btn-verde' onclick=\"pro_cor('verde')\">Verde</button>
-							</div>
-							<div class='col-auto'>
 								<button class='btn text-light btn-amarelo' onclick=\"pro_cor('amarelo')\">Amarelo</button>
-							</div>
-							<div class='col-auto'>
 								<button class='btn text-light btn-vermelho' onclick=\"pro_cor('vermelho')\">Vermelho</button>
-							</div>
-							<div class='col-auto'>
 								<button class='btn text-light btn-rosa' onclick=\"pro_cor('rosa')\">Rosa</button>
-							</div>
-							<div class='col-auto'>
 								<button class='btn text-light btn-ciano' onclick=\"pro_cor('ciano')\">Ciano</button>
-							</div>
-							<div class='col-auto'>
 								<button class='btn text-light btn-primary' onclick=\"pro_cor('primary')\">Roxo</button>
-							</div>
-						</div>
+						</section>
 						<br>
 
 						<button class='btn btn-light ml-1' data-toggle='modal' data-target='#modal_eliminar_pro'>
@@ -126,7 +110,7 @@
 								$('*[id*=header_btn]').removeClass('text-'+cor);
 								cor = nova_cor;
 								$.ajax({
-									url: 'pro/pro_cor.php?pro=".$_GET["id"]."&cor='+nova_cor,
+									url: 'pro/projeto.php?ac=cor&id=".$_GET["id"]."&cor='+nova_cor,
 									success: function(data){
 										console.log(data);
 									},
@@ -197,7 +181,7 @@
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#eye'/></svg>
 									</button>
 
-									<button onclick=\"window.open('editar_sec.php?id=".base64_encode($campo['id'])."','_blank')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Editar texto'>
+									<button onclick=\"editarSeccao('".$campo['id']."')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Editar texto'>
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
 									</button>
 
@@ -225,13 +209,18 @@
 							";
 						}
 						echo "
-							<div class='texto' id='tex_".$campo['id']."'>
+							<style>
+							.sec_tex a{
+								color: var(--bs-".numeroParaCor($pro['cor']).") !important;
+							}
+							</style>
+							<div class='sec_tex' id='sec_".$campo['id']."_tex'>
 								";
 								if ($campo['tex']){
 									echo "
 									<script>
 										var edjsParser = edjsHTML();
-										$('#tex_".$campo['id']."').html(edjsParser.parse(".$campo['tex']."));
+										$('#sec_".$campo['id']."_tex').html(edjsParser.parse(".$campo['tex']."));
 										console.log('".$campo['tex']."');
 									</script>
 									";
@@ -247,6 +236,9 @@
 				if ($per){
 					echo "
 					<script>
+					function editarSeccao(sec_id){
+						$('#sec_'+sec_id+'_tex').load('pro/sec_editar.php?ac=editar&sec='+sec_id, function(){ console.log('A editar a secção: '+sec_id) });
+					}
 					function eliminar_sec(id,num){
 						$.ajax({
 							url: 'pro/sec.php?sec='+id+'&ac=eliminar',

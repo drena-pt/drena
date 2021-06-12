@@ -1,12 +1,6 @@
 ﻿<?php
-require('fun.php');		# Obter funções
-$ac = $_GET['ac'];		# Ação
-
-#Verificar se o título não é nulo.
-/*if (!$_POST["tit_input"]){
-	echo "<h1>Erro; O título não pode estar vazio.</h1>\n POST(tit) = ".$_POST["tit_input"];
-	exit;
-}*/
+require 'fun.php'; # Obter funções
+$ac = $_GET['ac']; # Ação
 
 if ($ac=='criar'){
 
@@ -23,18 +17,36 @@ if ($ac=='criar'){
 	}
 } else {
 	
-	$projeto = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE id='".base64_decode($_GET['id'])."'"));
+	$pro = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE id='".base64_decode($_GET['id'])."'"));
 
-	if ($projeto AND $projeto['uti']==$uti['id']){ # Se o projeto existir e o utilizador conectado for o dono
+	if ($pro AND $pro['uti']==$uti['id']){ # Se o projeto existir e o utilizador conectado for o dono
 
 		if ($ac=='eliminar'){
 	
-			if ($bd->query("DELETE FROM pro_sec WHERE pro='".$projeto['id']."'") === FALSE) {
+			if ($bd->query("DELETE FROM pro_sec WHERE pro='".$pro['id']."'") === FALSE) {
 				echo "Erro: ".$bd->error;
-			} else if ($bd->query("DELETE FROM pro WHERE id='".$projeto['id']."'") === FALSE) {
+			} else if ($bd->query("DELETE FROM pro WHERE id='".$pro['id']."'") === FALSE) {
 				echo "Erro: ".$bd->error;
 			} else {
 				header("Location: /perfil?uti=".$uti['nut']);
+			}
+		} else if ($ac=='cor'){
+	
+			function corParaNumero($cor){
+				switch ($cor) {
+					case 'azul': return 1; break;
+					case 'verde': return 2; break;
+					case 'amarelo': return 3; break;
+					case 'vermelho': return 4; break;
+					case 'rosa': return 5; break;
+					case 'ciano': return 6; break;
+					case 'primary': return 7; break;
+					default: return 0;
+				}
+			}
+		
+			if ($bd->query("UPDATE pro SET cor=".corParaNumero($_GET["cor"])." WHERE id='".$pro['id']."'") === FALSE) {
+				echo "Erro: ".$bd->error;
 			}
 		} else {
 			echo "Erro: Nenhuma ação selecionada.";

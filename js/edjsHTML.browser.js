@@ -27,11 +27,6 @@ var edjsHTML = (function () {
         "<" + n + "> " + r + " </" + n + ">"
       );
     },
-    image: function (t) {
-      var e = t.data,
-        n = e.caption ? e.caption : "Image";
-      return '<img data-toggle="tooltip" data-placement="bottom" class="shadow mb-2 mx-auto d-block col" src="' + (e.file ? e.file.url : "") + '" data-original-title="' + n + '" />';
-      },
     quote: function (t) {
       var e = t.data;
       return "<blockquote> " + e.text + " </blockquote> - " + e.caption;
@@ -59,9 +54,7 @@ var edjsHTML = (function () {
   };
   function e(t) {
     return new Error(
-      '[31m The Parser function of type "' +
-        t +
-        '" is not defined. \n\n  Define your custom parser functions as: [34mhttps://github.com/pavittarx/editorjs-html#extend-for-custom-blocks [0m'
+      'O tipo: "'+ t +'" não existe, contacta um administrador.<br>'
     );
   }
   return function (n) {
