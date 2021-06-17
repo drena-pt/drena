@@ -16,6 +16,9 @@ msgstr "Created by %s"
 msgid "Bem vindo!"
 msgstr ""
 
+msgid "A carregar..."
+msgstr ""
+
 
 
 #. -------- AUDIO --------

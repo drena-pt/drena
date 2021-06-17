@@ -70,7 +70,7 @@
 							$t_eliminar = _('Eliminar imagem');
 							$t_cor = 'ciano';
 							echo "<div class='p-4'>
-							<img class='w-100 mb-3' src='https://media.drena.xyz/teste/".$med['id'].".".end(explode(".", $med['nom']))."'></img>";
+							<img class='w-100 mb-3' src='https://media.drena.xyz/img/".$med['id'].".".end(explode(".", $med['nom']))."'></img>";
 							break;
 					}
 					echo "

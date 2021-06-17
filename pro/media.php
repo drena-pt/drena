@@ -68,7 +68,7 @@ if ($_GET['ac']=='lista'){
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
-                            <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['id'].".jpg'>
+                            <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
                             <div class='texto-container'><text class='h6'>".encurtarNome($video_tit)."</text></div>
                         </a>
                     </div>
@@ -110,7 +110,7 @@ if ($_GET['ac']=='lista'){
             if ($resultado = $bd->query($pesquisa)) {
                 
                 echo "
-                <div class='p-xl-5 p-4'><h1>"._('Vídeos')."</h1></div>
+                <div class='p-xl-5 p-4'><h1>"._('Imagens')."</h1></div>
                 <div class='row row-cols-2 row-cols-md-3'>";
     
                 while ($campo = $resultado->fetch_assoc()) {
@@ -118,7 +118,7 @@ if ($_GET['ac']=='lista'){
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
-                            <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/teste/".$campo['id'].".".end(explode(".", $campo['nom']))."'>
+                            <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
                             <div class='texto-container'><text class='h6'>".encurtarNome($video_tit)."</text></div>
                         </a>
                     </div>

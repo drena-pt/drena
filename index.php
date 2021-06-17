@@ -71,7 +71,7 @@ require('head.php');
                         echo "
                         <div class='col mb-4 container'>
                             <a style='text-shadow: rgb(0, 0, 0) 0px 0px 10px;' class='text-light' href='/media?id=".$campo['id']."'>
-                                <img class='thumb shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['id'].".jpg'>
+                                <img class='thumb shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
                                 <div class='centered'><text class='h6'>".encurtarNome($video_tit)."</text></div>
                             </a>
                         </div>

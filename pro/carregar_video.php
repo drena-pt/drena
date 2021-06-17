@@ -18,7 +18,6 @@ $ffprobe = FFMpeg\FFProbe::create(array(
 $ficheiro = $_FILES['input_video'];
 $ficheiro_ext = end(explode(".", $ficheiro['name']));
 
-
 # Função para gerar um código
 function gerarCodigo($length){   
     $charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -27,24 +26,32 @@ function gerarCodigo($length){
     return $key;
 }
 
+$caminho = "/home/guilha/www/media.drena.xyz/";
+
+# Gera código unico para media
 gerarCodigo:
-$codigodobem = gerarCodigo(16);
+$codigoMedia = gerarCodigo(16);
 # Verifica na base de dados se já existe esse código, se sim repete.
-if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$codigodobem."'"))){
+if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$codigoMedia."'"))){
     goto gerarCodigo;
 }
 
-
-$caminho = "/home/guilha/www/media.drena.xyz/";
-$ficheiro_ori_caminho = $caminho."ori/".$codigodobem.".".$ficheiro_ext;
+$ficheiro_ori_caminho = $caminho."ori/".$codigoMedia.".".$ficheiro_ext;
 
 if (!(move_uploaded_file($ficheiro['tmp_name'],$ficheiro_ori_caminho))){
     $erro = "Não foi possivel carregar o ficheiro: ".$ficheiro['name'];
     goto criarJson;
 }
 
+# Gera código unico para a thumb
+gerarCodigoThumb:
+$codigoThumb = gerarCodigo(16);
+# Verifica na base de dados se já existe esse código, se sim repete.
+if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM thu WHERE id='".$codigoThumb."'"))){
+    goto gerarCodigoThumb;
+}
 
-$ficheiro_thumb_caminho = $caminho."thumb/".$codigodobem.".jpg";
+$ficheiro_thumb_caminho = $caminho."thumb/".$codigoThumb.".jpg";
 
 # Obtem duração do vídeo
 $video_duracao = $ffprobe
@@ -55,7 +62,7 @@ $video_duracao = $ffprobe
 # Gera thumbnail
 $video = $ffmpeg->open($ficheiro_ori_caminho);
 $video
-    ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds($duracao/2))
+    ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds($video_duracao/2))
     ->save($ficheiro_thumb_caminho);
 
 # Processa a thumbnail para o tamanho ideal
@@ -80,19 +87,29 @@ function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $qua
 }
 resize_crop_image(800, 450, $ficheiro_thumb_caminho, $ficheiro_thumb_caminho, 30);
 
-
-#Regista o vídeo na base de dados
-if ($bd->query("INSERT INTO med (id, uti, nom, tip) VALUES('".$codigodobem."', '".$uti['id']."', '".$ficheiro['name']."', '1');") === FALSE) {
+# Regista a thumbnail na base de dados
+if ($bd->query("INSERT INTO thu (id, uti, tip) VALUES('".$codigoThumb."', '".$uti['id']."', '1');") === FALSE) {
     $erro = "Erro mysqli:".$bd->error;
     goto criarJson;
 }
 
+# Regista o vídeo na base de dados
+if ($bd->query("INSERT INTO med (id, uti, nom, tip, thu) VALUES('".$codigoMedia."', '".$uti['id']."', '".$ficheiro['name']."', '1', '".$codigoThumb."');") === FALSE) {
+    $erro = "Erro mysqli:".$bd->error;
+    goto criarJson;
+}
 
 $codec = exec("ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 ".$ficheiro_ori_caminho);
 
-
 criarJson:
-$json = array("erro"=>$erro, "codigo"=>$codigodobem, "ext"=>$ficheiro_ext, "codec"=>$codec);
+# Se ocorrer um erro apaga tudo.
+if ($erro){
+    unlink($ficheiro_ori_caminho);      # Elimina o vídeo
+    $bd->query("DELETE FROM med WHERE id='".$codigoMedia."'");
+    unlink($ficheiro_thumb_caminho);    # Elimina a thumbnail
+    $bd->query("DELETE FROM thu WHERE id='".$codigoThumb."'");
+}
+$json = array("erro"=>$erro, "codigo"=>$codigoMedia, "thumb"=>$codigoThumb, "ext"=>$ficheiro_ext, "codec"=>$codec);
 echo json_encode($json);
 exit;
 ?>

@@ -29,7 +29,7 @@
 					<br><br>
 								
 					<form hidden method='post' action='' enctype='multipart/form-data'>
-						<input type='file' id='files' name='files[]'' multiple accept='image/*><br>
+						<input type='file' id='files' name='files[]' multiple accept='image/*'><br>
 						<input type='button' id='submit'>
 					</form>
 
@@ -61,37 +61,48 @@
 
 				<script>
 				$(document).ready(function(){
+					var status = $('#status');
+					
 					$('#files').change(function() {
 					
-					   var form_data = new FormData();
-					
-					   // Read selected files
-					   var totalfiles = document.getElementById('files').files.length;
-					   for (var index = 0; index < totalfiles; index++) {
+						var form_data = new FormData();
+						
+						// Read selected files
+						var totalfiles = document.getElementById('files').files.length;
+						for (var index = 0; index < totalfiles; index++) {
 						  form_data.append('files[]', document.getElementById('files').files[index]);
-					   }
+						}
 					
-					   // AJAX request
-					   $.ajax({
-						 url: 'pro/carregar_imagens.php', 
-						 type: 'post',
-						 data: form_data,
-						 dataType: 'json',
-						 contentType: false,
-						 processData: false,
-						 success: function (response) {
-						   for(var index = 0; index < response.length; index++) {
-							 var img = response[index]['img'];
-							 var link = response[index]['link'];
-							 var tit = response[index]['tit'];
-							 $('#preview').prepend(\"<div class='col mb-4 container'><a class='text-light' href='\"+link+\"' target='_blank'><img class='thumb shadow rounded-xl w-100' src='\"+img+\"'><div class='centered'><text class='h6'>\"+tit+\"</text></div></a></div>\");
-						   }
-						 }
-					   });
+						// AJAX request
+						$.ajax({
+							beforeSend: function() {
+								status.html('"._('A carregar...')."');
+							},
+							url: 'pro/carregar_imagens.php', 
+							type: 'post',
+							data: form_data,
+							dataType: 'json',
+							contentType: false,
+							processData: false,
+							success: function (response) {
+								status.html('"._('Carregamento completo')."');
+								for(var index = 0; index < response.length; index++) {
+									var img = response[index]['img'];
+									var link = response[index]['link'];
+									var tit = response[index]['tit'];
+									var erro = response[index]['erro'];
+									var thumb = response[index]['thumb'];
+									if (erro){
+										$('#preview').prepend(\"<div class='col mb-4 container'><img class='thumb shadow rounded-xl w-100' src='imagens/thumb_imagem.jpg'><div class='centered'><text class='h6'>\"+tit+\"<br>\"+erro+\"</text></div></div>\");
+									} else {
+											$('#preview').prepend(\"<div class='col mb-4 container'><a class='text-light' href='\"+link+\"' target='_blank'><img class='thumb shadow rounded-xl w-100' src='\"+thumb+\"'><div class='centered'><text class='h6'>\"+tit+\"</text></div></a></div>\");
+									}
+								}
+							}
+						});
 					
 					});
-					
-					});
+				});
 				</script>
 
 			</div>

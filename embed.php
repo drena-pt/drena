@@ -5,6 +5,7 @@ ob_get_clean();
 session_start();
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));	# Utilizador dono
+echo $med_anterior['id'];
 if ($med){
 	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}						# Definir título
 	if ($_GET['titulo']=='0'){$tem_titulo='//';}													# Se a variavel passada pelo o url "titulo" for 0, comenta o script.
@@ -20,7 +21,7 @@ if ($med){
 		<!-- Tags de motor de pequisa -->
 		<meta property='og:title' content='".$med_tit."'/>
 		<meta property='og:type' content='video.other' />
-		<meta property='og:image' content='https://media.drena.xyz/thumb/".$_GET["id"].".jpg' />
+		<meta property='og:image' content='https://media.drena.xyz/thumb/".$med["thu"].".jpg' />
 		<meta property='og:video' content='https://media.drena.xyz/webm/".$_GET["id"].".webm' />
 
 		<!-- Wavesurfer -->
@@ -47,8 +48,8 @@ if ($med){
 	<body>";
 		if ($med['tip']==1){
 			echo "
-			<video-js poster='https://media.drena.xyz/thumb/".$_GET["id"].".jpg' id='video' class='vjs-theme-fantasy js-focus-invisible vjs-16-9' controls preload='auto'>
-				<source src='https://media.drena.xyz/ori/".$_GET["id"].".".end((explode(".", $med['nom'])))."' label='Original' selected='true'>
+			<video-js poster='https://media.drena.xyz/thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-fantasy js-focus-invisible vjs-16-9' controls preload='auto'>
+				<source src='https://media.drena.xyz/ori/".$_GET["id"].".".end(explode(".", $med['nom']))."' label='Original' selected='true'>
 				<source src='https://media.drena.xyz/webm/".$_GET["id"].".webm' label='240P'>
 			</video-js>
 	
@@ -64,7 +65,7 @@ if ($med){
 				title: '".$med_tit."',
 				artist: '".$med_uti['nut']."',
 				artwork: [
-					{ src: 'https://media.drena.xyz/thumb/".$_GET["id"].".jpg', sizes: '800x450',   type: 'image/png' },
+					{ src: 'https://media.drena.xyz/thumb/".$med["thu"].".jpg', sizes: '800x450',   type: 'image/png' },
 				]
 				});
 			}
