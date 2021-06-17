@@ -5,7 +5,7 @@
 		if ($uti_perfil){
 			echo "
 			<meta property='og:image' content='https://drena.xyz/fpe/".base64_encode($uti_perfil['fot'])."'>
-			<meta property='og:description' content='Perfil de ".$uti_perfil['nut']."'>
+			<meta property='og:description' content='".$uti_perfil['nut']."'>
 			";
 		} else {
 			echo "<meta property='og:description' content='Utilizador não encontrado.'>";
