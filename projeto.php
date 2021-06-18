@@ -233,9 +233,9 @@
 					}
                 } 
 				$resultado->free();
+				echo "<script>$('iframe').iFrameResize();";
 				if ($per){
 					echo "
-					<script>
 					function editarSeccao(sec_id){
 						$('#sec_'+sec_id+'_tex').load('pro/sec_editar.php?ac=editar&sec='+sec_id, function(){ console.log('A editar a secção: '+sec_id) });
 					}
@@ -268,10 +268,9 @@
 								alert('Ocorreu um erro. Secção ID: '+id);
 							}
 						});
-					}
-					$('iframe').iFrameResize();
-					</script>";
+					}";
 				}
+				echo "</script>";
 			}
 				
 			echo "</div>";

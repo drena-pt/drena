@@ -58,18 +58,18 @@
 									<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$med['id']."&titulo=0'></iframe>
 								</div>
 							</div>
-							<div class='p-4'>";
+							<div class='p-5'>";
 							break;
 						case 2: # Áudio
 							$t_eliminar = _('Eliminar áudio');
 							$t_cor = 'rosa';
-							echo "<div class='p-4'>
+							echo "<div class='p-5'>
 							<iframe height='140px' class='w-100' src='/embed?id=".$med['id']."&titulo=0'></iframe>";
 							break;
 						case 3: # Imagem
 							$t_eliminar = _('Eliminar imagem');
 							$t_cor = 'ciano';
-							echo "<div class='p-4'>
+							echo "<div class='p-5'>
 							<img class='w-100 mb-3' src='https://media.drena.xyz/img/".$med['id'].".".end(explode(".", $med['nom']))."'></img>";
 							break;
 					}
@@ -196,24 +196,24 @@
 							<text class='h5 my-auto me-auto'>".$med_tit."</text>
 						</div>
 						<section class='mt-auto'>
+							<!--<div class='row mb-1'>
+								<div class='col-auto pe-0 text-center'>
+									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#bar-chart'/></svg>
+								</div>
+								<div class='col'>
+									visualizações
+								</div>
+							</div>-->
 							<div class='row mb-1'>
-								<div class='col-auto pr-0 text-center'>
+								<div class='col-auto pe-0 text-center'>
 									<a href='/perfil?uti=".$med_uti['nut']."'><img src='fpe/".base64_encode($med_uti["fot"])."' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
 									<span class='justify-content-center align-self-center'>"._('Publicado por')." ".$med_uti['nut']."</span>
 								</div>
 							</div>
-							<!--<div class='row mb-1'>
-								<div class='col-auto pr-0 text-center'>
-									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#bar-chart'/></svg>
-								</div>
-								<div class='col'>
-									 visualizações
-								</div>
-							</div>-->
 							<div class='row mb-1'>
-								<div class='col-auto pr-0 text-center'>
+								<div class='col-auto pe-0 text-center'>
 									<svg onclick='gosto()' class='bi' style='cursor:pointer;' width='1em' height='1em' fill='currentColor'>
 										<use id='botao_gosto' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up-fill' "; if(!$med_gos){echo"hidden";} echo"/>
 										<use id='botao_naogosto' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up' "; if($med_gos){echo"hidden";} echo"/>
@@ -224,7 +224,7 @@
 								</div>
 							</div>
 							<div class='row mb-1'>
-								<div class='col-auto pr-0 text-center'>
+								<div class='col-auto pe-0 text-center'>
 									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg>
 								</div>
 								<div class='col'>
@@ -240,7 +240,29 @@
 			";
 			if ($uti){
 				echo "
+				<div id='caixa_botao_comentario' class='text-center my-4'>
+					<button id='botao_caixa_comentario' href='/registo' class='btn btn-primary'>"._('Adicionar um comentário')."</button>
+				</div>
+				
+				<div style='display:none;'' id='caixa_comentario' class='my-4 bg-primary bg-gradient rounded-xl shadow p-5 text-light col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
+					<form action='/pro/med_com.php?med=".$med['id']."' method='post'>
+						<h2>"._('Adicionar um comentário')."</h2>
+						<input type='text' class='form-control' name='input_com' placeholder='"._('Comentário')."'>
+						<div class='text-end'>
+						<button id='botao_fechar_caixa_comentario' type='button' class='btn btn-primary'>"._('Fechar')."</button>
+						<button type='submit' class='btn btn-light text-primary'>"._('Comentar')."</button>
+						</div>
+					</form>
+				</div>
 				<script>
+				$('#botao_caixa_comentario').on('click', function() {
+					$('#caixa_comentario').show();
+					$('#caixa_botao_comentario').hide();
+				});
+				$('#botao_fechar_caixa_comentario').on('click', function() {
+					$('#caixa_botao_comentario').show();
+					$('#caixa_comentario').hide();
+				});
 				function gosto(){
 					$.ajax({
 						url: 'pro/med_gos.php?id=".$med['id']."',
@@ -271,6 +293,38 @@
 				}
 				</script>
 				";
+			}
+			$pesquisa_com = "SELECT * FROM med_com WHERE med='".$med['id']."';";
+				if ($resultado = $bd->query($pesquisa_com)) {
+					
+
+					while ($campo = $resultado->fetch_assoc()) {
+						$com_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$campo['uti']."'"));
+						
+						echo "<section class='my-4 bg-primary bg-dark rounded-xl shadow p-5 text-light col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
+							<div class='row mb-3'>
+								".$campo['tex']."
+							</div>
+							<div class='row mb-1'>
+								<div class='col-auto pe-0 text-center'>
+									<a href='/perfil?uti=".$com_uti['nut']."'><img src='fpe/".base64_encode($com_uti["fot"])."' class='rounded-circle' width='40'></a>
+								</div>
+								<div class='col d-flex'>
+									<span class='justify-content-center align-self-center'>"._('Publicado por')." ".$com_uti['nut']."</span>
+								</div>
+							</div>
+							<div class='row mb-1'>
+								<div class='col-auto pe-0 text-center'>
+									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg>
+								</div>
+								<div class='col'>
+									".sprintf(_('há %s'),tempoPassado(strtotime($campo['dcr'])))."
+								</div>
+							</div>
+						</section>
+						";
+					} 
+					$resultado->free();
 			}
 		}
 		?>
