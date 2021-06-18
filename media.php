@@ -64,7 +64,7 @@
 							$t_eliminar = _('Eliminar áudio');
 							$t_cor = 'rosa';
 							echo "<div class='p-4'>
-							<iframe height='108px' class='w-100' src='/embed?id=".$med['id']."&titulo=0'></iframe>";
+							<iframe height='140px' class='w-100' src='/embed?id=".$med['id']."&titulo=0'></iframe>";
 							break;
 						case 3: # Imagem
 							$t_eliminar = _('Eliminar imagem');

@@ -44,7 +44,7 @@ var edjsHTML = (function () {
           return "<iframe src='"+e.embed+"' class='mx-auto d-block col mb-2 shadow' width='"+e.width+"' height='"+e.height+"'></iframe>";
           break;
         case 'drena':
-          return "<div class='mx-auto d-block col mb-2 shadow' style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='"+e.embed+"' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe></div>";
+          return "<iframe width='100%' src='"+e.embed+"' scrolling='no' allowfullscreen='true'></iframe>";
           break;
         default:
           return "<a href='"+e.source+"'>"+e.source+"</a>";

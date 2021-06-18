@@ -22,12 +22,12 @@ require('head.php');
 		<div id="swup" class="transition-fade">
 			<?php
             $oq = $_GET['oq'];
-            $pesquisa_uti = "SELECT * FROM uti WHERE nut LIKE '%".$oq."%' OR nco LIKE '%".$oq."%';";
+            $pesquisa_uti = "SELECT * FROM uti WHERE nut LIKE '%".$oq."%' OR nco LIKE '%".$oq."%' ORDER by id DESC;";
             $pesquisa_med = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' OR tit LIKE '%".$oq."%';";
-            $pesquisa_vid = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='1' OR tit LIKE '%".$oq."%' AND TIP='1';";
-            $pesquisa_aud = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='2' OR tit LIKE '%".$oq."%' AND TIP='2';";
-            $pesquisa_img = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='3' OR tit LIKE '%".$oq."%' AND TIP='3';";
-            $pesquisa_pro = "SELECT * FROM pro WHERE tit LIKE '%".$oq."%'";
+            $pesquisa_vid = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='1' OR tit LIKE '%".$oq."%' AND TIP='1' ORDER by den DESC;";
+            $pesquisa_aud = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='2' OR tit LIKE '%".$oq."%' AND TIP='2' ORDER by den DESC;";
+            $pesquisa_img = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='3' OR tit LIKE '%".$oq."%' AND TIP='3' ORDER by den DESC;";
+            $pesquisa_pro = "SELECT * FROM pro WHERE tit LIKE '%".$oq."%' ORDER by id DESC";
 
             $num_uti = $bd->query($pesquisa_uti)->num_rows;
             $num_med = $bd->query($pesquisa_med)->num_rows;
@@ -55,7 +55,7 @@ require('head.php');
                 echo "
                 <div class='p-xl-5 p-4'><h1>"._('Utilizadores')."</h1></div><div class='row my-2'>";
                 while ($campo = $resultado->fetch_assoc()) {
-                    echo "<div class='col-md-2 col-4 text-center'>
+                    echo "<div class='col-md-2 col-4 my-3 text-center'>
                     <a class='perfil' href='/perfil?uti=".$campo['nut']."'>
                     <img class='mx-1 rounded-circle' src='fpe/".base64_encode($campo['fot'])."' width='64'><br>".mini_nut($campo['nut'])."</a>
                     </div>";

@@ -86,4 +86,7 @@ function numeroParaCor($num){
 		
 		<!-- AnimeJS -->
 		<script src="node_modules/animejs/lib/anime.min.js"></script>
+
+		<!-- iFrame Resizer -->
+		<script src="https://cdn.jsdelivr.net/npm/iframe-resizer@latest/js/iframeResizer.min.js"></script>
 		

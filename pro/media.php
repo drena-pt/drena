@@ -89,12 +89,13 @@ if ($_GET['ac']=='lista'){
                 <div class='row row-cols-2 row-cols-md-3'>";
 
                 while ($campo = $resultado->fetch_assoc()) {
-                    if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
+                    if ($campo['tit']){$audio_tit = $campo['tit'];} else {$audio_tit = $campo['nom'];}
+                    if ($campo['thu']){$audio_thu = "https://media.drena.xyz/thumb/".$campo['thu'].".jpg";} else {$audio_thu = "https://drena.xyz/fpe/".base64_encode($uti_perfil['fot']);}
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
-                            <img class='shadow rounded-xl w-100' src='https://drena.xyz/fpe/".base64_encode($uti_perfil['fot'])."'>
-                            <div class='texto-container'><text class='h6'>".encurtarNome($video_tit)."</text></div>
+                            <img class='shadow rounded-xl w-100' src='".$audio_thu."'>
+                            <div class='texto-container'><text class='h6'>".encurtarNome($audio_tit)."</text></div>
                         </a>
                     </div>
                     ";
@@ -114,12 +115,12 @@ if ($_GET['ac']=='lista'){
                 <div class='row row-cols-2 row-cols-md-3'>";
     
                 while ($campo = $resultado->fetch_assoc()) {
-                    if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
+                    if ($campo['tit']){$imagem_tit = $campo['tit'];} else {$imagem_tit = $campo['nom'];}
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
                             <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
-                            <div class='texto-container'><text class='h6'>".encurtarNome($video_tit)."</text></div>
+                            <div class='texto-container'><text class='h6'>".encurtarNome($imagem_tit)."</text></div>
                         </a>
                     </div>
                     ";

@@ -13,7 +13,7 @@ if ($med){
 	<head>
 		<title>".$med_tit."</title> 
 		<meta charset='utf-8'>
-		<style>body{margin:0;overflow:hidden;}@font-face{font-family:'MADE TOMMY Regular';src: url('fontes/MADE TOMMY Regular.otf');}</style>
+		<style>body{margin:0;overflow:hidden;}</style>
 
 		<!-- JQuery -->
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
@@ -44,6 +44,10 @@ if ($med){
 		<script>
 			$(function (){ $(\"[data-toggle='tooltip']\").tooltip() })
 		</script>
+
+		<!-- iFrame Resizer contentWindow -->
+		<script src='https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.2/js/iframeResizer.contentWindow.min.js'></script>
+		
 	</head>
 	<body>";
 		if ($med['tip']==1){
@@ -71,11 +75,16 @@ if ($med){
 			}
 			</script>
 			";
-		} else {
+		} else if ($med['tip']==2){
+			if ($med['thu']){
+				$audio_botao_play = "<td role='button' class='align-middle text-light' onclick='wavesurfer.playPause()' style=\"background-image:url('https://media.drena.xyz/thumb/".$med['thu'].".jpg');background-size:cover;\">";
+			} else {
+				$audio_botao_play = "<td role='button' class='align-middle bg-rosa bg-gradient text-light' onclick='wavesurfer.playPause()'>";
+			}
 			echo "<table>
 				<tr>
-					<td role='button' class='align-middle bg-rosa bg-gradient text-light' onclick='wavesurfer.playPause()' style=\"background-image:url('https://drena.xyz/imagens/carregar_som.jpg');background-size:cover;\">
-						<h1 id='botao' class='bi-play m-auto mx-4'></h1>
+					".$audio_botao_play."
+						<h1 id='botao' class='bi-play m-auto mx-5'></h1>
 					</td>
 					<td class='w-100 bg-light'><div id='waveform'></div></td>
 				</tr>
@@ -94,7 +103,7 @@ if ($med){
 					barWidth: 3,
 					barRadius: 3,
 					cursorWidth: 0,
-					height: 100,
+					height: 128,
 					fluid: true,
 					barGap: 3
 				});
@@ -109,7 +118,6 @@ if ($med){
 				wavesurfer.load('https://media.drena.xyz/som/".$_GET['id'].".".end(explode(".", $med['nom']))."');
 			</script>";
 		}
-		
 		
 		echo "
 	</body>

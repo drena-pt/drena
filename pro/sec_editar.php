@@ -26,7 +26,6 @@ if ($sec){ # Se a secção existir
                     Guardar	<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#save'/></svg>
                 </button>
             </div>
-
             <script>
                 const editor_".$sec['id']." = new EditorJS({
                     ";
@@ -56,14 +55,13 @@ if ($sec){ # Se a secção existir
                                     drena: {
                                         regex: /https:\/\/drena.xyz\/media\?id=([^\/\?\&]*)/,
                                         embedUrl: 'https://drena.xyz/embed?id=<%= remote_id %>',
-                                        html: \"<iframe style='height:340px;' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>\"
+                                        html: \"<iframe width='100%' scrolling='no' allowfullscreen='true'></iframe>\"
                                     }
                                 }
                             }
                         },
                     }
                 });
-
                 function guardar(){
                     editor_".$sec['id'].".save().then((outputData) => {
                         $.post('pro/sec.php?sec=".base64_encode($sec['id'])."&ac=guardar',{
@@ -76,6 +74,9 @@ if ($sec){ # Se a secção existir
                     console.log('Saving failed: ', error)
                     });
                 }
+                var intervalId = window.setInterval(function(){
+                    $('iframe').iFrameResize();
+                }, 2000);
             </script>
             ";
         }

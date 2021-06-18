@@ -269,6 +269,7 @@
 							}
 						});
 					}
+					$('iframe').iFrameResize();
 					</script>";
 				}
 			}
