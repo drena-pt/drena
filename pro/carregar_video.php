@@ -47,7 +47,7 @@ if (!(move_uploaded_file($ficheiro['tmp_name'],$ficheiro_ori_caminho))){
 gerarCodigoThumb:
 $codigoThumb = gerarCodigo(16);
 # Verifica na base de dados se já existe esse código, se sim repete.
-if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM thu WHERE id='".$codigoThumb."'"))){
+if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_thu WHERE id='".$codigoThumb."'"))){
     goto gerarCodigoThumb;
 }
 
@@ -88,7 +88,7 @@ function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $qua
 resize_crop_image(800, 450, $ficheiro_thumb_caminho, $ficheiro_thumb_caminho, 30);
 
 # Regista a thumbnail na base de dados
-if ($bd->query("INSERT INTO thu (id, uti, tip) VALUES('".$codigoThumb."', '".$uti['id']."', '1');") === FALSE) {
+if ($bd->query("INSERT INTO med_thu (id, med) VALUES('".$codigoThumb."', '".$codigoMedia."');") === FALSE) {
     $erro = "Erro mysqli:".$bd->error;
     goto criarJson;
 }
@@ -107,7 +107,7 @@ if ($erro){
     unlink($ficheiro_ori_caminho);      # Elimina o vídeo
     $bd->query("DELETE FROM med WHERE id='".$codigoMedia."'");
     unlink($ficheiro_thumb_caminho);    # Elimina a thumbnail
-    $bd->query("DELETE FROM thu WHERE id='".$codigoThumb."'");
+    $bd->query("DELETE FROM med_thu WHERE id='".$codigoThumb."'");
 }
 $json = array("erro"=>$erro, "codigo"=>$codigoMedia, "thumb"=>$codigoThumb, "ext"=>$ficheiro_ext, "codec"=>$codec);
 echo json_encode($json);

@@ -76,10 +76,76 @@
 					echo "
 						<div class='d-flex flex-row-reverse mb-3'>";
 						if ($uti['id']==$med_uti['id']){
+							if ($med['tip']=='1' OR $med['tip']=='2'){
+								echo "
+								<style>
+								#thumb_a_carregar {
+									text-align: center;
+									padding: 0 20px;
+									max-height: 24px;
+								}
+								.box {
+									position: relative;
+									width: 16px;
+									height: 16px;
+									margin: 4px;
+									display: inline-block;
+									background-color: #000;
+								}
+								</style>
+								<label for='input_thu' role='button' class='btn btn-light ms-2' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
+									<span id='thumb_carregar'>
+										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-image'/></svg>
+									</span>
+									<div id='thumb_a_carregar' style='display:none;' data-placement='bottom' data-toggle='tooltip' title=\""._('A carregar...')."\">
+										<div class='box'></div>
+									</div>
+								</label>
+								<form hidden enctype='multipart/form-data' action='#' method='post'>
+									<input type='file' id='input_thu' name='thu' accept='image/*'/>
+									<input type='submit'/>
+								</form>
+								<script>
+								$('#input_thu').change(function(objEvent) {
+									var objFormData = new FormData();
+									var objFile = $(this)[0].files[0];
+									objFormData.append('thu', objFile);
+									$('#thumb_a_carregar').show();
+									$('#thumb_carregar').hide();
+									$.ajax({
+										url: '/pro/med_thu.php?med=".$med['id']."',
+										type: 'POST',
+										contentType: false,
+										data: objFormData,
+										processData: false,
+										success: function(output){
+											if (output){
+												alert(output);
+											}
+											location.reload();
+										}
+									});
+								});
+								anime({
+									targets: '.box',
+									keyframes: [
+										{translateX: 16, rotate: '90deg'},
+										{translateX: 0, rotate: '0deg'},
+										{translateX: -16, rotate: '-90deg'},
+										{translateX: 0, rotate: '0deg'}
+									],
+									duration: '3500',
+									loop: true,
+									easing: 'easeInOutBack',
+									direction: 'normal'
+								});
+								</script>
+								";
+							}
 							echo "
 							<span data-toggle='modal' data-target='#modal_alerar_tit'>
 								<button class='btn btn-light ms-2' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Alterar título')."'>
-										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#input-cursor-text'/></svg>
+									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#input-cursor-text'/></svg>
 								</button>
 							</span>
 							<span data-toggle='modal' data-target='#modal_eliminar_med'>

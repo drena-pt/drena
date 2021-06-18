@@ -22,9 +22,22 @@ require('head.php');
 		<div id="swup" class="transition-fade">
 			<?php
             $oq = $_GET['oq'];
+            $pesquisa_uti = "SELECT * FROM uti WHERE nut LIKE '%".$oq."%' OR nco LIKE '%".$oq."%';";
+            $pesquisa_med = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' OR tit LIKE '%".$oq."%';";
+            $pesquisa_vid = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='1' OR tit LIKE '%".$oq."%' AND TIP='1';";
+            $pesquisa_aud = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='2' OR tit LIKE '%".$oq."%' AND TIP='2';";
+            $pesquisa_img = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='3' OR tit LIKE '%".$oq."%' AND TIP='3';";
+            $pesquisa_pro = "SELECT * FROM pro WHERE tit LIKE '%".$oq."%'";
+
+            $num_uti = $bd->query($pesquisa_uti)->num_rows;
+            $num_med = $bd->query($pesquisa_med)->num_rows;
+            $num_pro = $bd->query($pesquisa_pro)->num_rows;
+
+            $num_total = ($num_uti+$num_med+$num_pro);
+
             echo "
             <div class='bg-primary bg-gradient d-flex align-items-center text-center justify-content-center p-5'>
-				<h1 class='display-3'>13 resultados:<span class='h2'><br>\"".$oq."\"</span></h1>
+				<h1 class='display-3'>".$num_total." resultados:<span class='h2'><br>\"".$oq."\"</span></h1>
             </div>
             
             <div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
@@ -38,21 +51,19 @@ require('head.php');
 				}
 			}
 
-            $pesquisa_uti = "SELECT * FROM uti WHERE nut LIKE '%".$oq."%' OR nco LIKE '%".$oq."%';";
             if ($resultado = $bd->query($pesquisa_uti)) {
                 echo "
                 <div class='p-xl-5 p-4'><h1>"._('Utilizadores')."</h1></div><div class='row my-2'>";
                 while ($campo = $resultado->fetch_assoc()) {
                     echo "<div class='col-md-2 col-4 text-center'>
                     <a class='perfil' href='/perfil?uti=".$campo['nut']."'>
-                    <img class='mx-1 rounded-circle' src='fpe/".base64_encode($campo['fot'])."' width='128'><br>".mini_nut($campo['nut'])."</a>
+                    <img class='mx-1 rounded-circle' src='fpe/".base64_encode($campo['fot'])."' width='64'><br>".mini_nut($campo['nut'])."</a>
                     </div>";
                 }
                 $resultado->free();
                 echo "</div>";
             }
 
-            $pesquisa_img = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='3' OR tit LIKE '%".$oq."%' AND TIP='3';";
             if ($resultado = $bd->query($pesquisa_img)) {
                 echo "
                 <div class='p-xl-5 p-4'><h1>"._('Imagens')."</h1></div>
@@ -73,7 +84,6 @@ require('head.php');
                 echo "</div>";
             }
 
-            $pesquisa_vid = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='1' OR tit LIKE '%".$oq."%' AND TIP='1';";
             if ($resultado = $bd->query($pesquisa_vid)) {
                 echo "
                 <div class='p-xl-5 p-4'><h1>"._('Vídeos')."</h1></div>
@@ -94,7 +104,6 @@ require('head.php');
                 echo "</div>";
             }
 
-            $pesquisa_aud = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='2' OR tit LIKE '%".$oq."%' AND TIP='2';";
             if ($pesquisa_aud AND $resultado = $bd->query($pesquisa_aud)) {
                 echo "
                 <div class='p-xl-5 p-4'><h1>"._('Áudios')."</h1></div>
@@ -116,7 +125,6 @@ require('head.php');
                 echo "</div>";
             }
 
-            $pesquisa_pro = "SELECT * FROM pro WHERE tit LIKE '%".$oq."%'";
             if ($resultado = $bd->query($pesquisa_pro)) {
 
                 echo "

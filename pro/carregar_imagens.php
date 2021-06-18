@@ -82,7 +82,7 @@ for($index = 0;$index < $countfiles;$index++){
             gerarCodigoThumb:
             $codigoThumb = gerarCodigo(16);
             # Verifica na base de dados se já existe esse código, se sim repete.
-            if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM thu WHERE id='".$codigoThumb."'"))){
+            if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_thu WHERE id='".$codigoThumb."'"))){
                goto gerarCodigoThumb;
             }
 
@@ -96,7 +96,7 @@ for($index = 0;$index < $countfiles;$index++){
                resize_crop_image(640, 480, $path, $caminhoThumb, 30);
 
                # Regista a thumbnail na base de dados
-               $bd->query("INSERT INTO thu (id, uti, tip) VALUES('".$codigoThumb."', '".$uti['id']."', '3');");
+               $bd->query("INSERT INTO med_thu (id, med) VALUES('".$codigoThumb."', '".$codigo."');");
 
                #Regista a imagem na base de dados
                $bd->query("INSERT INTO med (id, uti, nom, tip, thu) VALUES('".$codigo."', '".$uti['id']."', '".$_FILES['files']['name'][$index]."', '3', '".$codigoThumb."');");
