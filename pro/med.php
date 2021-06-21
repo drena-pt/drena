@@ -14,27 +14,27 @@ if ($med){ # Se a média existir
         
             $caminho = "/home/guilha/www/media.drena.xyz/";
 
-            $caminho_ori = $pasta.'ori/'.$med['id'].'.'.$med_ext; # Original
+            $caminho_ori = $caminho.'ori/'.$med['id'].'.'.$med_ext; # Original
             unlink($caminho_ori);
         
-            $caminho_som = $pasta.'som/'.$med['id'].'.'.$med_ext; # Som
+            $caminho_som = $caminho.'som/'.$med['id'].'.'.$med_ext; # Som
             unlink($caminho_som);
         
-            $caminho_img = $pasta.'img/'.$med['id'].'.'.$med_ext; # Imagem
+            $caminho_img = $caminho.'img/'.$med['id'].'.'.$med_ext; # Imagem
             unlink($caminho_img);
 
-            $caminho_webm = $pasta.'webm/'.$med['id'].'.webm';    # Processado
+            $caminho_webm = $caminho.'webm/'.$med['id'].'.webm';    # Processado
             unlink($caminho_webm);
         
-            $caminho_thumb = $pasta.'thumb/'.$med['thu'].'.jpg';  # Thumb
+            $caminho_thumb = $caminho.'thumb/'.$med['thu'].'.jpg';  # Thumb
             unlink($caminho_thumb);
 
             # Se existir algum dos ficheiros que supostamente foram apagados
             if (file_exists($caminho_ori) OR file_exists($caminho_som) OR file_exists($caminho_img) OR file_exists($caminho_webm) OR file_exists($caminho_thumb)){
                 echo "Erro: Não foi possivel remover os ficheiros.";
-            } else if ($bd->query("DELETE FROM med_gos WHERE med='".$med_id."'") === FALSE) {
+            } else if ($bd->query("DELETE FROM med_gos WHERE med='".$med['id']."'") === FALSE) {
                 echo "Erro: ".$bd->error;
-            } else if ($bd->query("DELETE FROM med WHERE id='".$med_id."'") === FALSE) {
+            } else if ($bd->query("DELETE FROM med WHERE id='".$med['id']."'") === FALSE) {
                 echo "Erro: ".$bd->error;
             } else {
                 header("Location: /../perfil?uti=".$uti['nut']);
