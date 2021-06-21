@@ -1,70 +1,79 @@
 <?php
-require('fun.php');     #Obter funções
+require('fun.php'); # Obter funções
 
-$ac = $_GET['ac'];      #Ação
+$ac = $_GET['ac'];  # Ação
+$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET['id']."'"));
 
-$video = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET['id']."'"));
-if ($video OR $uti['adm']==1){ #Se o video existir ou o utilizador for admin
-    if ($video['uti']==$uti['id']){ #Se for o dono da média
-        $video_id = $video['id'];
-        $video_ext = end(explode(".", $video['nom']));
-    } else if ($uti['adm']==1) { #Se for admin
-        $video_id = $_GET['id'];
-        $video_ext = $_GET['ext'];
-    } else { #Se não for o dono da média
+if ($med){ # Se a média existir
+
+    $med_ext = end(explode(".",$med['nom'])); # Extensão do ficheiro
+
+    if ($med['uti']==$uti['id']){ # Se for o dono da média
+        
+        if ($ac=='eliminar'){ # Se a ação for eliminar
+        
+            $caminho = "/home/guilha/www/media.drena.xyz/";
+
+            $caminho_ori = $pasta.'ori/'.$med['id'].'.'.$med_ext; # Original
+            unlink($caminho_ori);
+        
+            $caminho_som = $pasta.'som/'.$med['id'].'.'.$med_ext; # Som
+            unlink($caminho_som);
+        
+            $caminho_img = $pasta.'img/'.$med['id'].'.'.$med_ext; # Imagem
+            unlink($caminho_img);
+
+            $caminho_webm = $pasta.'webm/'.$med['id'].'.webm';    # Processado
+            unlink($caminho_webm);
+        
+            $caminho_thumb = $pasta.'thumb/'.$med['thu'].'.jpg';  # Thumb
+            unlink($caminho_thumb);
+
+            # Se existir algum dos ficheiros que supostamente foram apagados
+            if (file_exists($caminho_ori) OR file_exists($caminho_som) OR file_exists($caminho_img) OR file_exists($caminho_webm) OR file_exists($caminho_thumb)){
+                echo "Erro: Não foi possivel remover os ficheiros.";
+            } else if ($bd->query("DELETE FROM med_gos WHERE med='".$med_id."'") === FALSE) {
+                echo "Erro: ".$bd->error;
+            } else if ($bd->query("DELETE FROM med WHERE id='".$med_id."'") === FALSE) {
+                echo "Erro: ".$bd->error;
+            } else {
+                header("Location: /../perfil?uti=".$uti['nut']);
+            }
+            exit;
+        
+        } else if ($ac=='titulo'){ # Alterar título da média
+            if ($_POST['tit']){
+                if ($bd->query("UPDATE med SET tit='".$_POST['tit']."' WHERE id='".$_GET['id']."'") === FALSE) {
+                    echo "Erro:".$bd->error;
+                    exit;
+                }
+            }
+            header("Location: ".$_SERVER['HTTP_REFERER']);
+            exit;
+
+        } else if ($ac=='comprimir'){ # Alterar título da média
+            
+            if ($med['tip']=='1' AND $med['est']=='1'){ # Se a media for um vídeo e o estado for 1 (bitrate alto)
+                $output = exec("php /home/guilha/www/drena.xyz/pro/med_compressao.php ".$med['id']." > /dev/null &");
+                sleep(2);
+                header("Location: ".$_SERVER['HTTP_REFERER']);
+            } else {
+                echo "Erro: Média inválida.";
+            }
+            exit;
+
+        } else {
+            echo "Erro: Nenhuma ação selecionada.";
+            exit;
+        }
+
+    } else { # Se não for o dono da média
         echo "Erro: Não és o dono da média.";
-        exit;
     }
+
 } else { #Se a média não existir
 	echo "Erro: A média não foi encontrada.";
-	exit;
 }
 
-if ($ac=='eliminar'){
-    $pasta="/home/guilha/www/media.drena.xyz/";
-
-    #Original
-    $ficheiro_ori = $pasta.'ori/'.$video_id.'.'.$video_ext;
-    unlink($ficheiro_ori);
-
-    #Processado
-    $ficheiro_webm = $pasta.'webm/'.$video_id.'.webm';
-    unlink($ficheiro_webm);
-
-    #Thumb
-    $ficheiro_thumb = $pasta.'thumb/'.$video['thu'].'.jpg';
-    unlink($ficheiro_thumb);
-
-    #Som
-    $ficheiro_som = $pasta.'som/'.$video_id.'.'.$video_ext;
-    unlink($ficheiro_som);
-
-    #Imagem
-    $ficheiro_img = $pasta.'img/'.$video_id.'.'.$video_ext;
-    unlink($ficheiro_img);
-
-    if (file_exists($ficheiro_ori) OR file_exists($ficheiro_webm) OR file_exists($ficheiro_thumb) OR file_exists($ficheiro_som) OR file_exists($ficheiro_img)){
-        echo "Erro: Não foi possivel remover os ficheiros.";
-    } else if ($bd->query("DELETE FROM med_gos WHERE med='".$video_id."'") === FALSE) {
-        echo "Erro: ".$bd->error;
-        exit;
-    } else if ($bd->query("DELETE FROM med WHERE id='".$video_id."'") === FALSE) {
-        echo "Erro: ".$bd->error;
-        exit;
-    }
-
-    header("Location: /perfil?uti=".$uti['nut']);
-    exit;
-
-} else if ($ac=='titulo'){ # Alterar título da média
-    if ($video['uti']==$uti['id']){
-        if ($_POST['tit']){
-            if ($bd->query("UPDATE med SET tit='".$_POST['tit']."' WHERE id='".$_GET['id']."'") === FALSE) {
-                echo "Erro:".$bd->error;
-            }
-        }
-    }
-}
-header("Location: ".$_SERVER['HTTP_REFERER']);
 exit;
 ?>

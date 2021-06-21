@@ -27,6 +27,10 @@
   color: var(--vjs-theme-drena--primary);
 }
 
+.vjs-quality-selector .vjs-menu li {
+  text-transform: none !important;
+}
+
 .vjs-theme-fantasy:hover .vjs-big-play-button,
 .vjs-theme-fantasy.vjs-big-play-button:focus {
   background-color: transparent;

@@ -45,10 +45,10 @@
 					}
 				}
 			}
-			echo "
-			<div class='p-0 my-0 offset-xl-3 col-xl-6 mt-0 mt-xl-4'>
+			echo "<div class='p-0 my-0 offset-xl-3 col-xl-6 mt-0 mt-xl-4 shadow'>";
 
-				<section class='bg-dark shadow'>";
+
+				echo "<section class='my-4 bg-dark'>";
 					switch ($med['tip']){
 						case 1: # Vídeo
 							$t_eliminar = _('Eliminar vídeo');
@@ -57,19 +57,39 @@
 								<div style='position:relative;padding-bottom:56.25%;'>
 									<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$med['id']."&titulo=0'></iframe>
 								</div>
-							</div>
-							<div class='p-5'>";
+							</div>";
+							
+							if ($uti['id']==$med_uti['id']){
+								if ($med['est']=='1'){
+									echo "<div class='p-xl-5 p-4 bg-amarelo'>
+										<text class='h5 my-auto me-auto'><i class='bi bi-exclamation-triangle-fill'></i> "._('Aviso').":</text>
+										<div class='row'>
+   											<div class='col-md-8'>
+												<p>"._('A qualidade do vídeo é elevada, e pode comprometer a visualização em conexões mais lentas. Comprima o vídeo.')."</p>
+											</div>
+    										<div class='col-md-4 text-end'>
+												<a href='/pro/med.php?id=".$med['id']."&ac=comprimir' role='button' class='btn btn-light text-dark'>"._('Comprimir vídeo')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#gear'/></svg></a>
+											</div>
+										</div>
+									</div>";
+								} else if ($med['est']=='2'){
+									echo "<div class='p-xl-5 p-4 bg-primary'><text class='h5 my-auto me-auto'><i class='bi bi-info-circle'></i> "._('O vídeo está a ser processado.')."</text></div>";
+								}
+							}
+
+							echo "<div class='p-xl-5 p-4'>";
+
 							break;
 						case 2: # Áudio
 							$t_eliminar = _('Eliminar áudio');
 							$t_cor = 'rosa';
-							echo "<div class='p-5'>
+							echo "<div class='p-xl-5 p-4'>
 							<iframe height='140px' class='w-100' src='/embed?id=".$med['id']."&titulo=0'></iframe>";
 							break;
 						case 3: # Imagem
 							$t_eliminar = _('Eliminar imagem');
 							$t_cor = 'ciano';
-							echo "<div class='p-5'>
+							echo "<div class='p-xl-5 p-4'>
 							<img class='w-100 mb-3' src='https://media.drena.xyz/img/".$med['id'].".".end(explode(".", $med['nom']))."'></img>";
 							break;
 					}
@@ -93,7 +113,7 @@
 									background-color: #000;
 								}
 								</style>
-								<label for='input_thu' role='button' class='btn btn-light ms-2' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
+								<label for='input_thu' role='button' class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
 									<span id='thumb_carregar'>
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-image'/></svg>
 									</span>
@@ -144,12 +164,12 @@
 							}
 							echo "
 							<span data-toggle='modal' data-target='#modal_alerar_tit'>
-								<button class='btn btn-light ms-2' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Alterar título')."'>
+								<button class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Alterar título')."'>
 									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#input-cursor-text'/></svg>
 								</button>
 							</span>
 							<span data-toggle='modal' data-target='#modal_eliminar_med'>
-								<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_eliminar."\">
+								<button class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_eliminar."\">
 									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
 								</button>
 							</span>
@@ -192,8 +212,8 @@
 							</div>
 							";
 						}
-							echo "
-							<text class='h5 my-auto me-auto'>".$med_tit."</text>
+						echo "
+						<text class='h5 my-auto me-auto'>".$med_tit."</text>
 						</div>
 						<section class='mt-auto'>
 							<!--<div class='row mb-1'>
@@ -237,6 +257,7 @@
 				</section>
 
 			</div>
+			<div class='col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
 			";
 			if ($uti){
 				echo "
@@ -244,7 +265,7 @@
 					<button id='botao_caixa_comentario' href='/registo' class='btn btn-primary'>"._('Adicionar um comentário')."</button>
 				</div>
 				
-				<div style='display:none;'' id='caixa_comentario' class='my-4 bg-primary bg-gradient rounded-xl shadow p-5 text-light col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
+				<div style='display:none;'' id='caixa_comentario' class='my-4 p-xl-5 p-4 bg-primary bg-gradient rounded-xl shadow text-light'>
 					<form action='/pro/med_com.php?med=".$med['id']."' method='post'>
 						<h2>"._('Adicionar um comentário')."</h2>
 						<input type='text' class='form-control' name='input_com' placeholder='"._('Comentário')."'>
@@ -294,23 +315,31 @@
 				</script>
 				";
 			}
-			$pesquisa_com = "SELECT * FROM med_com WHERE med='".$med['id']."';";
+			$pesquisa_com = "SELECT * FROM med_com WHERE med='".$med['id']."' ORDER by dcr DESC;";
 				if ($resultado = $bd->query($pesquisa_com)) {
-					
 
 					while ($campo = $resultado->fetch_assoc()) {
 						$com_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$campo['uti']."'"));
 						
-						echo "<section class='my-4 bg-primary bg-dark rounded-xl shadow p-5 text-light col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
-							<div class='row mb-3'>
-								".$campo['tex']."
+						echo "<section class='my-4 p-xl-5 p-4 bg-light text-dark rounded-xl shadow'>
+							<div class='d-flex flex-row-reverse mb-3'>
+							";
+								if ($com_uti['id']==$uti['id']){
+									echo "<span data-toggle='modal' data-target='#modal_eliminar_med'>
+									<button class='btn btn-dark my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Eliminar comentário')."\">
+										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+									</button>
+									</span>";
+								}
+								echo "
+								<text class='h5 my-auto me-auto'>".$campo['tex']."</text>
 							</div>
 							<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
 									<a href='/perfil?uti=".$com_uti['nut']."'><img src='fpe/".base64_encode($com_uti["fot"])."' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
-									<span class='justify-content-center align-self-center'>"._('Publicado por')." ".$com_uti['nut']."</span>
+									<span class='justify-content-center align-self-center'>"._('Comentado por')." ".$com_uti['nut']."</span>
 								</div>
 							</div>
 							<div class='row mb-1'>
@@ -326,6 +355,7 @@
 					} 
 					$resultado->free();
 			}
+			echo "</div>";
 		}
 		?>
 		</div>

@@ -4,17 +4,11 @@ ob_start();
 require_once ('../ligarbd.php');
 ob_get_clean();
 
-$sql = "CREATE TABLE med(
-id VARCHAR(16) NOT NULL PRIMARY KEY,
+$sql = "CREATE TABLE med_alb(
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 uti INT NOT NULL,
-nom VARCHAR(255),
 tit VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-tip INT NOT NULL,
-est INT DEFAULT 0,
-thu VARCHAR(16),
-gos INT DEFAULT 0,
-den DATETIME DEFAULT CURRENT_TIMESTAMP,
-FOREIGN KEY (uti) REFERENCES uti(id)
+dcr DATETIME DEFAULT CURRENT_TIMESTAMP
 )";
 
 if ($bd->query($sql) === TRUE) {

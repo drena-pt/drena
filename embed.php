@@ -7,8 +7,8 @@ $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET
 $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));	# Utilizador dono
 echo $med_anterior['id'];
 if ($med){
-	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}						# Definir título
-	if ($_GET['titulo']=='0'){$tem_titulo='//';}													# Se a variavel passada pelo o url "titulo" for 0, comenta o script.
+	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}	# Definir título
+	if ($_GET['titulo']=='0'){$tem_titulo='//';}								# Se a variavel passada pelo o url "titulo" for 0, comenta o script.
 	echo "
 	<head>
 		<title>".$med_tit."</title> 
@@ -53,15 +53,21 @@ if ($med){
 		if ($med['tip']==1){
 			echo "
 			<video-js poster='https://media.drena.xyz/thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-fantasy js-focus-invisible vjs-16-9' controls preload='auto'>
-				<source src='https://media.drena.xyz/ori/".$_GET["id"].".".end(explode(".", $med['nom']))."' label='Original' selected='true'>
-				<source src='https://media.drena.xyz/webm/".$_GET["id"].".webm' label='240P'>
+				<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original'>
+				";
+				if ($med['est']=='3'){ # Se o estado for 3 (comprimido).
+					echo "<source src='https://media.drena.xyz/webm/".$med["id"].".webm' label='Comprimido' selected='true'>";
+				} else {
+					$tem_compressao='//';
+				}
+				echo "
 			</video-js>
 	
 			<script src='node_modules/videojs-titleoverlay/videojs-titleoverlay.js'></script>
 			<script>
 			videojs('video', {}, function() {
 				var player = this;
-				//player.controlBar.addChild('QualitySelector');
+				".$tem_compressao."player.controlBar.addChild('QualitySelector');
 				".$tem_titulo."player.titleoverlay({title: '".$med_tit."'});
 			});
 			if ('mediaSession' in navigator) {

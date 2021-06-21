@@ -53,6 +53,27 @@ if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_thu WHERE id='".$codi
 
 $ficheiro_thumb_caminho = $caminho."thumb/".$codigoThumb.".jpg";
 
+$max_bitrate = 7996544;
+# Obtem o bitrate do vídeo
+$bitrate = $ffprobe
+    ->streams($ficheiro_ori_caminho)
+    ->videos()
+    ->first() 
+    ->get('bit_rate');
+
+if ($bitrate>=$max_bitrate){
+    $estado = 1;
+} else {
+    $estado = 0;
+}
+
+# Obtem o codec do vídeo
+$codec = $ffprobe
+    ->streams($ficheiro_ori_caminho)
+    ->videos()
+    ->first() 
+    ->get('codec_name');
+
 # Obtem duração do vídeo
 $video_duracao = $ffprobe
     ->streams($ficheiro_ori_caminho)
@@ -94,7 +115,7 @@ if ($bd->query("INSERT INTO med_thu (id, med) VALUES('".$codigoThumb."', '".$cod
 }
 
 # Regista o vídeo na base de dados
-if ($bd->query("INSERT INTO med (id, uti, nom, tip, thu) VALUES('".$codigoMedia."', '".$uti['id']."', '".$ficheiro['name']."', '1', '".$codigoThumb."');") === FALSE) {
+if ($bd->query("INSERT INTO med (id, uti, nom, tip, est, thu) VALUES('".$codigoMedia."', '".$uti['id']."', '".$ficheiro['name']."', '1', '".$estado."', '".$codigoThumb."');") === FALSE) {
     $erro = "Erro mysqli:".$bd->error;
     goto criarJson;
 }
