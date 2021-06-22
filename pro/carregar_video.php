@@ -74,6 +74,10 @@ $codec = $ffprobe
     ->first() 
     ->get('codec_name');
 
+if ($codec=='hevc'){
+    $estado = 4;    # Codec não suportado para web
+}
+
 # Obtem duração do vídeo
 $video_duracao = $ffprobe
     ->streams($ficheiro_ori_caminho)
@@ -120,7 +124,9 @@ if ($bd->query("INSERT INTO med (id, uti, nom, tip, est, thu) VALUES('".$codigoM
     goto criarJson;
 }
 
-$codec = exec("ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 ".$ficheiro_ori_caminho);
+if ($estado==4){ # Converte o vídeo para WebM se o codec não for suportado para web
+    exec("php /home/guilha/www/drena.xyz/pro/med_compressao.php ".$codigoMedia." > /dev/null &");
+}
 
 criarJson:
 # Se ocorrer um erro apaga tudo.
@@ -130,7 +136,7 @@ if ($erro){
     unlink($ficheiro_thumb_caminho);    # Elimina a thumbnail
     $bd->query("DELETE FROM med_thu WHERE id='".$codigoThumb."'");
 }
-$json = array("erro"=>$erro, "codigo"=>$codigoMedia, "thumb"=>$codigoThumb, "ext"=>$ficheiro_ext, "codec"=>$codec);
+$json = array("erro"=>$erro, "codigo"=>$codigoMedia, "thumb"=>$codigoThumb, "estado"=>$estado);
 echo json_encode($json);
 exit;
 ?>

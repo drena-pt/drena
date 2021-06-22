@@ -25,6 +25,7 @@ if ($med['tip']=='1'){ # Se a media for um vídeo
     $med_ext = end(explode(".", $med['nom'])); # Extensão do vídeo
     $caminho_ori = $caminho."ori/".$med['id'].".".$med_ext; # Caminho do vídeo original
     $caminho_webm = $caminho."webm/".$med['id'].".webm"; # Caminho do vídeo comprimido
+    $caminho_convertido = $caminho."conv/".$med['id'].".webm"; # Caminho do vídeo comprimido
 
     if ($med['est']=='1'){ # Se o estado for 1. (Tem bitrate alto e não têm compressão)
         
@@ -73,8 +74,6 @@ if ($med['tip']=='1'){ # Se a media for um vídeo
             # Renderiza o vídeo em WebM
             $video->filters()->resize(new FFMpeg\Coordinate\Dimension($novo_width, $novo_height));
             $format = new FFMpeg\Format\Video\WebM();
-            #$format
-            #    ->setKiloBitrate(1280);
             $video
                 ->save($format, $caminho_webm);
 
@@ -91,6 +90,66 @@ if ($med['tip']=='1'){ # Se a media for um vídeo
         } else {
             echo "Erro: O servidor mentiu ao definir o estado do vídeo, este erro não deveria acontecer.";
         }
+    } else if ($med['est']=='4'){ # Se o estado for 4. (Codec não suportado)
+
+        if (file_exists($caminho_convertido)){
+            echo "Erro: O vídeo já foi convertido";
+            exit;
+        }
+
+        # Obtem o codec do vídeo
+        $codec = $ffprobe
+            ->streams($caminho_ori)
+            ->videos()
+            ->first() 
+            ->get('codec_name');
+
+        if ($codec=='hevc'){ # Se o codec realmente não for suportado
+            
+            # Muda o estado na base de dados para 2 (em processo)
+            if ($bd->query("UPDATE med SET est='2' WHERE id='".$med["id"]."';") === FALSE) {
+                echo "Erro mysqli: ".$bd->error;
+                exit;
+            }
+
+            $max_bitrate = 8192000;
+            # Obtem o bitrate do vídeo
+            $bitrate_ori = $ffprobe
+                ->streams($caminho_ori)
+                ->videos()
+                ->first() 
+                ->get('bit_rate');
+
+            # Define o bitrate do vídeo
+            if ($bitrate_ori>$max_bitrate){
+                $bitrate = $max_bitrate;
+            } else {
+                $bitrate = $bitrate_ori;
+            }
+
+            $video = $ffmpeg->open($caminho_ori); # Carrega o vídeo no ffmpeg para futuras ações.
+
+            # Renderiza o vídeo em WebM
+            $format = new FFMpeg\Format\Video\WebM();
+            $format
+                ->setKiloBitrate(substr($bitrate,0,-3));
+            $video
+                ->save($format, $caminho_convertido);
+
+            if (file_exists($caminho_convertido)){
+                # Muda o estado na base de dados para 5 (convertido)
+                if ($bd->query("UPDATE med SET est='5' WHERE id='".$med["id"]."';") === FALSE) {
+                    echo "Erro mysqli: ".$bd->error;
+                } else {
+                    echo "Vídeo convertido com sucesso!";
+                }
+            } else {
+                echo "Erro: O vídeo não foi convertido.";
+            }
+        } else {
+            echo "Erro: O servidor mentiu ao definir o estado do vídeo, este erro não deveria acontecer.";
+        }
+
     } else {
         echo "Erro: Não foi possivel executar uma tarefa para o estado: ".$med['est'];
     }

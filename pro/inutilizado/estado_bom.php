@@ -22,8 +22,6 @@ $ffprobe = FFMpeg\FFProbe::create(array(
     'timeout'          => 36000
 ));
 
-$max_bitrate = 7996544;
-
 function formatSizeUnits($bytes)
     {
         if ($bytes >= 1073741824)
@@ -54,7 +52,7 @@ function formatSizeUnits($bytes)
         return $bytes;
 }
 
-$caminho = "/home/guilha/www/media.drena.xyz/ori/";
+$caminho = "/home/guilha/www/media.drena.xyz/";
 
 $bolsonaro = array();
 
@@ -62,7 +60,7 @@ $pesquisa = "SELECT * FROM med WHERE tip='1';";
 if ($resultado = $bd->query($pesquisa)) {
     while ($campo = $resultado->fetch_assoc()) {
 
-        $ficheiro_caminho = $caminho."".$campo['id'].".".end(explode(".", $campo['nom']));
+        $ficheiro_caminho = $caminho."ori/".$campo['id'].".".end(explode(".", $campo['nom']));
 
         $bitrate = $ffprobe
             ->streams($ficheiro_caminho)
@@ -74,6 +72,10 @@ if ($resultado = $bd->query($pesquisa)) {
             ->videos()
             ->first() 
             ->get('codec_name');
+            
+        if ($campo['est']==4){
+            exec("php /home/guilha/www/drena.xyz/pro/med_compressao.php ".$campo['id']." > /dev/null &");
+        }
 
         $bolsonaro[] = array('bit'=>$bitrate,'id'=>$campo['id'],'est'=>$campo['est'],'codec'=>$codec);
 

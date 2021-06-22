@@ -22,7 +22,6 @@ if ($med){
 		<meta property='og:title' content='".$med_tit."'/>
 		<meta property='og:type' content='video.other' />
 		<meta property='og:image' content='https://media.drena.xyz/thumb/".$med["thu"].".jpg' />
-		<meta property='og:video' content='https://media.drena.xyz/webm/".$_GET["id"].".webm' />
 
 		<!-- Wavesurfer -->
 		<script src='https://unpkg.com/wavesurfer.js'></script>
@@ -53,12 +52,17 @@ if ($med){
 		if ($med['tip']==1){
 			echo "
 			<video-js poster='https://media.drena.xyz/thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-fantasy js-focus-invisible vjs-16-9' controls preload='auto'>
-				<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original'>
 				";
 				if ($med['est']=='3'){ # Se o estado for 3 (comprimido).
+					echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original'>";
 					echo "<source src='https://media.drena.xyz/webm/".$med["id"].".webm' label='Comprimido' selected='true'>";
 				} else {
-					$tem_compressao='//';
+					$tem_seletorQualidade='//';
+					if ($med['est']=='5'){ # Se o estado for 5 (convertido).
+						echo "<source src='https://media.drena.xyz/conv/".$med["id"].".webm' label='Convertido'>";
+					} else {
+						echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original'>";
+					}
 				}
 				echo "
 			</video-js>
@@ -67,7 +71,7 @@ if ($med){
 			<script>
 			videojs('video', {}, function() {
 				var player = this;
-				".$tem_compressao."player.controlBar.addChild('QualitySelector');
+				".$tem_seletorQualidade."player.controlBar.addChild('QualitySelector');
 				".$tem_titulo."player.titleoverlay({title: '".$med_tit."'});
 			});
 			if ('mediaSession' in navigator) {

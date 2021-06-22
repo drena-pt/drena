@@ -266,7 +266,7 @@
 				</div>
 				
 				<div style='display:none;'' id='caixa_comentario' class='my-4 p-xl-5 p-4 bg-primary bg-gradient rounded-xl shadow text-light'>
-					<form action='/pro/med_com.php?med=".$med['id']."' method='post'>
+					<form action='/pro/med_com.php?ac=criar&med=".$med['id']."' method='post'>
 						<h2>"._('Adicionar um comentário')."</h2>
 						<input type='text' class='form-control' name='input_com' placeholder='"._('Comentário')."'>
 						<div class='text-end'>
@@ -325,11 +325,29 @@
 							<div class='d-flex flex-row-reverse mb-3'>
 							";
 								if ($com_uti['id']==$uti['id']){
-									echo "<span data-toggle='modal' data-target='#modal_eliminar_med'>
+									echo "<span data-toggle='modal' data-target='#modal_eliminar_com".$campo['id']."'>
 									<button class='btn btn-dark my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Eliminar comentário')."\">
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
 									</button>
-									</span>";
+									</span>
+									<!-- Modal Eliminar Comentário -->
+									<div class='modal fade' id='modal_eliminar_com".$campo['id']."' tabindex='-1' role='dialog' aria-labelledby='modal_eliminar_com".$campo['id']."_label' aria-hidden='true'>
+										<div class='modal-dialog' role='document'>
+											<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
+												<div class='modal-header'>
+													<h2 class='modal-title' id='modal_eliminar_com".$campo['id']."_label'>"._('Eliminar comentário')."<br></h2><br>
+												</div>
+												<div class='modal-body'>
+													<text><span class='h5'>".$campo['tex']."</span><br>"._('Esta ação é irreversível!')."</text>
+												</div>
+												<div class='modal-footer text-end'>
+													<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
+													<a href='pro/med_com.php?ac=eliminar&id=".$campo['id']."' role='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									";
 								}
 								echo "
 								<text class='h5 my-auto me-auto'>".$campo['tex']."</text>

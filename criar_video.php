@@ -67,7 +67,8 @@
 									<div class='col' >
 										<span>"._('Informações do vídeo')."</span><br>
 										<span id='video_info_tamanho'></span><br>
-										<span id='video_info_duracao'></span>
+										<span id='video_info_duracao'></span><br>
+										<span id='video_info_estado'></span>
 									</div>
 								</div>
 								<br>
@@ -154,21 +155,10 @@
 							imagem.attr('src','https://media.drena.xyz/thumb/'+json.thumb+'.jpg');
 							$('#botao_ver_video').removeAttr('hidden');
 							$('#botao_ver_video').attr('href', '/media?id='+json.codigo);
-						}
-
-						/*$.ajax({
-							type: 'GET',
-							url: 'pro/pro_video.php?cod='+json.codigo+'&ext='+json.ext,
-							timeout: 8000,
-							complete: function(data){
-								window.onbeforeunload = null;
-								$(window).unbind('beforeunload');
-							},
-							success: function(data){
-								if(data != null){console.log(data);}
+							if (json.estado==4){
+								$('#video_info_estado').html('O vídeo está a ser convertido porque a codificação não é suportada.');
 							}
-						});*/
-
+						}
 					}
 				});
 			}); 
