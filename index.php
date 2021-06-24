@@ -1,5 +1,11 @@
 <?php 
 require('head.php');
+
+# script 'notificacoes.js é o registo no sistema de notificações
+if ($uti){
+    $uti_mai = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti["mai"]."'"));
+    echo "<script>const sub_uti_nut='".$uti['nut']."';const sub_uti_cod='".$uti_mai['cod']."';</script><script src='/js/notificacoes.js'></script>";
+}
 ?>
 	</head>
 	<body>

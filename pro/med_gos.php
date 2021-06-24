@@ -1,26 +1,37 @@
 ﻿<?php
-require('fun.php'); #FUNÇÕES
-$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."';"));											#Informações da media
+# Funções
+$funcoes['notificacao']=1;
+require 'fun.php';
+
+$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["med"]."';"));											#Informações da media
 if ($med){	#Se a media existir
-	$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';"));	#Informações do gosto
+	$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$med["id"]."' AND uti='".$uti['id']."';"));	#Informações do gosto
+    
+	# Definir título da média (para a notificação)
+    if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}
 
 	if ($med_gos){
-		$bd->query("DELETE FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';");
-		if ($bd->query("UPDATE med SET gos=gos-1 WHERE id='".$_GET["id"]."'") === FALSE) {
+		$bd->query("DELETE FROM med_gos WHERE med='".$med["id"]."' AND uti='".$uti['id']."';");
+		if ($bd->query("UPDATE med SET gos=gos-1 WHERE id='".$med["id"]."'") === FALSE) {
 			echo "Erro:".$bd->error;
-			exit;
+		} else { # Sucesso (Tirar gosto)
+			echo "false";
 		}
-		echo "false";
 	} else {
-		$bd->query("INSERT INTO med_gos (uti, med) VALUES('".$uti['id']."', '".$_GET["id"]."');");
-		if ($bd->query("UPDATE med SET gos=gos+1 WHERE id='".$_GET["id"]."'") === FALSE) {
+		$bd->query("INSERT INTO med_gos (uti, med) VALUES('".$uti['id']."', '".$med["id"]."');");
+		if ($bd->query("UPDATE med SET gos=gos+1 WHERE id='".$med["id"]."'") === FALSE) {
 			echo "Erro:".$bd->error;
 			exit;
+		} else { # Sucesso (Por gosto)
+			if ($med['uti']!=$uti['id']){
+				$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med["uti"]."';")); #Informações do dono da media
+				mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $uti['nut'].' gostou do teu video', 'https://drena.xyz/fpe/'.base64_encode($uti["fot"]), $med_tit, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
+			}
+			echo "true";
 		}
-		echo "true";
 	}
-	exit;
+} else {
+	echo "Erro: A Media não existe.";
 }
-echo "Erro: A Media não existe.";
 exit;
 ?>

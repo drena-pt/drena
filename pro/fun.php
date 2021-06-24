@@ -11,6 +11,7 @@ session_start();
 # requerSessao (Padrão: 1)
 if ($_SESSION["uti"]){
 	$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["uti"]."'"));
+	$uti_mai = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti['mai']."'"));
 } else if ($funcoes['requerSessao']!=0){
 	header("Location: ../entrar.php");
 	exit;
@@ -42,4 +43,36 @@ switch (get_browser_language()) {
 setlocale(LC_ALL, $locale);
 bindtextdomain("messages", "locale");
 textdomain("messages");
+
+# Notificações
+if ($funcoes['notificacao']==1){
+	function mandarNotificacao($not_uti_a,$not_uti_a_cod,$not_uti_b,$not_title,$not_icon,$not_body,$not_image){
+		$not_post = '{
+			"uti_a":"'.$not_uti_a.'",
+			"uti_a_cod":"'.$not_uti_a_cod.'",
+			"uti_b":"'.$not_uti_b.'",
+			"notificacao":{
+				"title":"'.$not_title.'",
+				"icon":"'.$not_icon.'",
+				"body": "'.$not_body.'",
+				"image":"'.$not_image.'",
+				"badge": "https://drena.xyz/imagens/favicon.png",
+				"actions": [
+					{
+					"action": "null",
+					"title": "Ok"
+					}
+				]
+			}
+		}';
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, "https://drena.xyz:3000/enviar");
+		curl_setopt($ch, CURLOPT_POST, 1);
+		$headers = array("content-type: application/json");
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $not_post);
+		curl_exec($ch);
+	}
+}
+
 ?>

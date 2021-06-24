@@ -1,6 +1,8 @@
 ﻿<?php
-require('fun.php'); #FUNÇÕES
-	
+# Funções
+$funcoes['notificacao']=1;
+require 'fun.php';
+
 $ac = $_GET['ac']; #Obtem ação
 
 if ($ac=='eliminar'){ #Se a ação for eliminar o comentário
@@ -25,7 +27,10 @@ if ($ac=='eliminar'){ #Se a ação for eliminar o comentário
 			if ($bd->query("INSERT INTO med_com (uti, med, tex) VALUES('".$uti['id']."', '".$med["id"]."', '".$com."');") === FALSE) {
 				echo "Erro: ".$bd->error;
 			} else { # Upload com sucesso!
-				//echo "true";
+				if ($med['uti']!=$uti['id']){
+					$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med["uti"]."';")); #Informações do dono da media
+					mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $uti['nut'].' comentou o teu video', 'https://drena.xyz/fpe/'.base64_encode($uti["fot"]), $com, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
+				}
 				header("Location: ".$_SERVER['HTTP_REFERER']);
 			}
 		} else {

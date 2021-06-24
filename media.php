@@ -286,7 +286,7 @@
 				});
 				function gosto(){
 					$.ajax({
-						url: 'pro/med_gos.php?id=".$med['id']."',
+						url: 'pro/med_gos.php?med=".$med['id']."',
 						success: function(result) {
 							var gostos = +$('#texto_gostos').text();
 							if (result==='true'){
