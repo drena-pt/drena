@@ -1,4 +1,14 @@
 <?php
+# Define o tempo para Portugal
+date_default_timezone_set('Europe/Lisbon');
+
+# Conectar à base de dados
+ob_start();
+require_once('pro/ligarbd.php');
+ob_get_clean();
+session_start();
+
+# Linguas
 function get_browser_language($available=['pt','en','de','it','fr'],$default='en') {
 	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 		$langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
@@ -26,10 +36,6 @@ setlocale(LC_ALL, $locale);
 bindtextdomain("messages", "locale");
 textdomain("messages");
 
-ob_start();
-require_once('pro/ligarbd.php');
-ob_get_clean();
-session_start();
 $uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["uti"]."'"));
 if ($uti AND $uti['ati']==0){ echo "A tua conta foi desativada por um administrador."; session_destroy(); exit; } #Verificar se a conta está ativa
 
@@ -46,6 +52,7 @@ function numeroParaCor($num){
 	}
 }
 ?>
+
 <!doctype html>
 <!-- Desenvolvido por Guilherme Albuquerque 2018/2021 -->
 <html>

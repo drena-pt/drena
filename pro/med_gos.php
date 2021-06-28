@@ -25,7 +25,17 @@ if ($med){	#Se a media existir
 		} else { # Sucesso (Por gosto)
 			if ($med['uti']!=$uti['id']){
 				$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med["uti"]."';")); #Informações do dono da media
-				mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $uti['nut'].' gostou do teu video', 'https://drena.xyz/fpe/'.base64_encode($uti["fot"]), $med_tit, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
+				// Define o título da notificação consoante o tipo de média
+				if ($med['tip']=='1'){
+					$not_tit = sprintf(_('%s gostou do teu vídeo'),$uti['nut']);
+				} else if ($med['tip']=='2'){
+					$not_tit = sprintf(_('%s gostou do teu áudio'),$uti['nut']);
+				} else if ($med['tip']=='3'){
+					$not_tit = sprintf(_('%s gostou da tua imagem'),$uti['nut']);
+				} else {
+					$not_tit = sprintf(_('%s gostou da tua publicação'),$uti['nut']);
+				}
+				mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $not_tit, 'https://drena.xyz/fpe/'.base64_encode($uti["fot"]), $med_tit, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
 			}
 			echo "true";
 		}

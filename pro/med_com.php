@@ -24,12 +24,22 @@ if ($ac=='eliminar'){ #Se a ação for eliminar o comentário
 	if ($med){ #Se a media existir
 		$com = $_POST['input_com'];
 		if ($com){ # Se o texto de comentário não for nulo
-			if ($bd->query("INSERT INTO med_com (uti, med, tex) VALUES('".$uti['id']."', '".$med["id"]."', '".$com."');") === FALSE) {
+			if ($bd->query("INSERT INTO med_com (uti, med, tex) VALUES('".$uti['id']."', '".$med["id"]."', '".addslashes($com)."');") === FALSE) {
 				echo "Erro: ".$bd->error;
 			} else { # Upload com sucesso!
 				if ($med['uti']!=$uti['id']){
 					$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med["uti"]."';")); #Informações do dono da media
-					mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $uti['nut'].' comentou o teu video', 'https://drena.xyz/fpe/'.base64_encode($uti["fot"]), $com, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
+					// Define o título da notificação consoante o tipo de média
+					if ($med['tip']=='1'){
+						$not_tit = sprintf(_('%s comentou o teu vídeo'),$uti['nut']);
+					} else if ($med['tip']=='2'){
+						$not_tit = sprintf(_('%s comentou o teu áudio'),$uti['nut']);
+					} else if ($med['tip']=='3'){
+						$not_tit = sprintf(_('%s comentou a tua imagem'),$uti['nut']);
+					} else {
+						$not_tit = sprintf(_('%s comentou a tua publicação'),$uti['nut']);
+					}
+					mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $not_tit, 'https://drena.xyz/fpe/'.base64_encode($uti["fot"]), $com, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
 				}
 				header("Location: ".$_SERVER['HTTP_REFERER']);
 			}

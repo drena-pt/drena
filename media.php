@@ -14,7 +14,7 @@
 		<div id="swup" class="transition-fade">
 		<?php
 		if (!$med){
-			echo "<h2 class='my-5 text-center'>"._('Media não encontrada!')." 😵</h2>‍";
+			echo "<h2 class='my-5 text-center'>"._('Média não encontrada!')." 😵</h2>‍";
 			exit;
 		} else {
 			function tempoPassado($ptime){
@@ -289,14 +289,15 @@
 						url: 'pro/med_gos.php?med=".$med['id']."',
 						success: function(result) {
 							var gostos = +$('#texto_gostos').text();
-							if (result==='true'){
-								$('#botao_gosto').removeAttr('hidden');
-								$('#botao_naogosto').attr('hidden', true);
-								$('#texto_gostos').text(gostos+1);
-							} else {
+							console.log(result);
+							if (result==='false'){
 								$('#botao_gosto').attr('hidden', true);
 								$('#botao_naogosto').removeAttr('hidden');
 								$('#texto_gostos').text(gostos-1);
+							} else {
+								$('#botao_gosto').removeAttr('hidden');
+								$('#botao_naogosto').attr('hidden', true);
+								$('#texto_gostos').text(gostos+1);
 							}
 						},
 						error: function(){

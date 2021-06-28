@@ -1,5 +1,5 @@
 <?php
-# Define o tempo para UTC 0
+# Define o tempo para Portugal
 date_default_timezone_set('Europe/Lisbon');
 
 # Liga à base de dados
