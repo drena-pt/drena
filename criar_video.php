@@ -156,7 +156,7 @@
 							$('#botao_ver_video').removeAttr('hidden');
 							$('#botao_ver_video').attr('href', '/media?id='+json.codigo);
 							if (json.estado==4){
-								$('#video_info_estado').html('O vídeo está a ser convertido porque a codificação não é suportada.');
+								$('#video_info_estado').html('"._('O vídeo está a ser convertido porque a codificação não é suportada.')."');
 							}
 						}
 					}

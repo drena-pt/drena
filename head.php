@@ -1,56 +1,10 @@
 <?php
-# Define o tempo para Portugal
-date_default_timezone_set('Europe/Lisbon');
+/* error_reporting(E_ALL);
+ini_set('display_errors', 'On'); */
 
-# Conectar à base de dados
-ob_start();
-require_once('pro/ligarbd.php');
-ob_get_clean();
-session_start();
-
-# Linguas
-function get_browser_language($available=['pt','en','de','it','fr'],$default='en') {
-	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-		$langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        if (empty($available)) {
-        return $langs[ 0 ];
-        }
-		foreach ( $langs as $lang ){
-			$lang = substr( $lang, 0, 2 );
-			if( in_array( $lang, $available ) ) {
-				return $lang;
-			}
-		}
-	}
-	return $default;
-}
-switch (get_browser_language()) {
-	case 'pt': $locale = "pt_PT.UTF-8"; break;
-    case 'en': $locale = "en_GB.UTF-8"; break;
-    case 'de': $locale = "de_CH.UTF-8"; break;
-    case 'it': $locale = "it_IT.UTF-8"; break;
-    case 'fr': $locale = "fr_CH.UTF-8"; break;
-}
-
-setlocale(LC_ALL, $locale);
-bindtextdomain("messages", "locale");
-textdomain("messages");
-
-$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["uti"]."'"));
-if ($uti AND $uti['ati']==0){ echo "A tua conta foi desativada por um administrador."; session_destroy(); exit; } #Verificar se a conta está ativa
-
-function numeroParaCor($num){
-	switch ($num) {
-		case 1: return 'azul'; break;
-		case 2: return 'verde'; break;
-		case 3: return 'amarelo'; break;
-		case 4: return 'vermelho'; break;
-		case 5: return 'rosa'; break;
-		case 6: return 'ciano'; break;
-		case 7: return 'primary'; break;
-		default: return 'dark';
-	}
-}
+# Funções
+$funcoes['requerSessao'] = 0;
+require __DIR__.'/pro/fun.php';
 ?>
 
 <!doctype html>

@@ -1,4 +1,4 @@
-		<?php 
+		<?php
 		require('head.php');
 		$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 
@@ -45,10 +45,9 @@
 					}
 				}
 			}
-			echo "<div class='p-0 my-0 offset-xl-3 col-xl-6 mt-0 mt-xl-4 shadow'>";
+			echo "<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>";
 
-
-				echo "<section class='my-4 bg-dark'>";
+				echo "<section class='bg-dark shadow'>";
 					switch ($med['tip']){
 						case 1: # Vídeo
 							$t_eliminar = _('Eliminar vídeo');
@@ -73,7 +72,7 @@
 										</div>
 									</div>";
 								} else if ($med['est']=='2'){
-									echo "<div class='p-xl-5 p-4 bg-primary'><text class='h5 my-auto me-auto'><i class='bi bi-info-circle'></i> "._('O vídeo está a ser processado.')."</text></div>";
+									echo "<div class='p-xl-5 p-4 bg-primary'><text class='h5 my-auto me-auto'><i class='bi bi-info-circle'></i> "._('O vídeo está a ser processado...')."</text></div>";
 								}
 							}
 
@@ -83,20 +82,22 @@
 						case 2: # Áudio
 							$t_eliminar = _('Eliminar áudio');
 							$t_cor = 'rosa';
-							echo "<div class='p-xl-5 p-4'>
-							<iframe height='140px' class='w-100' src='/embed?id=".$med['id']."&titulo=0'></iframe>";
+							echo "<iframe height='180px' class='w-100' src='/embed?id=".$med['id']."&titulo=0'></iframe>
+							<div class='p-xl-5 p-4'>";
 							break;
 						case 3: # Imagem
 							$t_eliminar = _('Eliminar imagem');
 							$t_cor = 'ciano';
-							echo "<div class='p-xl-5 p-4'>
-							<img class='w-100 mb-3' src='https://media.drena.xyz/img/".$med['id'].".".end(explode(".", $med['nom']))."'></img>";
+							echo "
+							<iframe style='min-height:50vh;' class='w-100' src='/embed?id=".$med['id']."'></iframe>
+							<div class='p-xl-5 p-4'>";
 							break;
 					}
 					echo "
 						<div class='d-flex flex-row-reverse mb-3'>";
-						if ($uti['id']==$med_uti['id']){
-							if ($med['tip']=='1' OR $med['tip']=='2'){
+
+						if ($uti['id']==$med_uti['id']){ # Botões de gestão de média, para o utilizador dono
+							if ($med['tip']=='1' OR $med['tip']=='2'){ # Caso seja um vídeo ou um áudio, para mudar thumbnail
 								echo "
 								<style>
 								#thumb_a_carregar {
@@ -161,6 +162,71 @@
 								});
 								</script>
 								";
+							} else if ($med['tip']=='3'){ # Caso seja uma imagem, para adicionar a um album
+								echo "<span data-toggle='modal' data-target='#modal_albuns'>
+									<button class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Adicionar a um álbum')."\">
+										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#collection'/></svg>
+									</button>
+								</span>
+
+								<!-- Modal Álbuns -->
+								<div class='modal fade' id='modal_albuns' tabindex='-1' role='dialog' aria-labelledby='modal_albuns_label' aria-hidden='true'>
+									<div class='modal-dialog' role='document'>
+										<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
+											<form action='#' method='post'>
+												<div class='modal-header'>
+													<h2 class='modal-title' id='modal_albuns_label'>"._('Adicionar a um álbum')."<br></h2><br>
+												</div>
+												<div class='modal-body'>
+													<text class='h5'>".$med_tit."</text>
+													";
+													$pesquisa = "SELECT * FROM med_alb WHERE uti='".$uti['id']."' ORDER BY id DESC";
+													if ($resultado = $bd->query($pesquisa)){
+														echo "<ul class='list-group list-group-flush'>";
+														while ($campo = $resultado->fetch_assoc()){
+															#Define o nome a aparecer
+															if (!$campo['tit']){$alb_tit=sprintf(_('Álbum de %s'),$uti['nut']);}else{$alb_tit=$campo['tit'];}
+															$alb_num_med = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE alb='".$campo['id']."';"));
+
+															#Se a média estiver nesse album
+															if ($med['alb']==$campo['id']){
+																echo "
+																<a href='/album?id=".base64_encode($campo['id'])."' class='list-group-item bg-transparent px-0'>
+																	<section class='p-2 px-4 bg-primary text-light rounded-xl shadow d-flex justify-content-between align-items-center'>
+																		<h5 class='m-0'>".$alb_tit."</h5>
+																		<span class='badge rounded-pill bg-light text-primary'>".$alb_num_med."</span>
+																	</section>
+																</a>";
+															} else {
+																echo "
+																<a href='/pro/med_alb.php?ac=adicionar&redirect=1&alb=".$campo['id']."&med=".$med['id']."' class='list-group-item bg-transparent px-0'>
+																	<section class='p-2 px-4 bg-light text-dark rounded-xl shadow d-flex justify-content-between align-items-center'>
+																		<h5 class='m-0'>".$alb_tit."</h5>
+																		<span class='badge rounded-pill bg-dark text-light'>".$alb_num_med."</span>
+																	</section>
+																</a>";
+															}
+
+														}
+														$resultado->free();
+														echo "
+														<a href='/pro/med_alb.php?ac=criar&med=".$med['id']."' class='list-group-item bg-transparent px-0'>
+															<section class='p-2 px-4 bg-light text-dark rounded-xl shadow d-flex justify-content-between align-items-center'>
+																<h5 class='m-0'>"._('Criar álbum')."</h5>
+																<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
+															</section>
+														</a>
+														</ul>";
+													}
+													echo "
+												</div>
+												<div class='modal-footer text-end'>
+													<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>";
 							}
 							echo "
 							<span data-toggle='modal' data-target='#modal_alerar_tit'>

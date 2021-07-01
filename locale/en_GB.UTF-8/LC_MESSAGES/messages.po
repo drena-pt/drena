@@ -405,3 +405,134 @@ msgstr "November"
 
 msgid "dezembro"
 msgstr "December"
+
+
+
+
+#. ---------------- NOVAS ----------------
+
+
+
+
+
+
+#. -------- MAIN --------
+
+msgid "Criado por %s"
+msgstr "Created by %s"
+
+msgid "Bem vindo!"
+msgstr "Welcome!"
+
+msgid "A carregar..."
+msgstr "Uploading..."
+
+msgid "Procurar"
+msgstr "Seacrh"
+
+msgid "Ex: utilizador, vídeo, projeto..."
+msgstr "Ex: username, video, project..."
+
+msgid "Título"
+msgstr "Title"
+
+msgid "Aviso"
+msgstr "Warning"
+
+msgid "Concluído"
+msgstr "Done"
+
+
+
+#. -------- MEDIA --------
+
+msgid "Média não encontrada!"
+msgstr "Media not found!"
+
+msgid "Comentário"
+msgstr "Comment"
+
+msgid "Adicionar um comentário"
+msgstr "Add a comment"
+
+msgid "Comentar"
+msgstr "Comment"
+
+msgid "Alterar miniatura"
+msgstr "Change thumbnail"
+
+msgid "Eliminar comentário"
+msgstr "Delete comment"
+
+msgid "Comentado por %s"
+msgstr "Commented by %s"
+
+
+
+#. -------- VIDEO --------
+
+msgid "Comprimir vídeo"
+msgstr "Compress video"
+
+msgid "O vídeo está a ser processado..."
+msgstr "Video is being processed..."
+
+
+
+
+#. -------- PROJECTS --------
+
+msgid "Nova secção"
+msgstr "New section"
+
+msgid "Eliminar projeto"
+msgstr "Delete project"
+
+
+
+#. -------- ALBUMS --------
+
+msgid "Adicionar a um álbum"
+msgstr "Add to Album"
+
+msgid "Criar álbum"
+msgstr "Create album"
+
+msgid "Álbum de %s"
+msgstr "%s album"
+
+msgid "Eliminar álbum"
+msgstr "Delete album"
+
+
+#. -------- COLOR --------
+
+msgid "Cor"
+msgstr "Color"
+
+msgid "Preto"
+msgstr "Black"
+
+msgid "Branco"
+msgstr "White"
+
+msgid "Azul"
+msgstr "Blue"
+
+msgid "Verde"
+msgstr "Green"
+
+msgid "Amarelo"
+msgstr "Yellow"
+
+msgid "Vermelho"
+msgstr "Red"
+
+msgid "Rosa"
+msgstr "Pink"
+
+msgid "Ciano"
+msgstr "Cyan"
+
+msgid "Roxo"
+msgstr "Purple"

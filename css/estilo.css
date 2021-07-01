@@ -31,9 +31,6 @@ a.perfil:hover{
 .caixa-perfil-foto{
 	height: 400px;
 	background-image: linear-gradient(-45deg,rgba(0,0,0,0.2),rgba(0,0,0,0.6)), var(--perfil-foto);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
 }
 
 .transition-fade{
@@ -75,7 +72,7 @@ button.close{
 }
 
 .bi{
-	width: 1.5em;
-	height: 1.5em;
-	margin: 0 0.2em;
+	width: 1.5em !important;
+	height: 1.5em !important;
+	margin: 0 0.2em !important;
 }

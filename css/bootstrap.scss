@@ -3,6 +3,7 @@ $ciano:	#00cee9;
 $rosa:	#ff4fff;
 $dark:	#333;
 $white:	#fff;
+$preto:	#111;
 //Mais cores
 $azul:	#0066ff;
 $verde:	#00aa00;
@@ -15,6 +16,7 @@ $theme-colors: (
   "rosa": $rosa,
   "dark": $dark,
   "light": $white,
+  "preto": $preto,
   "azul": $azul,
   "verde": $verde,
   "amarelo": $amarelo,
@@ -111,6 +113,42 @@ $modal-inner-padding: 0;
 }
 .rounded-xl{
 	border-radius: 10px;
+}
+.bg-cover{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.container {
+	position: relative;
+}
+.container .inset-shadow{
+	-webkit-box-shadow: inset 0px -50px 21px -13px rgba(0,0,0,0.6);
+	box-shadow: inset 0px -50px 21px -13px rgba(0,0,0,0.6);
+}
+.container img{
+	//filter: brightness(75%);
+	position: relative;
+	z-index: -2;
+}
+.texto-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-shadow: 0 0 8px #000;
+}
+.texto-container-top {
+	position: absolute;
+	top: 6%;
+	left: 50%;
+	transform: translate(-50%, -6%);
+}
+.texto-container-bottom {
+	position: absolute;
+	top: 94%;
+	left: 50%;
+	transform: translate(-50%, -94%);
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap";

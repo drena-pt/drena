@@ -35,11 +35,11 @@
 				echo "
 				<section class='text-start'>
 					<button class='btn btn-light text-".numeroParaCor($pro['cor'])."' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample' id='header_btn'>
-						Configurações <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
+					"._('Configurações')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
 					</button>
 
 					<button class='btn btn-light text-".numeroParaCor($pro['cor'])."' id='header_btn_criar'>
-						Nova secção <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
+					"._('Nova secção')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
 					</button>
 
 					<script>
@@ -66,29 +66,29 @@
 			<div class='p-0 my-0 offset-xl-3 col-xl-6'>
 				<section id='collapseExample' class='mb-2 bg-dark text-light collapse'>
 					<div class='p-xl-5 p-4'>
-						<h3>Configurações</h3>
+						<h3>"._('Configurações')."</h3>
 					
-						<text class='h5'>Título</text>
+						<text class='h5'>"._('Título')."</text>
 						<form class='row' method='post'>
 							<div class='col-sm-6 col-auto'>
-								<input type='text' class='form-control' id='pro_tit_input' name='pro_tit' placeholder=\""._('Título do projeto')."\" maxlength='40' value='".$pro['tit']."'>
+								<input type='text' class='form-control' id='pro_tit_input' name='pro_tit' placeholder=\""._('Projeto')."\" maxlength='40' value='".$pro['tit']."'>
 							</div>
 							<div class='col-auto'>
-								<button class='btn btn-light'>Alterar</button>
+								<button class='btn btn-light'>"._('Alterar')."</button>
 							</div>
 						</form>
 						<br>
 
-						<text class='h5'>Cor tema</text>
+						<text class='h5'>"._('Cor')."</text>
 						<section>
-								<button class='btn text-light btn-dark' onclick=\"pro_cor('dark')\">Preto</button>
-								<button class='btn text-light btn-azul' onclick=\"pro_cor('azul')\">Azul</button>
-								<button class='btn text-light btn-verde' onclick=\"pro_cor('verde')\">Verde</button>
-								<button class='btn text-light btn-amarelo' onclick=\"pro_cor('amarelo')\">Amarelo</button>
-								<button class='btn text-light btn-vermelho' onclick=\"pro_cor('vermelho')\">Vermelho</button>
-								<button class='btn text-light btn-rosa' onclick=\"pro_cor('rosa')\">Rosa</button>
-								<button class='btn text-light btn-ciano' onclick=\"pro_cor('ciano')\">Ciano</button>
-								<button class='btn text-light btn-primary' onclick=\"pro_cor('primary')\">Roxo</button>
+							<button class='btn text-light btn-dark' onclick=\"pro_cor('dark')\">"._('Preto')."</button>
+							<button class='btn text-light btn-azul' onclick=\"pro_cor('azul')\">"._('Azul')."</button>
+							<button class='btn text-light btn-verde' onclick=\"pro_cor('verde')\">"._('Verde')."</button>
+							<button class='btn text-light btn-amarelo' onclick=\"pro_cor('amarelo')\">"._('Amarelo')."</button>
+							<button class='btn text-light btn-vermelho' onclick=\"pro_cor('vermelho')\">"._('Vermelho')."</button>
+							<button class='btn text-light btn-rosa' onclick=\"pro_cor('rosa')\">"._('Rosa')."</button>
+							<button class='btn text-light btn-ciano' onclick=\"pro_cor('ciano')\">"._('Ciano')."</button>
+							<button class='btn text-light btn-primary' onclick=\"pro_cor('primary')\">"._('Roxo')."</button>
 						</section>
 						<br>
 

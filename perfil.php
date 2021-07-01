@@ -42,7 +42,7 @@
 			
 			echo "
 			<div class='shadow p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
-				<div class='bg-primary text-light p-xl-5 p-4 caixa-perfil-foto'>";
+				<div class='bg-primary bg-cover text-light p-xl-5 p-4 caixa-perfil-foto'>";
 			
 			if ($uti_perfil['id']==$uti['id']){
 				echo "

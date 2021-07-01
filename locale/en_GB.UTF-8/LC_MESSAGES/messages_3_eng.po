@@ -1,51 +1,13 @@
 
-
-
 #. -------- PROFILE --------
 
 msgid "Obrigado por te registares na drena, fica à vontade para partilhares as tuas coisas."
 msgstr ""
 
+#. -------- VIDEO --------
 
+msgid "A qualidade do vídeo é elevada, e pode comprometer a visualização em conexões mais lentas. Comprima o vídeo."
+msgstr ""
 
-#. -------- MAIN --------
-
-msgid "Criado por %s"
-msgstr "Created by %s"
-
-msgid "Bem vindo!"
-msgstr "Welcome!"
-
-msgid "A carregar..."
-msgstr "Uploading..."
-
-msgid "Procurar"
-msgstr "Seacrh"
-
-msgid "Ex: utilizador, vídeo, projeto..."
-msgstr "Ex: username, video, project..."
-
-
-
-#. -------- MEDIA --------
-
-msgid "Média não encontrada!"
-msgstr "Media not found!"
-
-msgid "Comentário"
-msgstr "Comment"
-
-msgid "Adicionar um comentário"
-msgstr "Add a comment"
-
-msgid "Comentar"
-msgstr "Comment"
-
-msgid "Alterar miniatura"
-msgstr "Change thumbnail"
-
-msgid "Eliminar comentário"
-msgstr "Delete comment"
-
-msgid "Comentado por %s"
-msgstr "Commented by %s"
+msgid "O vídeo está a ser convertido porque a codificação não é suportada."
+msgstr ""

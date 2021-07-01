@@ -4,16 +4,20 @@ date_default_timezone_set('Europe/Lisbon');
 
 # Liga à base de dados
 ob_start();
-require_once ('ligarbd.php');
+require_once('ligarbd.php');
 ob_get_clean();
 session_start();
 
 # requerSessao (Padrão: 1)
 if ($_SESSION["uti"]){
 	$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["uti"]."'"));
+
+	# Verificar se a conta está ativa
+	if ($uti['ati']==0){ echo "A tua conta foi desativada por um administrador."; session_destroy(); exit; }
+
 	$uti_mai = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti['mai']."'"));
 } else if ($funcoes['requerSessao']!=0){
-	header("Location: ../entrar.php");
+	header("Location: /entrar.php");
 	exit;
 }
 
@@ -43,6 +47,29 @@ switch (get_browser_language()) {
 setlocale(LC_ALL, $locale);
 bindtextdomain("messages", "locale");
 textdomain("messages");
+
+# Número para cor
+function numeroParaCor($num){
+	switch ($num) {
+		case 1: return 'azul'; break;
+		case 2: return 'verde'; break;
+		case 3: return 'amarelo'; break;
+		case 4: return 'vermelho'; break;
+		case 5: return 'rosa'; break;
+		case 6: return 'ciano'; break;
+		case 7: return 'primary'; break;
+		default: return 'dark';
+	}
+}
+
+# Encurtar nome
+function encurtarNome($nome, $tamanho=25){
+    if (strlen($nome)>=$tamanho){
+        return (substr($nome, 0, $tamanho-2)."…");
+    } else {
+        return ($nome);
+    }
+}
 
 # Notificações
 if ($funcoes['notificacao']==1){
@@ -74,5 +101,4 @@ if ($funcoes['notificacao']==1){
 		curl_exec($ch);
 	}
 }
-
 ?>
