@@ -4,6 +4,15 @@ $ac = $_GET['ac']; # Ação
 
 if ($ac=='criar'){
 
+	$pro_vazio = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE uti='".$uti['id']."' AND tit=''"));
+	if ($pro_vazio){
+		$pro_vazio_sec = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro_sec WHERE pro='".$pro_vazio['id']."'"));
+		if (!$pro_vazio_sec){
+			header("location: ../projeto?id=".base64_encode($pro_vazio['id']));
+			exit;
+		}
+	}
+	
 	$cor_aleatoria = rand(0,7);
 
 	$sql = "INSERT INTO pro (uti, tit, cor)
@@ -15,6 +24,7 @@ if ($ac=='criar'){
 	} else {
 		echo "Erro: " . $sql . "<br>" . $bd->error;
 	}
+
 } else {
 	
 	$pro = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE id='".base64_decode($_GET['id'])."'"));

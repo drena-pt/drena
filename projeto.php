@@ -177,11 +177,11 @@
 							echo "
 							<div class='d-flex flex-row-reverse mb-3'>
 								<div>
-									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Visibilidade' onclick=\"visibilidade('".base64_encode($campo['id'])."',".$num_sec.")\">
+									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Visibilidade')."\" onclick=\"visibilidade('".base64_encode($campo['id'])."',".$num_sec.")\">
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#eye'/></svg>
 									</button>
 
-									<button onclick=\"editarSeccao('".$campo['id']."')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title='Editar texto'>
+									<button onclick=\"editarSeccao('".$campo['id']."')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Editar texto')."\">
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
 									</button>
 
@@ -190,10 +190,10 @@
 									</button>
 
 									<div class='btn-group ml-1' role='group' aria-label='Basic example'>
-										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverBaixo' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Mover para baixo'>
+										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverBaixo' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Mover para baixo')."\">
 											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-down'/></svg>
 										</a>
-										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverCima' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Mover para cima'>
+										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverCima' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Mover para cima')."\">
 											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-up'/></svg>
 										</a>
 									</div>
@@ -201,8 +201,8 @@
 
 
 								<text class='my-auto me-auto h5 mb-3' id='tit_".$num_sec."'>
-									Secção ".$num_sec;
-									if ($campo['vis']==0){echo" (invisível)";}
+									"._('Secção')." ".$num_sec;
+									if ($campo['vis']==0){echo" ("._('Invisível').")";}
 									echo "
 								</text>
 							</div>
@@ -259,9 +259,9 @@
 							url: 'pro/sec.php?sec='+id+'&ac=visibilidade',
 							success: function(result) {
 								if (result==='true'){
-									$('#tit_'+num).text('Secção '+num);
+									$('#tit_'+num).text('"._('Secção')." '+num);
 								} else {
-									$('#tit_'+num).text('Secção '+num+' (invisível)');
+									$('#tit_'+num).text('"._('Secção')." '+num+' ("._('Invisível').")');
 								}
 							},
 							error: function(){

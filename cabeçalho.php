@@ -10,7 +10,7 @@
 		echo "
 		<div class='collapse navbar-collapse justify-content-end text-center' id='menu'>
 			<ul class='navbar-nav'>
-					<li class='nav-item'><span data-toggle='modal' data-target='#modal_procurar'><a class='nav-link mx-1' href='#'><i class='bi bi-search'></i></a></span></li>";
+					<li class='nav-item'><span data-toggle='modal' data-target='#modal_procurar'><a class='nav-link mx-1' href='#' data-toggle='tooltip' data-placement='bottom' title='"._('Procurar')."'><i class='bi bi-search'></i></a></span></li>";
 					if (!$uti['id']){
 						echo "<li class='nav-item'><a class='nav-link' href='/entrar'>"._('Entrar')."</a></li>";
 					} else {
@@ -33,7 +33,7 @@
 							<h1 class='modal-title' id='modal_procurar_label'>"._('Procurar')."<br></h1><br>
 						</div>
 						<div class='modal-body'>
-							<input type='text' class='form-control' name='oq' placeholder='"._('Ex.: utilizador, vídeo, projeto...')."'>
+							<input type='text' class='form-control' name='oq' placeholder='"._('Ex: utilizador, vídeo, projeto...')."'>
 						</div>
 						<div class='modal-footer'>
 							<button type='submit' class='btn btn-light text-primary'>"._('Procurar')."</button>

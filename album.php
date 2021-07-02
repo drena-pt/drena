@@ -84,18 +84,18 @@
 			</section>
 
 			<!-- Modal Eliminar Álbum-->
-			<div class='modal fade' id='modal_eliminar_pro' tabindex='-1' role='dialog' aria-labelledby='modal_eliminar_pro_label' aria-hidden='true'>
+			<div class='modal fade' id='modal_eliminar_alb' tabindex='-1' role='dialog' aria-labelledby='modal_eliminar_alb_label' aria-hidden='true'>
 				<div class='modal-dialog' role='document'>
 					<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
 						<div class='modal-header'>
-							<h2 class='modal-title' id='modal_eliminar_pro_label'>"._('Eliminar projeto')."<br></h2><br>
+							<h2 class='modal-title' id='modal_eliminar_alb_label'>"._('Eliminar álbum')."<br></h2><br>
 						</div>
 						<div class='modal-body'>
-							<text><span class='h5'>".$pro_tit."</span><br>"._('Esta ação é irreversível!')."</text>
+							<text><span class='h5'>".$alb_tit."</span><br>"._('Esta ação é irreversível!')."</text>
 						</div>
 						<div class='modal-footer text-end'>
 							<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
-							<a href='pro/projeto.php?ac=eliminar&id=".$_GET['id']."' role='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
+							<a href='pro/med_alb.php?ac=eliminar&alb=".$alb['id']."' role='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
 						</div>
 					</div>
 				</div>

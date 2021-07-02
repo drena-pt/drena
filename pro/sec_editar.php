@@ -21,9 +21,9 @@ if ($sec){ # Se a secção existir
             <div class='bg-light text-dark mb-4'>
                 <div id='editorjs_".$sec['id']."'></div>
             </div>
-            <div class='text-right'>
-                <button class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title='Guardar' onclick=\"guardar()\">
-                    Guardar	<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#save'/></svg>
+            <div class='text-end'>
+                <button class='btn btn-light' onclick=\"guardar()\">
+                "._('Guardar')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#save'/></svg>
                 </button>
             </div>
             <script>

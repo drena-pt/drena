@@ -192,15 +192,15 @@
 															if ($med['alb']==$campo['id']){
 																echo "
 																<a href='/album?id=".base64_encode($campo['id'])."' class='list-group-item bg-transparent px-0'>
-																	<section class='p-2 px-4 bg-primary text-light rounded-xl shadow d-flex justify-content-between align-items-center'>
+																<section class='p-4 bg-light bg-cover text-primary rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"https://media.drena.xyz/thumb/".$campo['thu'].".jpg\");'>
 																		<h5 class='m-0'>".$alb_tit."</h5>
-																		<span class='badge rounded-pill bg-light text-primary'>".$alb_num_med."</span>
+																		<span class='badge rounded-pill bg-primary text-light'>".$alb_num_med."</span>
 																	</section>
 																</a>";
 															} else {
 																echo "
 																<a href='/pro/med_alb.php?ac=adicionar&redirect=1&alb=".$campo['id']."&med=".$med['id']."' class='list-group-item bg-transparent px-0'>
-																	<section class='p-2 px-4 bg-light text-dark rounded-xl shadow d-flex justify-content-between align-items-center'>
+																	<section class='p-4 bg-light bg-cover text-dark rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"https://media.drena.xyz/thumb/".$campo['thu'].".jpg\");'>
 																		<h5 class='m-0'>".$alb_tit."</h5>
 																		<span class='badge rounded-pill bg-dark text-light'>".$alb_num_med."</span>
 																	</section>

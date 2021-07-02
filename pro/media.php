@@ -72,11 +72,35 @@ if ($ac=='lista'){
             break;
 
         case 3:
-            $pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND tip='3' ORDER by den DESC";
+            echo "<div class='p-xl-5 p-4'><h1>"._('Imagens')."</h1></div>";
+
+            #Álbuns de imagens
+            $pesquisa = "SELECT * FROM med_alb WHERE uti='".$uti_perfil['id']."' AND tip='3'";
+            if ($resultado = $bd->query($pesquisa)) {
+                echo "
+                <div class='row row-cols-1 row-cols-md-2'>
+                ";
+                while ($campo = $resultado->fetch_assoc()) {
+                    #Define o nome a aparecer
+                    if (!$campo['tit']){$alb_tit=sprintf(_('Álbum de %s'),$uti_perfil['nut']);}else{$alb_tit=$campo['tit'];}
+                    $alb_num_med = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE alb='".$campo['id']."';"));
+
+                    echo"
+                    <div class='col'><a class='text-decoration-none' href='/album?id=".base64_encode($campo['id'])."' ><div class='bg-light bg-cover text-dark h5 p-xl-5 p-4 mb-4 rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"https://media.drena.xyz/thumb/".$campo['thu'].".jpg\");'>
+                        ".$alb_tit."
+                        <span class='badge rounded-pill bg-dark text-light'>".$alb_num_med."</span>
+                    </div></a></div>
+                    ";
+                } 
+                $resultado->free();
+                echo "</div>";
+            }
+
+            #Imagens sem álbum
+            $pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND tip='3' AND alb IS NULL ORDER by den DESC";
             if ($resultado = $bd->query($pesquisa)) {
                 
                 echo "
-                <div class='p-xl-5 p-4'><h1>"._('Imagens')."</h1></div>
                 <div class='row row-cols-2 row-cols-md-3'>";
     
                 while ($campo = $resultado->fetch_assoc()) {

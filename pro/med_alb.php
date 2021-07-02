@@ -78,6 +78,18 @@ if ($med['uti']==$uti['id']){ #Se o utilizador for dono da média
 		header("Location: ".$_SERVER['HTTP_REFERER']);
 		exit;
 
+	} else if ($ac=='eliminar'){ #Eliminar álbum
+
+ 		#Desassocia toda a média do álbum
+		if ($bd->query("UPDATE med SET alb=NULL WHERE alb='".$alb['id']."'") === FALSE) {
+			echo "Erro mysqli: ".$bd->error;
+		#Elimina o álbum
+		} else if ($bd->query("DELETE FROM med_alb WHERE id='".$alb['id']."'") === FALSE) {
+			echo "Erro mysqli: ".$bd->error;
+		} else {
+			header("Location: /perfil?uti=".$uti['nut']);
+		}
+
 	} else {
 		echo "Erro: Ação inválida.";
 	}

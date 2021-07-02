@@ -1,27 +1,16 @@
 <?php 
 require('head.php');
 ?>
-    <style>
-        .container {
-            position: relative;
-        }
-        .container img{
-            filter: brightness(75%);
-        }
-        .texto-container {
-            text-shadow: rgb(0, 0, 0) 0px 0px 10px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
 		<div id="swup" class="transition-fade">
 			<?php
             $oq = $_GET['oq'];
+            if (!$oq){
+                header("Location: https://google.pt");
+                exit();
+            }
             $pesquisa_uti = "SELECT * FROM uti WHERE nut LIKE '%".$oq."%' OR nco LIKE '%".$oq."%' ORDER by id DESC;";
             $pesquisa_med = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' OR tit LIKE '%".$oq."%';";
             $pesquisa_vid = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='1' OR tit LIKE '%".$oq."%' AND TIP='1' ORDER by den DESC;";
@@ -70,12 +59,14 @@ require('head.php');
                 <div class='row row-cols-2 row-cols-md-3 text-left'>";
     
                 while ($campo = $resultado->fetch_assoc()) {
-                    if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
+                    if ($campo['tit']){$imagem_tit = $campo['tit'];} else {$imagem_tit = $campo['nom'];}
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
-                            <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
-                            <div class='texto-container'><text class='h6'>".$video_tit."</text></div>
+                            <div class='rounded-xl inset-shadow'>
+                                <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                <div class='texto-container-bottom h6'>".encurtarNome($imagem_tit)."</div>
+                            </div>
                         </a>
                     </div>
                     ";
@@ -94,12 +85,14 @@ require('head.php');
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
-                            <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
-                            <div class='texto-container'><text class='h6'>".$video_tit."</text></div>
+                            <div class='rounded-xl inset-shadow'>
+                                <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                <div class='texto-container-bottom h6'>".encurtarNome($video_tit)."</div>
+                            </div>
                         </a>
                     </div>
                     ";
-                }
+                } 
                 $resultado->free();
                 echo "</div>";
             }
@@ -108,19 +101,22 @@ require('head.php');
                 echo "
                 <div class='p-xl-5 p-4'><h1>"._('Áudios')."</h1></div>
                 <div class='row row-cols-2 row-cols-md-3 text-left'>";
-    
+
                 while ($campo = $resultado->fetch_assoc()) {
-                    if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
+                    if ($campo['tit']){$audio_tit = $campo['tit'];} else {$audio_tit = $campo['nom'];}
                     $uti_aud = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$campo['uti']."';"));
+                    if ($campo['thu']){$audio_thu = "https://media.drena.xyz/thumb/".$campo['thu'].".jpg";} else {$audio_thu = "https://drena.xyz/fpe/".base64_encode($uti_aud['fot']);}
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
-                            <img class='shadow rounded-xl w-100' src='fpe/".base64_encode($uti_aud['fot'])."'>
-                            <div class='texto-container'><text class='h6'>".$video_tit."</text></div>
+                            <div class='rounded-xl inset-shadow'>
+                                <img class='shadow rounded-xl w-100' src='".$audio_thu."'>
+                                <div class='texto-container-bottom h6'>".encurtarNome($audio_tit)."</div>
+                            </div>
                         </a>
                     </div>
                     ";
-                }
+                } 
                 $resultado->free();
                 echo "</div>";
             }

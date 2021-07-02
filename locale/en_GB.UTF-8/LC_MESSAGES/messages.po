@@ -177,6 +177,9 @@ msgstr "Request sent"
 msgid "Cancelar pedido"
 msgstr "Cancel request"
 
+msgid "Obrigado por te registares na drena, fica à vontade para partilhares as tuas coisas."
+msgstr "Thank you for beeing a part of drena, be free to share your stuff."
+
 
 
 #. -------- AUDIO --------
@@ -428,10 +431,10 @@ msgid "A carregar..."
 msgstr "Uploading..."
 
 msgid "Procurar"
-msgstr "Seacrh"
+msgstr "Search"
 
 msgid "Ex: utilizador, vídeo, projeto..."
-msgstr "Ex: username, video, project..."
+msgstr "E.g. username, video, project..."
 
 msgid "Título"
 msgstr "Title"
@@ -441,6 +444,21 @@ msgstr "Warning"
 
 msgid "Concluído"
 msgstr "Done"
+
+msgid "Visibilidade"
+msgstr "Visibility"
+
+msgid "Invisível"
+msgstr "Invisible"
+
+msgid "Mover para baixo"
+msgstr "Move downwards"
+
+msgid "Mover para cima"
+msgstr "Move upwards"
+
+msgid "Guardar"
+msgstr "Save"
 
 
 
@@ -477,6 +495,11 @@ msgstr "Compress video"
 msgid "O vídeo está a ser processado..."
 msgstr "Video is being processed..."
 
+msgid "A qualidade do vídeo é elevada, e pode comprometer a visualização em conexões mais lentas. Comprima o vídeo."
+msgstr "The quality of the video is too high, therefore it can compromise the viewing in slower connections. Please compress the video."
+
+msgid "O vídeo está a ser convertido porque a codificação não é suportada."
+msgstr "The video is beeing converted due to unsuported codification."
 
 
 
@@ -487,6 +510,12 @@ msgstr "New section"
 
 msgid "Eliminar projeto"
 msgstr "Delete project"
+
+msgid "Editar texto"
+msgstr "Edit text"
+
+msgid "Secção"
+msgstr "Section"
 
 
 
