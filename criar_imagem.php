@@ -37,28 +37,6 @@
 
 				</div>
 
-                <style>
-                .thumb {
-                    filter: brightness(75%);
-                }
-                .container {
-                    position: relative;
-                }
-                .top-left {
-                    position: absolute;
-                    top: 50%;
-                    left: 100%;
-                    transform: translate(-100%, -50%);
-                }
-                .centered {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-					text-shadow: rgb(0, 0, 0) 0px 0px 10px;
-                  }
-                </style>
-
 				<script>
 				$(document).ready(function(){
 					var status = $('#status');
@@ -93,9 +71,9 @@
 									var erro = response[index]['erro'];
 									var thumb = response[index]['thumb'];
 									if (erro){
-										$('#preview').prepend(\"<div class='col mb-4 container'><img class='thumb shadow rounded-xl w-100' src='imagens/thumb_imagem.jpg'><div class='centered'><text class='h6'>\"+tit+\"<br>\"+erro+\"</text></div></div>\");
+										$('#preview').prepend(\"<div class='col mb-4 container'><div class='rounded-xl'><img class='shadow rounded-xl w-100' src='imagens/thumb_imagem.jpg'><div class='texto-container h6'>\"+erro+\"</div></div></div>\");
 									} else {
-											$('#preview').prepend(\"<div class='col mb-4 container'><a class='text-light' href='\"+link+\"' target='_blank'><img class='thumb shadow rounded-xl w-100' src='\"+thumb+\"'><div class='centered'><text class='h6'>\"+tit+\"</text></div></a></div>\");
+										$('#preview').prepend(\"<div class='col mb-4 container'><a class='text-light' href='\"+link+\"'><div class='rounded-xl inset-shadow'><img class='shadow rounded-xl w-100' src='\"+thumb+\"'><div class='texto-container-bottom h6'>\"+tit+\"</div></div></a></div>\");
 									}
 								}
 							}

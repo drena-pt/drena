@@ -119,7 +119,7 @@ if ($bd->query("INSERT INTO med_thu (id, med) VALUES('".$codigoThumb."', '".$cod
 }
 
 # Regista o vídeo na base de dados
-if ($bd->query("INSERT INTO med (id, uti, nom, tip, est, thu) VALUES('".$codigoMedia."', '".$uti['id']."', '".$ficheiro['name']."', '1', '".$estado."', '".$codigoThumb."');") === FALSE) {
+if ($bd->query("INSERT INTO med (id, uti, nom, tit, tip, est, thu) VALUES('".$codigoMedia."', '".$uti['id']."', '".$ficheiro['name']."', '".substr($ficheiro['name'],0,strrpos($ficheiro['name'],'.'))."', '1', '".$estado."', '".$codigoThumb."');") === FALSE) {
     $erro = "Erro mysqli:".$bd->error;
     goto criarJson;
 }

@@ -51,6 +51,7 @@ input, .btn {
 
 .container {
   position: relative;
+  z-index: 1;
 }
 
 .container .inset-shadow {
@@ -60,7 +61,7 @@ input, .btn {
 
 .container img {
   position: relative;
-  z-index: -2;
+  z-index: -1;
 }
 
 .texto-container {

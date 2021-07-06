@@ -93,9 +93,9 @@
 					var m = Math.floor(d % 3600 / 60);
 					var s = Math.floor(d % 3600 % 60);
 				
-					var hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : '';
-					var mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : '';
-					var sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : '';
+					var hDisplay = h > 0 ? h + (h == 1 ? ' "._('hora').", ' : ' "._('horas').", ') : '';
+					var mDisplay = m > 0 ? m + (m == 1 ? ' "._('minuto').", ' : ' "._('minutos').", ') : '';
+					var sDisplay = s > 0 ? s + (s == 1 ? ' "._('segundo')."' : ' "._('segundos')."') : '';
 					return hDisplay + mDisplay + sDisplay; 
 				}
 				var myaudios = [];

@@ -121,6 +121,7 @@ $modal-inner-padding: 0;
 }
 .container {
 	position: relative;
+	z-index: 1;
 }
 .container .inset-shadow{
 	-webkit-box-shadow: inset 0px -50px 21px -13px rgba(0,0,0,0.6);
@@ -129,7 +130,7 @@ $modal-inner-padding: 0;
 .container img{
 	//filter: brightness(75%);
 	position: relative;
-	z-index: -2;
+	z-index: -1;
 }
 .texto-container {
 	position: absolute;

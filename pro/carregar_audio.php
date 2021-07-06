@@ -44,7 +44,7 @@ if (!(move_uploaded_file($ficheiro['tmp_name'],$ficheiro_ori_caminho))){
 }
 
 #Regista o áudio na base de dados
-if ($bd->query("INSERT INTO med (id, uti, nom, tip) VALUES('".$codigo."', '".$uti['id']."', '".$ficheiro['name']."', '2');") === FALSE) {
+if ($bd->query("INSERT INTO med (id, uti, nom, tit, tip) VALUES('".$codigo."', '".$uti['id']."', '".$ficheiro['name']."', '".substr($ficheiro['name'],0,strrpos($ficheiro['name'],'.'))."', '2');") === FALSE) {
     $erro = "Erro mysqli:".$bd->error;
     goto criarJson;
 }

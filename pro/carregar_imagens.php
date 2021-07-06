@@ -91,6 +91,8 @@ for($index = 0;$index < $countfiles;$index++){
 
             // Upload file
             if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+               $nom = $_FILES['files']['name'][$index];# Nome da imagem
+               $tit = substr($nom,0,strrpos($nom,'.'));# Título da imagem
 
                # Processa a thumbnail para o tamanho ideal
                resize_crop_image(640, 480, $path, $caminhoThumb, 30);
@@ -99,10 +101,10 @@ for($index = 0;$index < $countfiles;$index++){
                $bd->query("INSERT INTO med_thu (id, med) VALUES('".$codigoThumb."', '".$codigo."');");
 
                #Regista a imagem na base de dados
-               $bd->query("INSERT INTO med (id, uti, nom, tip, thu) VALUES('".$codigo."', '".$uti['id']."', '".$_FILES['files']['name'][$index]."', '3', '".$codigoThumb."');");
+               $bd->query("INSERT INTO med (id, uti, nom, tit, tip, thu) VALUES('".$codigo."', '".$uti['id']."', '".$nom."', '".$tit."', '3', '".$codigoThumb."');");
 
                # Adiciona ao Json
-               $files_arr[] = array("link"=>"https://drena.xyz/media?id=".$codigo,"thumb"=>"https://media.drena.xyz/thumb/".$codigoThumb.".jpg","tit"=>$_FILES['files']['name'][$index]);
+               $files_arr[] = array("link"=>"https://drena.xyz/media?id=".$codigo,"thumb"=>"https://media.drena.xyz/thumb/".$codigoThumb.".jpg","tit"=>$tit);
                
             } else {
                $erro = "Não foi possivel carregar o ficheiro.";
