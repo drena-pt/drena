@@ -34,12 +34,12 @@ $box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 	src: url("../fontes/MADE TOMMY Regular.otf");
 }
 @font-face{
-	font-family: "MADE TOMMY Medium";
-	src: url("../fontes/MADE TOMMY Medium.otf");
+	font-family: "MADE TOMMY Bold";
+	src: url("../fontes/MADE TOMMY Bold.otf");
 }
 @font-face{
-	font-family: "MADE TOMMY Medium Outline";
-	src: url("../fontes/MADE TOMMY Medium Outline.otf");
+	font-family: "MADE TOMMY Bold Outline";
+	src: url("../fontes/MADE TOMMY Bold Outline.otf");
 }
 @font-face{
 	font-family: "SourceSansPro";
@@ -47,7 +47,7 @@ $box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 }
 
 $font-family-sans-serif: "SourceSansPro", Helvetica, Arial, sans-serif !default;
-$headings-font-family: "MADE TOMMY Medium" !default;
+$headings-font-family: "MADE TOMMY Bold" !default;
 .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: "MADE TOMMY Regular"!important;
 }
@@ -109,7 +109,7 @@ $modal-inner-padding: 0;
 
 //Criado por mim:
 .text-outline{
-	font-family: "MADE TOMMY Medium Outline";
+	font-family: "MADE TOMMY Bold Outline";
 }
 .rounded-xl{
 	border-radius: 10px;
