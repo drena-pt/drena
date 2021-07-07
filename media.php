@@ -13,7 +13,7 @@
 		<?php require('cabeçalho.php'); ?>
 		<div id="swup" class="transition-fade">
 		<?php
-		if (!$med){
+		if (!$med OR ($med['pri']==1 AND $med['uti']!=$uti['id'])){
 			echo "<h2 class='my-5 text-center'>"._('Média não encontrada!')." 😵</h2>‍";
 			exit;
 		} else {
@@ -238,7 +238,21 @@
 								<button class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_eliminar."\">
 									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
 								</button>
-							</span>
+							</span>";
+
+							if ($med['pri']==1){
+								$t_privado = _('Tornar público');
+								$i_privado = "lock";
+								$bg_privado = "primary";
+							} else {
+								$t_privado = _('Tornar privado');
+								$i_privado = "unlock";
+								$bg_privado = "light";
+							}
+							echo "
+							<a href='pro/med.php?ac=privar&id=".$med['id']."' role='button' class='btn btn-".$bg_privado." ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_privado."\">
+								<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#".$i_privado."'/></svg>
+							</a>
 
 							<!-- Modal Alterar título -->
 							<div class='modal fade' id='modal_alerar_tit' tabindex='-1' role='dialog' aria-labelledby='modal_alerar_tit_label' aria-hidden='true'>

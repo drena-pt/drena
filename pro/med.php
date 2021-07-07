@@ -52,7 +52,22 @@ if ($med){ # Se a média existir
         
         } else if ($ac=='titulo'){ # Alterar título da média
             if ($_POST['tit']){
-                if ($bd->query("UPDATE med SET tit='".$_POST['tit']."' WHERE id='".$_GET['id']."'") === FALSE) {
+                if ($bd->query("UPDATE med SET tit='".addslashes($_POST['tit'])."' WHERE id='".$med['id']."'") === FALSE) {
+                    echo "Erro:".$bd->error;
+                    exit;
+                }
+            }
+            header("Location: ".$_SERVER['HTTP_REFERER']);
+            exit;
+
+        } else if ($ac=='privar'){ # Alterar privacidade
+            if ($med['pri']=='1'){
+                if ($bd->query("UPDATE med SET pri='0' WHERE id='".$med['id']."'") === FALSE) {
+                    echo "Erro:".$bd->error;
+                    exit;
+                }
+            } else {
+                if ($bd->query("UPDATE med SET pri='1' WHERE id='".$med['id']."'") === FALSE) {
                     echo "Erro:".$bd->error;
                     exit;
                 }

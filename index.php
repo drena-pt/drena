@@ -43,7 +43,7 @@ if ($uti){
 				<h1 class='display-3 m-5'>".strtoupper(_('Ultimos vídeos'))."</h1>
                 <div class='row row-cols-2 row-cols-md-3'>
                 ";
-                $pesquisa = "SELECT * FROM med WHERE tip='1' ORDER by den DESC LIMIT 12";
+                $pesquisa = "SELECT * FROM med WHERE tip='1' AND pri=0 ORDER by den DESC LIMIT 15";
                 if ($resultado = $bd->query($pesquisa)) {
                     while ($campo = $resultado->fetch_assoc()) {
                         if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}

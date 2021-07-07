@@ -16,11 +16,17 @@ if ($ac=='lista'){
         exit;
     }
 
+    #Pesquisa média sem albums
+    if ($uti_perfil['id']==$uti['id']){
+        $med_pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND tip='".$_GET['tip']."' AND alb IS NULL ORDER BY den DESC";
+    } else {
+        $med_pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND tip='".$_GET['tip']."' AND alb IS NULL AND pri=0 ORDER BY den DESC";
+    }
+
     switch($_GET['tip']){
 
         case 1:
-            $pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND tip='1' ORDER by den DESC";
-            if ($resultado = $bd->query($pesquisa)) {
+            if ($resultado = $bd->query($med_pesquisa)) {
                 
                 echo "
                 <div class='p-xl-5 p-4'><h1>"._('Vídeos')."</h1></div>
@@ -45,8 +51,7 @@ if ($ac=='lista'){
             break;
 
         case 2:
-            $pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND tip='2' ORDER by den DESC";
-            if ($resultado = $bd->query($pesquisa)) {
+            if ($resultado = $bd->query($med_pesquisa)) {
                 
                 echo "
                 <div class='p-xl-5 p-4'><h1>"._('Áudios')."</h1></div>
@@ -75,8 +80,8 @@ if ($ac=='lista'){
             echo "<div class='p-xl-5 p-4'><h1>"._('Imagens')."</h1></div>";
 
             #Álbuns de imagens
-            $pesquisa = "SELECT * FROM med_alb WHERE uti='".$uti_perfil['id']."' AND tip='3'";
-            if ($resultado = $bd->query($pesquisa)) {
+            $alb_pesquisa = "SELECT * FROM med_alb WHERE uti='".$uti_perfil['id']."' AND tip='".$_GET['tip']."' ORDER BY dcr DESC";
+            if ($resultado = $bd->query($alb_pesquisa)) {
                 echo "
                 <div class='row row-cols-1 row-cols-md-2'>
                 ";
@@ -97,8 +102,7 @@ if ($ac=='lista'){
             }
 
             #Imagens sem álbum
-            $pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND tip='3' AND alb IS NULL ORDER by den DESC";
-            if ($resultado = $bd->query($pesquisa)) {
+            if ($resultado = $bd->query($med_pesquisa)) {
                 
                 echo "
                 <div class='row row-cols-2 row-cols-md-3'>";

@@ -8,7 +8,7 @@
 		
 		if ($_POST['pro_tit']){
 			if ($per){
-				if ($bd->query("UPDATE pro SET tit='".$_POST['pro_tit']."' WHERE id='".$pro['id']."'") === FALSE) {
+				if ($bd->query("UPDATE pro SET tit='".addslashes($_POST['pro_tit'])."' WHERE id='".$pro['id']."'") === FALSE) {
 					echo "Erro:".$bd->error;
 					exit;
 				}

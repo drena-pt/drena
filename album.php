@@ -115,9 +115,16 @@
 			";
 			}
 
+			#Pesquisa por média
+			if ($alb['uti']==$uti['id']){
+				$pesquisa = "SELECT * FROM med WHERE alb='".$alb['id']."' ORDER by den DESC";
+			} else { #Oculta média privada
+				$pesquisa = "SELECT * FROM med WHERE alb='".$alb['id']."' AND pri=0 ORDER by den DESC";
+			}
+
 			#Conteúdo
 			echo "<section id='conteudo'>";
-            if ($resultado = $bd->query("SELECT * FROM med WHERE alb='".$alb['id']."' ORDER by den DESC")){
+            if ($resultado = $bd->query($pesquisa)){
 				echo "<div class='my-4 row row-cols-2 row-cols-md-3'>";
                 while ($campo = $resultado->fetch_assoc()) {
                     if ($campo['tit']){$imagem_tit = $campo['tit'];} else {$imagem_tit = $campo['nom'];}
