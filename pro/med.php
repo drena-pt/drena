@@ -24,17 +24,17 @@ if ($med){ # Se a média existir
                 $caminho_img = $caminho.'img/'.$med['id'].'.'.$med_ext; # Imagem
                 unlink($caminho_img);
     
-                $caminho_webm = $caminho.'webm/'.$med['id'].'.webm';    # Comprimido
-                unlink($caminho_webm);
+                $caminho_comprimido = $caminho.'comp/'.$med['id'].'.mp4';    # Comprimido
+                unlink($caminho_comprimido);
 
-                $caminho_convertido = $caminho.'conv/'.$med['id'].'.webm'; # Convertido
+                $caminho_convertido = $caminho.'conv/'.$med['id'].'.mp4'; # Convertido
                 unlink($caminho_convertido);
             
                 $caminho_thumb = $caminho.'thumb/'.$med['thu'].'.jpg';  # Thumb
                 unlink($caminho_thumb);
     
                 # Se existir algum dos ficheiros que supostamente foram apagados
-                if (file_exists($caminho_ori) OR file_exists($caminho_som) OR file_exists($caminho_img) OR file_exists($caminho_webm) OR file_exists($caminho_convertido) OR file_exists($caminho_thumb)){
+                if (file_exists($caminho_ori) OR file_exists($caminho_som) OR file_exists($caminho_img) OR file_exists($caminho_comprimido) OR file_exists($caminho_convertido) OR file_exists($caminho_thumb)){
                     echo "Erro: Não foi possivel remover os ficheiros.";
                 } else if ($bd->query("DELETE FROM med_com WHERE med='".$med['id']."'") === FALSE) {
                     echo "Erro mysql: ".$bd->error;

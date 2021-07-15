@@ -34,12 +34,12 @@ if ($med){
         $caminho = "/home/guilha/www/media.drena.xyz/";
         $med_ext = end(explode(".", $med['nom'])); # Extensão do vídeo
         $caminho_ori = $caminho."ori/".$med['id'].".".$med_ext; # Caminho do vídeo original
-        $caminho_webm = $caminho."webm/".$med['id'].".webm"; # Caminho do vídeo comprimido
-        $caminho_convertido = $caminho."conv/".$med['id'].".webm"; # Caminho do vídeo comprimido
+        $caminho_comprimido = $caminho."comp/".$med['id'].".mp4"; # Caminho do vídeo comprimido
+        $caminho_convertido = $caminho."conv/".$med['id'].".mp4"; # Caminho do vídeo comprimido
 
         if ($med['est']=='1'){ # Se o estado for 1. (Tem bitrate alto e não têm compressão)
             
-            if (file_exists($caminho_webm)){
+            if (file_exists($caminho_comprimido)){
                 echo "Erro: O vídeo já foi comprimido";
                 exit;
             }
@@ -81,13 +81,13 @@ if ($med){
 
                 $video = $ffmpeg->open($caminho_ori); # Carrega o vídeo no ffmpeg para futuras ações.
 
-                # Renderiza o vídeo em WebM
+                # Renderiza o vídeo em X264
                 $video->filters()->resize(new FFMpeg\Coordinate\Dimension($novo_width, $novo_height));
-                $format = new FFMpeg\Format\Video\WebM();
+                $format = new FFMpeg\Format\Video\X264('libmp3lame','libx264');
                 $video
-                    ->save($format, $caminho_webm);
+                    ->save($format, $caminho_comprimido);
 
-                if (file_exists($caminho_webm)){
+                if (file_exists($caminho_comprimido)){
                     # Muda o estado na base de dados para 3 (comprimido)
                     if ($bd->query("UPDATE med SET est='3' WHERE id='".$med["id"]."';") === FALSE) {
                         echo "Erro mysqli: ".$bd->error;
@@ -140,8 +140,8 @@ if ($med){
 
                 $video = $ffmpeg->open($caminho_ori); # Carrega o vídeo no ffmpeg para futuras ações.
 
-                # Renderiza o vídeo em WebM
-                $format = new FFMpeg\Format\Video\WebM();
+                # Renderiza o vídeo em X264
+                $format = new FFMpeg\Format\Video\X264('libmp3lame','libx264');
                 $format
                     ->setKiloBitrate(substr($bitrate,0,-3));
                 $video

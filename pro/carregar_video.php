@@ -124,7 +124,7 @@ if ($bd->query("INSERT INTO med (id, uti, nom, tit, tip, est, thu) VALUES('".$co
     goto criarJson;
 }
 
-if ($estado==4){ # Converte o vídeo para WebM se o codec não for suportado para web
+if ($estado==4){ # Converte o vídeo para X264 se o codec não for suportado para web
     exec("php /home/guilha/www/drena.xyz/pro/med_compressao.php ".$codigoMedia." > /dev/null &");
 }
 

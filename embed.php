@@ -54,12 +54,12 @@ if ($med){
 				<video-js poster='https://media.drena.xyz/thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-fantasy js-focus-invisible vjs-16-9' controls preload='auto'>
 					";
 					if ($med['est']=='3'){ # Se o estado for 3 (comprimido).
+						echo "<source src='https://media.drena.xyz/comp/".$med["id"].".mp4' label='Comprimido' selected='true'>";
 						echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original'>";
-						echo "<source src='https://media.drena.xyz/webm/".$med["id"].".webm' label='Comprimido' selected='true'>";
 					} else {
 						$tem_seletorQualidade='//';
 						if ($med['est']=='5'){ # Se o estado for 5 (convertido).
-							echo "<source src='https://media.drena.xyz/conv/".$med["id"].".webm' label='Convertido'>";
+							echo "<source src='https://media.drena.xyz/conv/".$med["id"].".mp4' label='Convertido'>";
 						} else {
 							echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original'>";
 						}
