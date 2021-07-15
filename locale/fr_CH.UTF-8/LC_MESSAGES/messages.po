@@ -4,10 +4,10 @@
 #. -------- LOGIN & REGISTER --------
 
 msgid "Entrar"
-msgstr "Connexion"
+msgstr "Identifiant"
 
 msgid "Utilizador"
-msgstr "Nom d'utilisateur"
+msgstr "Pseudo"
 
 msgid "Palavra-passe"
 msgstr "Mot de passe"
@@ -16,31 +16,31 @@ msgid "Iniciar sessão"
 msgstr "Commencer la session"
 
 msgid "Criar uma conta"
-msgstr "Créer un compte"
+msgstr "Créer une compte"
 
 msgid "Sair"
-msgstr "Déconnexion"
+msgstr "Déconnecter"
 
 msgid "Registo"
-msgstr "Registre"
+msgstr "Registrer"
 
 msgid "O teu nome verdadeiro"
-msgstr "Votre nom réel"
+msgstr "Votre Prenom"
 
 msgid "Nome de utilizador"
-msgstr "Nom d'utilisateur"
+msgstr "Pseudo"
 
 msgid "Repetir a palavra-passe"
 msgstr "Répéter le mot de passe"
 
 msgid "Adicionar um email"
-msgstr "Ajouter un email"
+msgstr "Votre email"
 
 msgid "Alterar email"
-msgstr "Changer d'email"
+msgstr "Changer Votre email"
 
 msgid "Endereço de email"
-msgstr "Adress e-mail"
+msgstr "Adresse e-mail"
 
 msgid "Novo endereço de email"
 msgstr "Nouvelle adresse e-mail"
@@ -49,13 +49,13 @@ msgid "Confirmar email"
 msgstr "Confirme l'email"
 
 msgid "Confirmar ativação da conta"
-msgstr "Confirmer les activations de compte"
+msgstr "Confirmer les activations du compte"
 
 msgid "Enviámos um código de verificação para %s"
 msgstr "Un courriel de vérification a été envoyé à %s"
 
 msgid "Pode demorar algum tempo até o email chegar, verifica na caixa de spam."
-msgstr "L'e-mail peut prendre un certain temps avant d'arriver dans votre boîte de réception, vérifiez les spams."
+msgstr "Le-mail peut prendre du temps a arriver dans votre boîte de réception. Sinon, vérifiez les spams."
 
 msgid "Código de verificação"
 msgstr "Code de vérification"
@@ -76,13 +76,13 @@ msgid "Recuperar conta"
 msgstr "Récupérer le compte"
 
 msgid "Se não te lembras da tua palavra-passe, insere o teu email associado à conta."
-msgstr "Si vous ne vous souvenez pas de votre mot de passe, tapez l'adresse électronique associée au compte."
+msgstr "Si vous ne vous souvenez pas de votre mot de passe, entrez l'adresse électronique associée au compte."
 
 msgid "Palavra-passe alterada"
 msgstr "Mot de passe modifié"
 
 msgid "A palavra-passe foi alterada com sucesso, já podes iniciar sessão!"
-msgstr "Le mot de passe a été changé avec succès, vous pouvez vous connecter !"
+msgstr "Le mot de passe a été changé avec succès, vous pouvez maintenant vous connecter !"
 
 msgid "Alterar a palavra-passe"
 msgstr "Modifier le mot de passe"
@@ -113,10 +113,10 @@ msgid "Administrar"
 msgstr "Gérer"
 
 msgid "Configurações"
-msgstr "Paramètres"
+msgstr "Configuration"
 
 msgid "Alterar título"
-msgstr "Changer de titre"
+msgstr "Changer le titre"
 
 msgid "Cancelar"
 msgstr "Annuler"
@@ -125,7 +125,7 @@ msgid "Fechar"
 msgstr "Fermer"
 
 msgid "Alterar"
-msgstr "Changement"
+msgstr "Changer"
 
 msgid "Eliminar"
 msgstr "Supprimer"
@@ -151,7 +151,7 @@ msgid "Perfil"
 msgstr "Profil"
 
 msgid "Alterar foto"
-msgstr "Changer de photo"
+msgstr "Modifier photo"
 
 msgid "Utilizador desde %s de"
 msgstr "Utilisateur depuis %s"
@@ -160,7 +160,7 @@ msgid "Lista de conhecidos"
 msgstr "Liste de connaissances"
 
 msgid "São conhecidos"
-msgstr "Sont des connaissances"
+msgstr "Les connaissances"
 
 msgid "Remover conhecido"
 msgstr "Supprimer une connaissance"
@@ -176,6 +176,9 @@ msgstr "Demande envoyée"
 
 msgid "Cancelar pedido"
 msgstr "Annuler la demande"
+
+msgid "Obrigado por te registares na drena, fica à vontade para partilhares as tuas coisas."
+msgstr "Nous vous remercions d’être partie de Drena, n’hésitez pas à partager vos affaires."
 
 
 
@@ -266,7 +269,7 @@ msgid "Publicado por"
 msgstr "Publié par"
 
 msgid "gostos"
-msgstr "aime"
+msgstr "aimes"
 
 msgid "há %s"
 msgstr "%s depuis"
@@ -316,10 +319,10 @@ msgid "Espera 5 minutos antes de reenviar um email."
 msgstr "Attendez 5 minutes avant d'envoyer un nouvel e-mail."
 
 msgid "Excedeste o limite de emails."
-msgstr "Vous avez dépassé la limite des emails."
+msgstr "Vous avez dépassé la limite d’emails."
 
 msgid "Utilizador inválido."
-msgstr "Cet utilisateur n'est pas valide."
+msgstr "Ce utilisateur n'est pas valide."
 
 msgid "A palavra-passe está errada."
 msgstr "Mot de passe incorrect."
@@ -405,3 +408,160 @@ msgstr "novembre"
 
 msgid "dezembro"
 msgstr "décembre"
+
+
+
+
+#. ---------------- NOVAS ----------------
+
+
+
+
+
+
+#. -------- MAIN --------
+
+msgid "Criado por %s"
+msgstr "Créer %s"
+
+msgid "Bem vindo!"
+msgstr "Bienvenue!"
+
+msgid "A carregar..."
+msgstr "Télécharger..."
+
+msgid "Procurar"
+msgstr "Cherche"
+
+msgid "Ex: utilizador, vídeo, projeto..."
+msgstr "E.g. pseudo, vidéo, projet..."
+
+msgid "Título"
+msgstr "Titre"
+
+msgid "Aviso"
+msgstr "Attention"
+
+msgid "Concluído"
+msgstr "Complet"
+
+msgid "Visibilidade"
+msgstr "Visibilité"
+
+msgid "Invisível"
+msgstr "Invisible"
+
+msgid "Mover para baixo"
+msgstr "Déplacer vers le bas"
+
+msgid "Mover para cima"
+msgstr "Déplacer vers le haut"
+
+msgid "Guardar"
+msgstr "Sauvegarder"
+
+
+
+#. -------- MEDIA --------
+
+msgid "Média não encontrada!"
+msgstr "Médias introouvable!"
+
+msgid "Comentário"
+msgstr "Commenter"
+
+msgid "Adicionar um comentário"
+msgstr "Ajouter une remarque"
+
+msgid "Comentar"
+msgstr "Remarque"
+
+msgid "Alterar miniatura"
+msgstr "Changer la vignette"
+
+msgid "Eliminar comentário"
+msgstr "Enlever la Remarque"
+
+msgid "Comentado por %s"
+msgstr "Commenter by %s"
+
+
+
+#. -------- VIDEO --------
+
+msgid "Comprimir vídeo"
+msgstr "Compresse la vidéo"
+
+msgid "O vídeo está a ser processado..."
+msgstr "La vidéo est en processus..."
+
+msgid "A qualidade do vídeo é elevada, e pode comprometer a visualização em conexões mais lentas. Comprima o vídeo."
+msgstr "La qualité de la vidéo est trop haute, ceci peut compromettre la vidéo dans des connexions lentes. Compressez la vidéo s’il vous plait."
+
+msgid "O vídeo está a ser convertido porque a codificação não é suportada."
+msgstr "La vidéo est en train d’être converti a cause du codification non prise en charge."
+
+
+
+#. -------- PROJECTS --------
+
+msgid "Nova secção"
+msgstr "Nouveau section"
+
+msgid "Eliminar projeto"
+msgstr "Imprimer projet"
+
+msgid "Editar texto"
+msgstr "Editeur de texte"
+
+msgid "Secção"
+msgstr "Section"
+
+
+
+#. -------- ALBUMS --------
+
+msgid "Adicionar a um álbum"
+msgstr "Ajouter au Album"
+
+msgid "Criar álbum"
+msgstr "Créer album"
+
+msgid "Álbum de %s"
+msgstr "%s album"
+
+msgid "Eliminar álbum"
+msgstr "Imprimer album"
+
+
+#. -------- COLOR --------
+
+msgid "Cor"
+msgstr "Couleur"
+
+msgid "Preto"
+msgstr "Noir"
+
+msgid "Branco"
+msgstr "Blanc"
+
+msgid "Azul"
+msgstr "Bleu"
+
+msgid "Verde"
+msgstr "Vert"
+
+msgid "Amarelo"
+msgstr "Jaune"
+
+msgid "Vermelho"
+msgstr "Rouge"
+
+msgid "Rosa"
+msgstr "Rose"
+
+msgid "Ciano"
+msgstr "Cyan"
+
+msgid "Roxo"
+msgstr "Violet"

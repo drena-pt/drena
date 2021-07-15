@@ -126,7 +126,7 @@ if ($ac=='lista'){
             break;
 
         default:
-            $pesquisa = "SELECT * FROM pro WHERE uti='".$uti_perfil['id']."'";
+            $pesquisa = "SELECT * FROM pro WHERE uti='".$uti_perfil['id']."' ORDER BY dcr DESC";
             if ($resultado = $bd->query($pesquisa)) {
 
                 echo "

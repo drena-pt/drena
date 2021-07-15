@@ -94,7 +94,13 @@
 							break;
 					}
 					echo "
-						<div class='d-flex flex-row-reverse mb-3'>";
+						<div class='row my-3'>
+							<div class='col'>
+								<text class='h5 my-auto me-auto'>".$med_tit."</text>
+							</div>
+
+							<div class='col'>
+							";
 
 						if ($uti['id']==$med_uti['id']){ # Botões de gestão de média, para o utilizador dono
 							if ($med['tip']=='1' OR $med['tip']=='2'){ # Caso seja um vídeo ou um áudio, para mudar thumbnail
@@ -293,8 +299,9 @@
 							";
 						}
 						echo "
-						<text class='h5 my-auto me-auto'>".$med_tit."</text>
+							</div>
 						</div>
+
 						<section class='mt-auto'>
 							<!--<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
