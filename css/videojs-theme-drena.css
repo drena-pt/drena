@@ -225,3 +225,37 @@
   text-shadow: none;
   box-shadow: none;
 }
+
+
+
+
+
+
+.vjs-menu-button-popup .vjs-menu .vjs-menu-content{
+	font-family: "SourceSansPro","sans-serif" !important;
+  background-color: rgba(51, 51, 51, 0.80);
+  border-radius: 10px;
+  bottom: 3em;
+}
+.vjs-menu li.vjs-menu-item:focus, .vjs-menu li.vjs-menu-item:hover, .js-focus-visible .vjs-menu li.vjs-menu-item:hover {
+  background-color: rgba(51, 51, 51, 1);
+}
+.vjs-menu li.vjs-selected, .vjs-menu li.vjs-selected:focus, .vjs-menu li.vjs-selected:hover, .js-focus-visible .vjs-menu li.vjs-selected:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+.vjs-menu li{
+  padding: 0.8em;
+}
+.vjs-menu li.vjs-selected{
+  color: #000;
+}
+.video-js .vjs-time-tooltip {
+	font-family: "SourceSansPro","sans-serif" !important;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 2em;
+  font-size: 12px !important;
+}
+.vjs-mouse-display .vjs-time-tooltip, .vjs-mouse-display .vjs-volume-tooltip{
+  background-color: rgba(51, 51, 51, 0.80);
+  border-radius: 2em;
+}

@@ -5,8 +5,26 @@ ob_get_clean();
 session_start();
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));	# Utilizador dono
-echo $med_anterior['id'];
 if ($med){
+
+	# Formatar Bytes
+	function formatSizeUnits($bytes){
+		if ($bytes >= 1073741824){
+			$bytes = number_format($bytes / 1073741824, 2) . ' GB';
+		}elseif ($bytes >= 1048576){
+			$bytes = number_format($bytes / 1048576, 2) . ' MB';
+		}elseif ($bytes >= 1024){
+			$bytes = number_format($bytes / 1024, 2) . ' KB';
+		}elseif ($bytes > 1){
+			$bytes = $bytes . ' bytes';
+		}elseif ($bytes == 1){
+			$bytes = $bytes . ' byte';
+		}else{
+			$bytes = '0 bytes';
+		}
+		return $bytes;
+	}
+
 	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}	# Definir título
 	if ($_GET['titulo']=='0'){$tem_titulo='//';}								# Se a variavel passada pelo o url "titulo" for 0, comenta o script.
 	echo "
@@ -54,14 +72,14 @@ if ($med){
 				<video-js poster='https://media.drena.xyz/thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-fantasy js-focus-invisible vjs-16-9' controls preload='auto'>
 					";
 					if ($med['est']=='3'){ # Se o estado for 3 (comprimido).
-						echo "<source src='https://media.drena.xyz/comp/".$med["id"].".mp4' label='Comprimido' selected='true'>";
-						echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original'>";
+						echo "<source src='https://media.drena.xyz/comp/".$med["id"].".mp4' label='Comprimido <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/comp/".$med["id"].".mp4"))."' selected='true'>";
+						echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))))."'>";
 					} else {
 						$tem_seletorQualidade='//';
 						if ($med['est']=='5'){ # Se o estado for 5 (convertido).
-							echo "<source src='https://media.drena.xyz/conv/".$med["id"].".mp4' label='Convertido'>";
+							echo "<source src='https://media.drena.xyz/conv/".$med["id"].".mp4' label='Convertido <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/conv/".$med["id"].".mp4"))."'>";
 						} else {
-							echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original'>";
+							echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/".$med["id"].".".end(explode(".", $med['nom']))))."'>";
 						}
 					}
 					echo "
