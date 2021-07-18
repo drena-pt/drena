@@ -6,6 +6,13 @@
 			if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															# Definir título
 			$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									# Utilizador dono
 			$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';"));	# Informações do gosto do utilizador logado
+		
+			echo "
+			<!-- Tags de motor de pequisa -->
+			<meta property='og:title' content='".$med_tit."'/>
+			<meta property='og:type' content='video.other' />
+			<meta property='og:image' content='https://media.drena.xyz/thumb/".$med["thu"].".jpg' />
+			";
 		}
 		?>
 	</head>
@@ -94,12 +101,12 @@
 							break;
 					}
 					echo "
-						<div class='row my-3'>
-							<div class='col'>
-								<text class='h5 my-auto me-auto'>".$med_tit."</text>
+						<div class='row mb-3'>
+							<div class='col-12 col-md d-flex'>
+								<text class='h5 my-auto'>".$med_tit."</text>
 							</div>
 
-							<div class='col'>
+							<div class='col-md my-md-0 my-2 d-flex flex-md-row-reverse flex-row'>
 							";
 
 						if ($uti['id']==$med_uti['id']){ # Botões de gestão de média, para o utilizador dono
@@ -120,7 +127,7 @@
 									background-color: #000;
 								}
 								</style>
-								<label for='input_thu' role='button' class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
+								<label for='input_thu' role='button' class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
 									<span id='thumb_carregar'>
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-image'/></svg>
 									</span>
@@ -170,7 +177,7 @@
 								";
 							} else if ($med['tip']=='3'){ # Caso seja uma imagem, para adicionar a um album
 								echo "<span data-toggle='modal' data-target='#modal_albuns'>
-									<button class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Adicionar a um álbum')."\">
+									<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Adicionar a um álbum')."\">
 										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#collection'/></svg>
 									</button>
 								</span>
@@ -236,12 +243,12 @@
 							}
 							echo "
 							<span data-toggle='modal' data-target='#modal_alerar_tit'>
-								<button class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Alterar título')."'>
+								<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Alterar título')."'>
 									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#input-cursor-text'/></svg>
 								</button>
 							</span>
 							<span data-toggle='modal' data-target='#modal_eliminar_med'>
-								<button class='btn btn-light ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_eliminar."\">
+								<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_eliminar."\">
 									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
 								</button>
 							</span>";
@@ -256,7 +263,7 @@
 								$bg_privado = "light";
 							}
 							echo "
-							<a href='pro/med.php?ac=privar&id=".$med['id']."' role='button' class='btn btn-".$bg_privado." ms-2 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_privado."\">
+							<a href='pro/med.php?ac=privar&id=".$med['id']."' role='button' class='btn btn-".$bg_privado." me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_privado."\">
 								<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#".$i_privado."'/></svg>
 							</a>
 

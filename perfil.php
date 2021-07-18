@@ -166,7 +166,10 @@
 
 			echo "<br>".sprintf(_('Utilizador desde %s de'),mes(date('m',$dat)))." ".date('Y',$dat)."</div>";
 
-			$conhecidos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM ami WHERE a_id='".$uti_perfil["id"]."' AND sim=1 OR b_id='".$uti_perfil["id"]."' AND sim=1 LIMIT 1"));
+			$sql_conhecidos = "SELECT a_id, b_id FROM ami WHERE a_id='".$uti_perfil["id"]."' AND sim='1' OR b_id='".$uti_perfil["id"]."' AND sim='1' ORDER by b_dat DESC";
+			$num_conhecidos = mysqli_num_rows(mysqli_query($bd, $sql_conhecidos));
+			$conhecidos = mysqli_fetch_assoc(mysqli_query($bd, $sql_conhecidos));
+			
 			$pedidos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM ami WHERE b_id='".$uti_perfil["id"]."' AND sim=0 LIMIT 1"));
 			function mini_nut($nut){
 				if (strlen($nut)>=12){
@@ -186,16 +189,16 @@
 			<div class='bg-dark text-light p-xl-5 p-4'>
 				<section class='row'>";
 				if ($uti_perfil_projetos!=0){
-					echo "<a href='#conteudo' onclick='mostrarConteudo(0)' class='text-decoration-none col h5 text-center text-light'><span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span> "._('Projetos')."</a>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(0)' class='text-decoration-none col h5 text-center text-light'>"._('Projetos')." <span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span></a>";
 				}
 				if ($uti_perfil_audios!=0){
-					echo "<a href='#conteudo' onclick='mostrarConteudo(2)' class='text-decoration-none col h5 text-center text-light'><span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span> "._('Áudios')."</a>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(2)' class='text-decoration-none col h5 text-center text-light'>"._('Áudios')." <span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span></a>";
 				}
 				if ($uti_perfil_imagens!=0){
-					echo "<a href='#conteudo' onclick='mostrarConteudo(3)' class='text-decoration-none col h5 text-center text-light'><span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span> "._('Imagens')."</a>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(3)' class='text-decoration-none col h5 text-center text-light'>"._('Imagens')." <span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span></a>";
 				}
 				if ($uti_perfil_videos!=0){
-					echo "<a href='#conteudo' onclick='mostrarConteudo(1)' class='text-decoration-none col h5 text-center text-light'><span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span> "._('Vídeos')."</a>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(1)' class='text-decoration-none col h5 text-center text-light'>"._('Vídeos')." <span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span></a>";
 				}
 			echo "</section>
 			</div>";
@@ -205,8 +208,8 @@
 				echo "<div class='bg-dark text-light p-xl-5 px-4'>";
 
 				if ($conhecidos){
-					if ($result = $bd->query("SELECT a_id, b_id FROM ami WHERE a_id='".$uti_perfil["id"]."' AND sim='1' OR b_id='".$uti_perfil["id"]."' AND sim='1' ORDER by b_dat DESC")) {
-						echo "<text class='h5'>"._('Lista de conhecidos')."</text>
+					if ($result = $bd->query($sql_conhecidos)) {
+						echo "<text class='h5'>"._('Lista de conhecidos')." <span class='badge rounded-pill bg-gradient bg-light text-dark'>".$num_conhecidos."</span></text>
 						<div class='row my-2'>";
 						while ($row = $result->fetch_row()) {
 							echo "<div class='col-md-2 col-4 my-3 text-center'>";

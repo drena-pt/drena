@@ -22,7 +22,7 @@ async function send(){
 
     // Enviar registo
     //console.log('A enviar o registo...');
-    await fetch('https://drena.xyz:3000/subscrever', {
+    await fetch('https://drena.pt:3000/subscrever', {
         method: 'POST',
         body: JSON.stringify({
             "subscription":subscription,
