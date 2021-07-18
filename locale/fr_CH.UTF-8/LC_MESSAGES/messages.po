@@ -341,7 +341,7 @@ msgstr "années"
 
 msgid "mês"
 msgstr "mois"
-msgid "mêses"
+msgid "meses"
 msgstr "mois"
 
 msgid "semana"

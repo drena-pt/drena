@@ -37,7 +37,7 @@
 							);
 				$a_plural = array(
 							_('ano') => _('anos'),
-							_('mês') => _('mêses'),
+							_('mês') => _('meses'),
 							_('semana') => _('semanas'),
 							_('dia') => _('dias'),
 							_('hora') => _('horas'),

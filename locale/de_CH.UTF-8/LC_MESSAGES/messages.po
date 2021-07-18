@@ -338,7 +338,7 @@ msgstr "Jahren"
 
 msgid "mês"
 msgstr "Monat"
-msgid "mêses"
+msgid "meses"
 msgstr "Monaten"
 
 msgid "semana"

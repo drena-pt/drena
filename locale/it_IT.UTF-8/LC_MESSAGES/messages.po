@@ -159,7 +159,7 @@ msgstr "anni"
 
 msgid "mês"
 msgstr "mese"
-msgid "mêses"
+msgid "meses"
 msgstr "mesi"
 
 msgid "semana"
