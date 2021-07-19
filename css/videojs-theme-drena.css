@@ -1,4 +1,4 @@
-.vjs-theme-fantasy {
+.vjs-theme-drena {
   --vjs-theme-drena--primary: rgb(108, 79, 255);
   --vjs-theme-drena--secondary: #fff;
 	font-family: "SourceSansPro","sans-serif" !important;
@@ -13,7 +13,7 @@
 	src: url("/fontes/SourceSansPro.ttf");
 }
 
-.vjs-theme-fantasy .vjs-big-play-button {
+.vjs-theme-drena .vjs-big-play-button {
   width: 70px;
   height: 70px;
   background: none;
@@ -31,44 +31,45 @@
   text-transform: none !important;
 }
 
-.vjs-theme-fantasy:hover .vjs-big-play-button,
-.vjs-theme-fantasy.vjs-big-play-button:focus {
+.vjs-theme-drena:hover .vjs-big-play-button,
+.vjs-theme-drena.vjs-big-play-button:focus {
   background-color: transparent;
   color: #fff;
 }
 
-.vjs-theme-fantasy .vjs-control-bar {
+.vjs-theme-drena .vjs-control-bar {
   background-image: linear-gradient(0deg, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%);
   background-color: transparent;
   height: 54px;
 }
 
-.vjs-theme-fantasy .vjs-button > .vjs-icon-placeholder::before {
+.vjs-theme-drena .vjs-button > .vjs-icon-placeholder::before {
   line-height: 54px;
   position: relative;
   top: 0px;
 }
 
-.vjs-theme-fantasy .vjs-time-control {
+.vjs-theme-drena .vjs-time-control {
   line-height: 54px;
 }
 
 /*.vjs-icon-circle:before, .vjs-seek-to-live-control .vjs-icon-placeholder:before, .video-js .vjs-play-progress:before */
-.vjs-theme-fantasy .vjs-volume-level:before {
-  font-size: 11px;
+.vjs-theme-drena .vjs-volume-level:before {
+  font-size: 16px;
+  top: -0.35em;
 }
 
 /* Play Button */
-.vjs-theme-fantasy .vjs-play-control {
+.vjs-theme-drena .vjs-play-control {
   font-size: 1.5em;
   position: relative;
 }
 
-.vjs-theme-fantasy .vjs-volume-panel {
+.vjs-theme-drena .vjs-volume-panel {
   order: 4;
 }
 
-.vjs-theme-fantasy .vjs-volume-bar {
+.vjs-theme-drena .vjs-volume-bar {
   margin-top: 2.5em;
   height: 0.5em;
 }
@@ -82,15 +83,15 @@
   height: 100%;
 }
 
-.vjs-theme-fantasy .vjs-progress-control .vjs-progress-holder {
+.vjs-theme-drena .vjs-progress-control .vjs-progress-holder {
   font-size: 1.5em;
 }
 
-.vjs-theme-fantasy .vjs-progress-control:hover .vjs-progress-holder {
+.vjs-theme-drena .vjs-progress-control:hover .vjs-progress-holder {
   font-size: 1.5em;
 }
 
-.vjs-theme-fantasy .vjs-play-control .vjs-icon-placeholder::before {
+.vjs-theme-drena .vjs-play-control .vjs-icon-placeholder::before {
   height: 1.3em;
   width: 1.3em;
   margin-top: 0.2em;
@@ -103,16 +104,16 @@
   font-family: "bootstrap-icons";
 }
 
-.vjs-theme-fantasy .vjs-play-control:hover .vjs-icon-placeholder::before {
+.vjs-theme-drena .vjs-play-control:hover .vjs-icon-placeholder::before {
   /*border: 5px solid var(--vjs-theme-drena--secondary);*/
   border: 4px solid transparent;
 }
 
-.vjs-theme-fantasy .vjs-play-progress {
+.vjs-theme-drena .vjs-play-progress {
   background-color: var(--vjs-theme-drena--primary);
 }
 
-.vjs-theme-fantasy .vjs-play-progress::before {
+.vjs-theme-drena .vjs-play-progress::before {
   /*content: "bolinha";*/
   content: "";
   height: 0.8em;
@@ -123,31 +124,31 @@
   top: -0.25em;
 }
 
-.vjs-theme-fantasy .vjs-progress-control {
+.vjs-theme-drena .vjs-progress-control {
   font-size: 14px;
 }
 
-.vjs-theme-fantasy .vjs-fullscreen-control {
+.vjs-theme-drena .vjs-fullscreen-control {
   order: 8;
 }
 
-.vjs-theme-fantasy .vjs-remaining-time {
+.vjs-theme-drena .vjs-remaining-time {
   display: none;
 }
 
-.vjs-theme-fantasy .vjs-slider{
+.vjs-theme-drena .vjs-slider{
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-.vjs-theme-fantasy .vjs-load-progress{
+.vjs-theme-drena .vjs-load-progress{
   background: transparent;
 }
 
-.vjs-theme-fantasy .vjs-load-progress div {
+.vjs-theme-drena .vjs-load-progress div {
   background: rgba(255, 255, 255, 0.8);
 }
 
-.vjs-theme-fantasy .vjs-big-play-button .vjs-icon-placeholder:before {
+.vjs-theme-drena .vjs-big-play-button .vjs-icon-placeholder:before {
   font-family: "bootstrap-icons";
   content: "\f4f5";
   color: #fff;
@@ -157,11 +158,11 @@
   transition: 0.2s;
 }
 
-.vjs-icon-pause:before, .vjs-theme-fantasy .vjs-play-control.vjs-playing .vjs-icon-placeholder:before {
+.vjs-icon-pause:before, .vjs-theme-drena .vjs-play-control.vjs-playing .vjs-icon-placeholder:before {
   content: "\f4c4";
 }
 
-.vjs-icon-play:before, .vjs-theme-fantasy .vjs-play-control .vjs-icon-placeholder:before {
+.vjs-icon-play:before, .vjs-theme-drena .vjs-play-control .vjs-icon-placeholder:before {
   content: "\f4f5";
 }
 
@@ -169,36 +170,36 @@
   content: "\f117";
 }
 
-.vjs-theme-fantasy:hover .vjs-big-play-button .vjs-icon-placeholder:before {
+.vjs-theme-drena:hover .vjs-big-play-button .vjs-icon-placeholder:before {
   opacity: 1;
 }
 
-.vjs-icon-picture-in-picture-enter:before, .vjs-theme-fantasy .vjs-picture-in-picture-control .vjs-icon-placeholder:before {
+.vjs-icon-picture-in-picture-enter:before, .vjs-theme-drena .vjs-picture-in-picture-control .vjs-icon-placeholder:before {
   font-family: "bootstrap-icons";
   content: "\f4ef";
 }
 
-.vjs-icon-picture-in-picture-exit:before, .vjs-theme-fantasy.vjs-picture-in-picture .vjs-picture-in-picture-control .vjs-icon-placeholder:before {
+.vjs-icon-picture-in-picture-exit:before, .vjs-theme-drena.vjs-picture-in-picture .vjs-picture-in-picture-control .vjs-icon-placeholder:before {
   font-family: "bootstrap-icons";
   content: "\f4ee";
 }
 
-.vjs-icon-volume-mute:before, .vjs-theme-fantasy .vjs-mute-control.vjs-vol-0 .vjs-icon-placeholder:before {
+.vjs-icon-volume-mute:before, .vjs-theme-drena .vjs-mute-control.vjs-vol-0 .vjs-icon-placeholder:before {
   font-family: "bootstrap-icons";
   content: "\f60d";
 }
 
-.vjs-icon-volume-low:before, .vjs-theme-fantasy .vjs-mute-control.vjs-vol-1 .vjs-icon-placeholder:before {
+.vjs-icon-volume-low:before, .vjs-theme-drena .vjs-mute-control.vjs-vol-1 .vjs-icon-placeholder:before {
   font-family: "bootstrap-icons";
   content: "\f60f";
 }
 
-.vjs-icon-volume-low:before, .vjs-theme-fantasy .vjs-mute-control.vjs-vol-2 .vjs-icon-placeholder:before {
+.vjs-icon-volume-low:before, .vjs-theme-drena .vjs-mute-control.vjs-vol-2 .vjs-icon-placeholder:before {
   font-family: "bootstrap-icons";
   content: "\f60b";
 }
 
-.vjs-icon-volume-low:before, .vjs-theme-fantasy .vjs-mute-control.vjs-vol-3 .vjs-icon-placeholder:before {
+.vjs-icon-volume-low:before, .vjs-theme-drena .vjs-mute-control.vjs-vol-3 .vjs-icon-placeholder:before {
   font-family: "bootstrap-icons";
   content: "\f611";
 }
@@ -241,7 +242,7 @@
   background-color: rgba(51, 51, 51, 1);
 }
 .vjs-menu li.vjs-selected, .vjs-menu li.vjs-selected:focus, .vjs-menu li.vjs-selected:hover, .js-focus-visible .vjs-menu li.vjs-selected:hover {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 1) !important;
 }
 .vjs-menu li{
   padding: 0.8em;
@@ -249,13 +250,14 @@
 .vjs-menu li.vjs-selected{
   color: #000;
 }
-.video-js .vjs-time-tooltip {
+.vjs-theme-drena .vjs-time-tooltip, .vjs-theme-drena .vjs-volume-tooltip{
 	font-family: "SourceSansPro","sans-serif" !important;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 2em;
   font-size: 12px !important;
 }
 .vjs-mouse-display .vjs-time-tooltip, .vjs-mouse-display .vjs-volume-tooltip{
+	font-family: "SourceSansPro","sans-serif" !important;
   background-color: rgba(51, 51, 51, 0.80);
   border-radius: 2em;
 }

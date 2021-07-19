@@ -69,7 +69,7 @@ if ($med){
 		<body>";
 			if ($med['tip']==1){
 				echo "
-				<video-js poster='https://media.drena.xyz/thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-fantasy js-focus-invisible vjs-16-9' controls preload='auto'>
+				<video-js poster='https://media.drena.xyz/thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-drena js-focus-invisible vjs-16-9' controls preload='auto'>
 					";
 					if ($med['est']=='3'){ # Se o estado for 3 (comprimido).
 						echo "<source src='https://media.drena.xyz/comp/".$med["id"].".mp4' label='Comprimido <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/comp/".$med["id"].".mp4"))."' selected='true'>";
