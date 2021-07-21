@@ -7,6 +7,7 @@ if ($uti){
     echo "<script>const sub_uti_nut='".$uti['nut']."';const sub_uti_cod='".$uti_mai['cod']."';</script><script src='/js/notificacoes.js'></script>";
 }
 ?>
+    <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
@@ -43,7 +44,7 @@ if ($uti){
 				<h1 class='display-3 m-5'>".strtoupper(_('Ultimos vídeos'))."</h1>
                 <div class='row row-cols-2 row-cols-md-3'>
                 ";
-                $pesquisa = "SELECT * FROM med WHERE tip='1' AND pri=0 AND id IN ('jXLdiAOM2PeXKhm2','ZX9oLkRKrQxnP2Tz','t3JlUlWf6cMrGYDg','0QSyq8xUNWZkuYMM','h3KiWCoSGomTvaa6','a0AUV1rJmdvF5QuS','MLspJ24bLqYNWzUL','sRpMDpMnDH3RWncu','iwZMgrieKQFJS9R9','qrQ0tHiwksVPQSuG','izCORXlAQLi3BI2l','YsVNwgDBxVQ6H0ZP','pr1SAZ9R65RTWW6a','xKEfJuRSDkGLi8qu','aNJGxoBaTksTjG65','O8JZ3Avyle1ubAON','t6jNgok6DrcLFYVL','pznbakoNc0Spyv0B','IS08GjmEDlKhKAs6') ORDER by den DESC";
+                $pesquisa = "SELECT * FROM med WHERE tip='1' AND pri=0 ORDER by den DESC LIMIT 15";
                 if ($resultado = $bd->query($pesquisa)) {
                     while ($campo = $resultado->fetch_assoc()) {
                         if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}

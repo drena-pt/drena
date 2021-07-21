@@ -59,7 +59,7 @@ if ($ac=='lista'){
 
                 while ($campo = $resultado->fetch_assoc()) {
                     if ($campo['tit']){$audio_tit = $campo['tit'];} else {$audio_tit = $campo['nom'];}
-                    if ($campo['thu']){$audio_thu = "https://media.drena.xyz/thumb/".$campo['thu'].".jpg";} else {$audio_thu = "https://drena.xyz/fpe/".base64_encode($uti_perfil['fot']);}
+                    if ($campo['thu']){$audio_thu = "https://media.drena.xyz/thumb/".$campo['thu'].".jpg";} else {$audio_thu = "https://drena.pt/fpe/".base64_encode($uti_perfil['fot']);}
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>

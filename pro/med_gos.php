@@ -35,7 +35,7 @@ if ($med){	#Se a media existir
 				} else {
 					$not_tit = sprintf(_('%s gostou da tua publicação'),$uti['nut']);
 				}
-				mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $not_tit, 'https://drena.xyz/fpe/'.base64_encode($uti["fot"]), $med_tit, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
+				mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $not_tit, 'https://drena.pt/fpe/'.base64_encode($uti["fot"]), $med_tit, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
 			}
 			echo "true";
 		}

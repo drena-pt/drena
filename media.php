@@ -2,6 +2,35 @@
 		require('head.php');
 		$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 
+		function tempoPassado($ptime){
+			$etime = time() - $ptime; # Obtem o tempo que passou desde a publicação
+			if ($etime < 1){ return '0 '._('segundos'); }
+			$a = array( 31536000 => _('ano'),
+						2592000 => _('mês'),
+						604800 => _('semana'),
+						86400 => _('dia'),
+						3600 => _('hora'),
+						60 => _('minuto'),
+						1 => _('segundo')
+						);
+			$a_plural = array(
+						_('ano') => _('anos'),
+						_('mês') => _('meses'),
+						_('semana') => _('semanas'),
+						_('dia') => _('dias'),
+						_('hora') => _('horas'),
+						_('minuto') => _('minutos'),
+						_('segundo') => _('segundos')
+						);
+			foreach ($a as $secs => $str){
+				$d = $etime / $secs;
+				if ($d >= 1){
+					$r = floor($d);
+					return $r . ' ' . ($r > 1 ? $a_plural[$str] : $str);
+				}
+			}
+		}
+
 		if ($med){
 			if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															# Definir título
 			$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									# Utilizador dono
@@ -10,9 +39,23 @@
 			echo "
 			<!-- Tags de motor de pequisa -->
 			<meta property='og:title' content='".$med_tit."'/>
-			<meta property='og:type' content='video.other' />
-			<meta property='og:image' content='https://media.drena.xyz/thumb/".$med["thu"].".jpg' />
+			<meta property='og:description' content='".$med_uti['nut'].", ".sprintf(_('há %s'),tempoPassado(strtotime($med['den']))).", ".$med['gos']." "._('gostos')."'/>
+			<meta property='og:url' content='https://drena.pt/media?id=".$med['id']."'/>
+			<meta property='og:image' content='https://media.drena.xyz/thumb/".$med['thu'].".jpg'/>
+			
 			";
+
+			#Se for um vídeo
+			if ($med['tip']==1){
+				echo "<meta property='og:type' content='video' />";
+				if ($med['est']==3){ #Estado 3 (comprimido).
+					echo "<meta property='og:video' content='https://media.drena.xyz/comp/".$med["id"].".mp4' />";					
+				} else if ($med['est']==5){ #Estado 5 (convertido).
+					echo "<meta property='og:video' content='https://media.drena.xyz/conv/".$med["id"].".mp4' />";					
+				} else { #Todos os outros estados.
+					echo "<meta property='og:video' content='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' />";
+				}
+			}
 		}
 		?>
 	</head>
@@ -24,34 +67,6 @@
 			echo "<h2 class='my-5 text-center'>"._('Média não encontrada!')." 😵</h2>‍";
 			exit;
 		} else {
-			function tempoPassado($ptime){
-				$etime = time() - $ptime; # Obtem o tempo que passou desde a publicação
-				if ($etime < 1){ return '0 '._('segundos'); }
-				$a = array( 31536000 => _('ano'),
-							2592000 => _('mês'),
-							604800 => _('semana'),
-							86400 => _('dia'),
-							3600 => _('hora'),
-							60 => _('minuto'),
-							1 => _('segundo')
-							);
-				$a_plural = array(
-							_('ano') => _('anos'),
-							_('mês') => _('meses'),
-							_('semana') => _('semanas'),
-							_('dia') => _('dias'),
-							_('hora') => _('horas'),
-							_('minuto') => _('minutos'),
-							_('segundo') => _('segundos')
-							);
-				foreach ($a as $secs => $str){
-					$d = $etime / $secs;
-					if ($d >= 1){
-						$r = floor($d);
-						return $r . ' ' . ($r > 1 ? $a_plural[$str] : $str);
-					}
-				}
-			}
 			echo "<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>";
 
 				echo "<section class='bg-dark shadow'>";

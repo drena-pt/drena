@@ -83,7 +83,7 @@ if ($funcoes['notificacao']==1){
 				"icon":"'.$not_icon.'",
 				"body": "'.$not_body.'",
 				"image":"'.$not_image.'",
-				"badge": "https://drena.xyz/imagens/favicon.png",
+				"badge": "https://drena.pt/imagens/favicon.png",
 				"actions": [
 					{
 					"action": "null",
@@ -93,12 +93,13 @@ if ($funcoes['notificacao']==1){
 			}
 		}';
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, "https://drena.xyz:3000/enviar");
+		curl_setopt($ch, CURLOPT_URL, "https://drena.pt:3000/enviar");
 		curl_setopt($ch, CURLOPT_POST, 1);
 		$headers = array("content-type: application/json");
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $not_post);
 		curl_exec($ch);
+
 	}
 }
 ?>

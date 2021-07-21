@@ -53,8 +53,8 @@ if ($sec){ # Se a secção existir
                                         embedUrl: 'https://www.youtube-nocookie.com/embed/<%= remote_id %>'
                                     },
                                     drena: {
-                                        regex: /https:\/\/drena.xyz\/media\?id=([^\/\?\&]*)/,
-                                        embedUrl: 'https://drena.xyz/embed?id=<%= remote_id %>',
+                                        regex: /https:\/\/drena.pt\/media\?id=([^\/\?\&]*)/,
+                                        embedUrl: 'https://drena.pt/embed?id=<%= remote_id %>',
                                         html: \"<iframe width='100%' scrolling='no' allowfullscreen='true'></iframe>\"
                                     }
                                 }

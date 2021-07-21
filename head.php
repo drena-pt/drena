@@ -16,7 +16,7 @@ require __DIR__.'/pro/fun.php';
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" type="image/png" href="imagens/favicon.png"/>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
-		<meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
+		<meta property="og:site_name" content="drena"/>
 		<title>drena</title>
 
 		<!-- jQuery, jQuery form -->
