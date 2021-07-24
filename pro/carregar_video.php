@@ -26,8 +26,6 @@ function gerarCodigo($length){
     return $key;
 }
 
-$caminho = "/home/guilha/www/media.drena.xyz/";
-
 # Gera código unico para media
 gerarCodigo:
 $codigoMedia = gerarCodigo(16);
@@ -36,7 +34,7 @@ if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$codigoMe
     goto gerarCodigo;
 }
 
-$ficheiro_ori_caminho = $caminho."ori/".$codigoMedia.".".$ficheiro_ext;
+$ficheiro_ori_caminho = $dir_media."ori/".$codigoMedia.".".$ficheiro_ext;
 
 if (!(move_uploaded_file($ficheiro['tmp_name'],$ficheiro_ori_caminho))){
     $erro = "Não foi possivel carregar o ficheiro: ".$ficheiro['name'];
@@ -51,7 +49,7 @@ if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_thu WHERE id='".$codi
     goto gerarCodigoThumb;
 }
 
-$ficheiro_thumb_caminho = $caminho."thumb/".$codigoThumb.".jpg";
+$ficheiro_thumb_caminho = $dir_media."thumb/".$codigoThumb.".jpg";
 
 $max_bitrate = 7996544;
 # Obtem o bitrate do vídeo
@@ -125,7 +123,7 @@ if ($bd->query("INSERT INTO med (id, uti, nom, tit, tip, est, thu) VALUES('".$co
 }
 
 if ($estado==4){ # Converte o vídeo para X264 se o codec não for suportado para web
-    exec("php /home/guilha/www/drena.xyz/pro/med_compressao.php ".$codigoMedia." > /dev/null &");
+    exec("php ".$dir_site."pro/med_compressao.php ".$codigoMedia." > /dev/null &");
 }
 
 criarJson:

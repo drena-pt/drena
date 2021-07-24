@@ -77,7 +77,7 @@ for($index = 0;$index < $countfiles;$index++){
             }
 
             // File path
-            $path = "/home/guilha/www/media.drena.xyz/img/".$codigo.".".$ficheiro_ext;
+            $path = $dir_media."img/".$codigo.".".$ficheiro_ext;
 
             gerarCodigoThumb:
             $codigoThumb = gerarCodigo(16);
@@ -87,7 +87,7 @@ for($index = 0;$index < $countfiles;$index++){
             }
 
             // File path
-            $caminhoThumb = "/home/guilha/www/media.drena.xyz/thumb/".$codigoThumb.".jpg";
+            $caminhoThumb = $dir_media."thumb/".$codigoThumb.".jpg";
 
             // Upload file
             if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
@@ -104,7 +104,7 @@ for($index = 0;$index < $countfiles;$index++){
                $bd->query("INSERT INTO med (id, uti, nom, tit, tip, thu) VALUES('".$codigo."', '".$uti['id']."', '".$nom."', '".$tit."', '3', '".$codigoThumb."');");
 
                # Adiciona ao Json
-               $files_arr[] = array("link"=>"https://drena.pt/media?id=".$codigo,"thumb"=>"https://media.drena.xyz/thumb/".$codigoThumb.".jpg","tit"=>$tit);
+               $files_arr[] = array("link"=>$url_site."media?id=".$codigo,"thumb"=>$url_media."thumb/".$codigoThumb.".jpg","tit"=>$tit);
                
             } else {
                $erro = "Não foi possivel carregar o ficheiro.";

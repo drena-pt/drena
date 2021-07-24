@@ -22,8 +22,6 @@ if ($uti['adm']!='1'){
     exit;
 }
 
-$caminho = "/home/guilha/www/media.drena.xyz/";
-
 # Função para gerar um código
 function gerarCodigo($length){   
     $charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -68,11 +66,11 @@ if ($resultado = $bd->query($pesquisa)) {
             
             $extee = end(explode(".", $campo['nom']));
 
-            $caminhoThumb = $caminho."thumb/".$codigoThumb.".jpg";
+            $caminhoThumb = $dir_media."thumb/".$codigoThumb.".jpg";
 
             # Processa a thumbnail para o tamanho ideal
             if ($campo['tip']=='1'){
-                $caminhoMedia = $caminho."ori/".$campo['id'].".".$extee;
+                $caminhoMedia = $dir_media."ori/".$campo['id'].".".$extee;
 
                 # Obtem duração do vídeo
                 $video_duracao = $ffprobe
@@ -88,7 +86,7 @@ if ($resultado = $bd->query($pesquisa)) {
 
                 resize_crop_image(800, 450, $caminhoThumb, $caminhoThumb, 30);
             } else if ($campo['tip']=='3'){
-                $caminhoMedia = $caminho."img/".$campo['id'].".".$extee;
+                $caminhoMedia = $dir_media."img/".$campo['id'].".".$extee;
                 resize_crop_image(640, 480, $caminhoMedia, $caminhoThumb, 30);
             }
 

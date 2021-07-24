@@ -4,7 +4,7 @@
 		
 		if ($uti_perfil){
 			echo "
-			<meta property='og:image' content='https://drena.xyz/fpe/".base64_encode($uti_perfil['fot'])."'>
+			<meta property='og:image' content='".$url_site."fpe/".base64_encode($uti_perfil['fot'])."'>
 			<meta property='og:description' content='".$uti_perfil['nut']."'>
 			";
 		} else {

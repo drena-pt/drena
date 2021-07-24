@@ -27,10 +27,9 @@ if ($med['tip']=='1' AND $med['uti']==$uti['id']){ # Se a media for um vídeo e 
         'timeout'          => 36000
     ));
 
-    $caminho = "/home/guilha/www/media.drena.xyz/";
     $med_ext = end(explode(".", $med['nom'])); # Extensão do vídeo
-    $caminho_ori = $caminho."ori/".$med['id'].".".$med_ext; # Caminho do vídeo original
-    $caminho_webm = $caminho."webm/".$med['id'].".webm";   # Caminho do vídeo comprimido
+    $caminho_ori = $dir_media."ori/".$med['id'].".".$med_ext; # Caminho do vídeo original
+    $caminho_webm = $dir_media."webm/".$med['id'].".webm";   # Caminho do vídeo comprimido
 
     if ($med['est']=='1'){ # Se o estado for 1. (Tem bitrate alto e não têm compressão)
         

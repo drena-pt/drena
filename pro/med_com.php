@@ -39,7 +39,7 @@ if ($ac=='eliminar'){ #Se a ação for eliminar o comentário
 					} else {
 						$not_tit = sprintf(_('%s comentou a tua publicação'),$uti['nut']);
 					}
-					mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $not_tit, 'https://drena.pt/fpe/'.base64_encode($uti["fot"]), $com, 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
+					mandarNotificacao($uti['nut'], $uti_mai['cod'], $med_uti['nut'], $not_tit, $url_site.'fpe/'.base64_encode($uti["fot"]), $com, $url_media.'thumb/'.$med['thu'].'.jpg');
 				}
 				header("Location: ".$_SERVER['HTTP_REFERER']);
 			}

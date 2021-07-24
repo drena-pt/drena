@@ -1,9 +1,9 @@
 <?php
 # Composer
-require '/home/guilha/www/drena.xyz/vendor/autoload.php';
+require $dir_site."vendor/autoload.php";
 # Funções
 $funcoes['notificacao']=1;
-require '/home/guilha/www/drena.xyz/pro/fun.php';
+require $dir_site."pro/fun.php";
 
 # Obtem as informações da média na base de dados; $argv são as variáveis passadas pelo comando exec.
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$argv[1]."';"));
@@ -31,11 +31,10 @@ if ($med){
             'timeout'          => 36000
         ));
 
-        $caminho = "/home/guilha/www/media.drena.xyz/";
         $med_ext = end(explode(".", $med['nom'])); # Extensão do vídeo
-        $caminho_ori = $caminho."ori/".$med['id'].".".$med_ext; # Caminho do vídeo original
-        $caminho_comprimido = $caminho."comp/".$med['id'].".mp4"; # Caminho do vídeo comprimido
-        $caminho_convertido = $caminho."conv/".$med['id'].".mp4"; # Caminho do vídeo comprimido
+        $caminho_ori = $dir_media."ori/".$med['id'].".".$med_ext; # Caminho do vídeo original
+        $caminho_comprimido = $dir_media."comp/".$med['id'].".mp4"; # Caminho do vídeo comprimido
+        $caminho_convertido = $dir_media."conv/".$med['id'].".mp4"; # Caminho do vídeo comprimido
 
         if ($med['est']=='1'){ # Se o estado for 1. (Tem bitrate alto e não têm compressão)
             
@@ -93,7 +92,7 @@ if ($med){
                         echo "Erro mysqli: ".$bd->error;
                     } else {
                         echo "Vídeo comprimido com sucesso!";
-                        mandarNotificacao($med_uti['nut'], $med_uti_mai['cod'], $med_uti['nut'], 'Vídeo comprimido', null, $med_tit.'\nCompressão finalizada com sucesso!', 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
+                        mandarNotificacao($med_uti['nut'], $med_uti_mai['cod'], $med_uti['nut'], 'Vídeo comprimido', null, $med_tit.'\nCompressão finalizada com sucesso!', $url_media.'thumb/'.$med['thu'].'.jpg');
                     }
                 } else {
                     echo "Erro: O vídeo não foi comprimido.";
@@ -153,7 +152,7 @@ if ($med){
                         echo "Erro mysqli: ".$bd->error;
                     } else {
                         echo "Vídeo convertido com sucesso!";
-                        mandarNotificacao($med_uti['nut'], $med_uti_mai['cod'], $med_uti['nut'], 'Vídeo convertido', null, $med_tit.'\nConversão finalizada com sucesso!', 'https://media.drena.xyz/thumb/'.$med['thu'].'.jpg');
+                        mandarNotificacao($med_uti['nut'], $med_uti_mai['cod'], $med_uti['nut'], 'Vídeo convertido', null, $med_tit.'\nConversão finalizada com sucesso!', $url_media.'thumb/'.$med['thu'].'.jpg');
                     }
                 } else {
                     echo "Erro: O vídeo não foi convertido.";

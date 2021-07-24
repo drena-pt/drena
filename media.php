@@ -40,8 +40,8 @@
 			<!-- Tags de motor de pequisa -->
 			<meta property='og:title' content='".$med_tit."'/>
 			<meta property='og:description' content='".$med_uti['nut'].", ".sprintf(_('há %s'),tempoPassado(strtotime($med['den']))).", ".$med['gos']." "._('gostos')."'/>
-			<meta property='og:url' content='https://drena.pt/media?id=".$med['id']."'/>
-			<meta property='og:image' content='https://media.drena.xyz/thumb/".$med['thu'].".jpg'/>
+			<meta property='og:url' content='".$url_site."media?id=".$med['id']."'/>
+			<meta property='og:image' content='".$url_media."thumb/".$med['thu'].".jpg'/>
 			
 			";
 
@@ -49,11 +49,11 @@
 			if ($med['tip']==1){
 				echo "<meta property='og:type' content='video' />";
 				if ($med['est']==3){ #Estado 3 (comprimido).
-					echo "<meta property='og:video' content='https://media.drena.xyz/comp/".$med["id"].".mp4' />";					
+					echo "<meta property='og:video' content='".$url_media."comp/".$med["id"].".mp4' />";					
 				} else if ($med['est']==5){ #Estado 5 (convertido).
-					echo "<meta property='og:video' content='https://media.drena.xyz/conv/".$med["id"].".mp4' />";					
+					echo "<meta property='og:video' content='".$url_media."conv/".$med["id"].".mp4' />";					
 				} else { #Todos os outros estados.
-					echo "<meta property='og:video' content='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' />";
+					echo "<meta property='og:video' content='".$url_media."ori/".$med["id"].".".end(explode(".", $med['nom']))."' />";
 				}
 			}
 		}
@@ -220,7 +220,7 @@
 															if ($med['alb']==$campo['id']){
 																echo "
 																<a href='/album?id=".base64_encode($campo['id'])."' class='list-group-item bg-transparent px-0'>
-																<section class='p-4 bg-light bg-cover text-primary rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"https://media.drena.xyz/thumb/".$campo['thu'].".jpg\");'>
+																<section class='p-4 bg-light bg-cover text-primary rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"".$url_media."thumb/".$campo['thu'].".jpg\");'>
 																		<h5 class='m-0'>".$alb_tit."</h5>
 																		<span class='badge rounded-pill bg-primary text-light'>".$alb_num_med."</span>
 																	</section>
@@ -228,7 +228,7 @@
 															} else {
 																echo "
 																<a href='/pro/med_alb.php?ac=adicionar&redirect=1&alb=".$campo['id']."&med=".$med['id']."' class='list-group-item bg-transparent px-0'>
-																	<section class='p-4 bg-light bg-cover text-dark rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"https://media.drena.xyz/thumb/".$campo['thu'].".jpg\");'>
+																	<section class='p-4 bg-light bg-cover text-dark rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"".$url_media."thumb/".$campo['thu'].".jpg\");'>
 																		<h5 class='m-0'>".$alb_tit."</h5>
 																		<span class='badge rounded-pill bg-dark text-light'>".$alb_num_med."</span>
 																	</section>

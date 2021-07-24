@@ -1,8 +1,8 @@
-<?php 
-ob_start();
-require_once('pro/ligarbd.php');
-ob_get_clean();
-session_start();
+<?php
+# Funções
+$funcoes['requerSessao'] = 0;
+require_once('pro/fun.php');
+
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));	# Utilizador dono
 if ($med){
@@ -39,7 +39,7 @@ if ($med){
 			<!-- Tags de motor de pequisa -->
 			<meta property='og:title' content='".$med_tit."'/>
 			<meta property='og:type' content='video.other' />
-			<meta property='og:image' content='https://media.drena.xyz/thumb/".$med["thu"].".jpg' />
+			<meta property='og:image' content='".$url_media."thumb/".$med["thu"].".jpg' />
 	
 			<!-- Wavesurfer -->
 			<script src='https://unpkg.com/wavesurfer.js'></script>
@@ -69,17 +69,17 @@ if ($med){
 		<body>";
 			if ($med['tip']==1){
 				echo "
-				<video-js poster='https://media.drena.xyz/thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-drena js-focus-invisible vjs-16-9' controls preload='auto'>
+				<video-js poster='".$url_media."thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-drena js-focus-invisible vjs-16-9' controls preload='auto'>
 					";
 					if ($med['est']=='3'){ # Se o estado for 3 (comprimido).
-						echo "<source src='https://media.drena.xyz/comp/".$med["id"].".mp4' label='Comprimido <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/comp/".$med["id"].".mp4"))."' selected='true'>";
-						echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))))."'>";
+						echo "<source src='".$url_media."comp/".$med["id"].".mp4' label='Comprimido <br>".formatSizeUnits(filesize($dir_media."comp/".$med["id"].".mp4"))."' selected='true'>";
+						echo "<source src='".$url_media."ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original <br>".formatSizeUnits(filesize($dir_media."ori/".$med["id"].".".end(explode(".", $med['nom']))))."'>";
 					} else {
 						$tem_seletorQualidade='//';
 						if ($med['est']=='5'){ # Se o estado for 5 (convertido).
-							echo "<source src='https://media.drena.xyz/conv/".$med["id"].".mp4' label='Convertido <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/conv/".$med["id"].".mp4"))."'>";
+							echo "<source src='".$url_media."conv/".$med["id"].".mp4' label='Convertido <br>".formatSizeUnits(filesize($dir_media."conv/".$med["id"].".mp4"))."'>";
 						} else {
-							echo "<source src='https://media.drena.xyz/ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original <br>".formatSizeUnits(filesize("/home/guilha/www/media.drena.xyz/".$med["id"].".".end(explode(".", $med['nom']))))."'>";
+							echo "<source src='".$url_media."ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original <br>".formatSizeUnits(filesize($dir_media."ori/".$med["id"].".".end(explode(".", $med['nom']))))."'>";
 						}
 					}
 					echo "
@@ -97,7 +97,7 @@ if ($med){
 					title: '".$med_tit."',
 					artist: '".$med_uti['nut']."',
 					artwork: [
-						{ src: 'https://media.drena.xyz/thumb/".$med["thu"].".jpg', sizes: '800x450',   type: 'image/png' },
+						{ src: '".$url_media."thumb/".$med["thu"].".jpg', sizes: '800x450',   type: 'image/png' },
 					]
 					});
 				}
@@ -105,7 +105,7 @@ if ($med){
 				";
 			} else if ($med['tip']==2){
 				if ($med['thu']){
-					$audio_botao_play = "<td role='button' class='align-middle text-light' onclick='wavesurfer.playPause()' style=\"background-image:url('https://media.drena.xyz/thumb/".$med['thu'].".jpg');background-size:cover;\">";
+					$audio_botao_play = "<td role='button' class='align-middle text-light' onclick='wavesurfer.playPause()' style=\"background-image:url('".$url_media."thumb/".$med['thu'].".jpg');background-size:cover;\">";
 				} else {
 					$audio_botao_play = "<td role='button' class='align-middle bg-rosa bg-gradient text-light' onclick='wavesurfer.playPause()'>";
 				}
@@ -143,12 +143,12 @@ if ($med){
 						$('#botao').addClass('bi-pause');
 						$('#botao').removeClass('bi-play');
 					});
-					wavesurfer.load('https://media.drena.xyz/som/".$_GET['id'].".".end(explode(".", $med['nom']))."');
+					wavesurfer.load('".$url_media."som/".$_GET['id'].".".end(explode(".", $med['nom']))."');
 				</script>";
 			} else if ($med['tip']==3){
 				echo "
 				<section class='d-flex flex-wrap align-items-center justify-content-center bg-preto h-100'>
-					<img style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='https://media.drena.xyz/img/".$med['id'].".".end(explode(".", $med['nom']))."'></img>
+					<img style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='".$url_media."img/".$med['id'].".".end(explode(".", $med['nom']))."'></img>
 				</section>";
 			}
 			echo "

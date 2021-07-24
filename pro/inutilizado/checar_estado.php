@@ -54,15 +54,13 @@ function formatSizeUnits($bytes)
         return $bytes;
 }
 
-$caminho = "/home/guilha/www/media.drena.xyz/ori/";
-
 $bolsonaro = array();
 
 $pesquisa = "SELECT * FROM med WHERE tip='1';";
 if ($resultado = $bd->query($pesquisa)) {
     while ($campo = $resultado->fetch_assoc()) {
 
-        $ficheiro_caminho = $caminho."".$campo['id'].".".end(explode(".", $campo['nom']));
+        $ficheiro_caminho = $dir_media."ori/".$campo['id'].".".end(explode(".", $campo['nom']));
 
         $bitrate = $ffprobe
             ->streams($ficheiro_caminho)

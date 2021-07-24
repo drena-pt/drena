@@ -6,9 +6,9 @@ date_default_timezone_set('Europe/Lisbon');
 ob_start();
 require_once('ligarbd.php');
 ob_get_clean();
-session_start();
 
 # requerSessao (Padrão: 1)
+session_start();
 if ($_SESSION["uti"]){
 	$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["uti"]."'"));
 
@@ -20,6 +20,13 @@ if ($_SESSION["uti"]){
 	header("Location: /entrar.php");
 	exit;
 }
+
+# URL's e diretórios
+$url_site	= 'https://drena.pt/';
+$url_media	= 'https://media.drena.xyz/';
+
+$dir_site	= '/home/guilha/www/drena.xyz/';
+$dir_media	= '/home/guilha/www/media.drena.xyz/';
 
 # Obtem a língua
 function get_browser_language($available=['pt','en','de','it','fr'],$default='en') {
@@ -83,7 +90,7 @@ if ($funcoes['notificacao']==1){
 				"icon":"'.$not_icon.'",
 				"body": "'.$not_body.'",
 				"image":"'.$not_image.'",
-				"badge": "https://drena.pt/imagens/favicon.png",
+				"badge": "'.$url_site.'imagens/favicon.png",
 				"actions": [
 					{
 					"action": "null",
@@ -93,7 +100,7 @@ if ($funcoes['notificacao']==1){
 			}
 		}';
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, "https://drena.pt:3000/enviar");
+		curl_setopt($ch, CURLOPT_URL, $url_site.":3000/enviar");
 		curl_setopt($ch, CURLOPT_POST, 1);
 		$headers = array("content-type: application/json");
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);

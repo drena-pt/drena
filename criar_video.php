@@ -152,7 +152,7 @@
 							status.html(json.erro);
 						} else {
 							status.html('"._('Carregamento completo')."');
-							imagem.attr('src','https://media.drena.xyz/thumb/'+json.thumb+'.jpg');
+							imagem.attr('src','".$url_media."thumb/'+json.thumb+'.jpg');
 							$('#botao_ver_video').removeAttr('hidden');
 							$('#botao_ver_video').attr('href', '/media?id='+json.codigo);
 							if (json.estado==4){

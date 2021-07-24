@@ -38,7 +38,7 @@ if ($ac=='lista'){
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
                             <div class='rounded-xl inset-shadow'>
-                                <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
                                 <div class='texto-container-bottom h6'>".encurtarNome($video_tit)."</div>
                             </div>
                         </a>
@@ -59,7 +59,7 @@ if ($ac=='lista'){
 
                 while ($campo = $resultado->fetch_assoc()) {
                     if ($campo['tit']){$audio_tit = $campo['tit'];} else {$audio_tit = $campo['nom'];}
-                    if ($campo['thu']){$audio_thu = "https://media.drena.xyz/thumb/".$campo['thu'].".jpg";} else {$audio_thu = "https://drena.pt/fpe/".base64_encode($uti_perfil['fot']);}
+                    if ($campo['thu']){$audio_thu = $url_media."thumb/".$campo['thu'].".jpg";} else {$audio_thu = $url_site."fpe/".base64_encode($uti_perfil['fot']);}
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
@@ -91,7 +91,7 @@ if ($ac=='lista'){
                     $alb_num_med = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE alb='".$campo['id']."';"));
 
                     echo"
-                    <div class='col'><a class='text-decoration-none' href='/album?id=".base64_encode($campo['id'])."' ><div class='bg-light bg-cover text-dark h5 p-xl-5 p-4 mb-4 rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"https://media.drena.xyz/thumb/".$campo['thu'].".jpg\");'>
+                    <div class='col'><a class='text-decoration-none' href='/album?id=".base64_encode($campo['id'])."' ><div class='bg-light bg-cover text-dark h5 p-xl-5 p-4 mb-4 rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"".$url_media."thumb/".$campo['thu'].".jpg\");'>
                         ".$alb_tit."
                         <span class='badge rounded-pill bg-dark text-light'>".$alb_num_med."</span>
                     </div></a></div>
@@ -113,7 +113,7 @@ if ($ac=='lista'){
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
                             <div class='rounded-xl inset-shadow'>
-                                <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
                                 <div class='texto-container-bottom h6'>".encurtarNome($imagem_tit)."</div>
                             </div>
                         </a>
@@ -184,7 +184,7 @@ if ($ac=='lista'){
                         echo "
                         <div class='col mb-4 container'>
                             <div role='button' class='rounded-xl inset-shadow' onclick='adicionar_med(\"".$campo['id']."\")'>
-                                <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
                                 <div class='texto-container' id='circulo_".$campo['id']."'>";
                                 if ($campo['alb']==$alb['id']){
                                     echo "<i class='h2 bi bi-x-circle-fill text-primary'></i>";

@@ -35,7 +35,7 @@ if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$codigo."
     goto gerarCodigo;
 }
 
-$caminho = "/home/guilha/www/media.drena.xyz/som/";
+$caminho = $dir_media."som/";
 $ficheiro_ori_caminho = $caminho.''.$codigo.'.'.$ficheiro_ext;
 
 if (!(move_uploaded_file($ficheiro['tmp_name'],$ficheiro_ori_caminho))){

@@ -64,7 +64,7 @@ require('head.php');
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
                             <div class='rounded-xl inset-shadow'>
-                                <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
                                 <div class='texto-container-bottom h6'>".encurtarNome($imagem_tit)."</div>
                             </div>
                         </a>
@@ -86,7 +86,7 @@ require('head.php');
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
                             <div class='rounded-xl inset-shadow'>
-                                <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
                                 <div class='texto-container-bottom h6'>".encurtarNome($video_tit)."</div>
                             </div>
                         </a>
@@ -105,7 +105,7 @@ require('head.php');
                 while ($campo = $resultado->fetch_assoc()) {
                     if ($campo['tit']){$audio_tit = $campo['tit'];} else {$audio_tit = $campo['nom'];}
                     $uti_aud = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$campo['uti']."';"));
-                    if ($campo['thu']){$audio_thu = "https://media.drena.xyz/thumb/".$campo['thu'].".jpg";} else {$audio_thu = "https://drena.xyz/fpe/".base64_encode($uti_aud['fot']);}
+                    if ($campo['thu']){$audio_thu = $url_media."thumb/".$campo['thu'].".jpg";} else {$audio_thu = $url_site."fpe/".base64_encode($uti_aud['fot']);}
                     echo "
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>

@@ -19,7 +19,7 @@
                         <div class='col mb-4 container'>
                             <a class='text-light' href='/media?id=".$campo['id']."'>
                                 <div class='rounded-xl inset-shadow'>
-                                    <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                    <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
                                     <div class='texto-container-bottom'><text class='h6'>".encurtarNome($campo_tit)."</text></div>
                                     </div>
                             </a>
@@ -41,7 +41,7 @@
                         <div class='col mb-4 container'>
                             <a class='text-light' href='/media?id=".$campo['id']."'>
                                 <div class='rounded-xl inset-shadow'>
-                                    <img class='shadow rounded-xl w-100' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+                                    <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
                                     <div class='texto-container-bottom'><text class='h6'>".encurtarNome($campo_tit)."</text></div>
                                     </div>
                             </a>

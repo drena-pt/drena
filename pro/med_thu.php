@@ -56,7 +56,7 @@ if (($med['tip']=='1' OR $med['tip']=='2') AND $med['uti']==$uti['id']){ # Se a 
             goto gerarCodigoThumb;
          }
    
-         $caminhoThumb = "/home/guilha/www/media.drena.xyz/thumb/".$codigoThumb.".jpg";
+         $caminhoThumb = $dir_media."thumb/".$codigoThumb.".jpg";
    
          if ($med["tip"]=='1'){
             # Processa a thumbnail para o tamanho de vídeo (16:9)

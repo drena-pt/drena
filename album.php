@@ -21,7 +21,7 @@
 			if (!$alb['tit']){$alb_tit=sprintf(_('Álbum de %s'),$alb_uti['nut']);}else{$alb_tit=$alb['tit'];}
 
 			echo "
-			<section id='alb_header' class='p-xl-5 p-4 my-0 my-xl-4 shadow rounded-xl bg-light bg-cover text-dark' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"https://media.drena.xyz/thumb/".$alb['thu'].".jpg\");'>
+			<section id='alb_header' class='p-xl-5 p-4 my-0 my-xl-4 shadow rounded-xl bg-light bg-cover text-dark' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"".$url_media."thumb/".$alb['thu'].".jpg\");'>
 				<h1 id='alb_tit'>".$alb_tit."</h1>
 			";
 			if ($per){
@@ -132,7 +132,7 @@
                     <div class='col mb-4 container'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
 							<div class='rounded-xl inset-shadow'>
-								<img class='rounded-xl w-100 shadow' src='https://media.drena.xyz/thumb/".$campo['thu'].".jpg'>
+								<img class='rounded-xl w-100 shadow' src='".$url_media."thumb/".$campo['thu'].".jpg'>
 								<div class='texto-container-bottom h6'>".encurtarNome($imagem_tit)."</div>
 							</div>
                         </a>

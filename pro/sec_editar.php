@@ -54,7 +54,7 @@ if ($sec){ # Se a secção existir
                                     },
                                     drena: {
                                         regex: /https:\/\/drena.pt\/media\?id=([^\/\?\&]*)/,
-                                        embedUrl: 'https://drena.pt/embed?id=<%= remote_id %>',
+                                        embedUrl: '".$url_site."embed?id=<%= remote_id %>',
                                         html: \"<iframe width='100%' scrolling='no' allowfullscreen='true'></iframe>\"
                                     }
                                 }

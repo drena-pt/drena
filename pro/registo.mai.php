@@ -136,10 +136,10 @@ if ($enviarMail){
 
 	if ($enviarMail==1){
 		$mail_subject = 'Confirmação de registo';
-		$mail_body = "<div style='text-align:center;background-color:#6464ff;padding:6px;'><a href='https://drena.pt'><img height='32px' src='https://drena.pt/imagens/logo.png'></a></div><br>Olá ".$uti['nco'].", obrigado por te registares na drena!<br>Está aqui o código para confirmares a criação da tua conta <b>".$uti['nut']."</b>:<br><br><h1>".$mai['cod']."</h1><br><br>Tem um ótimo dia. 🙂";
+		$mail_body = "<div style='text-align:center;background-color:#6464ff;padding:6px;'><a href='".$url_site."'><img height='32px' src='".$url_site."imagens/logo.png'></a></div><br>Olá ".$uti['nco'].", obrigado por te registares na drena!<br>Está aqui o código para confirmares a criação da tua conta <b>".$uti['nut']."</b>:<br><br><h1>".$mai['cod']."</h1><br><br>Tem um ótimo dia. 🙂";
 	} else if ($enviarMail==2){
 		$mail_subject = 'Recuperação da tua conta';
-		$mail_body = "<div style='text-align:center;background-color:#6464ff;padding:6px;'><a href='https://drena.pt'><img height='32px' src='https://drena.pt/imagens/logo.png'></a></div><br>Olá ".$mai_uti['nco'].", parece que te esqueces-te da palavra-passe da tua conta <b>".$mai_uti['nut']."</b>...<br>Não faz mal! Está aqui o link para conseguires alterar a palavra-passe:<br><a href='https://drena.pt/entrar?ac=alterarPasse&uti=".$mai_uti['nut']."&cod=".$mai['cod']."'>https://drena.pt/entrar?ac=alterarPasse&uti=".$mai_uti['nut']."&cod=".$mai['cod']."</a><br><br>Tem um ótimo dia. 🙂";
+		$mail_body = "<div style='text-align:center;background-color:#6464ff;padding:6px;'><a href='".$url_site."'><img height='32px' src='".$url_site."imagens/logo.png'></a></div><br>Olá ".$mai_uti['nco'].", parece que te esqueces-te da palavra-passe da tua conta <b>".$mai_uti['nut']."</b>...<br>Não faz mal! Está aqui o link para conseguires alterar a palavra-passe:<br><a href='".$url_site."entrar?ac=alterarPasse&uti=".$mai_uti['nut']."&cod=".$mai['cod']."'>".$url_site."entrar?ac=alterarPasse&uti=".$mai_uti['nut']."&cod=".$mai['cod']."</a><br><br>Tem um ótimo dia. 🙂";
 	}
 	
 	$mail = new PHPMailer(true);

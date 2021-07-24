@@ -13,24 +13,23 @@ if ($med){ # Se a média existir
         if ($ac=='eliminar'){ # Se a ação for eliminar
         
             if ($med['est']!='2'){ # Se o estado da média não for 2 (processando)
-                $caminho = "/home/guilha/www/media.drena.xyz/";
     
-                $caminho_ori = $caminho.'ori/'.$med['id'].'.'.$med_ext; # Original
+                $caminho_ori = $dir_media.'ori/'.$med['id'].'.'.$med_ext; # Original
                 unlink($caminho_ori);
             
-                $caminho_som = $caminho.'som/'.$med['id'].'.'.$med_ext; # Som
+                $caminho_som = $dir_media.'som/'.$med['id'].'.'.$med_ext; # Som
                 unlink($caminho_som);
             
-                $caminho_img = $caminho.'img/'.$med['id'].'.'.$med_ext; # Imagem
+                $caminho_img = $dir_media.'img/'.$med['id'].'.'.$med_ext; # Imagem
                 unlink($caminho_img);
     
-                $caminho_comprimido = $caminho.'comp/'.$med['id'].'.mp4';    # Comprimido
+                $caminho_comprimido = $dir_media.'comp/'.$med['id'].'.mp4';    # Comprimido
                 unlink($caminho_comprimido);
 
-                $caminho_convertido = $caminho.'conv/'.$med['id'].'.mp4'; # Convertido
+                $caminho_convertido = $dir_media.'conv/'.$med['id'].'.mp4'; # Convertido
                 unlink($caminho_convertido);
             
-                $caminho_thumb = $caminho.'thumb/'.$med['thu'].'.jpg';  # Thumb
+                $caminho_thumb = $dir_media.'thumb/'.$med['thu'].'.jpg';  # Thumb
                 unlink($caminho_thumb);
     
                 # Se existir algum dos ficheiros que supostamente foram apagados
@@ -78,7 +77,7 @@ if ($med){ # Se a média existir
         } else if ($ac=='comprimir'){ # Alterar título da média
             
             if ($med['tip']=='1' AND $med['est']=='1'){ # Se a media for um vídeo e o estado for 1 (bitrate alto)
-                exec("php /home/guilha/www/drena.xyz/pro/med_compressao.php ".$med['id']." > /dev/null &");
+                exec("php ".$dir_site."pro/med_compressao.php ".$med['id']." > /dev/null &");
                 sleep(2);
                 header("Location: ".$_SERVER['HTTP_REFERER']);
             } else {
