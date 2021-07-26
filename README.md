@@ -31,7 +31,7 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
 
 ### Obter o código / bibliotecas necessárias
 
-1. Obtem o código. O nome da `pasta` é alteravél:
+1. Obtem o código. O nome da `pasta` é alterável:
 
        git clone https://git.nadaradical.com/guilhae/drena.pt.git pasta
        cd pasta
@@ -52,7 +52,7 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
 
 3. Altera as variáveis.
 
-    pro/fun_var.php.bak
+       pro/fun_var.php.bak
     ```php
     #Base de dados MySQL
     $bd_hn='hostname';

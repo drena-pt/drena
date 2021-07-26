@@ -7,7 +7,7 @@ require_once('fun_var.php');
 
 # Liga à base de dados
 ob_start();
-$bd=mysqli_connect('localhost','drena_testes','QrSFtEtBEKIq00on','drena_testes');
+$bd=mysqli_connect($bd_hn,$bd_un,$bd_pw,$bd_db);
 if (!$bd) {
     echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL."<br>";
     echo "Debugging error: " . mysqli_connect_error() . PHP_EOL."<br>";
