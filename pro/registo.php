@@ -1,7 +1,7 @@
 ﻿<?php
-ob_start();
-require_once ('ligarbd.php');
-ob_get_clean();
+# Funções
+$funcoes['requerSessao'] = 0;
+require 'fun.php';
 
 # Torna os posts em variáveis
 $nut = $_POST["nut"];

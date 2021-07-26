@@ -1,10 +1,13 @@
 <?php
-require_once ('ligarbd.php');
+# Funções
+$funcoes['requerSessao'] = 0;
+require 'fun.php';
+
+# PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
-session_start();
 
 $post_mai = $_POST['mai'];
 
