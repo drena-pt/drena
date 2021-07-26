@@ -1,4 +1,7 @@
 ﻿<?php
+$funcoes['requerSessao']=0;
+require '../fun.php'; #Funções
+
 #Criar todas as tabelas na base de dados
 require('uti.php');         #Utilizador 
 require('uti_fot.php');     #Utilizador     - Fotos    

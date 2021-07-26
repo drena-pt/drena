@@ -1,7 +1,4 @@
 ﻿<?php
-$funcoes['requerSessao']=0;
-require 'fun.php'; #Funções
-
 $sql = "CREATE TABLE med_alb(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 uti INT NOT NULL,
@@ -10,7 +7,6 @@ tip INT NOT NULL,
 thu VARCHAR(16) NOT NULL,
 dcr DATETIME DEFAULT CURRENT_TIMESTAMP
 )";
-
 if ($bd->query($sql) === TRUE) {
     echo "Tabela 'med_alb' criada com sucesso!";
 } else {

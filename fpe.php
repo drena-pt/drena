@@ -1,6 +1,6 @@
 <?php
 $funcoes['requerSessao'] = 0;
-require 'fun.php'; #Funções
+require 'pro/fun.php'; #Funções
 
 $fot = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_fot WHERE id='".base64_decode($_GET["id"])."'"));
 $uti_fot = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$fot["uti"]."'"));

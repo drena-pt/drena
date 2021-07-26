@@ -1,7 +1,4 @@
 <?php
-$funcoes['requerSessao']=0;
-require 'fun.php'; #Funções
-
 $sql = "CREATE TABLE med_com(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 uti INT NOT NULL,
@@ -10,7 +7,6 @@ com INT,
 tex TINYTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 dcr DATETIME DEFAULT CURRENT_TIMESTAMP
 )";
-
 if ($bd->query($sql) === TRUE) {
     echo "Tabela 'med_com' criada com sucesso!";
 } else {

@@ -1,7 +1,4 @@
 <?php
-$funcoes['requerSessao']=0;
-require 'fun.php'; #Funções
-
 $sql = "CREATE TABLE pro(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 uti INT NOT NULL,
@@ -11,7 +8,6 @@ pri BOOLEAN NOT NULL DEFAULT 1,
 dcr DATETIME DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (uti) REFERENCES uti(id)
 )";
-
 if ($bd->query($sql) === TRUE) {
     echo "Tabela 'pro' criada com sucesso!";
 } else {

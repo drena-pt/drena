@@ -1,7 +1,4 @@
 ﻿<?php
-$funcoes['requerSessao']=0;
-require 'fun.php'; #Funções
-
 $sql = "CREATE TABLE ami(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 a_id INT NOT NULL,
@@ -14,7 +11,6 @@ UNIQUE KEY (b_id, a_id),
 FOREIGN KEY (a_id) REFERENCES uti(id),
 FOREIGN KEY (b_id) REFERENCES uti(id)
 )";
-
 if ($bd->query($sql) === TRUE) {
     echo "Tabela 'ami' criada com sucesso!";
 } else {

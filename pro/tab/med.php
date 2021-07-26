@@ -1,7 +1,4 @@
 ﻿<?php
-$funcoes['requerSessao']=0;
-require 'fun.php'; #Funções
-
 $sql = "CREATE TABLE med(
 id VARCHAR(16) NOT NULL PRIMARY KEY,
 uti INT NOT NULL,
@@ -16,7 +13,6 @@ gos INT DEFAULT 0,
 den DATETIME DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (uti) REFERENCES uti(id)
 )";
-
 /*
 est (Estado):
 0 = Vídeo bom
