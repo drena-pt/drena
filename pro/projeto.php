@@ -1,6 +1,6 @@
 ﻿<?php
-require 'fun.php'; # Obter funções
-$ac = $_GET['ac']; # Ação
+require 'fun.php'; #Funções
+$ac = $_GET['ac']; #Ação
 
 if ($ac=='criar'){
 

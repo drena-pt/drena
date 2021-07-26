@@ -1,5 +1,5 @@
 ﻿<?php
-require 'fun.php'; #Obter funções
+require 'fun.php'; #Funções
 $ac = $_GET['ac']; #Ação
 #Redirecionar
 if ($_GET['redirect']==1){

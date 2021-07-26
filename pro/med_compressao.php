@@ -1,9 +1,7 @@
 <?php
-# Composer
-require $dir_site."vendor/autoload.php";
-# Funções
 $funcoes['notificacao']=1;
-require $dir_site."pro/fun.php";
+require 'fun.php'; #Funções
+require "../vendor/autoload.php"; #Composer
 
 # Obtem as informações da média na base de dados; $argv são as variáveis passadas pelo comando exec.
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$argv[1]."';"));

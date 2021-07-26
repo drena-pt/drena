@@ -1,7 +1,6 @@
 ﻿<?php
-# Funções
 $funcoes['notificacao']=1;
-require 'fun.php';
+require 'fun.php'; #Funções
 
 if ($_GET["uti"]==$uti['nut']){
 	echo "Erro. O utilizador pedido é o utilizador conectado.";

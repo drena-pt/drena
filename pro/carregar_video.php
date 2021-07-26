@@ -1,8 +1,6 @@
 <?php
-# Composer
-require '../vendor/autoload.php';
-# Conectar à base de dados
-require 'fun.php';
+require 'fun.php'; #Funções
+require '../vendor/autoload.php'; #Composer
 
 $ffmpeg = FFMpeg\FFMpeg::create(array(
     'ffmpeg.binaries'  => '/usr/bin/ffmpeg',

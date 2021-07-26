@@ -1,8 +1,7 @@
 <?php
 /* error_reporting(E_ALL);
 ini_set('display_errors', 'On'); */
-# Conectar à base de dados
-require 'fun.php';
+require 'fun.php'; #Funções
 
 # Função para gerar um código
 function gerarCodigo($length){   

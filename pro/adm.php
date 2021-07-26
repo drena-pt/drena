@@ -1,7 +1,5 @@
 ﻿<?php
-ob_start();
-require_once ('fun.php');
-ob_get_clean();
+require 'fun.php'; #Funções
 if ($uti['adm']==0){
 	header("Location: ../entrar");
 	exit();

@@ -1,9 +1,7 @@
 <?php
 /* error_reporting(E_ALL);
 ini_set('display_errors', 'On'); */
-
-# Funções
-require 'fun.php';
+require 'fun.php'; #Funções
 
 $sec = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro_sec WHERE id='".$_GET["sec"]."'"));          # Informações da secção
 

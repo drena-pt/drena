@@ -1,5 +1,5 @@
 <?php
-require 'fun.php'; # Obter funções
+require 'fun.php'; #Funções
 
 # Procura por uma secção e/ou define o projeto.
 if ($_GET['sec']){

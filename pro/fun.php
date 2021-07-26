@@ -8,11 +8,11 @@ require_once('ligarbd.php');
 ob_get_clean();
 
 # URL's e diretórios
-$url_site	= 'https://drena.pt/';
-$url_media	= 'https://media.drena.xyz/';
+$url_site	= 'https://exemplo.com/';
+$url_media	= 'https://media.exemplo.com/';
 
-$dir_site	= '/home/guilha/www/drena.xyz/';
-$dir_media	= '/home/guilha/www/media.drena.xyz/';
+$dir_site	= '/home/user/drena/pasta/';
+$dir_media	= '/home/user/drena/pasta_media/';
 
 # requerSessao (Padrão: 1)
 session_start();

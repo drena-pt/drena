@@ -1,6 +1,5 @@
 <?php
-# Conectar à base de dados
-require 'fun.php';
+require 'fun.php'; #Funções
 
 $ficheiro = $_FILES['input_audio'];
 $ficheiro_ext = end(explode(".", $ficheiro['name']));

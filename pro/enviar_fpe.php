@@ -1,5 +1,5 @@
 <?php
-require('fun.php');//FUNÇÕES
+require 'fun.php'; #Funções
 
 $img_upload = $_FILES['fpe']['tmp_name'];
 $nome = $_FILES['fpe']['name'];

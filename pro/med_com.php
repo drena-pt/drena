@@ -1,7 +1,6 @@
 ﻿<?php
-# Funções
 $funcoes['notificacao']=1;
-require 'fun.php';
+require 'fun.php'; #Funções
 
 $ac = $_GET['ac']; #Obtem ação
 

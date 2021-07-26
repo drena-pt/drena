@@ -1,5 +1,5 @@
 <?php
-require('fun.php'); # Obter funções
+require 'fun.php'; #Funções
 
 $ac = $_GET['ac'];  # Ação
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET['id']."'"));

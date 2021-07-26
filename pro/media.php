@@ -1,10 +1,8 @@
 <?php
 /* error_reporting(E_ALL);
 ini_set('display_errors', 'On'); */
-
-# Funções
 $funcoes['requerSessao'] = 0;
-require 'fun.php';
+require 'fun.php'; #Funções
 
 $ac = $_GET['ac']; #Obtem ação
 

@@ -1,8 +1,6 @@
 <?php
-session_start();
-ob_start();
-require_once ('ligarbd.php');
-ob_get_clean();
+require 'fun.php'; #Funções
+
 if ($uti['nut']!='guilhae'){
 	echo "Não podes aceder a esta pagina!";
 	exit;

@@ -1,7 +1,6 @@
 ﻿<?php
-# Funções
 $funcoes['requerSessao'] = 0;
-require 'fun.php';
+require 'fun.php'; #Funções
 
 # Torna os inputs em variáveis
 $nut = $_POST["nut"];

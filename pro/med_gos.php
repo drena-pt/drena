@@ -1,7 +1,6 @@
 ﻿<?php
-# Funções
 $funcoes['notificacao']=1;
-require 'fun.php';
+require 'fun.php'; #Funções
 
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["med"]."';"));											#Informações da media
 if ($med){	#Se a media existir
