@@ -52,7 +52,6 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
 
 3. Altera as variáveis.
 
-       pro/fun_var.php.bak
     ```php
     #Base de dados MySQL
     $bd_hn='hostname';
