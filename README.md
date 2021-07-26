@@ -31,36 +31,43 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
 
 ### Obter o código / bibliotecas necessárias
 
-1. Obtem o código:
+1. Obtem o código. O nome da `pasta` é alteravél:
 
        git clone https://git.nadaradical.com/guilhae/drena.pt.git pasta
+       cd pasta
 
-2. Instalar as dependências do `nodejs`:
+2. Instalar as dependências do `nodejs` e `composer`:
 
-       npm i
+       npm i | composer i
 
-   Instalar as dependências do `composer`:
+### Configurar as variáveis da base de dados, URL's e diretórios
 
-       composer i
+1. Copiar o ficheiro das variaveis `pro/fun_var.php.bak` para `pro/fun_var.php`.
 
-### Configurar URL's e diretórios
+       cp pro/fun_var.php.bak pro/fun_var.php
 
-1. Edita o ficheiro `pro/fun.php`.
+2. Edita o ficheiro `pro/fun_var.php`.
 
-       nano pro/fun.php
+       nano pro/fun_var.php
 
-2. Altera as variáveis.
+3. Altera as variáveis.
 
+    pro/fun_var.php.bak
     ```php
-    # URL's e diretórios
-    $url_site	= 'https://exemplo.com/';
-    $url_media	= 'https://media.exemplo.com/';
-
-    $dir_site	= '/home/user/drena/pasta/';
-    $dir_media	= '/home/user/drena/pasta_media/';
+    #Base de dados MySQL
+    $bd_hn='hostname';
+    $bd_un='username';
+    $bd_pw='password';
+    $bd_db='database';
+    #URL's
+    $url_site   ='https://exemplo.com/';
+    $url_media  ='https://media.exemplo.com/';
+    #Diretórios
+    $dir_site   ='/home/user/drena/pasta/';
+    $dir_media  ='/home/user/drena/pasta_media/';
     ```
 
-3. Cria as pastas necessárias para armazenar a média.
+4. Cria as pastas necessárias para armazenar a média.
 
         cd /home/user/drena/pasta_media/
         mkdir comp | mkdir conv | mkdir img | mkdir ori | mkdir som | mkdir thumb
@@ -68,15 +75,9 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
 
 ### Configurar a base de dados
 
-1. Cria uma base de dados nova no MySQL.
+1. Cria uma base de dados nova no MySQL igual à que inseriste nas variáveis.
 
-2. Copiar o ficheiro `pro/ligarbd.php.bak` para `pro/ligarbd.php`
-
-       cp pro/ligarbd.php.bak pro/ligarbd.php
-
-3. Configurar `pro/ligarbd.php` com os dados de conexão para a nova base de dados criada MySQL.
-
-4. Criar as tabelas necessárias.
+2. Criar as tabelas necessárias.
 Abrir a página no navegador. Substituir `https://exemplo.com/` com o URL do site definido em `$url_site` na página de funções.
 
        https://exemplo.com/pro/tab/INSTALAR.php

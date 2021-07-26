@@ -1,0 +1,13 @@
+<?php
+#Base de dados MySQL
+$bd_hn='hostname';
+$bd_un='username';
+$bd_pw='password';
+$bd_db='database';
+#URL's
+$url_site   ='https://exemplo.com/';
+$url_media  ='https://media.exemplo.com/';
+#Diretórios
+$dir_site   ='/home/user/drena/pasta/';
+$dir_media  ='/home/user/drena/pasta_media/';
+?>

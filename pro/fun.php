@@ -2,17 +2,19 @@
 # Define o tempo para Portugal
 date_default_timezone_set('Europe/Lisbon');
 
+# Obtem as variáveis
+require_once('fun_var.php');
+
 # Liga à base de dados
 ob_start();
-require_once('ligarbd.php');
+$bd=mysqli_connect('localhost','drena_testes','QrSFtEtBEKIq00on','drena_testes');
+if (!$bd) {
+    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL."<br>";
+    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL."<br>";
+    exit;
+}
+$bd->set_charset("utf8mb4");
 ob_get_clean();
-
-# URL's e diretórios
-$url_site	= 'https://exemplo.com/';
-$url_media	= 'https://media.exemplo.com/';
-
-$dir_site	= '/home/user/drena/pasta/';
-$dir_media	= '/home/user/drena/pasta_media/';
 
 # requerSessao (Padrão: 1)
 session_start();

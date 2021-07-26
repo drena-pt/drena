@@ -2,8 +2,8 @@
 /anime/
 /chat/
 
-# Database config
-/pro/ligarbd.php
+# Variaveis
+/pro/fun_var.php
 
 # Composer
 composer.phar
