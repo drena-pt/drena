@@ -1,6 +1,6 @@
 <?php
-# Conectar à base de dados
-require_once ('../ligarbd.php');
+$funcoes['requerSessao']=0;
+require 'fun.php'; #Funções
         
 $sql = "ALTER TABLE pro DROP COLUMN ati;";
 //$sql = "ALTER TABLE mis_par ADD FOREIGN KEY (a_id) REFERENCES uti(id);";

@@ -1,6 +1,6 @@
 <?php
-# Conectar à base de dados
-require_once ('../ligarbd.php');
+$funcoes['requerSessao']=0;
+require 'fun.php'; #Funções
 
 $sql = "CREATE TABLE pro(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
