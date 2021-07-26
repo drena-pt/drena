@@ -60,6 +60,12 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
     $dir_media	= '/home/user/drena/pasta_media/';
     ```
 
+3. Cria as pastas necessárias para armazenar a média.
+
+        cd /home/user/drena/pasta_media/
+        mkdir comp | mkdir conv | mkdir img | mkdir ori | mkdir som | mkdir thumb
+        sudo chown -R www-data:www-data *
+
 ### Configurar a base de dados
 
 1. Cria uma base de dados nova no MySQL.
