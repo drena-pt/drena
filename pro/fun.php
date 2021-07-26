@@ -7,6 +7,13 @@ ob_start();
 require_once('ligarbd.php');
 ob_get_clean();
 
+# URL's e diretórios
+$url_site	= 'https://drena.pt/';
+$url_media	= 'https://media.drena.xyz/';
+
+$dir_site	= '/home/guilha/www/drena.xyz/';
+$dir_media	= '/home/guilha/www/media.drena.xyz/';
+
 # requerSessao (Padrão: 1)
 session_start();
 if ($_SESSION["uti"]){
@@ -20,13 +27,6 @@ if ($_SESSION["uti"]){
 	header("Location: /entrar.php");
 	exit;
 }
-
-# URL's e diretórios
-$url_site	= 'https://drena.pt/';
-$url_media	= 'https://media.drena.xyz/';
-
-$dir_site	= '/home/guilha/www/drena.xyz/';
-$dir_media	= '/home/guilha/www/media.drena.xyz/';
 
 # Obtem a língua
 function get_browser_language($available=['pt','en','de','it','fr'],$default='en') {

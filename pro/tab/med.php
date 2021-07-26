@@ -1,8 +1,6 @@
 ﻿<?php
-// Conectar á base de dados
-ob_start();
+# Conectar à base de dados
 require_once ('../ligarbd.php');
-ob_get_clean();
 
 $sql = "CREATE TABLE med(
 id VARCHAR(16) NOT NULL PRIMARY KEY,
@@ -30,8 +28,9 @@ est (Estado):
 */
 
 if ($bd->query($sql) === TRUE) {
-    echo "Tabela criada com sucesso!";
+    echo "Tabela 'med' criada com sucesso!";
 } else {
-    echo "Erro ao criar as tabelas: " . $bd->error;
+    echo "Erro ao criar tabela 'med': " . $bd->error;
 }
+echo "<br>";
 ?>

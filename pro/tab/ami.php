@@ -1,8 +1,6 @@
 ﻿<?php
-// Conectar á base de dados
-ob_start();
+# Conectar à base de dados
 require_once ('../ligarbd.php');
-ob_get_clean();
 
 $sql = "CREATE TABLE ami(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -18,8 +16,9 @@ FOREIGN KEY (b_id) REFERENCES uti(id)
 )";
 
 if ($bd->query($sql) === TRUE) {
-    echo "Tabela criada com sucesso!";
+    echo "Tabela 'ami' criada com sucesso!";
 } else {
-    echo "Erro ao criar as tabelas: " . $bd->error;
+    echo "Erro ao criar tabela 'ami': " . $bd->error;
 }
+echo "<br>";
 ?>

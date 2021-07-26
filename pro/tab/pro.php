@@ -1,9 +1,7 @@
 <?php
-// Conectar á base de dados
-ob_start();
+# Conectar à base de dados
 require_once ('../ligarbd.php');
-ob_get_clean();
-        
+
 $sql = "CREATE TABLE pro(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 uti INT NOT NULL,
@@ -15,8 +13,9 @@ FOREIGN KEY (uti) REFERENCES uti(id)
 )";
 
 if ($bd->query($sql) === TRUE) {
-    echo "Tabela criada com sucesso!";
+    echo "Tabela 'pro' criada com sucesso!";
 } else {
-    echo "Erro ao criar as tabelas: " . $bd->error;
+    echo "Erro ao criar tabela 'pro': " . $bd->error;
 }
+echo "<br>";
 ?>

@@ -1,8 +1,6 @@
 <?php
-// Conectar á base de dados
-ob_start();
+# Conectar à base de dados
 require_once ('../ligarbd.php');
-ob_get_clean();
 
 $sql = "CREATE TABLE not_sub(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -12,8 +10,9 @@ $sql = "CREATE TABLE not_sub(
 )";
 
 if ($bd->query($sql) === TRUE) {
-    echo "Tabela criada com sucesso!";
+    echo "Tabela 'not_sub' criada com sucesso!";
 } else {
-    echo "Erro ao criar as tabelas: " . $bd->error;
+    echo "Erro ao criar tabela 'not_sub': " . $bd->error;
 }
+echo "<br>";
 ?>

@@ -1,8 +1,6 @@
 <?php
-// Conectar á base de dados
-ob_start();
+# Conectar à base de dados
 require_once ('../ligarbd.php');
-ob_get_clean();
         
 $sql = "ALTER TABLE pro DROP COLUMN ati;";
 //$sql = "ALTER TABLE mis_par ADD FOREIGN KEY (a_id) REFERENCES uti(id);";

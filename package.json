@@ -1,25 +1,18 @@
 {
-  "name": "2.drena",
-  "version": "1.0.0",
+  "name": "drena.pt",
+  "version": "1.0.1",
   "description": "Rede social drena",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Guilherme Albuquerque",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "@editorjs/editorjs": "^2.21.0",
     "@silvermine/videojs-quality-selector": "^1.2.5",
     "@swup/head-plugin": "^1.2.0",
     "@swup/scripts-plugin": "^1.1.0",
     "animejs": "^3.2.1",
     "bootstrap": "^5.0.1",
     "bootstrap-icons": "^1.5.0",
-    "editorjs-html": "^3.0.5",
     "swup": "^2.0.14",
     "video.js": "^7.12.1",
     "videojs-titleoverlay": "^1.1.0"
-  },
-  "devDependencies": {}
+  }
 }
