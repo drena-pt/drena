@@ -14,8 +14,8 @@
 					if (!$uti['id']){
 						echo "<li class='nav-item'><a class='nav-link' href='/entrar'>"._('Entrar')."</a></li>";
 					} else {
-						if ($uti['adm']==1){
-							echo "<li class='nav-item'><a class='nav-link mx-1' href='/adm'>"._('Administrar')."</a></li>";
+						if ($uti['car']==1){
+							echo "<li class='nav-item'><a class='nav-link mx-1' href='/adm'><span class='text-rosa'><i class='bi bi-person-lines-fill'></i>"._('Administrar')."</span></a></li>";
 						}
 						echo "<li class='nav-item'><a class='nav-link mx-1' href='/criar'>"._('Criar')."</a></li>
 						<li class='nav-item'><a class='nav-link mx-1' href='pro/sair'>"._('Sair')."</a></li>
@@ -46,4 +46,3 @@
 		?>
 	</nav>
 </header>
-
