@@ -1,6 +1,6 @@
 <?php 
 		require('head.php');
-		if ($uti['adm']==0){ header("Location: /"); exit; }	#Sair da página se não for administrador
+		if ($uti['car']!=1){ header("Location: /"); exit; }	#Sair da página se não for administrador
 		?>
 	</head>
 	<body>
@@ -64,7 +64,7 @@
                                     <label class='custom-control-label' for='ati".$campo['id']."'></label></div></td>
 
                                     <td><div class='custom-control custom-switch'><input type='checkbox' class='custom-control-input' ";
-                                    if ($campo['adm']==1){ echo "checked "; }
+                                    if ($campo['car']==1){ echo "checked "; }
                                     if ($campo['id']==$uti['id']){ echo "disabled "; }
                                     echo "id='adm".$campo['id']."'>
                                     <label class='custom-control-label' for='adm".$campo['id']."'></label></div></td>

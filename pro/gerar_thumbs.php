@@ -15,7 +15,7 @@ $ffprobe = FFMpeg\FFProbe::create(array(
     'timeout'          => 36000
 ));
 
-if ($uti['adm']!='1'){
+if ($uti['car']!='1'){
     echo "boi baza";
     exit;
 }

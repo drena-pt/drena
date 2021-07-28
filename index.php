@@ -42,7 +42,7 @@ if ($uti){
 
             <div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3 text-center'>
 				<h1 class='display-3 m-5'>".strtoupper(_('Ultimos vídeos'))."</h1>
-                <div class='row row-cols-2 row-cols-md-3'>
+                <div class='row row-cols-2 row-cols-md-3 mw-100'>
                 ";
                 $pesquisa = "SELECT * FROM med WHERE tip='1' AND pri=0 ORDER by den DESC LIMIT 15";
                 if ($resultado = $bd->query($pesquisa)) {

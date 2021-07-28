@@ -1,6 +1,6 @@
 ﻿<?php
 require 'fun.php'; #Funções
-if ($uti['adm']==0){
+if ($uti['car']!=1){
 	header("Location: ../entrar");
 	exit();
 }

@@ -6,7 +6,7 @@ require '../vendor/autoload.php';
 # Conectar à base de dados
 require 'fun.php';
 
-if ($uti['adm']!='1'){
+if ($uti['car']!='1'){
     echo "boi baza";
     exit;
 }
