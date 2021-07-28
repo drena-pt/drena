@@ -66,14 +66,24 @@ $btn-transition: none !default;
 	border: none !important;
 }
 
-$input-bg: transparent;
-$input-color: $white;
-$input-border-color: $white;
-$input-placeholder-color: rgba(255,255,255,0.8);
-$input-btn-font-family: "MADE TOMMY Regular";
-$input-btn-font-size: 16px;
-$input-border-radius: 0px;
-$input-box-shadow: $box-shadow;
+$input-bg:								transparent;
+$input-color:							$white;
+$input-border-color:					$white;
+$input-focus-border-color:				rgba($white, .5);
+
+$input-placeholder-color:				rgba($white, .8);
+$input-btn-font-family:					"MADE TOMMY Regular";
+$input-btn-font-size:					16px;
+$input-border-radius:					0px;
+$input-box-shadow:						$box-shadow;
+$input-btn-focus-border:				rgba($white, .5);
+$input-btn-focus-box-shadow:			$box-shadow !important;
+
+$form-check-input-border:				$border-width solid $white;
+$form-check-input-border-radius:		0px;
+$form-check-input-focus-border:			rgba($white, .5);
+$form-check-input-checked-color:		$preto;
+$form-check-input-checked-bg-color:		$white;
 
 input[type='text'], input[type='email'], input[type='password']{
 	padding: calc(#{$btn-padding-y} - (#{$border-width} )) $btn-padding-x;
@@ -81,8 +91,6 @@ input[type='text'], input[type='email'], input[type='password']{
 input, .btn{
 	margin-bottom: 10px !important;
 }
-
-$input-btn-focus-box-shadow: $box-shadow !important;
 
 $close-text-shadow: none;
 $navbar-dark-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='white' class='bi bi-list' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z'/></svg>") !default;
