@@ -24,8 +24,8 @@ msgstr "Ausloggen"
 msgid "Registo"
 msgstr "Registrieren"
 
-msgid "O teu nome verdadeiro"
-msgstr "Dein echter Name"
+msgid "Primeiro e último nome"
+msgstr "Vor-und nachname"
 
 msgid "Nome de utilizador"
 msgstr "Benutzername"

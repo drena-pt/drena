@@ -38,7 +38,7 @@
 						<h1 aria-describedby='erro_campos'>"._("Registo")."</h1>
 
 						<div class='form-group'>
-							<input type='text' class='form-control ".temErro($erros["nco"])."' aria-describedby='erro_nco' name='nco' placeholder='"._("O teu nome verdadeiro")."'>
+							<input type='text' class='form-control ".temErro($erros["nco"])."' aria-describedby='erro_nco' name='nco' placeholder='"._("Primeiro e último nome")."'>
 							<div id='erro_nco' class='invalid-feedback'>".nomeErro($erros["nco"])."</div>
 						</div>
 

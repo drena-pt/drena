@@ -24,8 +24,8 @@ msgstr "Déconnecter"
 msgid "Registo"
 msgstr "Registrer"
 
-msgid "O teu nome verdadeiro"
-msgstr "Votre Prenom"
+msgid "Primeiro e último nome"
+msgstr "Prénom et nom"
 
 msgid "Nome de utilizador"
 msgstr "Pseudo"
