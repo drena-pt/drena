@@ -93,16 +93,16 @@ if ($uti){
                     <div class='my-4'>";
                     if ($conhecidos){
                         if ($_GET['feed']=='global'){
-                            $api_link = "https://testes.drena.xyz/api/feed?uti=".$uti['id']."&tip=global";
+                            $api_link = $url_site."api/feed?uti=".$uti['id']."&tip=global";
                             echo "<a href='/' class='btn btn-light' role='button'>Feed <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#view-stacked'/></a>
                             <a class='btn btn-primary' role='button'>Feed global <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#globe'/></svg></a>";
                         } else {
-                            $api_link = "https://testes.drena.xyz/api/feed?uti=".$uti['id'];
+                            $api_link = $url_site."api/feed?uti=".$uti['id'];
                             echo "<a class='btn btn-primary' role='button'>Feed <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#view-stacked'/></a>
                             <a href='/?feed=global' class='btn btn-light' role='button'>Feed global <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#globe'/></svg></a>";
                         }
                     } else {
-                        $api_link = "https://testes.drena.xyz/api/feed?tip=global";
+                        $api_link = $url_site."/api/feed?tip=global";
                     }
                         echo "<!--<a href='feed?tip=global' role='button' class='btn btn-light'>Explorar <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#compass'/></svg></a>-->
                     </div>
