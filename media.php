@@ -74,7 +74,8 @@
 						case 1: # Vídeo
 							$t_eliminar = _('Eliminar vídeo');
 							$t_cor = 'primary';
-							echo "<div class='mw-100'>
+							echo "
+							<div class='mw-100'>
 								<div style='position:relative;padding-bottom:56.25%;'>
 									<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$med['id']."&titulo=0'></iframe>
 								</div>
@@ -82,7 +83,8 @@
 							
 							if ($uti['id']==$med_uti['id']){
 								if ($med['est']=='1'){
-									echo "<div class='p-xl-5 p-4 bg-amarelo'>
+									echo "
+									<div class='p-xl-5 p-4 bg-amarelo'>
 										<text class='h5 my-auto me-auto'><i class='bi bi-exclamation-triangle-fill'></i> "._('Aviso').":</text>
 										<div class='row'>
    											<div class='col-md-8'>

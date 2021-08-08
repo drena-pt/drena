@@ -205,7 +205,7 @@
 			}
 
 			if ($conhecidos OR $pedidos AND $uti_perfil['nut']==$_SESSION["uti"]){
-				echo "<div class='bg-dark text-light p-xl-5 px-4'>";
+				echo "<div class='bg-dark text-light p-xl-5 p-4'>";
 
 				if ($conhecidos){
 					if ($result = $bd->query($sql_conhecidos)) {

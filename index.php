@@ -55,7 +55,7 @@ if ($uti){
                                     <div class='rounded-xl inset-shadow'>
                                         <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
                                         <div class='texto-container-bottom'><text class='h6'>".encurtarNome($video_tit)."</text></div>
-                                        </div>
+                                    </div>
                                 </a>
                             </div>
                             ";
@@ -93,7 +93,7 @@ if ($uti){
                     <div class='my-4'>";
                     if ($conhecidos){
                         if ($_GET['feed']=='global'){
-                            $api_link = "https://testes.drena.xyz/api/feed?tip=global";
+                            $api_link = "https://testes.drena.xyz/api/feed?uti=".$uti['id']."&tip=global";
                             echo "<a href='/' class='btn btn-light' role='button'>Feed <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#view-stacked'/></a>
                             <a class='btn btn-primary' role='button'>Feed global <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#globe'/></svg></a>";
                         } else {
@@ -113,7 +113,7 @@ if ($uti){
                         <div class='row mx-0 mx-xl-2'>
                             <div class='col-2'></div>
                             <div class='col-8'>";
-                            if ($resultado = $bd->query("SELECT * FROM uti WHERE id IN (".$lista_feed.") ORDER by id DESC LIMIT 10")){
+                            if ($resultado = $bd->query("SELECT * FROM uti WHERE id IN (".$lista_feed.") ORDER by id DESC LIMIT 8")){
                                 while ($campo_uti = $resultado->fetch_assoc()){
                                     echo "<a data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."' href='/perfil?uti=".$campo_uti['nut']."'><img src='fpe/".base64_encode($campo_uti["fot"])."' class='mx-1 rounded-circle' width='32'></a>";
                                 }
@@ -127,8 +127,10 @@ if ($uti){
                     <div id='medias'></div>
 
                     <script>
+                    let scrollLoad = true;
+                    let api_link = '".$api_link."';
+
                     function tempoPassado(tempo) {
-        
                         var passado = Date.now() - new Date(tempo);
 
                         var mspSEG = 1000;
@@ -164,33 +166,78 @@ if ($uti){
                         } else {
                             return (Math.floor(passado/vuTempo)+' '+tTempo[uTempo][1]);
                         } 
-
                     }
 
-                    $.get('".$api_link."', function(data) {
-                        if (data){
-                            if (data.erro!=null){
-                                console.log('ERRO: '+data.erro);
-                            } else {
-
-                                console.log(data);
-
-                                for(var index = 0; index < data.length; index++) {
-                                    $('#medias').append(\"<section class='bg-preto bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col-12 col-md d-flex'><text class='h5 my-auto' id='med_tit'>\"+data[index].med.tit+\"</text></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/perfil?uti=guilhae'><img src='fpe/\"+btoa(data[index].uti.fot)+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><svg onclick='gosto()' class='bi' style='cursor:pointer;' width='1em' height='1em' fill='currentColor'><use id='botao_gosto' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up-fill' hidden/><use id='botao_naogosto' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up' /></svg></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg></div><div class='col d-flex'>".sprintf(_('há %s'),"\"+tempoPassado(data[index].med.den)+\"")."</div></div></section></div></section>\");
-                                    
-                                    if (data[index].med.tip==1){
-                                        $('#med_'+data[index].med.id+'_conteudo').html(\"<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe></div>\");
-                                    } else if (data[index].med.tip==2){
-                                        $('#med_'+data[index].med.id+'_conteudo').html(\"<iframe height='180px' class='w-100' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe>\");
-                                    } else {
-                                        $('#med_'+data[index].med.id+'_conteudo').html(\"<iframe style='min-height:50vh;' class='w-100' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe>\");
+                    function carregarMedia(url){
+                        $.get(url, function(data) {
+                            if (data){
+                                if (data.erro!=null){
+                                    console.log('ERRO: '+data.erro);
+                                } else {
+                                    for(var index = 0; index < data.length; index++) {
+                                        
+                                        //Carrega a média apenas se não for repetida
+                                        if (!$('#med_'+data[index].med.id+'_conteudo').length){
+                                            $('#medias').append(\"<section class='bg-preto bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col-12 col-md d-flex'><text class='h5 my-auto' id='med_tit'>\"+data[index].med.tit+\"</text></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/perfil?uti=guilhae'><img src='fpe/\"+btoa(data[index].uti.fot)+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><svg onclick='gosto(`\"+data[index].med.id+\"`)' class='bi' style='cursor:pointer;' width='1em' height='1em' fill='currentColor'><use id='svg_gosto_\"+data[index].med.id+\"' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up-fill'/><use id='svg_naoGosto_\"+data[index].med.id+\"' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up'/></svg></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg></div><div class='col d-flex'>".sprintf(_('há %s'),"\"+tempoPassado(data[index].med.den)+\"")."</div></div></section></div></section>\");
+                                            
+                                            if (data[index].uti.gos==1){
+                                                $('#svg_naoGosto_'+data[index].med.id).attr('hidden', true);
+                                            } else {
+                                                $('#svg_gosto_'+data[index].med.id).attr('hidden', true);
+                                            }
+    
+                                            if (data[index].med.tip==1){
+                                                $('#med_'+data[index].med.id+'_conteudo').html(\"<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe></div>\");
+                                            } else if (data[index].med.tip==2){
+                                                $('#med_'+data[index].med.id+'_conteudo').html(\"<iframe height='180px' class='w-100' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe>\");
+                                            } else {
+                                                $('#med_'+data[index].med.id+'_conteudo').html(\"<iframe style='min-height:50vh;' class='w-100' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe>\");
+                                            }
+                                            api_link = '".$api_link."&depois='+data[index].med.id;
+                                            scrollLoad = true;
+                                        } else {
+                                            //console.log(data[index].med.id+' Média repetida ocultada');
+                                            if (index+1==data.length){
+                                                console.log('Aviso: Fim da lista.');
+                                                scrollLoad = false;
+                                            }
+                                        }
                                     }
-                                    
                                 }
                             }
+                        });
+                    }
+                    carregarMedia(api_link);
+
+                    function gosto(med_id){
+                        $.ajax({
+                            url: 'pro/med_gos.php?med='+med_id,
+                            success: function(result) {
+                                var gostos = +$('#med_'+med_id+'_numGostos').text();
+                                console.log('gosto med('+med_id+') '+result);
+                                if (result==='false'){
+                                    $('#svg_gosto_'+med_id).attr('hidden', true);
+                                    $('#svg_naoGosto_'+med_id).removeAttr('hidden');
+                                    $('#med_'+med_id+'_numGostos').text(gostos-1);
+                                } else {
+                                    $('#svg_gosto_'+med_id).removeAttr('hidden');
+                                    $('#svg_naoGosto_'+med_id).attr('hidden', true);
+                                    $('#med_'+med_id+'_numGostos').text(gostos+1);
+                                }
+                            },
+                            error: function(){
+                                alert('Ocorreu um erro.');
+                            }
+                        });
+                    }
+                    $(window).scroll(function(){
+                        if (scrollLoad && ($(document).height() - $(window).height())-$(window).scrollTop()<=400){
+                            scrollLoad = false;
+                            carregarMedia(api_link);
                         }
                     });
                     </script>
+
                 </div>";
             }
 			?>
