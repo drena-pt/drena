@@ -1,4 +1,4 @@
-<header class='navbar-dark bg-dark'>
+<header class='navbar-dark sticky-top bg-dark'>
 	<nav class="px-4 px-xl-0 col-xl-6 offset-xl-3 navbar navbar-expand-sm">
 		<a class="navbar-brand" href="/">
 			<img src="imagens/logo.png" height="32" alt="" loading="lazy">
@@ -16,6 +16,8 @@
 					} else {
 						if ($uti['car']==1){
 							echo "<li class='nav-item'><a class='nav-link mx-1' href='/adm'><span class='text-rosa'><i class='bi bi-person-lines-fill'></i>"._('Administrar')."</span></a></li>";
+						} else if ($uti['car']==2){
+							echo "<li class='nav-item'><a class='nav-link mx-1' href='/mod'><span class='text-ciano'><i class='bi bi-clipboard-check'></i>"._('Moderar')."</span></a></li>";
 						}
 						echo "<li class='nav-item'><a class='nav-link mx-1' href='/criar'>"._('Criar')."</a></li>
 						<li class='nav-item'><a class='nav-link mx-1' href='pro/sair'>"._('Sair')."</a></li>
