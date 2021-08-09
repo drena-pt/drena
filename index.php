@@ -8,7 +8,7 @@ if ($uti){
 }
 ?>
     <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
-	</head>
+    </head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
 		<div id="swup" class="transition-fade">
@@ -35,7 +35,7 @@ if ($uti){
                     }
                     echo "
                     </span>
-                    <a href='/registo' role='button' class='btn btn-primary'>"._('Criar uma conta')."</a>
+                    <a href='/registo' role='button' class='btn btn-lg btn-primary'>"._('Criar uma conta')."</a>
                     </h1>
     
                     
@@ -110,28 +110,26 @@ if ($uti){
 
                     if ($_GET['feed']!='global' AND $conhecidos){
                         echo "
-                        <div class='row mx-0 mx-xl-2'>
-                            <div class='col-2'></div>
-                            <div class='col-8'>";
-                            if ($resultado = $bd->query("SELECT * FROM uti WHERE id IN (".$lista_feed.") ORDER by id DESC LIMIT 8")){
-                                while ($campo_uti = $resultado->fetch_assoc()){
-                                    echo "<a data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."' href='/perfil?uti=".$campo_uti['nut']."'><img src='fpe/".base64_encode($campo_uti["fot"])."' class='mx-1 rounded-circle' width='32'></a>";
-                                }
+                        <div class='mx-0 mx-xl-2'>";
+                        if ($resultado = $bd->query("SELECT * FROM uti WHERE id IN (".$lista_feed.") ORDER by id DESC LIMIT 8")){
+                            while ($campo_uti = $resultado->fetch_assoc()){
+                                echo "<a data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."' href='/perfil?uti=".$campo_uti['nut']."'><img src='fpe/".base64_encode($campo_uti["fot"])."' class='mx-1 rounded-circle' width='32'></a>";
                             }
-                        echo "</div>
-                            <div class='col-2'></div>
+                        }
+                        echo "
                         </div>";
                     }
 
                     echo "
                     <div id='medias'></div>
-
                     <script>
                     let scrollLoad = true;
                     let api_link = '".$api_link."';
 
                     function tempoPassado(tempo) {
-                        var passado = Date.now() - new Date(tempo);
+                        var atual = Date.now();
+                        var publicado = new Date.parse(tempo, 'YYYY-MM-ddTHH:mm:ss');
+                        var passado = atual - publicado;
 
                         var mspSEG = 1000;
                         var mspMIN = mspSEG * 60;
@@ -151,13 +149,13 @@ if ($uti){
                             'mspANO':['"._('ano')."','"._('anos')."']
                         };
                         
-                        if (passado < mspMIN) { uTempo=mspSEG; }
+                        if (passado < mspMIN) { uTempo='mspSEG'; }
                         else if (passado < mspHOR) { uTempo='mspMIN'; }
                         else if (passado < mspDIA) { uTempo='mspHOR'; }
                         else if (passado < mspSEM) { uTempo='mspDIA'; }
                         else if (passado < mspMES) { uTempo='mspSEM'; }
                         else if (passado < mspANO) { uTempo='mspMES'; }
-                        else { uTempo=mspANO; }
+                        else { uTempo='mspANO'; }
 
                         vuTempo = eval(window['uTempo']);
 
@@ -240,6 +238,8 @@ if ($uti){
 
                 </div>";
             }
+
+            require "footer.php";
 			?>
         </div>
 	</body>
