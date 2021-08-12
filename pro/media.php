@@ -159,7 +159,6 @@ if ($ac=='lista'){
                     echo "<div class='my-4 row row-cols-2 row-cols-md-3'>
                     <script>
                     function adicionar_med(med){
-                        console.log(med);
 						$.ajax({
 							url: '/pro/med_alb.php?ac=adicionar&alb=".$alb['id']."&med='+med,
 							type: 'POST',

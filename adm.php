@@ -25,7 +25,7 @@
                                     <input name='pesquisa' class='border-0 form-control bg-dark' type='text' placeholder='Pesquisar...'></input>
                                 </div>
                                 <div class='col-auto d-flex'>
-                                    <button type='submit' class='justify-content-center align-self-center btn btn-primary'>Pesquisar <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#search'/></svg></button>
+                                    <button type='submit' class='justify-content-center align-self-center btn btn-primary'>Pesquisar <i class='bi bi-search'></i></button>
                                 </div>
                             </div>
                         </form>
@@ -104,7 +104,7 @@
                                     <input name='pesquisa_pro' class='border-0 form-control bg-dark' type='text' placeholder='Pesquisar...'></input>
                                 </div>
                                 <div class='col-auto d-flex'>
-                                    <button type='submit' class='justify-content-center align-self-center btn btn-primary'>Pesquisar <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#search'/></svg></button>
+                                    <button type='submit' class='justify-content-center align-self-center btn btn-primary'>Pesquisar <i class='bi bi-search'></i></button>
                                 </div>
                             </div>
                         </form>

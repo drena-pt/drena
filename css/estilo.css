@@ -70,9 +70,3 @@ button.close{
 .navbar-dark:hover .navbar-nav:hover .nav-link:hover{
 	opacity: 0.8 !important;
 }
-
-.bi{
-	width: 1.5em !important;
-	height: 1.5em !important;
-	margin: 0 0.2em !important;
-}

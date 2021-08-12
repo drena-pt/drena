@@ -22,8 +22,7 @@
 
 					<label for='files' class='btn btn-ciano text-light' style='cursor:pointer;'>
 						<span id='fpe_carregar'>
-							"._('Selecionar imagens')."
-							<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#upload'/></svg>
+							"._('Selecionar imagens')." <i class='bi bi-upload'></i>
 						</span>
 					</label>
 					<br><br>

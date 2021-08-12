@@ -94,17 +94,17 @@ if ($uti){
                     if ($conhecidos){
                         if ($_GET['feed']=='global'){
                             $api_link = $url_site."api/feed?uti=".$uti['id']."&tip=global";
-                            echo "<a href='/' class='btn btn-light' role='button'>Feed <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#view-stacked'/></a>
-                            <a class='btn btn-primary' role='button'>Feed global <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#globe'/></svg></a>";
+                            echo "<a href='/' class='btn btn-light' role='button'>Feed <i class='bi bi-view-stacked'></i></a>
+                            <a class='btn btn-primary' role='button'>Feed global <i class='bi bi-globe'></i></a>";
                         } else {
                             $api_link = $url_site."api/feed?uti=".$uti['id'];
-                            echo "<a class='btn btn-primary' role='button'>Feed <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#view-stacked'/></a>
-                            <a href='/?feed=global' class='btn btn-light' role='button'>Feed global <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#globe'/></svg></a>";
+                            echo "<a class='btn btn-primary' role='button'>Feed <i class='bi bi-view-stacked'></i></a>
+                            <a href='/?feed=global' class='btn btn-light' role='button'>Feed global <i class='bi bi-globe'></i></a>";
                         }
                     } else {
                         $api_link = $url_site."/api/feed?tip=global";
                     }
-                        echo "<!--<a href='feed?tip=global' role='button' class='btn btn-light'>Explorar <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#compass'/></svg></a>-->
+                        echo "<!--<a href='feed?tip=global' role='button' class='btn btn-light'>Explorar <i class='bi bi-compass'></i></a>-->
                     </div>
                     ";
 
@@ -176,7 +176,7 @@ if ($uti){
                                         
                                         //Carrega a média apenas se não for repetida
                                         if (!$('#med_'+data[index].med.id+'_conteudo').length){
-                                            $('#medias').append(\"<section class='bg-preto bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col-12 col-md d-flex'><text class='h5 my-auto' id='med_tit'>\"+data[index].med.tit+\"</text></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/perfil?uti=\"+data[index].uti.nut+\"'><img src='fpe/\"+btoa(data[index].uti.fot)+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><svg onclick='gosto(`\"+data[index].med.id+\"`)' class='bi' style='cursor:pointer;' width='1em' height='1em' fill='currentColor'><use id='svg_gosto_\"+data[index].med.id+\"' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up-fill'/><use id='svg_naoGosto_\"+data[index].med.id+\"' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up'/></svg></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg></div><div class='col d-flex'>".sprintf(_('há %s'),"\"+tempoPassado(data[index].med.den)+\"")."</div></div></section></div></section>\");
+                                            $('#medias').append(\"<section class='bg-dark bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col-12 col-md d-flex'><text class='h5 my-auto' id='med_tit'>\"+data[index].med.tit+\"</text></div><div class='col-md my-md-0 my-2 d-flex flex-md-row-reverse flex-row'><a href='/media?id=\"+data[index].med.id+\"' role='button' class='btn btn-light me-1 my-auto'>"._('Abrir')." <i class='bi bi-box-arrow-in-right'></i></a></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/perfil?uti=\"+data[index].uti.nut+\"'><img src='fpe/\"+btoa(data[index].uti.fot)+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><span onclick='gosto(`\"+data[index].med.id+\"`)' role='button'><i id='svg_gosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i><i id='svg_naoGosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up'></i></span></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><i class='bi bi-calendar4-week'></i></div><div class='col d-flex'>".sprintf(_('há %s'),"\"+tempoPassado(data[index].med.den)+\"")."</div></div></section></div></section>\");
                                             
                                             if (data[index].uti.gos==1){
                                                 $('#svg_naoGosto_'+data[index].med.id).attr('hidden', true);

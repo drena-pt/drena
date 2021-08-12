@@ -21,7 +21,7 @@ if ($sec){ # Se a secção existir
             </div>
             <div class='text-end'>
                 <button class='btn btn-light' onclick=\"guardar()\">
-                "._('Guardar')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#save'/></svg>
+                "._('Guardar')." <i class='bi bi-save'></i>
                 </button>
             </div>
             <script>

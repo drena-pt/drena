@@ -1,9 +1,12 @@
+// Estilo / Bootstrap modificado
+@import "../node_modules/bootstrap/scss/functions";
+
 $roxo:	#6c4fff;
 $ciano:	#00cee9;
 $rosa:	#ff4fff;
-$dark:	#333;
+$black:	#111;
 $white:	#fff;
-$preto:	#111;
+$cinza:	#222222;
 //Mais cores
 $azul:	#0066ff;
 $verde:	#00aa00;
@@ -14,21 +17,19 @@ $theme-colors: (
   "primary": $roxo,
   "ciano": $ciano,
   "rosa": $rosa,
-  "dark": $dark,
+  "dark": $black,
   "light": $white,
-  "preto": $preto,
+  "cinza": $cinza,
   "azul": $azul,
   "verde": $verde,
   "amarelo": $amarelo,
   "vermelho": $vermelho
 );
 
-$body-bg: rgba($dark, .95) !default;
-$body-color: $white !default;
-$enable-shadows: true;
-$gradient: linear-gradient(-45deg, rgba($dark, .4), rgba($dark, 0));
-$box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+$body-bg: $cinza;
+$body-color: $white;
 
+// Fontes
 @font-face{
 	font-family: "MADE TOMMY Regular";
 	src: url("../fontes/MADE TOMMY Regular.otf");
@@ -43,19 +44,25 @@ $box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 }
 @font-face{
 	font-family: "SourceSansPro";
-	src: url("../fontes/SourceSansPro.ttf");
+	src: url("/../fontes/SourceSansPro.ttf");
 }
 
 $font-family-sans-serif: "SourceSansPro", Helvetica, Arial, sans-serif !default;
+$font-size-base: 1.1rem !default;
 $headings-font-family: "MADE TOMMY Bold" !default;
 .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: "MADE TOMMY Regular"!important;
+	font-family: "MADE TOMMY Regular" !important;
 }
 $h1-font-size: 3em;
+
+$enable-shadows: true;
+$gradient: linear-gradient(-45deg, rgba($black, .4), rgba($black, 0));
+$box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 
 $border-radius: 10rem;
 $border-width: 2px;
 
+// Butões e inputs
 $btn-border-radius: $border-radius;
 $btn-box-shadow: $box-shadow;
 $btn-padding-y: 0.4rem !default;
@@ -72,8 +79,10 @@ $input-border-color:					$white;
 $input-focus-border-color:				rgba($white, .5);
 
 $input-placeholder-color:				rgba($white, .8);
-$input-btn-font-family:					"MADE TOMMY Regular";
-$input-btn-font-size:					16px;
+//$input-btn-font-family:				"MADE TOMMY Regular";
+//$input-btn-font-size:					16px;
+$input-btn-font-family:					$font-family-sans-serif;
+$input-btn-font-size:					$font-size-base;
 $input-border-radius:					0px;
 $input-box-shadow:						$box-shadow;
 $input-btn-focus-border:				rgba($white, .5);
@@ -82,7 +91,7 @@ $input-btn-focus-box-shadow:			$box-shadow !important;
 $form-check-input-border:				$border-width solid $white;
 $form-check-input-border-radius:		0px;
 $form-check-input-focus-border:			rgba($white, .5);
-$form-check-input-checked-color:		$preto;
+$form-check-input-checked-color:		$black;
 $form-check-input-checked-bg-color:		$white;
 
 input[type='text'], input[type='email'], input[type='password']{
@@ -105,7 +114,7 @@ $form-feedback-margin-top: 0px;
 	margin-bottom: 10px !important;
 }
 
-$tooltip-font-size: 1rem !default;
+$tooltip-font-size: $font-size-base !default;
 $tooltip-arrow-color: transparent !default;
 
 $card-deck-margin: 0px;
@@ -115,7 +124,18 @@ $modal-content-border-radius: 10px;
 $modal-content-border-width: 0;
 $modal-inner-padding: 0;
 
-//Criado por mim:
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Criado por mim
+
+.bi{
+	font-size: 1.1rem;
+	width: 1.1rem;
+	height: 1.1rem;
+	margin: 0 0.2em !important;
+}
+
 .text-outline{
 	font-family: "MADE TOMMY Bold Outline";
 }

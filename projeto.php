@@ -35,11 +35,11 @@
 				echo "
 				<section class='text-start'>
 					<button class='btn btn-light text-".numeroParaCor($pro['cor'])."' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample' id='header_btn'>
-					"._('Configurações')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
+					"._('Configurações')." <i class='bi bi-sliders'></i>
 					</button>
 
 					<button class='btn btn-light text-".numeroParaCor($pro['cor'])."' id='header_btn_criar'>
-					"._('Nova secção')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
+					"._('Nova secção')." <i class='bi bi-plus-circle'></i>
 					</button>
 
 					<script>
@@ -93,7 +93,7 @@
 						<br>
 
 						<button class='btn btn-light ml-1' data-toggle='modal' data-target='#modal_eliminar_pro'>
-							"._('Eliminar projeto')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+							"._('Eliminar projeto')." <i class='bi bi-trash'></i>
 						</button>
 
 						<script>
@@ -178,23 +178,23 @@
 							<div class='d-flex flex-row-reverse mb-3'>
 								<div>
 									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Visibilidade')."\" onclick=\"visibilidade('".base64_encode($campo['id'])."',".$num_sec.")\">
-										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#eye'/></svg>
+										<i class='bi bi-eye'></i>
 									</button>
 
 									<button onclick=\"editarSeccao('".$campo['id']."')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Editar texto')."\">
-										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#pencil'/></svg>
+										<i class='bi bi-pencil'></i>
 									</button>
 
 									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Eliminar')."\" onclick=\"eliminar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
-										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+										<i class='bi bi-trash'></i>
 									</button>
 
 									<div class='btn-group ml-1' role='group' aria-label='Basic example'>
 										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverBaixo' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Mover para baixo')."\">
-											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-down'/></svg>
+											<i class='bi bi-arrow-down'></i>
 										</a>
 										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverCima' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Mover para cima')."\">
-											<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-up'/></svg>
+											<i class='bi bi-arrow-up'></i>
 										</a>
 									</div>
 								</div>

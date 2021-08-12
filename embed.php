@@ -147,7 +147,7 @@ if ($med){
 				</script>";
 			} else if ($med['tip']==3){
 				echo "
-				<section class='d-flex flex-wrap align-items-center justify-content-center bg-preto h-100'>
+				<section class='d-flex flex-wrap align-items-center justify-content-center bg-dark h-100'>
 					<img style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='".$url_media."img/".$med['id'].".".end(explode(".", $med['nom']))."'></img>
 				</section>";
 			}

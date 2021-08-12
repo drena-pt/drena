@@ -31,7 +31,7 @@
 						<text class='h2'>
 							"._('Bem vindo!')."
 							<button type='button' class='btn close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
-								<svg class='bi' width='1em' height='1em'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#x-square-fill'/></svg>
+								<i class='bi bi-x-square-fill'></i>
 							</button>
 						</text>
 						<p>"._('Obrigado por te registares na drena, fica à vontade para partilhares as tuas coisas.')."</p>
@@ -63,8 +63,7 @@
 				</style>
 				<label for='fpe' class='float-end btn btn-light' style='cursor:pointer;'>
 					<span id='fpe_carregar'>
-						"._('Alterar foto')."
-						<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#image'/></svg>
+						"._('Alterar foto')." <i class='bi bi-image'></i>
 					</span>
 					<div style='display:none;' id='fpe_a_carregar' data-placement='bottom' data-toggle='tooltip' title='A carregar...'>
 						<div class='box'></div>
@@ -114,29 +113,29 @@
 				$ami_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM ami WHERE (a_id='".$uti["id"]."' AND b_id='".$uti_perfil["id"]."') OR (a_id='".$uti_perfil["id"]."' AND b_id='".$uti["id"]."')"));
 				echo "<a id='ami' class='float-end btn btn-light' href='pro/ami.php?uti=".$uti_perfil['nut']."'>";
 				if (!$ami_uti['id']){
-					echo _('Adicionar conhecido')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-plus-fill'/></svg></a>";
+					echo _('Adicionar conhecido')." <i class='bi bi-person-plus-fill'></i></a>";
 				} else {
 					if ($ami_uti['sim']==1){ #Se já forem conhecidos
-						echo _('São conhecidos')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg></a>
+						echo _('São conhecidos')." <i class='bi bi-person-check-fill'></i></a>
 						<script>
 						$('#ami').hover(function(){
-							$(this).html(\""._('Remover conhecido')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-x-fill'/></svg>\");
+							$(this).html(\""._('Remover conhecido')." <i class='bi bi-person-x-fill'></i>\");
 							}, function(){
-							$(this).html(\""._('São conhecidos')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg>\");
+							$(this).html(\""._('São conhecidos')." <i class='bi bi-person-check-fill'></i>\");
 						});
 						</script>";
 					} else {
 						if ($ami_uti['a_id']==$uti['id']){
-							echo _('Pedido enviado')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill'/></svg></a>
+							echo _('Pedido enviado')." <i class='bi bi-person-fill'></i></a>
 							<script>
 							$('#ami').hover(function(){
-								$(this).html(\""._('Cancelar pedido')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-x-fill'/></svg>\");
+								$(this).html(\""._('Cancelar pedido')." <i class='bi bi-person-x-fill'></i>\");
 								}, function(){
-								$(this).html(\""._('Pedido enviado')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill'/></svg>\");
+								$(this).html(\""._('Pedido enviado')." <i class='bi bi-person-fill'></i>\");
 							});
 							</script>";
 						} else if ($ami_uti['b_id']==$uti['id']){
-							echo _('Aceitar pedido')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#person-check-fill'/></svg></a>";
+							echo _('Aceitar pedido')." <i class='bi bi-person-check-fill'></i></a>";
 						}
 					}
 				}

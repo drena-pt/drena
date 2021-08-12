@@ -28,15 +28,15 @@
 				echo "
 				<section class='text-start'>
 					<button class='btn btn-dark text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
-					"._('Configurações')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#sliders'/></svg>
+					"._('Configurações')." <i class='bi bi-sliders'></i>
 					</button>
 
 					<button id='header_btn_adicionar' class='btn btn-dark text-light'>
-					"._('Adicionar')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
+					"._('Adicionar')." <i class='bi bi-plus-circle'></i>
 					</button>
 					
 					<button id='header_btn_concluido' style='display: none;'' class='btn btn-dark text-light'>
-					"._('Concluído')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#check-circle'/></svg>
+					"._('Concluído')." <i class='bi bi-check-circle'></i>
 					</button>
 
 					<script>
@@ -68,7 +68,7 @@
 					<br>
 
 					<button class='btn btn-vermelho ml-1' data-toggle='modal' data-target='#modal_eliminar_alb'>
-					"._('Eliminar álbum')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+					"._('Eliminar álbum')." <i class='bi bi-trash'></i>
 					</button>
 
 					<script>

@@ -91,7 +91,7 @@
 												<p>"._('A qualidade do vídeo é elevada, e pode comprometer a visualização em conexões mais lentas. Comprima o vídeo.')."</p>
 											</div>
     										<div class='col-md-4 text-end'>
-												<a href='/pro/med.php?id=".$med['id']."&ac=comprimir' role='button' class='btn btn-light text-dark'>"._('Comprimir vídeo')." <svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#gear'/></svg></a>
+												<a href='/pro/med.php?id=".$med['id']."&ac=comprimir' role='button' class='btn btn-light text-dark'>"._('Comprimir vídeo')." <i class='bi bi-gear'></i></a>
 											</div>
 										</div>
 									</div>";
@@ -145,9 +145,7 @@
 								}
 								</style>
 								<label for='input_thu' role='button' class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
-									<span id='thumb_carregar'>
-										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-image'/></svg>
-									</span>
+									<span id='thumb_carregar'><i class='bi bi-file-earmark-image'></i></span>
 									<div id='thumb_a_carregar' style='display:none;' data-placement='bottom' data-toggle='tooltip' title=\""._('A carregar...')."\">
 										<div class='box'></div>
 									</div>
@@ -195,7 +193,7 @@
 							} else if ($med['tip']=='3'){ # Caso seja uma imagem, para adicionar a um album
 								echo "<span data-toggle='modal' data-target='#modal_albuns'>
 									<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Adicionar a um álbum')."\">
-										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#collection'/></svg>
+										<i class='bi bi-collection'></i>
 									</button>
 								</span>
 
@@ -242,8 +240,7 @@
 														echo "
 														<a href='/pro/med_alb.php?ac=criar&med=".$med['id']."' class='list-group-item bg-transparent px-0'>
 															<section class='p-2 px-4 bg-light text-dark rounded-xl shadow d-flex justify-content-between align-items-center'>
-																<h5 class='m-0'>"._('Criar álbum')."</h5>
-																<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle'/></svg>
+																<h5 class='m-0'>"._('Criar álbum')."</h5><i class='bi bi-plus-circle'></i>
 															</section>
 														</a>
 														</ul>";
@@ -261,12 +258,12 @@
 							echo "
 							<span data-toggle='modal' data-target='#modal_alerar_tit'>
 								<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Alterar título')."'>
-									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#input-cursor-text'/></svg>
+									<i class='bi bi-input-cursor-text'></i>
 								</button>
 							</span>
 							<span data-toggle='modal' data-target='#modal_eliminar_med'>
 								<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_eliminar."\">
-									<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+									<i class='bi bi-trash'></i>
 								</button>
 							</span>";
 
@@ -280,9 +277,11 @@
 								$bg_privado = "light";
 							}
 							echo "
-							<a href='pro/med.php?ac=privar&id=".$med['id']."' role='button' class='btn btn-".$bg_privado." me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_privado."\">
-								<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#".$i_privado."'/></svg>
-							</a>
+							<span>
+								<a href='pro/med.php?ac=privar&id=".$med['id']."' role='button' class='btn btn-".$bg_privado." me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_privado."\">
+									<i class='bi bi-".$i_privado."'></i>
+								</a>
+							</span>
 
 							<!-- Modal Alterar título -->
 							<div class='modal fade' id='modal_alerar_tit' tabindex='-1' role='dialog' aria-labelledby='modal_alerar_tit_label' aria-hidden='true'>
@@ -321,6 +320,34 @@
 								</div>
 							</div>
 							";
+						} else if ($uti['car']==2){ #Ferramenta do moderador
+							echo "
+							<span data-toggle='modal' data-target='#modal_moderador'>
+								<button class='btn btn-ciano text-light me-1 my-auto'>
+									"._('Moderar')." <i class='bi bi-clipboard-minus'></i>
+								</button>
+							</span>
+							<!-- Modal Moderador -->
+							<div class='modal fade' id='modal_moderador' tabindex='-1' role='dialog' aria-hidden='true'>
+								<div class='modal-dialog' role='document'>
+									<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
+										<form action='#' method='post'>
+											<div class='modal-header'>
+												<h2 class='modal-title'>"._('Moderar')."</h2>
+											</div>
+											<div class='modal-body'>
+												<text class='h5'>".$med_tit."</text><br><br>
+												<button type='submit' class='btn btn-ciano text-light'>"._('Definir como contéudo sensivel')." <i class='bi bi-eye-slash'></i></button>
+												<button type='submit' class='btn btn-ciano text-light'>"._('Reportar como contéudo inapropriado')." <i class='bi bi-x-octagon'></i></button>
+											</div>
+											<div class='modal-footer text-end'>
+												<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							";
 						}
 						echo "
 							</div>
@@ -329,7 +356,7 @@
 						<section class='mt-auto'>
 							<!--<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
-									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#bar-chart'/></svg>
+									<i class='bi bi-bar-chart'></i>
 								</div>
 								<div class='col'>
 									visualizações
@@ -345,10 +372,10 @@
 							</div>
 							<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
-									<svg onclick='gosto()' class='bi' style='cursor:pointer;' width='1em' height='1em' fill='currentColor'>
-										<use id='botao_gosto' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up-fill' "; if(!$med_gos){echo"hidden";} echo"/>
-										<use id='botao_naogosto' xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up' "; if($med_gos){echo"hidden";} echo"/>
-									</svg>
+									<span role='button' onclick='gosto()'>
+										<i id='botao_gosto' class='bi bi-hand-thumbs-up-fill' ";if(!$med_gos){echo"hidden";}echo"></i>
+										<i id='botao_naogosto' class='bi bi-hand-thumbs-up' ";if($med_gos){echo"hidden";}echo"></i>
+									</span>
 								</div>
 								<div class='col' >
 									<span id='texto_gostos'>".$med['gos']."</span> "._('gostos')."
@@ -356,7 +383,7 @@
 							</div>
 							<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
-									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg>
+									<i class='bi bi-calendar4-week'></i>
 								</div>
 								<div class='col'>
 									".sprintf(_('há %s'),tempoPassado(strtotime($med['den'])))."
@@ -376,12 +403,12 @@
 					<button id='botao_caixa_comentario' href='/registo' class='btn btn-primary'>"._('Adicionar um comentário')."</button>
 				</div>
 				
-				<div style='display:none;'' id='caixa_comentario' class='my-4 p-xl-5 p-4 bg-primary bg-gradient rounded-xl shadow text-light'>
+				<div style='display:none;'' id='caixa_comentario' class='my-4 p-5 bg-primary bg-gradient rounded-xl shadow text-light'>
 					<form action='/pro/med_com.php?ac=criar&med=".$med['id']."' method='post'>
 						<h2>"._('Adicionar um comentário')."</h2>
 						<input type='text' class='form-control' name='input_com' placeholder='"._('Comentário')."'>
 						<div class='text-end'>
-						<button id='botao_fechar_caixa_comentario' type='button' class='btn btn-primary'>"._('Fechar')."</button>
+						<button id='botao_fechar_caixa_comentario' type='button' class='btn btn-dark'>"._('Fechar')."</button>
 						<button type='submit' class='btn btn-light text-primary'>"._('Comentar')."</button>
 						</div>
 					</form>
@@ -400,7 +427,6 @@
 						url: 'pro/med_gos.php?med=".$med['id']."',
 						success: function(result) {
 							var gostos = +$('#texto_gostos').text();
-							console.log(result);
 							if (result==='false'){
 								$('#botao_gosto').attr('hidden', true);
 								$('#botao_naogosto').removeAttr('hidden');
@@ -439,7 +465,7 @@
 								if ($com_uti['id']==$uti['id']){
 									echo "<span data-toggle='modal' data-target='#modal_eliminar_com".$campo['id']."'>
 									<button class='btn btn-dark my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Eliminar comentário')."\">
-										<svg class='bi' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#trash'/></svg>
+										<i class='bi bi-trash'></i>
 									</button>
 									</span>
 									<!-- Modal Eliminar Comentário -->
@@ -474,7 +500,7 @@
 							</div>
 							<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
-									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#calendar4-week'/></svg>
+									<i class='bi bi-calendar4-week'></i>
 								</div>
 								<div class='col'>
 									".sprintf(_('há %s'),tempoPassado(strtotime($campo['dcr'])))."

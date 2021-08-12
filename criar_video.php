@@ -47,8 +47,7 @@
 							<text class='h5' id='tit'>"._('Nenhum vídeo selecionado')."</text><br><br>
 							<label id='botao_input_video' for='input_video' class='btn btn-primary' style='cursor:pointer;'>
 								<span id='fpe_carregar'>
-									"._('Selecionar um vídeo')." 
-									<svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#upload'/></svg>
+									"._('Selecionar um vídeo')." <i class='bi bi-upload'></i>
 								</span>
 							</label>
 
@@ -60,9 +59,7 @@
 							<section class='mt-auto' id='video_info' hidden>
 								<div class='row mb-1'>
 									<div class='col-auto pr-0 text-center'>
-										<svg class='bi' width='1em' height='1em' fill='currentColor'>
-											<use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-play'/>
-										</svg>
+										<i class='bi bi-file-earmark-play'></i>
 									</div>
 									<div class='col' >
 										<span>"._('Informações do vídeo')."</span><br>
@@ -75,7 +72,7 @@
 							</section>
 
 							<a hidden id='botao_ver_video' href='/videos' class='btn btn-primary'>
-								"._('Ver vídeo')." <svg class='bi' width='1em' height='1em' fill='currentColor'><use xlink:href='node_modules/bootstrap-icons/bootstrap-icons.svg#play'/></svg>
+								"._('Ver vídeo')." <i class='bi bi-play'></i>
 							</a>
 
 						</div>
