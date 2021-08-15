@@ -87,8 +87,57 @@ if ($med){ # Se a média existir
 
         } else {
             echo "Erro: Nenhuma ação selecionada.";
-            exit;
         }
+        exit;
+
+    } else if ($uti['car']==2) { # Se for o utilizador for moderador
+
+        if ($ac=='eliminar'){ # Se a ação for eliminar
+
+            #Nivel 2 (Inaceitavel)
+            $med_mod_uti2 = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND uti='".$uti['id']."' AND niv='2';"));
+        
+            if ($med['est']=='2'){ # Se o estado da média não for 2 (processando)
+                echo "Erro: Não podes eliminar a média enquanto está a ser processada.";
+            } else if ($med['nmo']!=4 AND $med_mod_uti2){
+                echo "Erro: Não podes apagar esta média.";
+            } else {
+                $caminho_ori = $dir_media.'ori/'.$med['id'].'.'.$med_ext; # Original
+                unlink($caminho_ori);
+            
+                $caminho_som = $dir_media.'som/'.$med['id'].'.'.$med_ext; # Som
+                unlink($caminho_som);
+            
+                $caminho_img = $dir_media.'img/'.$med['id'].'.'.$med_ext; # Imagem
+                unlink($caminho_img);
+    
+                $caminho_comprimido = $dir_media.'comp/'.$med['id'].'.mp4';    # Comprimido
+                unlink($caminho_comprimido);
+
+                $caminho_convertido = $dir_media.'conv/'.$med['id'].'.mp4'; # Convertido
+                unlink($caminho_convertido);
+            
+                $caminho_thumb = $dir_media.'thumb/'.$med['thu'].'.jpg';  # Thumb
+                unlink($caminho_thumb);
+    
+                # Se existir algum dos ficheiros que supostamente foram apagados
+                if (file_exists($caminho_ori) OR file_exists($caminho_som) OR file_exists($caminho_img) OR file_exists($caminho_comprimido) OR file_exists($caminho_convertido) OR file_exists($caminho_thumb)){
+                    echo "Erro: Não foi possivel remover os ficheiros.";
+                } else if ($bd->query("DELETE FROM med_com WHERE med='".$med['id']."'") === FALSE) {
+                    echo "Erro mysql: ".$bd->error;
+                } else if ($bd->query("DELETE FROM med_gos WHERE med='".$med['id']."'") === FALSE) {
+                    echo "Erro mysql: ".$bd->error;
+                } else if ($bd->query("DELETE FROM med WHERE id='".$med['id']."'") === FALSE) {
+                    echo "Erro mysql: ".$bd->error;
+                } else {
+                    header("Location: /../mod.php");
+                }
+            }
+        
+        } else {
+            echo "Erro: Nenhuma ação selecionada.";
+        }
+        exit;
 
     } else { # Se não for o dono da média
         echo "Erro: Não és o dono da média.";

@@ -324,26 +324,105 @@
 							echo "
 							<span data-toggle='modal' data-target='#modal_moderador'>
 								<button class='btn btn-ciano text-light me-1 my-auto'>
-									"._('Moderar')." <i class='bi bi-clipboard-minus'></i>
+									"._('Moderar')." ";
+									if ($med['nmo']==0){
+										echo "<i class='bi bi-clipboard'></i>";
+									} else {
+										echo "<i class='bi bi-clipboard-check'></i>";
+									}
+									echo "
 								</button>
 							</span>
 							<!-- Modal Moderador -->
 							<div class='modal fade' id='modal_moderador' tabindex='-1' role='dialog' aria-hidden='true'>
 								<div class='modal-dialog' role='document'>
 									<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
-										<form action='#' method='post'>
-											<div class='modal-header'>
-												<h2 class='modal-title'>"._('Moderar')."</h2>
-											</div>
-											<div class='modal-body'>
-												<text class='h5'>".$med_tit."</text><br><br>
-												<button type='submit' class='btn btn-ciano text-light'>"._('Definir como contéudo sensivel')." <i class='bi bi-eye-slash'></i></button>
-												<button type='submit' class='btn btn-ciano text-light'>"._('Reportar como contéudo inapropriado')." <i class='bi bi-x-octagon'></i></button>
-											</div>
-											<div class='modal-footer text-end'>
-												<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
-											</div>
-										</form>
+										<div class='modal-header'>
+											<h2 class='modal-title'>"._('Moderar')."</h2>
+										</div>
+										<div class='modal-body'>
+											<text class='h5'>".$med_tit."</text><br><br>";
+											#Registos da ultima moderação feita pelo utilizador com sessão iniciada:
+											#Nivel 0 (Reverter ação)
+											$med_mod_uti0 = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND uti='".$uti['id']."' AND niv='0';"));
+											#Nivel 1 (Inapropriado)
+											$med_mod_uti1 = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND uti='".$uti['id']."' AND niv='1';"));
+											#Nivel 2 (Inaceitavel)
+											$med_mod_uti2 = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND uti='".$uti['id']."' AND niv='2';"));
+
+											if ($med['nmo']!=0 AND $med['nmo']!=2){
+												#Registo do ultimo voto
+												$med_mod = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND niv>'0' ORDER BY dre DESC;"));
+												#Registo do moderador do ultimo voto
+												$med_mod_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med_mod['uti']."'"));
+
+												echo "
+												<div class='row my-4'>
+													<div class='col-auto pe-0 text-center'>
+														<a href='/perfil?uti=".$med_mod_uti['nut']."'><img src='fpe/".base64_encode($med_mod_uti["fot"])."' class='rounded-circle' width='40'></a>
+													</div>
+													<div class='col d-flex'>
+														<span class='justify-content-center align-self-center'>
+															"._('Pedido pelo moderador')." ".$med_mod_uti['nut'].":<br>";
+															#Define a ação a tomar em texto
+															if ($med['nmo']==1){
+																echo "Definir como sensível";
+															} else if ($med['nmo']==3){
+																echo "Definir como contéudo inaceitável";
+															} else if ($med['nmo']==4){
+																echo "Eliminar contéudo inaceitável";
+															}
+															echo "
+														</span>
+													</div>
+												</div>
+												";
+
+												#Se o moderador com sessão iniciada nunca tiver escolhido as diferentes ações;
+												if (!$med_mod_uti0){
+													echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=0' role='button' class='me-1 btn btn-ciano text-light'>"._('Discordo')."</a>";
+												} else {
+													echo "<button disabled class='me-1 btn btn-ciano text-light'>"._('Discordo')."</button>";
+												}
+												if ($med['nmo']==1){
+													if ($med_mod_uti1){
+														echo "<button disabled class='btn btn-ciano text-light'>"._('Concordo')."</button>";
+													} else {
+														echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=1' role='button' class='btn btn-ciano text-light'>"._('Concordo')."</a>";
+													}
+												} else if ($med['nmo']==3 OR $med['nmo']==4){
+													if ($med_mod_uti2){
+														echo "<button disabled class='btn btn-ciano text-light'>"._('Concordo')."</button>";
+													} else {
+														echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=2' role='button' class='btn btn-ciano text-light'>";
+														if ($med['nmo']==3){
+															echo _('Concordo');
+														} else if ($med['nmo']==4){
+															echo _('Eliminar');
+														}
+														echo "</a>";
+													}
+												}
+
+											} else if ($med['nmo']!=2){
+												if ($med_mod_uti1){
+													echo "<button disabled class='btn btn-ciano text-light'>"._('Definir como contéudo sensível')." <i class='bi bi-eye-slash'></i></button>";
+												} else {
+													echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=1' role='button' class='btn btn-ciano text-light'>"._('Definir como contéudo sensível')." <i class='bi bi-eye-slash'></i></a>";
+												}
+											}
+											if ($med['nmo']<3){
+												if ($med_mod_uti2){
+													echo "<button disabled class='btn btn-vermelho text-light'>"._('Reportar como contéudo inaceitável')." <i class='bi bi-x-octagon'></i></button>";
+												} else {
+													echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=2' role='button' class='btn btn-vermelho text-light'>"._('Reportar como contéudo inaceitável')." <i class='bi bi-x-octagon'></i></a>";
+												}
+											}
+											echo "
+										</div>
+										<div class='modal-footer text-end'>
+											<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -387,7 +466,13 @@
 								</div>
 								<div class='col'>
 									".sprintf(_('há %s'),tempoPassado(strtotime($med['den'])))."
-								</div>
+								</div>";
+								if ($med['nmo']==2){
+									echo "<div class='col d-flex flex-row-reverse flex-row text-muted'>
+										<i class='bi bi-eye-slash'></i>Sensível
+									</div>";
+								}
+								echo "
 							</div>
 						</section>
 					</div>

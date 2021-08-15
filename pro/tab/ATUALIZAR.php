@@ -31,6 +31,24 @@ if ($sql==1){
     }
 }
 
+#Se a coluna nmo (Nivel de moderação) na tabela med (Média) não existir
+$sql = (mysqli_num_rows(mysqli_query($bd, "SHOW COLUMNS FROM med LIKE 'nmo'")))?TRUE:FALSE;
+if ($sql!=1){
+    #Adiciona a nova coluna nmo (Nivel de moderação) na tabela med (Média)
+    if ($bd->query("ALTER TABLE med ADD nmo INT DEFAULT 0 AFTER pri") === TRUE) {
+        echo "<br>Adicionada coluna nmo (Nivel de moderação) na tabela med (Média)";
+    } else {
+        echo "<br>Erro ao adicionar coluna nmo:".$bd->error;
+    }
+}
+
+#Se a for encontrado algum registo na tabela (med_mod) aka se ela existir
+$sql = (mysqli_num_rows(mysqli_query($bd, "SHOW TABLES LIKE 'med_mod'")))?TRUE:FALSE;
+if ($sql!=1){
+    #Cria a nova tabela med_mod (Moderação da Média)
+    require('med_mod.php'); #Média - Moderação
+}
+
 /* $sql = "ALTER TABLE pro DROP COLUMN ati;";
 //$sql = "ALTER TABLE mis_par ADD FOREIGN KEY (a_id) REFERENCES uti(id);";
 //$sql = "ALTER TABLE uti_fot CHANGE fot ori MEDIUMBLOB;";
