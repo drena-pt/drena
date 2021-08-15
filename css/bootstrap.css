@@ -93,6 +93,69 @@ input, .btn {
   transform: translate(-50%, -94%);
 }
 
+body {
+  overflow-x: hidden;
+}
+
+input[type=radio]:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -3px;
+  left: -1px;
+  position: relative;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
+input[type=radio]:checked:after {
+  border: 2px solid white;
+}
+
+a.perfil {
+  text-decoration: none !important;
+  display: block;
+  height: 100%;
+  color: white;
+  transition: 0.1s;
+}
+
+a.perfil:hover {
+  color: white;
+  opacity: 0.8;
+}
+
+.caixa-perfil-foto {
+  height: 400px;
+  background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), var(--perfil-foto);
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.navbar-toggler:hover {
+  opacity: 0.8;
+}
+
+button.close {
+  outline: none !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff !important;
+}
+
+.navbar-dark:hover .navbar-nav:hover .nav-link:hover {
+  opacity: 0.8 !important;
+}
+
 /*!
  * Bootstrap v5.0.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
