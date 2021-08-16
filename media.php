@@ -144,12 +144,12 @@
 									background-color: #000;
 								}
 								</style>
-								<label for='input_thu' role='button' class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
+								<span><label for='input_thu' role='button' class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
 									<span id='thumb_carregar'><i class='bi bi-file-earmark-image'></i></span>
 									<div id='thumb_a_carregar' style='display:none;' data-placement='bottom' data-toggle='tooltip' title=\""._('A carregar...')."\">
 										<div class='box'></div>
 									</div>
-								</label>
+								</label></span>
 								<form hidden enctype='multipart/form-data' action='#' method='post'>
 									<input type='file' id='input_thu' name='thu' accept='image/*'/>
 									<input type='submit'/>
