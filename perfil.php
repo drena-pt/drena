@@ -141,7 +141,7 @@
 				}
 			}
 			
-			echo "<h1>".$uti_perfil['nut']."</h1>
+			echo "<h1 style='font-size:calc(2.2rem + 1.4vw);'>".$uti_perfil['nut']."</h1>
 			<text class='h2'>".$uti_perfil['nco']."</text>";
 			
 			function mes($x){
@@ -188,16 +188,16 @@
 			<div class='bg-dark text-light p-xl-5 p-4'>
 				<section class='row'>";
 				if ($uti_perfil_projetos!=0){
-					echo "<a href='#conteudo' onclick='mostrarConteudo(0)' class='text-decoration-none col h5 text-center text-light'>"._('Projetos')." <span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span></a>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(0)' class='col-6 col-sm-3 text-decoration-none text-center text-light'>"._('Projetos')." <span class='badge rounded-pill bg-gradient bg-light text-dark'>".$uti_perfil_projetos."</span></a>";
 				}
 				if ($uti_perfil_audios!=0){
-					echo "<a href='#conteudo' onclick='mostrarConteudo(2)' class='text-decoration-none col h5 text-center text-light'>"._('Áudios')." <span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span></a>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(2)' class='col-6 col-sm-3 text-decoration-none text-center text-light'>"._('Áudios')." <span class='badge rounded-pill bg-gradient bg-rosa'>".$uti_perfil_audios."</span></a>";
 				}
 				if ($uti_perfil_imagens!=0){
-					echo "<a href='#conteudo' onclick='mostrarConteudo(3)' class='text-decoration-none col h5 text-center text-light'>"._('Imagens')." <span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span></a>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(3)' class='col-6 col-sm-3 text-decoration-none text-center text-light'>"._('Imagens')." <span class='badge rounded-pill bg-gradient bg-ciano'>".$uti_perfil_imagens."</span></a>";
 				}
 				if ($uti_perfil_videos!=0){
-					echo "<a href='#conteudo' onclick='mostrarConteudo(1)' class='text-decoration-none col h5 text-center text-light'>"._('Vídeos')." <span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span></a>";
+					echo "<a href='#conteudo' onclick='mostrarConteudo(1)' class='col-6 col-sm-3 text-decoration-none text-center text-light'>"._('Vídeos')." <span class='badge rounded-pill bg-gradient bg-primary'>".$uti_perfil_videos."</span></a>";
 				}
 			echo "</section>
 			</div>";
