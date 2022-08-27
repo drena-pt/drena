@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<!-- Coisas básicas -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" type="image/png" href="https://drena.pt/imagens/favicon.png">
+		<meta property="og:site_name" content="Escritura / Projeto radical">
+		<title>Escritura / Projeto radical</title>
+
+		<!-- jQuery, jQuery form -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+		
+		<!-- DateJS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js" integrity="sha512-/n/dTQBO8lHzqqgAQvy0ukBQ0qLmGzxKhn8xKrz4cn7XJkZzy+fAtzjnOQd5w55h4k1kUC+8oIe6WmrGUYwODA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+		<!-- Bootstrap -->
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="https://testes.altadrena.com/css/bootstrap_escritura.css">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-icons.css">
+		<script>
+			$(function (){ $('[data-toggle="tooltip"]').tooltip() })
+		</script>
+  </head>
+
+  <body>
+		<header class="navbar-dark bg-dark text-light">
+      <nav class="px-4 px-xl-0 col-xl-6 offset-xl-3 navbar navbar-expand">
+        <a class="nav-link" href="#">Escritura</a> / <a class="nav-link" href="#"><i class="bi bi-file-text"></i> Projeto radical</a></li>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abtir menu">
+          <span fill="#fff" class="navbar-toggler-icon text-light"></span>
+        </button>
+        
+        <div class='collapse navbar-collapse justify-content-end text-center' id='menu'>
+          <ul class="navbar-nav">
+            <li class="nav-item" data-toggle="modal" data-target="#modal_procurar">
+              <a class="nav-link" href="https://testes.altadrena.com/perfil?uti=leonor" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="leonor">
+                <img src="https://testes.altadrena.com/fpe/Ng==" class="rounded-circle" width="32">
+              </a>
+            </li>
+            
+            <li class="nav-item" data-toggle="modal" data-target="#modal_procurar">
+              <a class="nav-link" href="https://testes.altadrena.com/perfil?uti=guilhae" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="guilhae">
+                <img src="https://testes.altadrena.com/fpe/MTA=" class="rounded-circle" width="32">
+              </a>
+            </li>
+          </ul></div>
+      </nav>
+    </header>
+    <script>
+      function clique(cor, texto, comando){
+        $(".active").removeClass("active");
+        $("#"+cor).addClass("active");
+
+        
+        $("#texto_cor").text(texto);
+        $("#texto_cor").removeClass();
+        $("#texto_cor").addClass("bg-white py-1 px-3 text-"+cor);
+        $("#texto_comando").text(comando);
+      }
+    </script>
+		<header class="sticky-top bg-gradient">
+      <nav class="p-4 justify-content-center text-center">
+
+        <button onclick="clique('royalblue','CENA','CTRL+ALT+C')" id="royalblue" class="btn btn-light btn-outline-royalblue active"><i class="bi bi-image"></i></button>
+        <button onclick="clique('seagreen','AÇÃO','CTRL+ALT+A')" id="seagreen" class="btn btn-light btn-outline-seagreen"><i class="bi bi-megaphone"></i></button>
+        <button onclick="clique('orange','PERSONAGEM','CTRL+ALT+C')" id="orange" class="btn btn-light btn-outline-orange"><i class="bi bi-person"></i></button>
+        <button onclick="clique('tomato','DIÁLOGO','CTRL+ALT+D')" id="tomato" class="btn btn-light btn-outline-tomato"><i class="bi bi-chat"></i></button>
+        <button onclick="clique('crimson','DIDASCALIAS','CTRL+ALT+P')" id="crimson" class="btn btn-light btn-outline-crimson"><i class="bi bi-braces"></i></button>
+        <button onclick="clique('slateblue','TRANSIÇÃO','CTRL+ALT+T')" id="slateblue" class="btn btn-light btn-outline-slateblue"><i class="bi bi-shuffle"></i></button>
+        <button onclick="clique('dark','GERAL','CTRL+ALT+G')" id="dark" class="btn btn-light btn-outline-dark"><i class="bi bi-justify"></i></button>
+        <br>
+        <section>
+          <span id="texto_cor" class="bg-white py-1 px-3 text-royalblue">CENA</span>
+          <span id="texto_comando" class="bg-white py-1 px-3 text-dark">CTRL+ALT+C</span>
+        </section>
+      </nav>
+    </header>
+
+		<div class="col-xl-8 offset-xl-2 bg-white text-dark my-2 p-md-5 p-3">
+        <section class="p-md-5 p-3 text-courier">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
+sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
+recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
+minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
+quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
+fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
+consequuntur! Commodi minima excepturi repudiandae velit hic maxime
+doloremque. Quaerat provident commodi consectetur veniam similique ad 
+earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
+fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
+suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
+modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
+totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
+quasi aliquam eligendi, placeat qui corporis!
+<br><br><br><br>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
+sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
+recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
+minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
+quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
+fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
+consequuntur! Commodi minima excepturi repudiandae velit hic maxime
+doloremque. Quaerat provident commodi consectetur veniam similique ad 
+earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
+fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
+suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
+modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
+totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
+quasi aliquam eligendi, placeat qui corporis!
+<br><br><br><br>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
+sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
+recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
+minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
+quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
+fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
+consequuntur! Commodi minima excepturi repudiandae velit hic maxime
+doloremque. Quaerat provident commodi consectetur veniam similique ad 
+earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
+fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
+suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
+modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
+totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
+quasi aliquam eligendi, placeat qui corporis!
+<br><br><br><br>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
+sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
+recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
+minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
+quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
+fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
+consequuntur! Commodi minima excepturi repudiandae velit hic maxime
+doloremque. Quaerat provident commodi consectetur veniam similique ad 
+earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
+fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
+suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
+modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
+totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
+quasi aliquam eligendi, placeat qui corporis!
+      </section> 
+
+    </div>
+	
+  </body>
+</html>

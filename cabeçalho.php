@@ -19,7 +19,10 @@
 					} else if ($uti['car']==2){
 						echo "<li class='nav-item'><a class='nav-link mx-1' href='/mod'><span class='text-ciano'><i class='bi bi-clipboard-check'></i>"._('Moderar')."</span></a></li>";
 					}
-					echo "<li class='nav-item'><a class='nav-link mx-1' href='/criar'>"._('Criar')."</a></li>
+					#Botão para a futura escritura. Adicionar depois.
+					#<li class='nav-item'><a class='nav-link mx-1' href='/escritura.php'>"._('Escritura')."</a></li>
+					echo "
+					<li class='nav-item'><a class='nav-link mx-1' href='/criar'>"._('Criar')."</a></li>
 					<li class='nav-item'><a class='nav-link mx-1' href='pro/sair'>"._('Sair')."</a></li>
 					<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."' data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."'><img class='ms-2 rounded-circle' src='fpe/".base64_encode($uti["fot"])."' width='40' height='40'></a></li>";
 				}

@@ -80,6 +80,17 @@ function encurtarNome($nome, $tamanho=25){
     }
 }
 
+# Bytes para Humano
+function bytesParaHumano($size,$unit="") {
+	if( (!$unit && $size >= 1<<30) || $unit == "GB")
+		return number_format($size/(1<<30),2)."GB";
+	if( (!$unit && $size >= 1<<20) || $unit == "MB")
+		return number_format($size/(1<<20),2)."MB";
+	if( (!$unit && $size >= 1<<10) || $unit == "KB")
+		return number_format($size/(1<<10),2)."KB";
+	return number_format($size)." bytes";
+}
+
 # Notificações
 if ($funcoes['notificacao']==1){
 	function mandarNotificacao($not_uti_a,$not_uti_a_cod,$not_uti_b,$not_title,$not_icon,$not_body,$not_image){

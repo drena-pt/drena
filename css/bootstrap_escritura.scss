@@ -1,0 +1,255 @@
+// Estilo / Bootstrap modificado
+@import "../node_modules/bootstrap/scss/functions";
+
+$roxo:	#6c4fff;
+//Mais cores
+
+$white: White;
+$whitesmoke: WhiteSmoke;
+$lightgray: lightgray;
+$black:	Black;
+$royalblue: RoyalBlue;
+$seagreen: SeaGreen;
+$orange: orange;
+$tomato: tomato;
+$crimson: crimson;
+$slateblue: SlateBlue;
+
+$theme-colors: (
+  "primary": $roxo,
+  "dark": $black,
+  "light": $white,
+  "whitesmoke": $whitesmoke,
+  "lightgray": $lightgray,
+  "black": $black,
+  "royalblue": $royalblue,
+  "seagreen": $seagreen,
+  "orange": $orange,
+  "tomato": $tomato,
+  "crimson": $crimson,
+  "slateblue": $slateblue
+);
+
+$body-bg: $whitesmoke;
+$body-color: $black;
+
+// Fontes
+@font-face{
+	font-family: "MADE TOMMY Regular";
+	src: url("../fontes/MADE TOMMY Regular.otf");
+}
+@font-face{
+	font-family: "MADE TOMMY Bold";
+	src: url("../fontes/MADE TOMMY Bold.otf");
+}
+@font-face{
+	font-family: "MADE TOMMY Bold Outline";
+	src: url("../fontes/MADE TOMMY Bold Outline.otf");
+}
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+/*@font-face{
+	font-family: "SourceSansPro";
+	//src: url("../fontes/SourceSansPro.ttf");
+	src: url("https://fonts.gstatic.com/s/sourcesanspro/v18/6xK3dSBYKcSV-LCoeQqfX1RYOo3qNa7lqDY.woff2");
+	
+}*/
+
+$font-family-sans-serif: "SourceSansPro", Helvetica, Arial, sans-serif !default;
+$font-size-base: 1.1rem !default;
+$headings-font-family: "MADE TOMMY Bold" !default;
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "MADE TOMMY Regular" !important;
+}
+$h1-font-size: 3em;
+
+//$enable-shadows: true;
+$gradient: linear-gradient(0deg, rgba($lightgray, 0), rgba($lightgray, .9));
+$box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+
+$border-radius: 10rem;
+$border-width: 2px;
+
+// Butões e inputs
+$btn-border-radius: $border-radius;
+$btn-box-shadow: $box-shadow;
+$btn-padding-y: 0.4rem !default;
+$btn-padding-x: 1.2rem !default;
+$btn-transition: none !default;
+
+.btn{
+	border: none !important;
+	transition: 0.2s !important;
+}
+.active, .btn:active, .btn:hover{
+	color: $white !important;
+}
+
+$input-bg:								transparent;
+$input-color:							$white;
+$input-border-color:					$white;
+$input-focus-border-color:				rgba($white, .5);
+
+$input-placeholder-color:				rgba($white, .8);
+//$input-btn-font-family:				"MADE TOMMY Regular";
+//$input-btn-font-size:					16px;
+$input-btn-font-family:					$font-family-sans-serif;
+$input-btn-font-size:					$font-size-base;
+$input-border-radius:					0px;
+$input-box-shadow:						$box-shadow;
+$input-btn-focus-border:				rgba($white, .5);
+$input-btn-focus-box-shadow:			$box-shadow !important;
+
+$form-check-input-border:				$border-width solid $white;
+$form-check-input-border-radius:		0px;
+$form-check-input-focus-border:			rgba($white, .5);
+$form-check-input-checked-color:		$black;
+$form-check-input-checked-bg-color:		$white;
+
+input[type='text'], input[type='email'], input[type='password']{
+	padding: calc(#{$btn-padding-y} - (#{$border-width} )) $btn-padding-x;
+}
+input, .btn{
+	margin-bottom: 10px !important;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+$close-text-shadow: none;
+$navbar-dark-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='white' class='bi bi-list' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z'/></svg>") !default;
+
+$form-feedback-icon-invalid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='white' class='bi bi-exclamation-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z'/></svg>");
+$form-feedback-invalid-color: $white !default;
+$form-feedback-margin-top: 0px;
+
+.invalid-feedback{
+	margin-bottom: 10px !important;
+}
+
+$tooltip-font-size: $font-size-base !default;
+$tooltip-arrow-color: transparent !default;
+
+$card-deck-margin: 0px;
+$card-border-radius: 0px;
+
+$modal-content-border-radius: 10px;
+$modal-content-border-width: 0;
+$modal-inner-padding: 0;
+
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Criado por mim
+
+.text-courier{
+	font-family: "Courier";
+}
+.bi{
+	font-size: 1.1rem;
+	width: 1.1rem;
+	height: 1.1rem;
+	margin: 0 0.2em !important;
+}
+
+.text-outline{
+	font-family: "MADE TOMMY Bold Outline";
+}
+.rounded-xl{
+	border-radius: 10px;
+}
+.bg-cover{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.container {
+	position: relative;
+	z-index: 1;
+}
+.container .inset-shadow{
+	-webkit-box-shadow: inset 0px -50px 21px -13px rgba(0,0,0,0.6);
+	box-shadow: inset 0px -50px 21px -13px rgba(0,0,0,0.6);
+}
+.container img{
+	//filter: brightness(75%);
+	position: relative;
+	z-index: -1;
+}
+.texto-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-shadow: 0 0 8px #000;
+}
+.texto-container-top {
+	position: absolute;
+	top: 6%;
+	left: 50%;
+	transform: translate(-50%, -6%);
+}
+.texto-container-bottom {
+	position: absolute;
+	top: 94%;
+	left: 50%;
+	transform: translate(-50%, -94%);
+}
+
+body{
+	overflow-x: hidden;
+}
+
+input[type='radio']:after {
+	width: 15px;
+	height: 15px;
+	border-radius: 15px;
+	top: -3px;
+	left: -1px;
+	position: relative;
+	content: '';
+	display: inline-block;
+	visibility: visible;
+}
+input[type='radio']:checked:after {
+	border: 2px solid white;
+}
+
+a.perfil{
+	text-decoration: none!important;
+	display: block;
+	height: 100%;
+	color: rgb(255, 255, 255);
+	transition: 0.1s;
+}
+a.perfil:hover{
+	color: rgb(255, 255, 255);
+	opacity: 0.8;
+}
+.caixa-perfil-foto{
+	height: 400px;
+	background-image: linear-gradient(-45deg,rgba(0,0,0,0.2),rgba(0,0,0,0.6)), var(--perfil-foto);
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus{
+    outline: none !important;
+    box-shadow: none !important;
+	border: none !important;
+}
+.navbar-toggler:hover{
+	opacity: 0.8;
+}
+button.close{
+	outline: none !important;
+}
+.navbar-dark .nav-link{
+	color: $white !important;
+}
+.navbar-dark:hover .navbar-nav:hover .nav-link:hover{
+	opacity: 0.8 !important;
+}
+
+
+// Importa o resto do bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";

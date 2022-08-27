@@ -49,6 +49,20 @@ if ($sql!=1){
     require('med_mod.php'); #Média - Moderação
 }
 
+#Se a tabela (cod) não existir
+$sql = (mysqli_num_rows(mysqli_query($bd, "SHOW TABLES LIKE 'cod'")))?TRUE:FALSE;
+if ($sql!=1){
+    #Cria a nova tabela cod (Códigos de acesso)
+    require('cod.php');
+}
+
+#Se a tabela (rot) não existir
+$sql = (mysqli_num_rows(mysqli_query($bd, "SHOW TABLES LIKE 'rot'")))?TRUE:FALSE;
+if ($sql!=1){
+    #Cria a nova tabela rot (Roteiros)
+    require('rot.php');
+}
+
 /* $sql = "ALTER TABLE pro DROP COLUMN ati;";
 //$sql = "ALTER TABLE mis_par ADD FOREIGN KEY (a_id) REFERENCES uti(id);";
 //$sql = "ALTER TABLE uti_fot CHANGE fot ori MEDIUMBLOB;";

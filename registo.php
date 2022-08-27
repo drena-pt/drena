@@ -34,7 +34,7 @@
 			if (!$_SESSION['pre_uti']){
 				echo "
 				<div class='bg-ciano bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
-					<form action='/pro/registo.php' method='post' autocomplete='off' autocomplete='chrome-off'>
+					<form action='/pro/registo.php' method='post' autocomplete=\"none\">
 						<h1 aria-describedby='erro_campos'>"._("Registo")."</h1>
 
 						<div class='form-group'>
@@ -43,7 +43,7 @@
 						</div>
 
 						<div class='form-group'>
-							<input type='text' class='form-control ".temErro($erros["nut"])."' aria-describedby='erro_nut' name='nut' placeholder=\""._('Nome de utilizador')."\">
+							<input type='text' class='form-control ".temErro($erros["nut"])."' aria-describedby='erro_nut' name='nut' placeholder=\""._('Nome de utilizador')."\" autocomplete=\"none\">
 							<div id='erro_nut' class='invalid-feedback'>".nomeErro($erros["nut"])."</div>
 						</div>
 						
@@ -58,6 +58,11 @@
 								<div id='erro_rppa' class='invalid-feedback'>".nomeErro($erros["rppa"])."</div>
 							</div>
 						</div>
+
+						<div class='form-check mb-3'>
+							<input type='checkbox' class='form-check-input' id='check_politicas' required>
+							<label class='form-check-label' for='check_politicas'>Li e concordo com as <a class='text-light' href='politicas' target='blank_'>Políticas e Termos</a>.</label>
+					  	</div>
 
 						<div class='form-group text-center'>
 							<button class='text-ciano btn btn-light'>"._("Criar conta")."</button>

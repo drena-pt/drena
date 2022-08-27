@@ -38,7 +38,6 @@ async function send(){
             'content-type': 'application/json'
         }
     });
-    //console.log('Registo enviado');
     console.log('Notificações ativas');
 }
 
