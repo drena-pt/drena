@@ -483,30 +483,66 @@
 			<div class='col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
 			";
 			if ($uti){
+				$caixa_cometario = "
+				<section id='com_\"+com_id+\"' class='my-4 p-xl-5 p-4 bg-light text-dark rounded-xl shadow'>
+					<div class='d-flex flex-row-reverse mb-3'>
+						<span data-toggle='modal' data-target='#modal_eliminar_com\"+com_id+\"'>
+							<button class='btn btn-dark my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Eliminar comentário')."'>
+								<i class='bi bi-trash'></i>
+							</button>
+						</span>
+						<div class='modal fade' id='modal_eliminar_com\"+com_id+\"' tabindex='-1' role='dialog' aria-labelledby='modal_eliminar_com\"+com_id+\"_label' aria-hidden='true'>
+							<div class='modal-dialog' role='document'>
+								<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
+									<div class='modal-header'>
+										<h2 class='modal-title' id='modal_eliminar_com\"+com_id+\"_label'>"._('Eliminar comentário')."<br></h2><br>
+									</div>
+									<div class='modal-body'>
+										<text><span class='h5'>\"+com+\"</span><br>"._('Esta ação é irreversível!')."</text>
+									</div>
+									<div class='modal-footer text-end'>
+										<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
+										<button onclick='eliminar_com(\"+com_id+\")' type='button' class='btn btn-vermelho text-light' data-dismiss='modal'>"._('Eliminar')."</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<text class='h5 my-auto me-auto'>\"+com+\"</text>
+					</div>
+					<div class='row mb-1'>
+						<div class='col-auto pe-0 text-center'>
+							<a href='/perfil?uti=".$uti['nut']."'><img src='fpe/".base64_encode($uti["fot"])."' class='rounded-circle' width='40'></a>
+						</div>
+						<div class='col d-flex'>
+							<span class='justify-content-center align-self-center'>"._('Comentado por')." ".$uti['nut']."</span>
+						</div>
+					</div>
+					<div class='row mb-1'>
+						<div class='col-auto pe-0 text-center'>
+							<i class='bi bi-calendar4-week'></i>
+						</div>
+						<div class='col'>"._('Agora')."</div>
+					</div>
+				</section>
+				";
+
 				echo "
 				<div id='caixa_botao_comentario' class='text-center my-4'>
 					<button id='botao_caixa_comentario' href='/registo' class='btn btn-primary'>"._('Adicionar um comentário')."</button>
 				</div>
 				
-				<div style='display:none;'' id='caixa_comentario' class='my-4 p-5 bg-primary bg-gradient rounded-xl shadow text-light'>
-					<form action='/pro/med_com.php?ac=criar&med=".$med['id']."' method='post'>
+				<div style='display:none;' id='caixa_comentario' class='my-4 p-5 bg-primary bg-gradient rounded-xl shadow text-light'>
+					<form id='form_comentario'>
 						<h2>"._('Adicionar um comentário')."</h2>
-						<input type='text' class='form-control' name='input_com' placeholder='"._('Comentário')."'>
+						<input id='input_com' type='text' class='form-control' autocomplete='off' name='input_com' placeholder='"._('Comentário')."'>
 						<div class='text-end'>
-						<button id='botao_fechar_caixa_comentario' type='button' class='btn btn-dark'>"._('Fechar')."</button>
-						<button type='submit' class='btn btn-light text-primary'>"._('Comentar')."</button>
+							<button id='botao_fechar_caixa_comentario' type='button' class='btn btn-dark'>"._('Fechar')."</button>
+							<button type='submit' class='btn btn-light text-primary'>"._('Comentar')."</button>
 						</div>
 					</form>
 				</div>
+
 				<script>
-				$('#botao_caixa_comentario').on('click', function() {
-					$('#caixa_comentario').show();
-					$('#caixa_botao_comentario').hide();
-				});
-				$('#botao_fechar_caixa_comentario').on('click', function() {
-					$('#caixa_botao_comentario').show();
-					$('#caixa_comentario').hide();
-				});
 				function gosto(){
 					$.ajax({
 						url: 'pro/med_gos.php?med=".$med['id']."',
@@ -527,6 +563,52 @@
 						}
 					});
 				}
+
+				function eliminar_com(com_id){
+					setTimeout(function(){
+						$.ajax({
+							url: 'api/med_com.php?med=".$med['id']."&ac=eliminar&uti=".$uti['nut']."&cod=".$uti_mai['cod']."&id='+com_id,
+							success: function(result) {
+								if (result['err']){
+									alert(result['err']);
+								} else {
+									$('#com_'+com_id).remove();
+								}
+							},
+							error: function(){
+								alert('Ocorreu um erro.');
+							}
+						});
+					}, 1000);
+				}
+
+				function fechar_comentario() {
+					$('#caixa_botao_comentario').show();
+					$('#caixa_comentario').hide();
+				}
+
+				$('#botao_caixa_comentario').on('click', function() {
+					$('#caixa_comentario').show();
+					$('#caixa_botao_comentario').hide();
+				});
+				$('#botao_fechar_caixa_comentario').on('click', fechar_comentario);
+				
+				$('#form_comentario').on('submit', function(e) {
+					e.preventDefault();
+					var com = $('#input_com').val();
+					$.ajax({
+						url: 'api/med_com.php?med=".$med['id']."&ac=criar&uti=".$uti['nut']."&cod=".$uti_mai['cod']."&com='+com,
+						success: function(result) {
+							fechar_comentario();
+							$('#input_com').val('');
+							var com_id = result['id'];
+							$('#caixa_comentario').after(\"".preg_replace( "/\r|\n/", "", $caixa_cometario)."\");
+						},
+						error: function(){
+							console.log('Ocorreu um erro.');
+						}
+					});
+				});
 				</script>
 				";
 			} else {
@@ -544,16 +626,15 @@
 					while ($campo = $resultado->fetch_assoc()) {
 						$com_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$campo['uti']."'"));
 						
-						echo "<section class='my-4 p-xl-5 p-4 bg-light text-dark rounded-xl shadow'>
+						echo "<section id='com_".$campo['id']."' class='my-4 p-xl-5 p-4 bg-light text-dark rounded-xl shadow'>
 							<div class='d-flex flex-row-reverse mb-3'>
 							";
-								if ($com_uti['id']==$uti['id']){
+								if ($com_uti['id']==$uti['id']){ #Modal Eliminar Comentário
 									echo "<span data-toggle='modal' data-target='#modal_eliminar_com".$campo['id']."'>
 									<button class='btn btn-dark my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Eliminar comentário')."\">
 										<i class='bi bi-trash'></i>
 									</button>
 									</span>
-									<!-- Modal Eliminar Comentário -->
 									<div class='modal fade' id='modal_eliminar_com".$campo['id']."' tabindex='-1' role='dialog' aria-labelledby='modal_eliminar_com".$campo['id']."_label' aria-hidden='true'>
 										<div class='modal-dialog' role='document'>
 											<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
@@ -565,7 +646,7 @@
 												</div>
 												<div class='modal-footer text-end'>
 													<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
-													<a href='pro/med_com.php?ac=eliminar&id=".$campo['id']."' role='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
+													<button onclick='eliminar_com(".$campo['id'].")' type='button' class='btn btn-vermelho text-light' data-dismiss='modal'>"._('Eliminar')."</button>
 												</div>
 											</div>
 										</div>

@@ -61,7 +61,7 @@
 
 						<div class='form-check mb-3'>
 							<input type='checkbox' class='form-check-input' id='check_politicas' required>
-							<label class='form-check-label' for='check_politicas'>Li e concordo com as <a class='text-light' href='politicas' target='blank_'>Políticas e Termos</a>.</label>
+							<label class='form-check-label' for='check_politicas'>Li e concordo com as <a class='text-light' href='politicas'>Políticas e Termos</a>.</label>
 					  	</div>
 
 						<div class='form-group text-center'>
