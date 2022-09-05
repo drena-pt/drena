@@ -148,14 +148,14 @@ if ($enviarMail){
 	try {
 		$mail->SMTPDebug = SMTP::DEBUG_SERVER;
 		$mail->isSMTP();
-		$mail->Host       = 'smtp.sapo.pt';
+		$mail->Host       = 'box.altadrena.com';
 		$mail->SMTPAuth   = true;
-		$mail->Username   = 'drenaxyz@sapo.pt';
-		$mail->Password   = 'Kz2YeDRMJzie';
+		$mail->Username   = 'auto@drena.pt';
+		$mail->Password   = 'N5ponx5t56A2';
 		$mail->Port       = 587;
 		$mail->CharSet    = 'UTF-8';
 		$mail->Encoding   = 'base64';
-		$mail->setFrom('drenaxyz@sapo.pt', 'drena');
+		$mail->setFrom('auto@drena.pt', 'drena');
 		$mail->addAddress($mai['mai']);
 		$mail->isHTML(true);
 		$mail->Subject    = $mail_subject;
