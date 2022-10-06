@@ -31,7 +31,9 @@ require __DIR__.'/pro/fun.php';
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap-icons.css">
 		<script>
-			$(function (){ $('[data-toggle="tooltip"]').tooltip() })
+			if(!('ontouchstart' in window)){
+				$(function (){ $('[data-toggle="tooltip"]').tooltip() })
+			}
 		</script>
 
 		<!-- EditorJS -->

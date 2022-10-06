@@ -8,25 +8,24 @@
 		</button>
 		<?php
 		echo "
-		<div class='collapse navbar-collapse justify-content-end text-center' id='menu'>
+		<div class='collapse navbar-collapse justify-content-end text-end p-sm-0 pb-2 pe-1' id='menu'>
 			<ul class='navbar-nav'>";
 				if ($uti['car']==1){
-					echo "<li class='nav-item'><a class='nav-link' href='/adm'><span class='text-rosa'><i class='bi bi-person-lines-fill'></i>"._('Administrar')."</span></a></li>";
+					echo "<li class='nav-item'><a class='nav-link' href='/adm'><span class='text-rosa'>"._('Administrar')." <i class='bi bi-person-lines-fill'></i></span></a></li>";
 				} else if ($uti['car']==2){
-					echo "<li class='nav-item'><a class='nav-link' href='/mod'><span class='text-ciano'><i class='bi bi-clipboard-check'></i>"._('Moderar')."</span></a></li>";
+					echo "<li class='nav-item'><a class='nav-link' href='/mod'><span class='text-ciano'>"._('Moderar')." <i class='bi bi-clipboard-check'></i></span></a></li>";
 				}
 				echo "
-				<li class='nav-item'><span data-toggle='modal' data-target='#modal_procurar'><a class='nav-link' href='#' data-toggle='tooltip' data-placement='bottom' title='"._('Procurar')."'><i class='bi bi-search'></i></a></span></li>";
+				<li class='nav-item'><span data-toggle='modal' data-target='#modal_procurar'><a class='nav-link' href='#' data-toggle='tooltip' data-placement='bottom' title='"._('Procurar')."'><span class='d-sm-none'>"._('Procurar')." </span><i class='bi bi-search'></i></a></span></li>";
 				if (!$uti){
 					echo "<li class='nav-item'><a class='nav-link' href='/entrar'>"._('Entrar')."</a></li>";
 				} else {
-					#Botão para a futura escritura e para terminar sessão
+					#Botão para a futura escritura
 					#<li class='nav-item'><a class='nav-link' href='/escritura.php'>"._('Escritura')."</a></li>
-					##<li class='nav-item'><a class='nav-link' href='/pro/sair' data-toggle='tooltip' data-placement='bottom' title='"._('Sair')."'><i class='bi bi-box-arrow-right'></i></a></span></li>
 					echo "
-					<li class='nav-item'><a class='nav-link' href='/criar' data-toggle='tooltip' data-placement='bottom' title='"._('Criar')."'><i class='bi bi-plus-square'></i></a></span></li>
-					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Definições')."'><i class='bi bi-gear'></i></a></span></li>
-					<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."'><img data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-2 rounded-circle' src='fpe/".base64_encode($uti["fot"])."' width='40' height='40'></a></li>";
+					<li class='nav-item'><a class='nav-link' href='/criar' data-toggle='tooltip' data-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
+					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Definições')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>
+					<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."'><img data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-0 ms-sm-2 rounded-circle' src='fpe/".base64_encode($uti["fot"])."' width='40' height='40'></a></li>";
 				}
 			echo "</ul>
 		</div>

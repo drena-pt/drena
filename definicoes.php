@@ -10,20 +10,23 @@
 		<div class="shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3">
 			<div class="p-xl-5 p-4 bg-dark text-light">
 
-				<a class="float-end btn btn-light" href='/pro/sair'><?php echo _('Terminar Sessão');?> <i class="bi bi-box-arrow-right"></i></a>
+				<div class="row">
+					<div class='col-3 col-xl-3 col-lg-2 col-md-2 col-sm-4 pe-sm-3 pe-0'>
+						<img class="rounded-circle img-fluid" src='fpe/<?php echo base64_encode($uti["fot"]);?>'>
+					</div>
+					<div class="col-9 col-xl-9 col-lg-10 col-md-10 col-sm-8 row pe-0">
+						<div class='col-12 col-sm-8 pe-0'>
+							<h2><?php echo $uti["nut"];?></h2>
+							<text class='h5'><?php echo $uti["nco"];?></text><br>
+							<text><?php echo _('Criação da conta').": ".substr($uti["dcr"], 0, -9);?></text>
+						</div>
+						<div class='col-12 col-sm-4 p-sm-0 pt-2'>
+							<a class="float-sm-end btn btn-light" href='/pro/sair'><?php echo _('Sair');?> <i class="bi bi-box-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
 
-				<div class="d-flex">
-                    <div>
-						<img class="rounded-circle" src='fpe/<?php echo base64_encode($uti["fot"]);?>' width="128" height="128">
-                    </div>
-                    <div class="ms-3">
-						<h2><?php echo $uti["nut"];?></h2>
-						<text class="h5"><?php echo $uti["nco"];?></text><br>
-						<text><?php echo _('Criação da conta').": ".substr($uti["dcr"], 0, -9);?></text>
-                    </div>
-                </div>
 			</div>
-
 			<div class="p-xl-5 p-4 bg-light text-dark">
 				<h2 class='pb-3'>Definições</h2>
 
@@ -47,7 +50,7 @@
 				<div class='mb-4'>
 					Email<br>
 					<div class='row'>
-						<div class='col-4 mr-auto'>
+						<div class='col-6 col-sm-4 mr-auto'>
 							<input class='form-control text-dark border-0 disabled' disabled value='".$uti_mai['mai']."'>
 							
 						</div>
@@ -59,7 +62,7 @@
 				<div class='mb-4'>
 					"._('Palavra-passe')."<br>
 					<div class='row'>
-						<div class='col-4 mr-auto'>
+						<div class='col-6 col-sm-4 mr-auto'>
 							<input class='form-control text-dark border-0 disabled' disabled value='••••••••••••'>
 							
 						</div>
