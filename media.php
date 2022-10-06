@@ -292,7 +292,7 @@
 												<h2 class='modal-title' id='modal_alerar_tit_label'>"._('Alterar título')."<br></h2><br>
 											</div>
 											<div class='modal-body'>
-												<input type='text' class='form-control' name='tit' placeholder='"._('Título')."' value='".$med_tit."'>
+												<input type='text' class='form-control' name='tit' placeholder='"._('Título')."' autocomplete='off' value='".$med_tit."'>
 											</div>
 											<div class='modal-footer text-end'>
 												<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>

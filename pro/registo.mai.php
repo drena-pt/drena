@@ -10,8 +10,11 @@ require '../vendor/autoload.php';
 
 $post_mai = $_POST['mai'];
 
-if ($_SESSION["pre_uti"]){ # Se houver sessão de pre-utilizador iniciada.
-	$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["pre_uti"]."'"));
+if ($_SESSION["pre_uti"] OR $_SESSION["uti"]){ # Se houver sessão de utilizador ou de pre-utilizador iniciada.
+
+	if ($_SESSION["pre_uti"]){
+		$uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_SESSION["pre_uti"]."'"));
+	}
 	$mai_atual = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti['mai']."' AND uti='".$uti['id']."'"));
 
 	if ($_GET["ac"]=='registarMail'){
@@ -174,6 +177,10 @@ if ($enviarMail){
 	
 	if ($enviarMail=2){
 		setcookie('mailEnviado', 1, time() + (60), "/");
+		if ($_SESSION['uti']){
+			$_SESSION["pre_uti"] = $uti['nut'];
+			unset($_SESSION["uti"]);
+		}
 	}
 	header("Location: ".$_SERVER['HTTP_REFERER']);
 	exit;

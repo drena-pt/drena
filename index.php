@@ -35,7 +35,7 @@ if ($uti){
                     }
                     echo "
                     </span>
-                    <a href='/registo' role='button' class='btn btn-lg btn-primary'>"._('Criar uma conta')."</a>
+                    <a href='/registo' role='button' class='btn btn-primary'>"._('Criar uma conta')."</a>
                     </h1>
     
                     

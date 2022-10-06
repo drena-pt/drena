@@ -9,22 +9,24 @@
 		<?php
 		echo "
 		<div class='collapse navbar-collapse justify-content-end text-center' id='menu'>
-			<ul class='navbar-nav'>
-				<li class='nav-item'><span data-toggle='modal' data-target='#modal_procurar'><a class='nav-link mx-1' href='#' data-toggle='tooltip' data-placement='bottom' title='"._('Procurar')."'><i class='bi bi-search'></i></a></span></li>";
-				if (!$uti['id']){
+			<ul class='navbar-nav'>";
+				if ($uti['car']==1){
+					echo "<li class='nav-item'><a class='nav-link' href='/adm'><span class='text-rosa'><i class='bi bi-person-lines-fill'></i>"._('Administrar')."</span></a></li>";
+				} else if ($uti['car']==2){
+					echo "<li class='nav-item'><a class='nav-link' href='/mod'><span class='text-ciano'><i class='bi bi-clipboard-check'></i>"._('Moderar')."</span></a></li>";
+				}
+				echo "
+				<li class='nav-item'><span data-toggle='modal' data-target='#modal_procurar'><a class='nav-link' href='#' data-toggle='tooltip' data-placement='bottom' title='"._('Procurar')."'><i class='bi bi-search'></i></a></span></li>";
+				if (!$uti){
 					echo "<li class='nav-item'><a class='nav-link' href='/entrar'>"._('Entrar')."</a></li>";
 				} else {
-					if ($uti['car']==1){
-						echo "<li class='nav-item'><a class='nav-link mx-1' href='/adm'><span class='text-rosa'><i class='bi bi-person-lines-fill'></i>"._('Administrar')."</span></a></li>";
-					} else if ($uti['car']==2){
-						echo "<li class='nav-item'><a class='nav-link mx-1' href='/mod'><span class='text-ciano'><i class='bi bi-clipboard-check'></i>"._('Moderar')."</span></a></li>";
-					}
-					#Botão para a futura escritura. Adicionar depois.
-					#<li class='nav-item'><a class='nav-link mx-1' href='/escritura.php'>"._('Escritura')."</a></li>
+					#Botão para a futura escritura e para terminar sessão
+					#<li class='nav-item'><a class='nav-link' href='/escritura.php'>"._('Escritura')."</a></li>
+					##<li class='nav-item'><a class='nav-link' href='/pro/sair' data-toggle='tooltip' data-placement='bottom' title='"._('Sair')."'><i class='bi bi-box-arrow-right'></i></a></span></li>
 					echo "
-					<li class='nav-item'><a class='nav-link mx-1' href='/criar'>"._('Criar')."</a></li>
-					<li class='nav-item'><a class='nav-link mx-1' href='pro/sair'>"._('Sair')."</a></li>
-					<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."' data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."'><img class='ms-2 rounded-circle' src='fpe/".base64_encode($uti["fot"])."' width='40' height='40'></a></li>";
+					<li class='nav-item'><a class='nav-link' href='/criar' data-toggle='tooltip' data-placement='bottom' title='"._('Criar')."'><i class='bi bi-plus-square'></i></a></span></li>
+					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Definições')."'><i class='bi bi-gear'></i></a></span></li>
+					<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."'><img data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-2 rounded-circle' src='fpe/".base64_encode($uti["fot"])."' width='40' height='40'></a></li>";
 				}
 			echo "</ul>
 		</div>

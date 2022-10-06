@@ -5,14 +5,6 @@
 			exit;
 		}
 		?>
-		<style>
-		.bar{
-			background-color: red;
-		}
-		.percent{
-			color: blue;
-		}
-		</style>
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
