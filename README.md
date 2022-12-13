@@ -13,6 +13,7 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
         root /home/user/drena/pasta/;
         index index.php index.html;
         server_name exemplo.com;
+        client_max_body_size 2G;
 
         location / {
             try_files $uri $uri/ @extensionless-php;
@@ -28,6 +29,17 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
             fastcgi_pass unix:/run/php/php8.0-fpm.sock;
         }
     }
+
+### Configuração das variáveis PHP
+
+Alterar as variáveis no php.ini `/etc/php/8.x/fpm/php.ini`:
+
+    upload_max_filesize=2G
+    post_max_size=2G
+    memory_limit=2G
+    max_execution_time=12000
+    max_input_time = 12000
+    session.gc_maxlifetime=31536000
 
 ### Obter o código / bibliotecas necessárias
 
