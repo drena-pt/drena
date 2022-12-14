@@ -207,20 +207,29 @@ if ($uti){
                     }
                     carregarMedia(api_link);
 
+                    
                     function gosto(med_id){
                         $.ajax({
-                            url: 'pro/med_gos.php?med='+med_id,
+                            url: 'api/med_gos.php',
+                            type: 'post',
+                            data: {'med':med_id},
+                            beforeSend: function(xhr) {
+                                xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
+                            },
                             success: function(result) {
-                                var gostos = +$('#med_'+med_id+'_numGostos').text();
-                                console.log('gosto med('+med_id+') '+result);
-                                if (result==='false'){
-                                    $('#svg_gosto_'+med_id).attr('hidden', true);
-                                    $('#svg_naoGosto_'+med_id).removeAttr('hidden');
-                                    $('#med_'+med_id+'_numGostos').text(gostos-1);
+                                if (result['err']){
+                                    alert(result['err']);
                                 } else {
-                                    $('#svg_gosto_'+med_id).removeAttr('hidden');
-                                    $('#svg_naoGosto_'+med_id).attr('hidden', true);
-                                    $('#med_'+med_id+'_numGostos').text(gostos+1);
+                                    var gostos = +$('#med_'+med_id+'_numGostos').text();
+                                    if (result['gos']=='false'){
+                                        $('#svg_gosto_'+med_id).attr('hidden', true);
+                                        $('#svg_naoGosto_'+med_id).removeAttr('hidden');
+                                        $('#med_'+med_id+'_numGostos').text(gostos-1);
+                                    } else {
+                                        $('#svg_gosto_'+med_id).removeAttr('hidden');
+                                        $('#svg_naoGosto_'+med_id).attr('hidden', true);
+                                        $('#med_'+med_id+'_numGostos').text(gostos+1);
+                                    }
                                 }
                             },
                             error: function(){
@@ -228,6 +237,7 @@ if ($uti){
                             }
                         });
                     }
+
                     $(window).scroll(function(){
                         if (scrollLoad && ($(document).height() - $(window).height())-$(window).scrollTop()<=400){
                             scrollLoad = false;

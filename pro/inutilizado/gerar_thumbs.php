@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require 'fun.php'; #Funções
-require '../vendor/autoload.php'; #Composer
+require '../fun.php'; #Funções
+require '../../vendor/autoload.php'; #Composer
 
 $ffmpeg = FFMpeg\FFMpeg::create(array(
     'ffmpeg.binaries'  => '/usr/bin/ffmpeg',

@@ -5,9 +5,12 @@ $bd_un='username';
 $bd_pw='password';
 $bd_db='database';
 #URL's
-$url_site   ='https://exemplo.com/';
-$url_media  ='https://media.exemplo.com/';
+$url_dominio='exemplo.com';
+$url_site   ='https://'.$url_dominio.'/';
+$url_media  ='https://media.'.$url_dominio.'/';
 #Diretórios
 $dir_site   ='/home/user/drena/pasta/';
 $dir_media  ='/home/user/drena/pasta_media/';
+#API
+$api_key    ='secret_random_key';
 ?>

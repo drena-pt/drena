@@ -1,6 +1,14 @@
 ﻿<?php
+#Composer
+use Firebase\JWT\JWT;
+require_once('../vendor/autoload.php');
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+#Obtem as funções
 $funcoes['requerSessao'] = 0;
-require 'fun.php'; #Funções
+require 'fun.php';
 
 # Torna os inputs em variáveis
 $nut = $_POST["nut"];
@@ -23,6 +31,23 @@ if ($nut){																						# Se o utilizador for definido:
 			exit;
 		}																						# Se o mail está confirmado:
 		$_SESSION["uti"] = $uti['nut'];															# Inicia sessão do utilizador.
+
+		# Cria o Token JWT
+		$jwt_date      = new DateTimeImmutable();
+		$jwt_expire_at = $jwt_date->modify('+1 year')->getTimestamp();
+		$jwt_data = [
+			'iat'  => $jwt_date->getTimestamp(),
+			'iss'  => $url_dominio,
+			'exp'  => $jwt_expire_at,
+			'sub'  => $uti['nut'],
+		];
+		$token = JWT::encode(
+			$jwt_data,
+			$api_key, #Obtem das variáveis
+			'HS512'
+		);
+		setcookie('drena_token', $token, $jwt_expire_at, '/', $url_dominio, true);
+
 		header("Location: ../");
 		exit;
 	} else {

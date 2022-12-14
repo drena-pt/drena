@@ -1,5 +1,5 @@
 <?php
-require 'fun.php'; #Funções
+require '../fun.php'; #Funções
 
 if ($uti['nut']!='guilhae'){
 	echo "Não podes aceder a esta pagina!";

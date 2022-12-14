@@ -1,5 +1,5 @@
 <?php
-include_once('../pro/fun_var.php');
+include_once('../pro/fun_var.php');#Variáveis
 #Liga à base de dados
 ob_start();
 $bd=mysqli_connect($bd_hn,$bd_un,$bd_pw,$bd_db);

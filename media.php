@@ -543,19 +543,50 @@
 				</div>
 
 				<script>
+				$('#form_comentario').on('submit', function(e) {
+					e.preventDefault();
+					var com = $('#input_com').val();
+					$.ajax({
+						url: 'api/med_com.php',
+						type: 'post',
+						data: {'med':'".$med['id']."','ac':'criar','com':com},
+						beforeSend: function(xhr) {
+							xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
+						},
+						success: function(result) {
+							fechar_comentario();
+							$('#input_com').val('');
+							var com_id = result['id'];
+							$('#caixa_comentario').after(\"".preg_replace( "/\r|\n/", "", $caixa_cometario)."\");
+						},
+						error: function(){
+							console.log('Ocorreu um erro.');
+						}
+					});
+				});
+
 				function gosto(){
 					$.ajax({
-						url: 'pro/med_gos.php?med=".$med['id']."',
+						url: 'api/med_gos.php',
+						type: 'post',
+						data: {'med':'".$med['id']."'},
+						beforeSend: function(xhr) {
+							xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
+						},
 						success: function(result) {
-							var gostos = +$('#texto_gostos').text();
-							if (result==='false'){
-								$('#botao_gosto').attr('hidden', true);
-								$('#botao_naogosto').removeAttr('hidden');
-								$('#texto_gostos').text(gostos-1);
+							if (result['err']){
+								alert(result['err']);
 							} else {
-								$('#botao_gosto').removeAttr('hidden');
-								$('#botao_naogosto').attr('hidden', true);
-								$('#texto_gostos').text(gostos+1);
+								var gostos = +$('#texto_gostos').text();
+								if (result['gos']=='false'){
+									$('#botao_gosto').attr('hidden', true);
+									$('#botao_naogosto').removeAttr('hidden');
+									$('#texto_gostos').text(gostos-1);
+								} else {
+									$('#botao_gosto').removeAttr('hidden');
+									$('#botao_naogosto').attr('hidden', true);
+									$('#texto_gostos').text(gostos+1);
+								}
 							}
 						},
 						error: function(){
@@ -567,7 +598,12 @@
 				function eliminar_com(com_id){
 					setTimeout(function(){
 						$.ajax({
-							url: 'api/med_com.php?med=".$med['id']."&ac=eliminar&uti=".$uti['nut']."&cod=".$uti_mai['cod']."&id='+com_id,
+							url: 'api/med_com.php',
+							type: 'post',
+							data: {'ac':'eliminar','id':com_id},
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
+							},
 							success: function(result) {
 								if (result['err']){
 									alert(result['err']);
@@ -592,23 +628,6 @@
 					$('#caixa_botao_comentario').hide();
 				});
 				$('#botao_fechar_caixa_comentario').on('click', fechar_comentario);
-				
-				$('#form_comentario').on('submit', function(e) {
-					e.preventDefault();
-					var com = $('#input_com').val();
-					$.ajax({
-						url: 'api/med_com.php?med=".$med['id']."&ac=criar&uti=".$uti['nut']."&cod=".$uti_mai['cod']."&com='+com,
-						success: function(result) {
-							fechar_comentario();
-							$('#input_com').val('');
-							var com_id = result['id'];
-							$('#caixa_comentario').after(\"".preg_replace( "/\r|\n/", "", $caixa_cometario)."\");
-						},
-						error: function(){
-							console.log('Ocorreu um erro.');
-						}
-					});
-				});
 				</script>
 				";
 			} else {
