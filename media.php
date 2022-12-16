@@ -1,64 +1,107 @@
-		<?php
-		require('head.php');
-		$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
+<?php
+require('head.php');
+$med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 
-		function tempoPassado($ptime){
-			$etime = time() - $ptime; # Obtem o tempo que passou desde a publicação
-			if ($etime < 1){ return '0 '._('segundos'); }
-			$a = array( 31536000 => _('ano'),
-						2592000 => _('mês'),
-						604800 => _('semana'),
-						86400 => _('dia'),
-						3600 => _('hora'),
-						60 => _('minuto'),
-						1 => _('segundo')
-						);
-			$a_plural = array(
-						_('ano') => _('anos'),
-						_('mês') => _('meses'),
-						_('semana') => _('semanas'),
-						_('dia') => _('dias'),
-						_('hora') => _('horas'),
-						_('minuto') => _('minutos'),
-						_('segundo') => _('segundos')
-						);
-			foreach ($a as $secs => $str){
-				$d = $etime / $secs;
-				if ($d >= 1){
-					$r = floor($d);
-					return $r . ' ' . ($r > 1 ? $a_plural[$str] : $str);
+#Se houver uma sessão iniciada carrega o script da API
+if ($uti){
+	echo "
+	<script>
+	function api(api_url, api_data) {
+		var jqXHR = $.ajax({
+			url: 'api/'+api_url+'.php',
+			type: 'post',
+			data: api_data,
+			async: false,
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
+			},
+			error: function (jqXHR, exception) {
+				var err = '';
+				if (jqXHR.status === 0) {
+					err = 'Not connect. Verify Network.';
+				} else if (jqXHR.status == 404) {
+					err = 'Requested page not found. [404]';
+				} else if (jqXHR.status == 500) {
+					err = 'Internal Server Error [500].';
+				} else if (exception === 'parsererror') {
+					err = 'Requested JSON parse failed.';
+				} else if (exception === 'timeout') {
+					err = 'Time out error.';
+				} else if (exception === 'abort') {
+					err = 'Ajax request aborted.';
+				} else {
+					err = 'Uncaught Error.' + jqXHR.responseText;
 				}
+				alert(err);
 			}
+		});
+		var result = JSON.parse(jqXHR.responseText);
+		if (result['err']){
+			alert(result['err']);
+		} else {
+			return result;
 		}
+	}
+	</script>
+	";
+}
 
-		if ($med){
-			if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															# Definir título
-			$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									# Utilizador dono
-			$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';"));	# Informações do gosto do utilizador logado
-		
-			echo "
-			<!-- Tags de motor de pequisa -->
-			<meta property='og:title' content='".$med_tit."'/>
-			<meta property='og:description' content='".$med_uti['nut'].", ".sprintf(_('há %s'),tempoPassado(strtotime($med['den']))).", ".$med['gos']." "._('gostos')."'/>
-			<meta property='og:url' content='".$url_site."media?id=".$med['id']."'/>
-			<meta property='og:image' content='".$url_media."thumb/".$med['thu'].".jpg'/>
-			
-			";
-
-			#Se for um vídeo
-			if ($med['tip']==1){
-				echo "<meta property='og:type' content='video' />";
-				if ($med['est']==3){ #Estado 3 (comprimido).
-					echo "<meta property='og:video' content='".$url_media."comp/".$med["id"].".mp4' />";					
-				} else if ($med['est']==5){ #Estado 5 (convertido).
-					echo "<meta property='og:video' content='".$url_media."conv/".$med["id"].".mp4' />";					
-				} else { #Todos os outros estados.
-					echo "<meta property='og:video' content='".$url_media."ori/".$med["id"].".".end(explode(".", $med['nom']))."' />";
-				}
-			}
+function tempoPassado($ptime){
+	$etime = time() - $ptime; # Obtem o tempo que passou desde a publicação
+	if ($etime < 1){ return '0 '._('segundos'); }
+	$a = array( 31536000 => _('ano'),
+				2592000 => _('mês'),
+				604800 => _('semana'),
+				86400 => _('dia'),
+				3600 => _('hora'),
+				60 => _('minuto'),
+				1 => _('segundo')
+				);
+	$a_plural = array(
+				_('ano') => _('anos'),
+				_('mês') => _('meses'),
+				_('semana') => _('semanas'),
+				_('dia') => _('dias'),
+				_('hora') => _('horas'),
+				_('minuto') => _('minutos'),
+				_('segundo') => _('segundos')
+				);
+	foreach ($a as $secs => $str){
+		$d = $etime / $secs;
+		if ($d >= 1){
+			$r = floor($d);
+			return $r . ' ' . ($r > 1 ? $a_plural[$str] : $str);
 		}
-		?>
-	</head>
+	}
+}
+
+if ($med){
+	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															# Definir título
+	$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									# Utilizador dono
+	$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';"));	# Informações do gosto do utilizador logado
+
+	echo "
+	<!-- Tags de motor de pequisa -->
+	<meta property='og:title' content='".$med_tit."'/>
+	<meta property='og:description' content='".$med_uti['nut'].", ".sprintf(_('há %s'),tempoPassado(strtotime($med['den']))).", ".$med['gos']." "._('gostos')."'/>
+	<meta property='og:url' content='".$url_site."media?id=".$med['id']."'/>
+	<meta property='og:image' content='".$url_media."thumb/".$med['thu'].".jpg'/>
+	";
+
+	#Se for um vídeo
+	if ($med['tip']==1){
+		echo "<meta property='og:type' content='video' />";
+		if ($med['est']==3){ #Estado 3 (comprimido).
+			echo "<meta property='og:video' content='".$url_media."comp/".$med["id"].".mp4' />";					
+		} else if ($med['est']==5){ #Estado 5 (convertido).
+			echo "<meta property='og:video' content='".$url_media."conv/".$med["id"].".mp4' />";					
+		} else { #Todos os outros estados.
+			echo "<meta property='og:video' content='".$url_media."ori/".$med["id"].".".end(explode(".", $med['nom']))."' />";
+		}
+	}
+}
+?>
+</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
 		<div id="swup" class="transition-fade">
@@ -120,7 +163,7 @@
 					echo "
 						<div class='row mb-3'>
 							<div class='col-12 col-md d-flex'>
-								<text class='h5 my-auto'>".$med_tit."</text>
+								<text id='med_tit' class='h5 my-auto'>".$med_tit."</text>
 							</div>
 
 							<div class='col-md my-md-0 my-2 d-flex flex-md-row-reverse flex-row'>
@@ -206,7 +249,6 @@
 													<h2 class='modal-title' id='modal_albuns_label'>"._('Adicionar a um álbum')."<br></h2><br>
 												</div>
 												<div class='modal-body'>
-													<text class='h5'>".$med_tit."</text>
 													";
 													$pesquisa = "SELECT * FROM med_alb WHERE uti='".$uti['id']."' ORDER BY id DESC";
 													if ($resultado = $bd->query($pesquisa)){
@@ -278,24 +320,24 @@
 							}
 							echo "
 							<span>
-								<a href='pro/med.php?ac=privar&id=".$med['id']."' role='button' class='btn btn-".$bg_privado." me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_privado."\">
-									<i class='bi bi-".$i_privado."'></i>
-								</a>
+								<button id='privar' class='btn btn-".$bg_privado." me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_privado."\">
+									<i id='icon_privar' class='bi bi-".$i_privado."'></i>
+								</button>
 							</span>
 
 							<!-- Modal Alterar título -->
 							<div class='modal fade' id='modal_alerar_tit' tabindex='-1' role='dialog' aria-labelledby='modal_alerar_tit_label' aria-hidden='true'>
 								<div class='modal-dialog' role='document'>
 									<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
-										<form action='pro/med.php?ac=titulo&id=".$_GET['id']."' method='post'>
+										<form id='form_titulo'>
 											<div class='modal-header'>
 												<h2 class='modal-title' id='modal_alerar_tit_label'>"._('Alterar título')."<br></h2><br>
 											</div>
 											<div class='modal-body'>
-												<input type='text' class='form-control' name='tit' placeholder='"._('Título')."' autocomplete='off' value='".$med_tit."'>
+												<input id='input_tit' type='text' class='form-control' name='tit' placeholder='"._('Título')."' autocomplete='off' value='".$med_tit."'>
 											</div>
 											<div class='modal-footer text-end'>
-												<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
+												<button id='fechar_titulo' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
 												<button type='submit' class='btn btn-".$t_cor." text-light'>"._('Alterar')."</button>
 											</div>
 										</form>
@@ -310,15 +352,61 @@
 											<h2 class='modal-title' id='modal_eliminar_med_label'>".$t_eliminar."<br></h2><br>
 										</div>
 										<div class='modal-body'>
-											<text><span class='h5'>".$med_tit."</span><br>"._('Esta ação é irreversível!')."</text>
+											<text><span id='med_tit' class='h5'>".$med_tit."</span><br>"._('Esta ação é irreversível!')."</text>
 										</div>
 										<div class='modal-footer text-end'>
 											<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
-											<a href='pro/med.php?ac=eliminar&id=".$_GET['id']."' role='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
+											<button id='eliminar_med' type='button' class='btn btn-vermelho text-light'>Eliminar</a>
 										</div>
 									</div>
 								</div>
 							</div>
+
+							<script>
+							$('#privar').click(function() {
+								result = api('med',{'med':'".$med['id']."','ac':'privar'});
+								if (result['est']=='publico'){
+									$('#privar').tooltip('hide')
+										.attr('data-original-title', '"._('Tornar privado')."')
+										.tooltip('show');
+									$('#privar').removeClass('btn-primary');
+									$('#privar').addClass('btn-light');
+									$('#icon_privar').removeClass('bi-lock');
+									$('#icon_privar').addClass('bi-unlock');
+								} else if (result['est']=='privado'){
+									$('#privar').tooltip('hide')
+										.attr('data-original-title', '"._('Tornar público')."')
+										.tooltip('show');
+									$('#privar').removeClass('btn-light');
+									$('#privar').addClass('btn-primary');
+									$('#icon_privar').removeClass('bi-unlock');
+									$('#icon_privar').addClass('bi-lock');
+								}
+							});
+							
+							$('#eliminar_med').click(function() {
+								result = api('med',{'med':'".$med['id']."','ac':'eliminar'});
+								if (result['est']=='eliminado'){
+									window.location.href = '/';
+								}
+							});
+
+							$('#form_titulo').on('submit', function(e) {
+								e.preventDefault();
+								var tit = $('#input_tit').val();
+								result = api('med',{'med':'".$med['id']."','ac':'titulo','tit':tit});
+								if (result['est']=='sucesso'){
+									$('[id=\"med_tit\"]').each(function(){
+										$(this).html(tit);
+									});
+									$('#fechar_titulo').click();
+								}
+							});
+
+							$('#input_tit').on('input', function() { 
+								$('#med_tit').text($(this).val());
+							});
+							</script>
 							";
 						} else if ($uti['car']==2){ #Ferramenta do moderador
 							echo "
@@ -341,84 +429,22 @@
 											<h2 class='modal-title'>"._('Moderar')."</h2>
 										</div>
 										<div class='modal-body'>
-											<text class='h5'>".$med_tit."</text><br><br>";
-											#Registos da ultima moderação feita pelo utilizador com sessão iniciada:
-											#Nivel 0 (Reverter ação)
-											$med_mod_uti0 = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND uti='".$uti['id']."' AND niv='0';"));
-											#Nivel 1 (Inapropriado)
-											$med_mod_uti1 = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND uti='".$uti['id']."' AND niv='1';"));
-											#Nivel 2 (Inaceitavel)
-											$med_mod_uti2 = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND uti='".$uti['id']."' AND niv='2';"));
-
-											if ($med['nmo']!=0 AND $med['nmo']!=2){
-												#Registo do ultimo voto
-												$med_mod = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_mod WHERE med='".$med["id"]."' AND niv>'0' ORDER BY dre DESC;"));
-												#Registo do moderador do ultimo voto
-												$med_mod_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med_mod['uti']."'"));
-
-												echo "
-												<div class='row my-4'>
-													<div class='col-auto pe-0 text-center'>
-														<a href='/perfil?uti=".$med_mod_uti['nut']."'><img src='fpe/".base64_encode($med_mod_uti["fot"])."' class='rounded-circle' width='40'></a>
-													</div>
-													<div class='col d-flex'>
-														<span class='justify-content-center align-self-center'>
-															"._('Pedido pelo moderador')." ".$med_mod_uti['nut'].":<br>";
-															#Define a ação a tomar em texto
-															if ($med['nmo']==1){
-																echo "Definir como sensível";
-															} else if ($med['nmo']==3){
-																echo "Definir como contéudo inaceitável";
-															} else if ($med['nmo']==4){
-																echo "Eliminar contéudo inaceitável";
-															}
-															echo "
-														</span>
-													</div>
+											<text class='h5'>".$med_tit."</text><br><br>
+											<div id='caixa_pedido_mod' style='display:none' class='row my-4'>
+												<div class='col-auto pe-0 text-center'>
+													<a id='url_pedido_mod'><img id='img_pedido_mod' class='rounded-circle' width='40'></a>
 												</div>
-												";
-
-												#Se o moderador com sessão iniciada nunca tiver escolhido as diferentes ações;
-												if (!$med_mod_uti0){
-													echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=0' role='button' class='me-1 btn btn-ciano text-light'>"._('Discordo')."</a>";
-												} else {
-													echo "<button disabled class='me-1 btn btn-ciano text-light'>"._('Discordo')."</button>";
-												}
-												if ($med['nmo']==1){
-													if ($med_mod_uti1){
-														echo "<button disabled class='btn btn-ciano text-light'>"._('Concordo')."</button>";
-													} else {
-														echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=1' role='button' class='btn btn-ciano text-light'>"._('Concordo')."</a>";
-													}
-												} else if ($med['nmo']==3 OR $med['nmo']==4){
-													if ($med_mod_uti2){
-														echo "<button disabled class='btn btn-ciano text-light'>"._('Concordo')."</button>";
-													} else {
-														echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=2' role='button' class='btn btn-ciano text-light'>";
-														if ($med['nmo']==3){
-															echo _('Concordo');
-														} else if ($med['nmo']==4){
-															echo _('Eliminar');
-														}
-														echo "</a>";
-													}
-												}
-
-											} else if ($med['nmo']!=2){
-												if ($med_mod_uti1){
-													echo "<button disabled class='btn btn-ciano text-light'>"._('Definir como contéudo sensível')." <i class='bi bi-eye-slash'></i></button>";
-												} else {
-													echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=1' role='button' class='btn btn-ciano text-light'>"._('Definir como contéudo sensível')." <i class='bi bi-eye-slash'></i></a>";
-												}
-											}
-											if ($med['nmo']<3){
-												if ($med_mod_uti2){
-													echo "<button disabled class='btn btn-vermelho text-light'>"._('Reportar como contéudo inaceitável')." <i class='bi bi-x-octagon'></i></button>";
-												} else {
-													echo "<a href='/pro/med_mod.php?med=".$med['id']."&ac=2' role='button' class='btn btn-vermelho text-light'>"._('Reportar como contéudo inaceitável')." <i class='bi bi-x-octagon'></i></a>";
-												}
-											}
-											echo "
+												<div class='col d-flex'>
+													<span class='justify-content-center align-self-center'>
+														"._('Pedido pelo moderador')." <span id='nut_pedido_mod'></span>:<br>
+														<span id='texto_pedido_mod'></span>
+													</span>
+												</div>
+											</div>
+											<button id='btn_discordo' style='display:none' class='me-1 btn btn-ciano text-light'>"._('Discordo')."</button>
+											<button id='btn_concordo' style='display:none' class='btn btn-ciano text-light'>"._('Concordo')."</button>
+											<button id='btn_sensivel' style='display:none' class='btn btn-ciano text-light'>"._('Definir como contéudo sensível')." <i class='bi bi-eye-slash'></i></button>
+											<button id='btn_inaceitavel' style='display:none' class='btn btn-vermelho text-light'>"._('Reportar como contéudo inaceitável')." <i class='bi bi-x-octagon'></i></button>
 										</div>
 										<div class='modal-footer text-end'>
 											<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
@@ -426,6 +452,85 @@
 									</div>
 								</div>
 							</div>
+
+							<script>
+							function moderar(mod_ac){
+								if (mod_ac === undefined){
+									result = api('med',{'med':'".$med['id']."', 'ac':'mod'});
+								} else {
+									result = api('med',{'med':'".$med['id']."', 'ac':'mod', 'mod':mod_ac});
+								}
+								console.log(result);
+
+								if(result['ac_mod'].indexOf(0) !== -1){
+									$('#btn_discordo').attr('disabled', true);
+								}else{
+									$('#btn_discordo').attr('onclick', 'moderar(0)');
+								}
+
+								if(result['ac_mod'].indexOf(1) !== -1){
+									$('#btn_sensivel').attr('disabled', true);
+								}else{
+									$('#btn_sensivel').attr('onclick', 'moderar(1)');
+								}
+
+								if(result['ac_mod'].indexOf(2) !== -1){
+									$('#btn_inaceitavel').attr('disabled', true);
+								}else{
+									$('#btn_inaceitavel').attr('onclick', 'moderar(2)');
+								}
+
+								if (result['nmo']<=2){
+									$('#btn_inaceitavel').show();
+								} else {
+									$('#btn_inaceitavel').hide();
+								}
+
+								if (result['nmo']==0){
+									$('#btn_sensivel').show();
+								} else {
+									$('#btn_sensivel').hide();
+								}
+
+								//Se houver um pedido de um moderador ativo
+								if (result['nmo']!==0 && result['nmo']!==2){
+									
+									if (result['nmo']==1){
+										if(result['ac_mod'].indexOf(1) !== -1){
+											$('#btn_concordo').attr('disabled', true);
+										}else{
+											$('#btn_concordo').attr('onclick', 'moderar(1)');
+										}
+										texto_pedido_mod = '"._('Definir como contéudo sensível')."';
+									} else {
+										if(result['ac_mod'].indexOf(2) !== -1){
+											$('#btn_concordo').attr('disabled', true);
+										}else{
+											$('#btn_concordo').attr('onclick', 'moderar(2)');
+										}
+										if (result['nmo']==3){
+											texto_pedido_mod = '"._('Definir como contéudo inaceitável')."';
+										} else if (result['nmo']==4){
+											texto_pedido_mod = '"._('Eliminar contéudo inaceitável')."';
+										}
+									}
+
+									$('#btn_discordo').show();
+									$('#btn_concordo').show();
+									$('#texto_pedido_mod').html(texto_pedido_mod);
+									$('#url_pedido_mod').attr('href', 'perfil?uti='+result['u_mod_uti']['nut']);
+									$('#img_pedido_mod').attr('src', 'fpe/'+result['u_mod_uti']['fot']);
+									$('#nut_pedido_mod').html(result['u_mod_uti']['nut']);
+									$('#caixa_pedido_mod').show();
+
+								} else {
+									$('#caixa_pedido_mod').hide();
+									$('#btn_discordo').hide();
+									$('#btn_concordo').hide();
+								}
+							}
+							moderar();
+							</script>
 							";
 						}
 						echo "
@@ -528,7 +633,7 @@
 
 				echo "
 				<div id='caixa_botao_comentario' class='text-center my-4'>
-					<button id='botao_caixa_comentario' href='/registo' class='btn btn-primary'>"._('Adicionar um comentário')."</button>
+					<button onclick='abrir_comentario()' class='btn btn-primary'>"._('Adicionar um comentário')."</button>
 				</div>
 				
 				<div style='display:none;' id='caixa_comentario' class='my-4 p-5 bg-primary bg-gradient rounded-xl shadow text-light'>
@@ -536,7 +641,7 @@
 						<h2>"._('Adicionar um comentário')."</h2>
 						<input id='input_com' type='text' class='form-control' autocomplete='off' name='input_com' placeholder='"._('Comentário')."'>
 						<div class='text-end'>
-							<button id='botao_fechar_caixa_comentario' type='button' class='btn btn-dark'>"._('Fechar')."</button>
+							<button onclick='fechar_comentario()' type='button' class='btn btn-dark'>"._('Fechar')."</button>
 							<button type='submit' class='btn btn-light text-primary'>"._('Comentar')."</button>
 						</div>
 					</form>
@@ -546,76 +651,36 @@
 				$('#form_comentario').on('submit', function(e) {
 					e.preventDefault();
 					var com = $('#input_com').val();
-					$.ajax({
-						url: 'api/med_com.php',
-						type: 'post',
-						data: {'med':'".$med['id']."','ac':'criar','com':com},
-						beforeSend: function(xhr) {
-							xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
-						},
-						success: function(result) {
-							fechar_comentario();
-							$('#input_com').val('');
-							var com_id = result['id'];
-							$('#caixa_comentario').after(\"".preg_replace( "/\r|\n/", "", $caixa_cometario)."\");
-						},
-						error: function(){
-							console.log('Ocorreu um erro.');
-						}
-					});
+					result = api('med_com',{'med':'".$med['id']."','ac':'criar','com':com});
+					if (result){
+						fechar_comentario();
+						$('#input_com').val('');
+						var com_id = result['id'];
+						$('#caixa_comentario').after(\"".preg_replace( "/\r|\n/", "", $caixa_cometario)."\");
+					}
 				});
 
 				function gosto(){
-					$.ajax({
-						url: 'api/med_gos.php',
-						type: 'post',
-						data: {'med':'".$med['id']."'},
-						beforeSend: function(xhr) {
-							xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
-						},
-						success: function(result) {
-							if (result['err']){
-								alert(result['err']);
-							} else {
-								var gostos = +$('#texto_gostos').text();
-								if (result['gos']=='false'){
-									$('#botao_gosto').attr('hidden', true);
-									$('#botao_naogosto').removeAttr('hidden');
-									$('#texto_gostos').text(gostos-1);
-								} else {
-									$('#botao_gosto').removeAttr('hidden');
-									$('#botao_naogosto').attr('hidden', true);
-									$('#texto_gostos').text(gostos+1);
-								}
-							}
-						},
-						error: function(){
-							alert('Ocorreu um erro.');
-						}
-					});
+					var gostos = +$('#texto_gostos').text();
+					result = api('med_gos',{'med':'".$med['id']."'});
+					if (result['gos']=='false'){
+						$('#botao_gosto').attr('hidden', true);
+						$('#botao_naogosto').removeAttr('hidden');
+						$('#texto_gostos').text(gostos-1);
+					} else if (result['gos']=='true'){
+						$('#botao_gosto').removeAttr('hidden');
+						$('#botao_naogosto').attr('hidden', true);
+						$('#texto_gostos').text(gostos+1);
+					}
 				}
 
 				function eliminar_com(com_id){
 					setTimeout(function(){
-						$.ajax({
-							url: 'api/med_com.php',
-							type: 'post',
-							data: {'ac':'eliminar','id':com_id},
-							beforeSend: function(xhr) {
-								xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
-							},
-							success: function(result) {
-								if (result['err']){
-									alert(result['err']);
-								} else {
-									$('#com_'+com_id).remove();
-								}
-							},
-							error: function(){
-								alert('Ocorreu um erro.');
-							}
-						});
-					}, 1000);
+						result = api('med_com',{'ac':'eliminar','id':com_id});
+						if (result['est']=='sucesso'){
+							$('#com_'+com_id).remove();
+						}
+					}, 250);
 				}
 
 				function fechar_comentario() {
@@ -623,11 +688,10 @@
 					$('#caixa_comentario').hide();
 				}
 
-				$('#botao_caixa_comentario').on('click', function() {
-					$('#caixa_comentario').show();
+				function abrir_comentario() {
 					$('#caixa_botao_comentario').hide();
-				});
-				$('#botao_fechar_caixa_comentario').on('click', fechar_comentario);
+					$('#caixa_comentario').show();
+				}
 				</script>
 				";
 			} else {

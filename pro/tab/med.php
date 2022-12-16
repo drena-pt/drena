@@ -28,6 +28,7 @@ Nivel de moderação
 1:moderado 1 vez;
 2:moderado 2 vezes, considerado sensivel;
 3:reportado 1 vez;
+4:reportado 2 vezes, considerado sensivel, pronto para eliminar;
 */
 
 if ($bd->query($sql) === TRUE) {
