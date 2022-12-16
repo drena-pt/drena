@@ -8,7 +8,7 @@ require __DIR__.'/pro/fun.php';
 ?>
 
 <!doctype html>
-<!-- Desenvolvido por Guilherme Albuquerque 2018/2021 -->
+<!-- Desenvolvido por Guilherme Albuquerque 2018/2022 -->
 <html>
 	<head>
 		<!-- Coisas básicas -->
