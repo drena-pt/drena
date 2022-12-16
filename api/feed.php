@@ -17,12 +17,12 @@ if ($_GET['tip']=='global'){
     #Query de media ordenada por data limite 4
     $sql_media = "select t.*
     from med t cross join (select * from med where id = '".$depois."') c
-    where t.den < c.den or (t.den = c.den and t.id >= c.id)
+    where t.den < c.den or (t.den = c.den and t.id >= c.id) and t.pri=0
     order by t.den desc, t.id
     limit 1,4";
 
     if (!$depois OR !mysqli_num_rows($bd->query($sql_media))){
-        $sql_media = "SELECT * FROM med ORDER by den DESC LIMIT 3";
+        $sql_media = "SELECT * FROM med where pri=0 ORDER by den DESC LIMIT 3";
     }
 
     if ($resultado = $bd->query($sql_media)) {
@@ -54,12 +54,12 @@ if ($_GET['tip']=='global'){
         #Query de media ordenada por data limite 4
         $sql_media = "select t.*
         from med t cross join (select * from med where id = '".$depois."') c
-        where t.uti IN (".$lista_feed.") AND t.den < c.den or (t.den = c.den and t.id >= c.id)
+        where t.uti IN (".$lista_feed.") AND t.den < c.den or (t.den = c.den and t.id >= c.id) and t.pri=0
         order by t.den desc, t.id
         limit 1,4";
 
         if (!$depois OR !mysqli_num_rows($bd->query($sql_media))){
-            $sql_media = "SELECT * FROM med WHERE uti IN (".$lista_feed.") ORDER by den DESC LIMIT 3";
+            $sql_media = "SELECT * FROM med WHERE pri=0 and uti IN (".$lista_feed.") ORDER by den DESC LIMIT 3";
         }
 
         if ($resultado = $bd->query($sql_media)) {
