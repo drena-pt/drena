@@ -4,9 +4,8 @@
 		?>
 	</head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
-		<div id="swup" class="transition-fade">
-		<?php
+	    <?php require('cabeçalho.php'); ?>
+	    <?php
 		echo "
 		<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
 			<div class='p-xl-5 p-4 bg-dark text-light'>
@@ -160,6 +159,5 @@
 		</div>
 		";
 		?>
-		</div>
 	</body>
 </html>

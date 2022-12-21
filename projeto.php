@@ -19,7 +19,6 @@
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
-		<div id="swup" class="transition-fade">
 		<?php
 		if ($pro AND $vis){ #Se o projeto existir e for visivel.
 
@@ -279,6 +278,5 @@
 			echo "<h2 class='my-4 text-center'>Não é possivel localizar o projeto ☹️</h2>";
 		}
 		?>
-		</div>
 	</body>
 </html>

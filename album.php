@@ -11,7 +11,6 @@
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
-		<div id="swup" class="transition-fade">
 		<?php
 		if ($alb){ #Se o álbum existir
 
@@ -154,6 +153,5 @@
 			echo "<h2 class='my-4 text-center'>Álbum não encontrado! ☹️</h2>";
 		}
 		?>
-		</div>
 	</body>
 </html>
