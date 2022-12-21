@@ -1,19 +1,15 @@
-<!-- <footer>
-        <div class="footer m-auto p-3 bg-dark text-center">
-            <div class="row">
-                <div class="col-sm">
-                    <a class="h6 text-light" href="politicas.php">Termos e condições</a>
-                </div>
-                <div class="col-sm">
-                    <p class="h6">Copyright ©<script>document.write(new Date().getFullYear());</script> | drena</p>
-                </div>
-                <div class="col-sm">
-                    <a class="btn btn-primary" href="https://facebook.com/drena.pt"><i class="bi bi-facebook"></i></a>
-                    <a class="btn btn-primary" href="https://instagram.com/drena.pt"><i class="bi bi-instagram"></i></a>
-                    <a class="btn btn-primary" href="https://twitter.com/drena.pt"><i class="bi bi-twitter"></i></a>
-                </div>
-                
-            </div>
+<footer class="footer m-auto p-5 bg-dark text-center">
+    <div class="row">
+        <div class="col-sm">
+            <img src="imagens/logo.png" height="32" title="drena" loading="lazy"><br>
+            <text>Copyright © 2022 | drena</text><br>
+            <a class="small text-light" href="politicas.php">Termos e condições</a>
         </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-sm">
+            <a class="text-light" href="https://facebook.com/drena.pt"><i class="bi bi-facebook"></i></a>
+            <a class="text-light" href="https://instagram.com/drena.pt"><i class="bi bi-instagram"></i></a>
+        </div>
+    </div>
 </footer>
- -->

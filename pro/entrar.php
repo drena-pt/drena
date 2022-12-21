@@ -3,9 +3,6 @@
 use Firebase\JWT\JWT;
 require_once('../vendor/autoload.php');
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
 #Obtem as funções
 $funcoes['requerSessao'] = 0;
 require 'fun.php';

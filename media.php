@@ -78,7 +78,7 @@ function tempoPassado($ptime){
 if ($med){
 	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															# Definir título
 	$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									# Utilizador dono
-	$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$_GET["id"]."' AND uti='".$uti['id']."';"));	# Informações do gosto do utilizador logado
+	$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$med["id"]."' AND uti='".$uti['id']."';"));	# Informações do gosto do utilizador logado
 
 	echo "
 	<!-- Tags de motor de pequisa -->
@@ -104,7 +104,6 @@ if ($med){
 </head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
-		<div id="swup" class="transition-fade">
 		<?php
 		if (!$med OR ($med['pri']==1 AND $med['uti']!=$uti['id'])){
 			echo "<h2 class='my-5 text-center'>"._('Média não encontrada!')." 😵</h2>‍";
@@ -337,7 +336,7 @@ if ($med){
 												<input id='input_tit' type='text' class='form-control' name='tit' placeholder='"._('Título')."' autocomplete='off' value='".$med_tit."'>
 											</div>
 											<div class='modal-footer text-end'>
-												<button id='fechar_titulo' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
+												<button id='fechar_titulo' type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
 												<button type='submit' class='btn btn-".$t_cor." text-light'>"._('Alterar')."</button>
 											</div>
 										</form>
@@ -763,6 +762,5 @@ if ($med){
 			echo "</div>";
 		}
 		?>
-		</div>
 	</body>
 </html>
