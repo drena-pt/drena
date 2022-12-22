@@ -1,4 +1,4 @@
-<header class='navbar-dark sticky-top bg-dark'>
+<header class='navbar-dark sticky-top bg-dark shadow'>
 	<nav class="px-4 px-xl-0 col-xl-6 offset-xl-3 navbar navbar-expand-sm">
 		<a class="navbar-brand" href="/">
 			<img src="imagens/logo.png" height="32" alt="" loading="lazy">
@@ -41,7 +41,7 @@
 					<h1 class='modal-title' id='modal_procurar_label'>"._('Procurar')."<br></h1><br>
 				</div>
 				<div class='modal-body'>
-					<input type='text' class='form-control' name='oq' placeholder='"._('Ex: utilizador, vídeo, projeto...')."'>
+					<input type='text' class='form-control' name='oq' required placeholder='"._('Ex: utilizador, vídeo, projeto...')."'>
 				</div>
 				<div class='modal-footer'>
 					<button type='submit' class='btn btn-light text-primary'>"._('Procurar')."</button>

@@ -1,8 +1,9 @@
 		<?php require('head.php') ?>
+		<script src='./js/api.js'></script>
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
-		<?php	
+		<?php
 		$erros = unserialize($_COOKIE["erros"]);
 		function temErro($erro){
 			if ($erro){
@@ -103,36 +104,80 @@
 					exit;
 				}
 			}
-		} else { # Se não houver ação apresentar ecrã de login padrão
+		} else { #Se não houver ação apresentar ecrã de login padrão
 			echo "
 			<div class='bg-primary bg-gradient rounded-xl shadow p-5 text-light my-4 col-xl-4 offset-xl-4 col-sm-8 offset-sm-2'>
-				<form action='/pro/entrar.php' method='post'>
+				<form id='form_entrar'>
 					<h1>"._('Entrar')."</h1>
 
 					<div class='form-group'>
-						<input type='text' class='form-control ".temErro($erros["nut"])."' aria-describedby='erro_nut' name='nut' placeholder=\""._('Utilizador')."\">
-						<div id='erro_nut' class='invalid-feedback'>".nomeErro($erros["nut"])."</div>
+						<input id='nut' type='text' placeholder='"._('Utilizador')."' class='form-control' aria-describedby='erro_nut'>
+						<div id='erro_nut' class='invalid-feedback'></div>
 					</div>
 
 					<div class='form-group'>
-						<input type='password' class='form-control ".temErro($erros["ppa"])."' aria-describedby='erro_ppa' name='ppa' placeholder='"._('Palavra-passe')."'>
-						<div id='erro_ppa' class='invalid-feedback'>".nomeErro($erros["ppa"])."</div>
+						<input id='ppa' type='password' placeholder='"._('Palavra-passe')."' class='form-control' aria-describedby='erro_ppa'>
+						<div id='erro_ppa' class='invalid-feedback'></div>
 					</div>
 
 					<div class='form-group text-center'>
-						<button class='text-primary btn btn-light'>"._('Iniciar sessão')."</button>
+						<input type='submit' class='text-primary btn btn-light' value='"._('Iniciar sessão')."'>
 					</div>
 				</form>
 			</div>
 			
 			<div class='text-center'>
-				";
-				if ($erros["ppa"]){echo "<a href='?ac=recuperar' class='btn btn-light text-primary'>"._('Recuperar conta')."</a>";}
-				echo "
+				<a id='btn_recuperar' href='?ac=recuperar' class='d-none btn btn-light text-primary'>"._('Recuperar conta')."</a>
 				<a href='/registo' class='btn btn-primary'>"._('Criar uma conta')."</a>
 			</div>
+
+			
 			";
 		}
 		?>
+		<script>
+		function textoErro(erro){
+			switch (erro){
+				case 1:
+					return ('Campo vazio.');break;
+				case 2:
+					return ('Utilizador inválido.');break;
+				case 3:
+					return ('A palavra-passe está errada.');break;
+				case 4:
+					return ('Email inválido.');break;
+				case 5:
+					return ('Excedeste o limite de emails.');break;
+				case 6:
+					return ('As palavras-passe não podem ser diferentes.');break;
+			}
+		}
+
+		$('#form_entrar').on('submit', function(e) {
+			e.preventDefault();
+			var nut = $('#nut').val();
+			var ppa = $('#ppa').val();
+			result = api('entrar',{'nut':nut,'ppa':ppa});
+			if (result['est']=='sucesso'){
+				window.location.href = '/';
+			} else {
+				//Erros Utilizador
+				if (result['avi']['nut']){
+					$('#erro_nut').html(textoErro(result['avi']['nut']));
+					$('#nut').addClass('is-invalid');
+				} else {
+					$('#nut').removeClass('is-invalid');
+				}
+				//Erros Password
+				if (result['avi']['ppa']){
+					$('#erro_ppa').html(textoErro(result['avi']['ppa']));
+					$('#ppa').addClass('is-invalid');
+					$('#btn_recuperar').removeClass('d-none');
+				} else {
+					$('#ppa').removeClass('is-invalid');
+				}
+			}
+		});
+		</script>
 	</body>
 </html>
