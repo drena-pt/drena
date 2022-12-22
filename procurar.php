@@ -1,15 +1,16 @@
 <?php 
 require('head.php');
+$oq = $_GET['oq'];
+if (!$oq){
+    header("Location: /");
+    exit;
+}
 ?>
 	</head>
 	<body>
-	<?php require('cabeçalho.php'); ?>
 	<?php
-    $oq = $_GET['oq'];
-    if (!$oq){
-        header("Location: https://google.pt");
-        exit();
-    }
+    require('cabeçalho.php');
+
     $pesquisa_uti = "SELECT * FROM uti WHERE nut LIKE '%".$oq."%' OR nco LIKE '%".$oq."%' ORDER by id DESC;";
     $pesquisa_med = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' OR tit LIKE '%".$oq."%';";
     $pesquisa_vid = "SELECT * FROM med WHERE nom LIKE '%".$oq."%' AND TIP='1' OR tit LIKE '%".$oq."%' AND TIP='1' ORDER by den DESC;";
@@ -39,7 +40,7 @@ require('head.php');
 		}
 	}
 
-    if ($resultado = $bd->query($pesquisa_uti)) {
+    if (mysqli_num_rows($resultado = $bd->query($pesquisa_uti))) {
         echo "
         <div class='p-xl-5 p-4'><h1>"._('Utilizadores')."</h1></div><div class='row my-2'>";
         while ($campo = $resultado->fetch_assoc()) {
@@ -52,7 +53,7 @@ require('head.php');
         echo "</div>";
     }
 
-    if ($resultado = $bd->query($pesquisa_img)) {
+    if (mysqli_num_rows($resultado = $bd->query($pesquisa_img))) {
         echo "
         <div class='p-xl-5 p-4'><h1>"._('Imagens')."</h1></div>
         <div class='row row-cols-2 row-cols-md-3 text-left'>";
@@ -74,7 +75,7 @@ require('head.php');
         echo "</div>";
     }
 
-    if ($resultado = $bd->query($pesquisa_vid)) {
+    if (mysqli_num_rows($resultado = $bd->query($pesquisa_vid))) {
         echo "
         <div class='p-xl-5 p-4'><h1>"._('Vídeos')."</h1></div>
         <div class='row row-cols-2 row-cols-md-3 text-left'>";
@@ -96,7 +97,7 @@ require('head.php');
         echo "</div>";
     }
 
-    if ($pesquisa_aud AND $resultado = $bd->query($pesquisa_aud)) {
+    if (mysqli_num_rows($pesquisa_aud AND $resultado = $bd->query($pesquisa_aud))) {
         echo "
         <div class='p-xl-5 p-4'><h1>"._('Áudios')."</h1></div>
         <div class='row row-cols-2 row-cols-md-3 text-left'>";
@@ -120,7 +121,7 @@ require('head.php');
         echo "</div>";
     }
 
-    if ($resultado = $bd->query($pesquisa_pro)) {
+    if (mysqli_num_rows($resultado = $bd->query($pesquisa_pro))) {
 
         echo "
         <div class='p-xl-5 p-4'><h1>"._('Projetos')."</h1></div>
