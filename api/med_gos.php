@@ -25,7 +25,7 @@ if ($med){ #Se a media existir
 		}
 	}
 } else {
-	echo "Erro: A Media não existe.";
+	echo '{"err": "A Media não existe."}';
 }
 exit;
 ?>

@@ -4,7 +4,9 @@ require('head.php');
 # script 'notificacoes.js é o registo no sistema de notificações
 if ($uti){
     $uti_mai = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti["mai"]."'"));
-    echo "<script>const sub_uti_nut='".$uti['nut']."';const sub_uti_cod='".$uti_mai['cod']."';</script><script src='/js/notificacoes.js'></script>";
+    echo "
+    <script src='/js/notificacoes.js'></script>
+    <script src='./js/api.js'></script>";
 }
 ?>
     <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
@@ -207,36 +209,19 @@ if ($uti){
                 }
                 carregarMedia(api_link);
 
-                
                 function gosto(med_id){
-                    $.ajax({
-                        url: 'api/med_gos.php',
-                        type: 'post',
-                        data: {'med':med_id},
-                        beforeSend: function(xhr) {
-                            xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
-                        },
-                        success: function(result) {
-                            if (result['err']){
-                                alert(result['err']);
-                            } else {
-                                var gostos = +$('#med_'+med_id+'_numGostos').text();
-                                if (result['gos']=='false'){
-                                    $('#svg_gosto_'+med_id).attr('hidden', true);
-                                    $('#svg_naoGosto_'+med_id).removeAttr('hidden');
-                                    $('#med_'+med_id+'_numGostos').text(gostos-1);
-                                } else {
-                                    $('#svg_gosto_'+med_id).removeAttr('hidden');
-                                    $('#svg_naoGosto_'+med_id).attr('hidden', true);
-                                    $('#med_'+med_id+'_numGostos').text(gostos+1);
-                                }
-                            }
-                        },
-                        error: function(){
-                            alert('Ocorreu um erro.');
-                        }
-                    });
-                }
+					result = api('med_gos',{'med':med_id});
+					var gostos = +$('#med_'+med_id+'_numGostos').text();
+                    if (result['gos']=='false'){
+                        $('#svg_gosto_'+med_id).attr('hidden', true);
+                        $('#svg_naoGosto_'+med_id).removeAttr('hidden');
+                        $('#med_'+med_id+'_numGostos').text(gostos-1);
+                    } else {
+                        $('#svg_gosto_'+med_id).removeAttr('hidden');
+                        $('#svg_naoGosto_'+med_id).attr('hidden', true);
+                        $('#med_'+med_id+'_numGostos').text(gostos+1);
+                    }
+				}
 
                 $(window).scroll(function(){
                     if (scrollLoad && ($(document).height() - $(window).height())-$(window).scrollTop()<=400){
