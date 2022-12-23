@@ -88,11 +88,16 @@ $input-box-shadow:						$box-shadow;
 $input-btn-focus-border:				rgba($white, .5);
 $input-btn-focus-box-shadow:			$box-shadow !important;
 
-$form-check-input-border:				$border-width solid $white;
+
+//Checkbox
+$form-check-input-border:				$border-width solid rgba($black, .1);
 $form-check-input-border-radius:		0px;
-$form-check-input-focus-border:			rgba($white, .5);
-$form-check-input-checked-color:		$black;
-$form-check-input-checked-bg-color:		$white;
+$form-check-input-bg:					rgba($black, .1);
+
+$form-check-input-focus-border:         $form-check-input-border;
+
+$form-check-input-checked-border-color:	$roxo;
+$form-check-input-checked-bg-color:		$roxo;
 
 input[type='text'], input[type='email'], input[type='password']{
 	padding: calc(#{$btn-padding-y} - (#{$border-width} )) $btn-padding-x;
@@ -230,7 +235,7 @@ button.close{
 	outline: none !important;
 }
 .navbar-dark .navbar-nav .nav-link{
-	color: #fff !important;
+	color: $white !important;
 }
 .navbar-dark:hover .navbar-nav:hover .nav-link:hover{
 	opacity: 0.8 !important;

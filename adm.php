@@ -2,6 +2,7 @@
 		require('head.php');
 		if ($uti['car']!=1){ header("Location: /"); exit; }	#Sair da página se não for administrador
 		?>
+        <script src='./js/api.js'></script>
 	</head>
 	<body>
 	    <?php require('cabeçalho.php'); ?>
@@ -13,18 +14,18 @@
 			</div>
 
 			<div class='p-xl-5 p-4 bg-light text-dark'>
-                <div class='d-flex mb-3'>
+                <div class='d-md-flex mb-3'>
                     <div class=''>
                         <h3>Utilizadores</h3>
                     </div>
-                    <div class='ml-auto'>
+                    <div class='ms-auto'>
                         <form method='get'>
-                            <div class='form-row'>
+                            <div class='row'>
                                 <div class='col-auto'>
                                     <input name='pesquisa' class='border-0 form-control bg-dark' type='text' placeholder='Pesquisar...'></input>
                                 </div>
                                 <div class='col-auto d-flex'>
-                                    <button type='submit' class='justify-content-center align-self-center btn btn-primary'>Pesquisar <i class='bi bi-search'></i></button>
+                                    <button type='submit' class='btn btn-primary'>Pesquisar <i class='bi bi-search'></i></button>
                                 </div>
                             </div>
                         </form>
@@ -56,17 +57,20 @@
                                     <td><a href='/perfil?uti=".$campo['nut']."'>".$campo['nut']."</a></td>
                                     <td>".$campo['nco']."</td>
                                     <td>".$campo['dcr']."</td>
-                                    <td><div class='custom-control custom-switch'><input type='checkbox' class='custom-control-input' ";
+                                    <td><div class='form-check form-switch'>
+                                    <input type='checkbox' role='switch' class='form-check-input' ";
                                     if ($campo['ati']==1){ echo "checked "; }
                                     if ($campo['id']==$uti['id']){ echo "disabled "; }
                                     echo "id='ati".$campo['id']."'>
-                                    <label class='custom-control-label' for='ati".$campo['id']."'></label></div></td>
-
-                                    <td><div class='custom-control custom-switch'><input type='checkbox' class='custom-control-input' ";
+                                    <label class='form-check-label' for='ati".$campo['id']."'></label>
+                                    </div></td>
+                                    <td><div class='form-check form-switch'>
+                                    <input type='checkbox' role='switch' class='form-check-input' ";
                                     if ($campo['car']==1){ echo "checked "; }
                                     if ($campo['id']==$uti['id']){ echo "disabled "; }
-                                    echo "id='adm".$campo['id']."'>
-                                    <label class='custom-control-label' for='adm".$campo['id']."'></label></div></td>
+                                    echo "id='car".$campo['id']."'>
+                                    <label class='form-check-label' for='car".$campo['id']."'></label>
+                                    </div></td>
                                 </tr>
                                 ";
                             } 
@@ -77,28 +81,21 @@
                 </div>
                 <script>
                 $(':checkbox').change(function(){
-                    $.ajax({
-                        url: 'pro/adm.php?campo='+this.id,
-                        success: function(data){
-                            $('#data').text(data);
-                        },
-                        error: function(){
-                            alert('There was an error.');
-                        }
-                    });
+					result = api('adm',{'campo':this.id});
+                    console.log(result);
                 });   
                 </script>
                 <span id='data'></span>
 			</div>
 
             <div class='p-xl-5 p-4 bg-light text-dark'>
-                <div class='d-flex mb-3'>
+                <div class='d-md-flex mb-3'>
                     <div class=''>
                         <h3>Projetos</h3>
                     </div>
-                    <div class='ml-auto'>
+                    <div class='ms-auto'>
                         <form method='get'>
-                            <div class='form-row'>
+                            <div class='row'>
                                 <div class='col-auto'>
                                     <input name='pesquisa_pro' class='border-0 form-control bg-dark' type='text' placeholder='Pesquisar...'></input>
                                 </div>
