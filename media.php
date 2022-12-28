@@ -1,10 +1,11 @@
 <?php
+$site_tit = 'off';
 require('head.php');
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 
 #Se houver uma sessão iniciada carrega o script da API
 if ($uti){
-	echo "<script src='./js/api.js'></script>";
+	echo "<script src='./js/api.min.js'></script>";
 }
 
 function tempoPassado($ptime){
@@ -47,6 +48,8 @@ if ($med){
 	<meta property='og:description' content='".$med_uti['nut'].", ".sprintf(_('há %s'),tempoPassado(strtotime($med['den']))).", ".$med['gos']." "._('gostos')."'/>
 	<meta property='og:url' content='".$url_site."media?id=".$med['id']."'/>
 	<meta property='og:image' content='".$url_media."thumb/".$med['thu'].".jpg'/>
+
+	<title>".$med_tit." - drena</title>
 	";
 
 	#Se for um vídeo

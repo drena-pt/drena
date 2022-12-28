@@ -2,7 +2,7 @@
 		require('head.php');
 		if ($uti['car']!=1){ header("Location: /"); exit; }	#Sair da página se não for administrador
 		?>
-        <script src='./js/api.js'></script>
+        <script src='./js/api.min.js'></script>
 	</head>
 	<body>
 	    <?php require('cabeçalho.php'); ?>

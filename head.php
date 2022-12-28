@@ -3,7 +3,6 @@
 $funcoes['requerSessao'] = 0;
 require __DIR__.'/pro/fun.php';
 ?>
-
 <!doctype html>
 <!-- Desenvolvido por Guilherme Albuquerque 2018/2022 -->
 <html lang="<?php echo get_browser_language(); ?>">
@@ -13,7 +12,7 @@ require __DIR__.'/pro/fun.php';
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" type="image/png" href="imagens/favicon.png"/>
 		<meta property="og:site_name" content="drena"/>
-		<title>drena</title>
+		<?php if ($site_tit!='off') echo "<title>drena</title>"; ?>
 
 		<!-- jQuery, jQuery form, JS Cookie -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -26,23 +25,16 @@ require __DIR__.'/pro/fun.php';
 		<!-- Bootstrap -->
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap-icons.css">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-icons.min.css">
 		<script>
 			if(!('ontouchstart' in window)){
 				$(function (){ $('[data-toggle="tooltip"]').tooltip() })
 			}
 		</script>
-
-		<!-- EditorJS -->
-		<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.19.3"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
-		<script src="js/edjsHTML.browser.js"></script>
 		
 		<!-- AnimeJS -->
 		<script src="node_modules/animejs/lib/anime.min.js"></script>
 
 		<!-- iFrame Resizer -->
 		<script src="https://cdn.jsdelivr.net/npm/iframe-resizer@latest/js/iframeResizer.min.js"></script>
-		

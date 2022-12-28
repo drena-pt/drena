@@ -1,4 +1,5 @@
-<?php 
+<?php
+$site_tit = 'off';
 require('head.php');
 $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_GET["uti"]."'"));
 
@@ -6,9 +7,12 @@ if ($uti_perfil){
 	echo "
 	<meta property='og:image' content='".$url_site."fpe/".base64_encode($uti_perfil['fot'])."'>
 	<meta property='og:description' content='".$uti_perfil['nut']."'>
+	<title>".$uti_perfil['nut']." - drena</title>
 	";
 } else {
-	echo "<meta property='og:description' content='Utilizador não encontrado.'>";
+	echo "
+	<meta property='og:description' content='Utilizador não encontrado.'>
+	<title>drena</title>";
 }
 ?>
 	</head>

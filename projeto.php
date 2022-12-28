@@ -1,21 +1,26 @@
-		<?php
-		require('head.php');
-		$pro = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE id='".base64_decode($_GET["id"])."'"));	#Informações Projeto
-		$pro_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$pro["uti"]."'"));				#Informações Utilizador do projeto
-		if ($pro_uti['id']==$uti['id']){ $per = 1; $vis = 1; }	#Dar premissão e visualização
-		if ($pro['pri']==0){ $vis = 1; }						#Dar visualização
-		$vis = 1;
-		
-		if ($_POST['pro_tit']){
-			if ($per){
-				if ($bd->query("UPDATE pro SET tit='".addslashes($_POST['pro_tit'])."' WHERE id='".$pro['id']."'") === FALSE) {
-					echo "Erro:".$bd->error;
-					exit;
-				}
-				$pro['tit'] = $_POST['pro_tit'];
-			}
+<?php
+require('head.php');
+$pro = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM pro WHERE id='".base64_decode($_GET["id"])."'"));	#Informações Projeto
+$pro_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$pro["uti"]."'"));				#Informações Utilizador do projeto
+if ($pro_uti['id']==$uti['id']){ $per = 1; $vis = 1; }	#Dar premissão e visualização
+if ($pro['pri']==0){ $vis = 1; }						#Dar visualização
+$vis = 1;
+
+if ($_POST['pro_tit']){
+	if ($per){
+		if ($bd->query("UPDATE pro SET tit='".addslashes($_POST['pro_tit'])."' WHERE id='".$pro['id']."'") === FALSE) {
+			echo "Erro:".$bd->error;
+			exit;
 		}
-		?>
+		$pro['tit'] = $_POST['pro_tit'];
+	}
+}
+?>
+		<!-- EditorJS -->
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.19.3"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+		<script src="js/edjsHTML.browser.js"></script>
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>
