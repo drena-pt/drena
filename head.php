@@ -4,7 +4,7 @@ $funcoes['requerSessao'] = 0;
 require __DIR__.'/pro/fun.php';
 ?>
 <!doctype html>
-<!-- Desenvolvido por Guilherme Albuquerque 2018/2022 -->
+<!-- Desenvolvido por Guilherme Albuquerque 2018/2023 -->
 <html lang="<?php echo get_browser_language(); ?>">
 	<head>
 		<!-- Coisas básicas -->
@@ -13,6 +13,7 @@ require __DIR__.'/pro/fun.php';
 		<link rel="icon" type="image/png" href="imagens/favicon.png"/>
 		<meta property="og:site_name" content="drena"/>
 		<?php if ($site_tit!='off') echo "<title>drena</title>"; ?>
+		<meta name="theme-color" content="#111111"/>
 
 		<!-- jQuery, jQuery form, JS Cookie -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

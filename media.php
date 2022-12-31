@@ -97,10 +97,19 @@ if ($med){
 												<p>"._('A qualidade do vídeo é elevada, e pode comprometer a visualização em conexões mais lentas. Comprima o vídeo.')."</p>
 											</div>
     										<div class='col-md-4 text-end'>
-												<a href='/pro/med.php?id=".$med['id']."&ac=comprimir' role='button' class='btn btn-light text-dark'>"._('Comprimir vídeo')." <i class='bi bi-gear'></i></a>
+												<button id='btn_comprimir' class='btn btn-light text-dark'>"._('Comprimir vídeo')." <i class='bi bi-gear'></i></button>
 											</div>
 										</div>
-									</div>";
+									</div>
+									<script>
+									$('#btn_comprimir').click(function() {
+										result = api('med',{'med':'".$med['id']."','ac':'comprimir'});
+										if (result['est']=='sucesso'){
+											console.log(result);
+										}
+									});
+									</script>
+									";
 								} else if ($med['est']=='2'){
 									echo "<div class='p-xl-5 p-4 bg-primary'><text class='h5 my-auto me-auto'><i class='bi bi-info-circle'></i> "._('O vídeo está a ser processado...')."</text></div>";
 								}

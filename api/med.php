@@ -49,7 +49,8 @@ if ($med){ #Se a média existir
         } else if ($ac=='comprimir'){ # Alterar título da média
             
             if ($med['tip']=='1' AND $med['est']=='1'){ # Se a media for um vídeo e o estado for 1 (bitrate alto)
-                exec("php ".$dir_site."pro/med_compressao.php ".$med['id']." > /dev/null &");
+                $cmd = "php ".$dir_site."pro/med_compressao.php ".$med['id']." > /dev/null &";
+                exec($cmd);
                 sleep(2);
                 echo '{"est": "sucesso"}';
             } else {
