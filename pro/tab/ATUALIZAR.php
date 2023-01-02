@@ -1,33 +1,36 @@
 <?php
-/* error_reporting(E_ALL);
-ini_set('display_errors', 'On'); */
+/*error_reporting(E_ALL);
+ini_set('display_errors', 'On');*/
 require '../fun.php'; #Funções
 
 if ($uti['car']!=1){ #Necessita premissões de Administrador
     header('HTTP/1.1 401 Unauthorized'); exit;
 }
 
-
-
 #Cria no diretório de medias a pasta 'fpe' caso não exista
 $diretorio_fpe = $dir_media."fpe/";
 if (!file_exists($diretorio_fpe)) {
-    echo "Pasta para fotos de perfil não existe! 'dir_media/fpe'<br>";
-    mkdir($diretorio_fpe, 0755, true);
+    echo "
+    Pasta para fotos de perfil não existe! 'dir_media/fpe'<br>
+    Execute:<br>
+    <tt>
+    sudo mkdir ".$diretorio_fpe."<br>
+    sudo chown www-data:www-data ".$diretorio_fpe."
+    </tt>
+    ";
+    exit;
+} else {
+    echo "A pasta 'dir_media/fpe' está criada! A continuar...<br>";
 }
-if (file_exists($diretorio_fpe)) {
-    echo "Pasta criada 'dir_media/fpe'<br>";
-}
-
 
 #Cria a nova tabela 'uti_fpe' que vai substituir a antiga 'uti_fot'
 if ($result = $bd->query("SHOW TABLES LIKE 'uti_fpe'")) {
     if($result->num_rows == 1) {
         echo "A tabela uti_fpe já existe<br>";
+    } else {
+        echo "A tabela uti_fpe ainda não existe<br>";
+        require('uti_fpe.php');
     }
-} else {
-    echo "A tabela uti_fpe ainda não existe<br>";
-    require('uti_fpe.php');
 }
 
 #Se a coluna fpe (Foto de perfil) na tabela uti não existir
@@ -88,5 +91,12 @@ if ($resultado = $bd->query("SELECT * FROM uti_fot")) {
     $resultado->free();
 }
 
-echo "<br><br><h2>FIM</h2>";
+echo "
+Copia a foto padrao.jpg<br>
+<tt>
+sudo cp ".$dir_site."imagens/padrao.jpg ".$diretorio_fpe."padrao.jpg
+</tt>
+<br><br>
+<h2>SUCESSO!</h2>
+<h4>NÃO VOLTES A EXECUTAR ESTE FICHEIRO.</h4>";
 ?>
