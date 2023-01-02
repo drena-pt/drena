@@ -37,7 +37,7 @@ if ($uti['nut']!='guilhae'){
 	</table>
 	<br>
 	<table>
-	<tr><td><b>id</b></td><td><b>uti</b></td><td><b>den</b></td><td><b>fot</b></td></tr>";
+	<tr><td><b>id</b></td><td><b>uti</b></td><td><b>den</b></td><td><b>img</b></td></tr>";
 		
 		$oset = $_GET["tab"]*10;
 		$query = "SELECT * FROM uti_fpe ORDER BY den LIMIT 10 OFFSET $oset";

@@ -25,7 +25,7 @@
 					echo "
 					<li class='nav-item'><a class='nav-link' href='/criar' data-toggle='tooltip' data-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
 					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Definições')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>
-					<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."'><img data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-0 ms-sm-2 rounded-circle' src='fpe/".base64_encode($uti["fot"])."' width='40' height='40'></a></li>";
+					<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."'><img id='fpe' data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-0 ms-sm-2 rounded-circle' src='".$url_media."fpe/".$uti['fpe'].".jpg' width='40' height='40'></a></li>";
 				}
 			echo "</ul>
 		</div>

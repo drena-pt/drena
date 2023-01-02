@@ -491,7 +491,7 @@ if ($med){
 									$('#btn_concordo').show();
 									$('#texto_pedido_mod').html(texto_pedido_mod);
 									$('#url_pedido_mod').attr('href', 'perfil?uti='+result['u_mod_uti']['nut']);
-									$('#img_pedido_mod').attr('src', 'fpe/'+result['u_mod_uti']['fot']);
+									$('#img_pedido_mod').attr('src', result['u_mod_uti']['fpe']);
 									$('#nut_pedido_mod').html(result['u_mod_uti']['nut']);
 									$('#caixa_pedido_mod').show();
 
@@ -520,7 +520,7 @@ if ($med){
 							</div>-->
 							<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
-									<a href='/perfil?uti=".$med_uti['nut']."'><img src='fpe/".base64_encode($med_uti["fot"])."' class='rounded-circle' width='40'></a>
+									<a href='/perfil?uti=".$med_uti['nut']."'><img src='".$url_media."fpe/".$med_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
 									<span class='justify-content-center align-self-center'>"._('Publicado por')." ".$med_uti['nut']."</span>
@@ -588,7 +588,7 @@ if ($med){
 					</div>
 					<div class='row mb-1'>
 						<div class='col-auto pe-0 text-center'>
-							<a href='/perfil?uti=".$uti['nut']."'><img src='fpe/".base64_encode($uti["fot"])."' class='rounded-circle' width='40'></a>
+							<a href='/perfil?uti=".$uti['nut']."'><img src='".$url_media."fpe/".$uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 						</div>
 						<div class='col d-flex'>
 							<span class='justify-content-center align-self-center'>"._('Comentado por')." ".$uti['nut']."</span>
@@ -713,7 +713,7 @@ if ($med){
 							</div>
 							<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
-									<a href='/perfil?uti=".$com_uti['nut']."'><img src='fpe/".base64_encode($com_uti["fot"])."' class='rounded-circle' width='40'></a>
+									<a href='/perfil?uti=".$com_uti['nut']."'><img src='".$url_media."fpe/".$com_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
 									<span class='justify-content-center align-self-center'>"._('Comentado por')." ".$com_uti['nut']."</span>

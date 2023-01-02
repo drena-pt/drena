@@ -144,7 +144,7 @@ if ($med){ #Se a média existir
                 if ($med_mod_uti1 OR $ac_mod==1){array_push($arr_ac_mod, 1);}
                 if ($med_mod_uti2 OR $ac_mod==2){array_push($arr_ac_mod, 2);}
                 #Sucesso, Ações de moderação tomadas pelo utilizador, Nivel atual de moderação da média.
-                echo '{"est":"sucesso", "ac_mod":'.json_encode($arr_ac_mod).', "nmo":'.$nmo.', "u_mod_uti":{"nut":"'.$u_mod_uti['nut'].'", "fot":"'.base64_encode($u_mod_uti["fot"]).'"}}';
+                echo '{"est":"sucesso", "ac_mod":'.json_encode($arr_ac_mod).', "nmo":'.$nmo.', "u_mod_uti":{"nut":"'.$u_mod_uti['nut'].'", "fpe":"'.$url_media.'fpe/'.$u_mod_uti['fpe'].'.jpg"}}';
             }
 
         } else {

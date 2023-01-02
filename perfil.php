@@ -3,9 +3,17 @@ $site_tit = 'off';
 require('head.php');
 $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_GET["uti"]."'"));
 
+
+
 if ($uti_perfil){
+
+	#Se houver uma sessão iniciada do dono do perfil carrega o script da API
+	if ($uti['nut']==$uti_perfil['nut']){
+		echo "<script src='./js/api.min.js'></script>";
+	}
+
 	echo "
-	<meta property='og:image' content='".$url_site."fpe/".base64_encode($uti_perfil['fot'])."'>
+	<meta property='og:image' content='".$url_media."fpe/".$uti_perfil['fpe'].".jpg'>
 	<meta property='og:description' content='".$uti_perfil['nut']."'>
 	<title>".$uti_perfil['nut']." - drena</title>
 	";
@@ -23,7 +31,7 @@ if ($uti_perfil){
 		echo "
 		<style>
 		:root{
-			--perfil-foto: url('/fpe/".base64_encode($uti_perfil["fot"])."');
+			--perfil-foto: url('".$url_media."fpe/".$uti_perfil['fpe'].".jpg');
 		}
 		</style>
 		";
@@ -49,54 +57,37 @@ if ($uti_perfil){
 		
 		if ($uti_perfil['id']==$uti['id']){
 			echo "
-			<style>
-			#fpe_a_carregar {
-				text-align: center;
-				padding: 0 20px;
-				max-height: 24px;
-			}
-			.box {
-				position: relative;
-				width: 16px;
-				height: 16px;
-				margin: 4px;
-				display: inline-block;
-				background-color: #000;
-			}
-			</style>
-			<label for='fpe' class='float-end btn btn-light' style='cursor:pointer;'>
+			<label for='fpe_input' class='float-end btn btn-light' style='cursor:pointer;'>
 				<span id='fpe_carregar'>
 					"._('Alterar foto')." <i class='bi bi-image'></i>
 				</span>
-				<div style='display:none;' id='fpe_a_carregar' data-placement='bottom' data-toggle='tooltip' title='A carregar...'>
-					<div class='box'></div>
+				<div id='fpe_a_carregar' style='display:none;'>
+					A carregar⠀
+					<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
 				</div>
 			</label>
 			<form hidden enctype='multipart/form-data' action='pro/enviar_fpe.php' method='post'>
-				<input type='file' id='fpe' name='fpe'/>
+				<input type='file' accept='image/*' id='fpe_input' name='fpe'/>
 				<input type='submit'/>
 			</form>
 			<script>
-			$('#fpe').change(function(objEvent) {
-				var objFormData = new FormData();
-				var objFile = $(this)[0].files[0];
-				objFormData.append('fpe', objFile);
+			$('#fpe_input').change(function() {
 				$('#fpe_a_carregar').show();
 				$('#fpe_carregar').hide();
-				$.ajax({
-					url: 'pro/enviar_fpe.php',
-					type: 'POST',
-					contentType: false,
-					data: objFormData,
-					processData: false,
-					success: function(php_script_response){
-						if (php_script_response){
-							alert(php_script_response);
-						}
-						location.reload();
+				var objFormData = new FormData();
+				var objFile = $(this)[0].files[0];
+				setTimeout(function(){
+					objFormData.append('fpe', objFile);
+					result = api('fpe', objFormData, false, false);
+					if (result['est']=='sucesso'){
+						document.documentElement.style.setProperty('--perfil-foto', 'url('+result['fpe']+')');
+						$('#fpe').attr('src',result['fpe']);
+						$('#fpe_a_carregar').hide();
+						$('#fpe_carregar').show();
 					}
-				});
+				}, 100);
 			});
+			
 			anime({
 				targets: '.box',
 				keyframes: [
@@ -218,11 +209,11 @@ if ($uti_perfil){
 						if ($row[0]==$uti_perfil["id"]){
 							$uti_b = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[1]."'"));
 							echo "<a class='perfil' href='/perfil?uti=".$uti_b['nut']."'>
-							<img class='mx-1 rounded-circle' src='fpe/".base64_encode($uti_b['fot'])."' width='64'><br>".mini_nut($uti_b['nut'])."</a>";
+							<img class='mx-1 rounded-circle' src='".$url_media."fpe/".$uti_b['fpe'].".jpg' width='64'><br>".mini_nut($uti_b['nut'])."</a>";
 						} else {
 							$uti_a = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[0]."'"));
 							echo "<a class='perfil' href='/perfil?uti=".$uti_a['nut']."'>
-							<img class='mx-1 rounded-circle' src='fpe/".base64_encode($uti_a['fot'])."' width='64'><br>".mini_nut($uti_a['nut'])."</a>";
+							<img class='mx-1 rounded-circle' src='".$url_media."fpe/".$uti_a['fpe'].".jpg' width='64'><br>".mini_nut($uti_a['nut'])."</a>";
 						}
 						echo "</div>";
 					}
@@ -239,7 +230,7 @@ if ($uti_perfil){
 						$uti_a = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[0]."'"));
 						echo "<div class='col-md-2 col-4 my-3 text-center'>
 						<a class='perfil' href='/perfil?uti=".$uti_a['nut']."'>
-						<img class='mx-1 rounded-circle' src='fpe/".base64_encode($uti_a['fot'])."' width='64'><br>".mini_nut($uti_a['nut'])."</a>
+						<img class='mx-1 rounded-circle' src='".$url_media."fpe/".$uti_a['fpe'].".jpg' width='64'><br>".mini_nut($uti_a['nut'])."</a>
 						</div>";
 					}
 					echo "</div>";

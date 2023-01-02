@@ -46,7 +46,7 @@ if (!$oq){
         while ($campo = $resultado->fetch_assoc()) {
             echo "<div class='col-md-2 col-4 my-3 text-center'>
             <a class='perfil' href='/perfil?uti=".$campo['nut']."'>
-            <img class='mx-1 rounded-circle' src='fpe/".base64_encode($campo['fot'])."' width='64'><br>".mini_nut($campo['nut'])."</a>
+            <img class='mx-1 rounded-circle' src='".$url_media."fpe/".$campo['fpe'].".jpg' width='64'><br>".mini_nut($campo['nut'])."</a>
             </div>";
         }
         $resultado->free();
@@ -97,7 +97,7 @@ if (!$oq){
         echo "</div>";
     }
 
-    if (mysqli_num_rows($pesquisa_aud AND $resultado = $bd->query($pesquisa_aud))) {
+    if (mysqli_num_rows($resultado = $bd->query($pesquisa_aud))) {
         echo "
         <div class='p-xl-5 p-4'><h1>"._('Áudios')."</h1></div>
         <div class='row row-cols-2 row-cols-md-3 text-left'>";
@@ -105,7 +105,7 @@ if (!$oq){
         while ($campo = $resultado->fetch_assoc()) {
             if ($campo['tit']){$audio_tit = $campo['tit'];} else {$audio_tit = $campo['nom'];}
             $uti_aud = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$campo['uti']."';"));
-            if ($campo['thu']){$audio_thu = $url_media."thumb/".$campo['thu'].".jpg";} else {$audio_thu = $url_site."fpe/".base64_encode($uti_aud['fot']);}
+            if ($campo['thu']){$audio_thu = $url_media."thumb/".$campo['thu'].".jpg";} else {$audio_thu = $url_media."fpe/".$uti_aud['fpe'].".jpg";}
             echo "
             <div class='col mb-4 container'>
                 <a class='text-light' href='/media?id=".$campo['id']."'>

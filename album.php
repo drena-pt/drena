@@ -104,7 +104,7 @@
 				echo "
 				<div class='row mb-1'>
 					<div class='col-auto pr-0 text-center'>
-						<a href='/perfil?uti=".$alb_uti['nut']."'><img src='fpe/".base64_encode($alb_uti["fot"])."' class='rounded-circle' width='40'></a>
+						<a href='/perfil?uti=".$alb_uti['nut']."'><img src='".$url_media."fpe/".$alb_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 					</div>
 					<div class='col d-flex'>
 						<span class='justify-content-center align-self-center'>".sprintf(_('Criado por %s'),$alb_uti['nut'])."</span>

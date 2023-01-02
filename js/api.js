@@ -1,8 +1,10 @@
-function api(api_url, api_data) {
+function api(api_url, api_data, api_processData=true, api_contentType) {
     var jqXHR = $.ajax({
         url: 'api/'+api_url+'.php',
         type: 'post',
         data: api_data,
+        contentType: api_contentType,
+        processData: api_processData,
         async: false,
         beforeSend: function(xhr) {
             xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));

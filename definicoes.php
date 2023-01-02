@@ -12,7 +12,7 @@
 
 				<div class="row">
 					<div class='col-3 col-xl-3 col-lg-2 col-md-2 col-sm-4 pe-sm-3 pe-0'>
-						<img class="rounded-circle img-fluid" src='fpe/<?php echo base64_encode($uti["fot"]);?>'>
+						<img class="rounded-circle img-fluid" src='<?php echo $url_media."fpe/".$uti['fpe'].".jpg"; ?>'>
 					</div>
 					<div class="col-9 col-xl-9 col-lg-10 col-md-10 col-sm-8 row pe-0">
 						<div class='col-12 col-sm-8 pe-0'>

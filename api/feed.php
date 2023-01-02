@@ -25,15 +25,6 @@ if ($_GET['tip']=='global'){
         $sql_media = "SELECT * FROM med where pri=0 ORDER by den DESC LIMIT 3";
     }
 
-    if ($resultado = $bd->query($sql_media)) {
-        while ($med = $resultado->fetch_assoc()) {
-            #Obtem dados do utilizador dono da média
-            $assoc_uti = ($bd->query("SELECT * FROM uti WHERE id='".$med['uti']."'")->fetch_assoc());
-            #Procura por um registo de gosto do utilizador
-            $assoc_gos = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$_GET['uti']."'"));
-            $output[] = array("med"=>$med,"uti"=>["nut"=>$assoc_uti['nut'],"fot"=>$assoc_uti['fot'],"gos"=>$assoc_gos]);
-        }
-    }
 } else {
     $sql_conhecidos = "SELECT * FROM ami WHERE a_id='".$_GET['uti']."' AND sim='1' OR b_id='".$_GET['uti']."' AND sim='1' ORDER by b_dat DESC";
     $conhecidos = (mysqli_query($bd, $sql_conhecidos)->fetch_assoc());
@@ -62,22 +53,24 @@ if ($_GET['tip']=='global'){
             $sql_media = "SELECT * FROM med WHERE pri=0 and uti IN (".$lista_feed.") ORDER by den DESC LIMIT 3";
         }
 
-        if ($resultado = $bd->query($sql_media)) {
-            while ($med = $resultado->fetch_assoc()) {
-                #Obtem dados do utilizador dono da média
-                $assoc_uti = ($bd->query("SELECT * FROM uti WHERE id='".$med['uti']."'")->fetch_assoc());
-                #Procura por um registo de gosto do utilizador
-                $assoc_gos = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$_GET['uti']."'"));
-                $output[] = array("med"=>$med,"uti"=>["nut"=>$assoc_uti['nut'],"fot"=>$assoc_uti['fot'],"gos"=>$assoc_gos]);
-            }
-        }
-    
     } else {
         $output_erro = "uti(".$_GET['id'].") não tem amigos.";
         $output[] = array("erro"=>$output_erro);
+        goto output;
     }
 }
-    
+
+if ($resultado = $bd->query($sql_media)) {
+    while ($med = $resultado->fetch_assoc()) {
+        #Obtem dados do utilizador dono da média
+        $assoc_uti = ($bd->query("SELECT * FROM uti WHERE id='".$med['uti']."'")->fetch_assoc());
+        #Procura por um registo de gosto do utilizador
+        $assoc_gos = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$_GET['uti']."'"));
+        $output[] = array("med"=>$med,"uti"=>["nut"=>$assoc_uti['nut'],"fpe"=>$url_media."fpe/".$assoc_uti['fpe'].".jpg","gos"=>$assoc_gos]);
+    }
+}
+
+output:
 #Renderiza o output em json
 echo json_encode($output);
 ?>

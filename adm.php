@@ -130,7 +130,7 @@
                                 echo "
                                 <tr>
                                     <th scope='row'>".$campo['id']."</th>
-                                    <td><a href='/perfil?uti=".$pro_uti['nut']."' title='".$pro_uti['nut']."'><img class='rounded-circle' src='fpe/".base64_encode($pro_uti["fot"])."' width='40' height='40'></a></td>
+                                    <td><a href='/perfil?uti=".$pro_uti['nut']."' title='".$pro_uti['nut']."'><img class='rounded-circle' src='".$url_media."fpe/".$pro_uti['fpe'].".jpg' width='40' height='40'></a></td>
                                     <td><a href='/projeto?id=".base64_encode($campo['id'])."'>".$campo['tit']."</a></td>
                                     <td>".$campo['cor']."</td>
                                     <td>".$campo['pri']."</td>

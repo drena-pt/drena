@@ -18,9 +18,6 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
         location / {
             try_files $uri $uri/ @extensionless-php;
         }
-        location /fpe {
-            rewrite ^/fpe/(.*)$ /fpe.php?id=$1 last;
-        }
         location @extensionless-php {
             rewrite ^(.*)$ $1.php last;
         }
