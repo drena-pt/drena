@@ -4,7 +4,7 @@ require '../fun.php'; #Funções
 
 #Criar todas as tabelas na base de dados
 require('uti.php');         #Utilizador 
-require('uti_fot.php');     #Utilizador     - Fotos    
+require('uti_fpe.php');     #Utilizador     - Fotos de perfil
 require('uti_mai.php');     #Utilizador     - Mail
 require('ami.php');         #Amigos
 require('med.php');         #Média

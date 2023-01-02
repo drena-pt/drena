@@ -53,7 +53,7 @@
                                 echo "
                                 <tr>
                                     <th scope='row'>".$campo['id']."</th>
-                                    <td><img class='rounded-circle' src='fpe/".base64_encode($campo["fot"])."' width='40' height='40'></td>
+                                    <td><img class='rounded-circle' src='".$url_media."fpe/".$campo['fpe'].".jpg' width='40' height='40'></td>
                                     <td><a href='/perfil?uti=".$campo['nut']."'>".$campo['nut']."</a></td>
                                     <td>".$campo['nco']."</td>
                                     <td>".$campo['dcr']."</td>
