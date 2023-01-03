@@ -18,11 +18,20 @@ if (strstr($campo, 'ati')) {
 
 $id = str_ireplace($tipo, '', $campo);
 $mudar = mysqli_fetch_assoc(mysqli_query($bd, "SELECT ".$tipo." FROM uti WHERE id='".$id."'"));
-if ($mudar[$tipo]==1){
-	$bool = 0;
-} else {
-	$bool = 1;
+if ($tipo=='ati'){
+	if ($mudar['ati']==1){
+		$bool = 0;
+	} else {
+		$bool = 1;
+	}
+} else if ($tipo=='car'){
+	if ($mudar['car']==2){
+		$bool = 0;
+	} else {
+		$bool = 2;
+	}
 }
+
 
 if ($bd->query("UPDATE uti SET ".$tipo."='".$bool."' WHERE id='".$id."'") === TRUE) {
 	echo '{"est":"sucesso","'.$tipo.'":"'.$bool.'","uti":"'.$id.'"}';

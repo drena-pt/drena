@@ -40,7 +40,7 @@
                         <th scope='col'>Nome</th>
                         <th scope='col'>Data de criação</th>
                         <th scope='col'>Ativo</th>
-                        <th scope='col'>Admin</th>
+                        <th scope='col'>Moderador</th>
                         </tr>
                         ";
                         if ($_GET['pesquisa']){
@@ -66,7 +66,7 @@
                                     </div></td>
                                     <td><div class='form-check form-switch'>
                                     <input type='checkbox' role='switch' class='form-check-input' ";
-                                    if ($campo['car']==1){ echo "checked "; }
+                                    if ($campo['car']==2){ echo "checked "; }
                                     if ($campo['id']==$uti['id']){ echo "disabled "; }
                                     echo "id='car".$campo['id']."'>
                                     <label class='form-check-label' for='car".$campo['id']."'></label>
