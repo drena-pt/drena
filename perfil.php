@@ -57,23 +57,82 @@ if ($uti_perfil){
 		
 		if ($uti_perfil['id']==$uti['id']){
 			echo "
-			<label for='fpe_input' class='float-end btn btn-light' style='cursor:pointer;'>
+			<button data-toggle='modal' data-target='#modal_fpe' class='btn btn-light float-end'>
 				<span id='fpe_carregar'>
 					"._('Alterar foto')." <i class='bi bi-image'></i>
 				</span>
-				<div id='fpe_a_carregar' style='display:none;'>
+				<span id='fpe_a_carregar' style='display:none;'>
 					A carregar⠀
 					<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
+				</span>
+			</button>
+
+			<div class='modal fade' id='modal_fpe' tabindex='-1' role='dialog' aria-labelledby='modal_fpe_label' aria-hidden='true'>
+				<div class='modal-dialog' role='document'>
+					<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
+						<form action='#' method='post'>
+							<div class='modal-header mb-3'>
+								<h2 class='modal-title' id='modal_fpe_label'>Alterar foto<br></h2><br>
+								<button type='button' class='text-light btn-close' data-dismiss='modal' aria-label='"._('Fechar')."'><i class='bi bi-x-lg'></i></button>
+							</div>
+							<div class='modal-body'>
+								";
+								$pesquisa = "SELECT * FROM uti_fpe WHERE uti='".$uti['id']."' ORDER BY den DESC";
+								if ($resultado = $bd->query($pesquisa)){
+									echo "<div class='m-0 row row-cols-3 mw-100'>
+									
+									<div class='col p-2 align-self-center'>
+										<label role='button' for='fpe_input'>
+											<div class='rounded-xl bg-light text-dark text-center py-3'>
+												"._('Carregar foto')."<i class='bi bi-upload'></i>
+											</div>
+										</label>
+									</div>
+									";
+									while ($campo = $resultado->fetch_assoc()){
+										$fpe_atual = NULL;
+										if ($uti['fpe']==$campo['id']){
+											$fpe_atual = 'border';
+										}
+										echo "
+										<div class='col p-md-2 p-1'>
+											<img id='fpe_".$campo['id']."' role='button' onclick=\"mudar_fpe('".$campo['id']."')\" class='".$fpe_atual." rounded-xl w-100' src='".$url_media."fpe/".$campo['id'].".jpg'>
+										</div>
+										";
+									}
+									$resultado->free();
+									echo "</div>";
+								}
+								echo "
+							</div>
+						</form>
+					</div>
 				</div>
-			</label>
-			<form hidden enctype='multipart/form-data' action='pro/enviar_fpe.php' method='post'>
+			</div>
+
+			<form hidden enctype='multipart/form-data'>
 				<input type='file' accept='image/*' id='fpe_input' name='fpe'/>
 				<input type='submit'/>
 			</form>
+
 			<script>
+			function mudar_fpe(fpe){
+				result = api('fpe', {'ac':'mudar','fpe':fpe});
+				if (result['est']=='sucesso'){
+					document.documentElement.style.setProperty('--perfil-foto', 'url('+result['fpe']+')');
+					$('#fpe').attr('src',result['fpe']);
+					$('#modal_fpe').modal('hide');
+					$('*[id*=fpe]:visible').each(function() {
+						$(this).removeClass('border');
+					});
+					$('#fpe_'+fpe).addClass('border');
+				}
+			}
+
 			$('#fpe_input').change(function() {
 				$('#fpe_a_carregar').show();
 				$('#fpe_carregar').hide();
+				$('#modal_fpe').modal('hide');
 				var objFormData = new FormData();
 				var objFile = $(this)[0].files[0];
 				setTimeout(function(){
@@ -85,21 +144,7 @@ if ($uti_perfil){
 						$('#fpe_a_carregar').hide();
 						$('#fpe_carregar').show();
 					}
-				}, 100);
-			});
-			
-			anime({
-				targets: '.box',
-				keyframes: [
-					{translateX: 16, rotate: '90deg'},
-					{translateX: 0, rotate: '0deg'},
-					{translateX: -16, rotate: '-90deg'},
-					{translateX: 0, rotate: '0deg'}
-				],
-				duration: '3500',
-				loop: true,
-				easing: 'easeInOutBack',
-				direction: 'normal'
+				}, 800);
 			});
 			</script>
 			";
