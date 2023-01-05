@@ -7,10 +7,36 @@
 	<body>
 	    <?php require('cabeçalho.php'); ?>
 	    <?php
+
+        $num_uti = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM uti;"));
+        $num_med = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM med;"));
+        $num_ami = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM ami;"));
+
 		echo "
 		<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
 			<div class='p-xl-5 p-4 bg-dark text-light'>
 				<h2>Ferramentas de Administrador</h2>
+
+                <div class='row row-cols-3 mt-4'>
+                    <div class='col text-center'>
+                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-ciano border-ciano' style='height: 100px; width: 100px'>
+                        ".$num_uti."
+                        </div>
+                        Utilizadores
+                    </div>
+                    <div class='col text-center'>
+                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-primary border-primary' style='height: 100px; width: 100px'>
+                        ".$num_med."
+                        </div>
+                        Médias
+                    </div>
+                    <div class='col text-center'>
+                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-rosa border-rosa' style='height: 100px; width: 100px'>
+                        ".$num_ami."
+                        </div>
+                        Amigos
+                    </div>
+                </div>
 			</div>
 
 			<div class='p-xl-5 p-4 bg-light text-dark'>
