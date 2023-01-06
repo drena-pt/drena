@@ -1,10 +1,10 @@
-<header class='navbar-dark sticky-top bg-dark shadow'>
-	<nav class="px-4 px-xl-0 col-xl-6 offset-xl-3 navbar navbar-expand-sm">
+<header class='sticky-top bg-dark shadow'>
+	<nav class="px-4 px-xl-0 col-xl-6 offset-xl-3 navbar navbar-dark navbar-expand-sm">
 		<a class="navbar-brand" href="/">
 			<img src="imagens/logo.png" height="32" alt="" loading="lazy">
 		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abtir menu">
-			<span fill="#fff" class="navbar-toggler-icon text-light"></span>
+		<button class="navbar-toggler px-0" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abtir menu">
+			<span class="navbar-toggler-icon"></span>
 		</button>
 		<?php
 		echo "
