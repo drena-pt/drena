@@ -3,10 +3,9 @@ require('head.php');
 
 # script 'notificacoes.js é o registo no sistema de notificações
 if ($uti){
-    $uti_mai = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti["mai"]."'"));
     echo "
-    <script src='/js/notificacoes.js'></script>
-    <script src='./js/api.min.js'></script>";
+    <script src='/js/api.min.js'></script>
+    <script src='/js/notificacoes.js'></script>";
 }
 ?>
     <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">

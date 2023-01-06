@@ -1,8 +1,10 @@
 ﻿<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-$funcoes['notificacao']=1;
-require 'fun.php'; #Funções
+/* error_reporting(E_ALL);
+ini_set('display_errors', 'On'); */
+#Funções
+require 'fun.php';
+#Função de Notificações
+require(__DIR__."/not.php");
 
 if ($_GET["uti"]==$uti['nut']){
 	echo "Erro. O utilizador pedido é o utilizador conectado.";
@@ -25,11 +27,11 @@ if ($ami_uti_a['id']){ #Se o utilizador enviou o pedido
 		$bd->query("DELETE FROM ami WHERE id='".$ami_uti_b['id']."'");	#Remover conhecido
 	} else {
 		$bd->query("UPDATE ami SET sim='1', b_dat='".date("Y-m-d H:i:s")."' WHERE id='".$ami_uti_b['id']."'"); #Aceitar amizade.
-		mandarNotificacao($uti['nut'], $uti_mai['cod'], $uti_b['nut'], 'Pedido aceite', $url_media."fpe/".$uti['fpe'].".jpg", $uti['nut'].' agora é teu conhecido' , null);
-	}
+		notificacao($uti['id'],$uti_b['id'],'ami_aceite');
+		}
 } else { #Enviar pedido de conhecido
 	$bd->query("INSERT INTO ami (a_id, b_id) VALUES ('".$uti['id']."', '".$uti_b['id']."')");
-	mandarNotificacao($uti['nut'], $uti_mai['cod'], $uti_b['nut'], 'Pedido de '.$uti['nut'], $url_media."fpe/".$uti['fpe'].".jpg", $uti['nut'].' quer ser teu conhecido' , null);
+	notificacao($uti['id'],$uti_b['id'],'ami_pedido');
 }
 header("Location: ".$_SERVER['HTTP_REFERER']);
 exit;

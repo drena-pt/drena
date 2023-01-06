@@ -1,7 +1,7 @@
 <?php
 #API - FPE ( Foto de Perfil )
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
-include_once('validar.php');
+require_once('validar.php');
 
 #Obtem ação
 $ac = $_POST['ac'];

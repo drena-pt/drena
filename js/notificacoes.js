@@ -1,44 +1,30 @@
-const publicVapidKey = 'BMdv0ZqCqf65dg7u7WGQz7y7cAiTnbkVfHls3mVFUD2Duuhm5hs51NA9ZNY9TrIqdmjZnXprnZXOHM-eW-WQXQE';
+const publicVapidKey = 'BPPvOxxaLpZ9EWAWALLfZUhmOQv-6jXDCVnt8yat4n4bcdvVJ1n0n1gHPa3WNw_P4W5lS_J5E0THSinXYo2yyVk';
 
 // Verifica se é possivel utilizar o service Worker
 if('serviceWorker' in navigator){
-    send().catch(err => //console.error(err)
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for(let registration of registrations) {
-            registration.unregister()
-        } })
-    );
+    send().catch(err => console.error(err));
 }
 
-// regista o SW, regista o push, envia notificação push
 async function send(){
-    // registar o SW
-    //console.log('Registando service worker...');
+    //Regista o Service Worker
     const register = await navigator.serviceWorker.register('/js/worker.js');
-    //console.log('Service worker registado');
-    
-    // registar o push
-    //console.log('Registando o Push...');
-    const subscription = await register.pushManager.subscribe({
+
+    await register.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
-    });
-    //console.log('Push registado');
+    }).then((pushSubscription) => {
 
-    // Enviar registo
-    //console.log('A enviar o registo...');
-    await fetch('https://drena.pt:3000/subscrever', {
-        method: 'POST',
-        body: JSON.stringify({
-            "subscription":subscription,
-            "uti_nut":sub_uti_nut,
-            "uti_cod":sub_uti_cod
-        }),
-        headers: {
-            'content-type': 'application/json'
+        //Subscreve
+        result = api("not",{"ac":"subscrever","subscription":JSON.stringify(pushSubscription)});
+        if (result['est']=='sucesso'){
+            console.log('Notificações ativas');
+        } else {
+            console.debug(result['est']);
         }
+
+    }, (error) => {
+        console.error(error);
     });
-    console.log('Notificações ativas');
 }
 
 function urlBase64ToUint8Array(base64String) {

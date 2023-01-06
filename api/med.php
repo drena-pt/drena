@@ -1,6 +1,6 @@
 <?php
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
-include_once('validar.php');
+require_once('validar.php');
 
 $ac = $_POST['ac']; #Ação
 

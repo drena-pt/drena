@@ -3,10 +3,10 @@
     ini_set('display_errors', 'On'); */
 
     #Headers
-    header('Access-Control-Allow-Origin: *');
+   /*  header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json; charset=utf-8');
 
-    include_once('bd.php');
+    require_once('bd.php');
 
     $cod_mai = $_GET['cod'];    #Código do mail do utilizador
     
@@ -46,5 +46,5 @@
     } else {
         echo '{"err": "Código inválido"}'; exit; 
     }
-
+ */
 ?>

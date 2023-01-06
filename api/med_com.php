@@ -1,6 +1,10 @@
 <?php
+#API - Média (Comentários)
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
-include_once('validar.php');
+require_once('validar.php');
+
+#Função de Notificações
+require('../pro/not.php');
 
 #Obtem ação
 $ac = $_POST['ac'];
@@ -29,6 +33,7 @@ if ($ac=='eliminar'){ #Se a ação for eliminar o comentário
         #SQL - Regista o comentário na base de dados
         if ($bd->query("INSERT INTO med_com (uti, med, tex) VALUES('".$uti['id']."', '".$med["id"]."', '".addslashes($com)."');") === TRUE){
             $ultimo_id = $bd->insert_id;
+			notificacao($uti['id'],$med['uti'],'com',$med['id'],$ultimo_id);
             echo '{"id": "'.$ultimo_id.'"}'; exit;
         } else {
             echo '{"err": "'.$bd->error.'"}'; exit;

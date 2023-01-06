@@ -1,19 +1,19 @@
 <?php
-$funcoes['notificacao']=1;
-require 'fun.php'; #Funções
-require "../vendor/autoload.php"; #Composer
+#Processo - Comprimir média
+#Funções
+require_once(__DIR__."/fun.php");
+#Composer
+require_once(__DIR__."/../vendor/autoload.php");
+#Função de Notificações
+require(__DIR__."/not.php");
 
 # Obtem as informações da média na base de dados; $argv são as variáveis passadas pelo comando exec.
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$argv[1]."';"));
 
 // Se a média existir
 if ($med){
-    # Definir título da média (para a notificação)
-    if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}
     # Obtem as informações do utilizador
     $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."';"));
-    # Obtem as informações do email do utilizador
-    $med_uti_mai = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$med_uti['mai']."';"));
 
     if ($med['tip']=='1'){ # Se a media for um vídeo
 
@@ -90,7 +90,7 @@ if ($med){
                         echo "Erro mysqli: ".$bd->error;
                     } else {
                         echo "Vídeo comprimido com sucesso!";
-                        mandarNotificacao($med_uti['nut'], $med_uti_mai['cod'], $med_uti['nut'], 'Vídeo comprimido', null, $med_tit.'\nCompressão finalizada com sucesso!', $url_media.'thumb/'.$med['thu'].'.jpg');
+                        notificacao($med_uti['id'],$med_uti['id'],'processado',$med['id']);
                     }
                 } else {
                     echo "Erro: O vídeo não foi comprimido.";
@@ -150,7 +150,7 @@ if ($med){
                         echo "Erro mysqli: ".$bd->error;
                     } else {
                         echo "Vídeo convertido com sucesso!";
-                        mandarNotificacao($med_uti['nut'], $med_uti_mai['cod'], $med_uti['nut'], 'Vídeo convertido', null, $med_tit.'\nConversão finalizada com sucesso!', $url_media.'thumb/'.$med['thu'].'.jpg');
+                        notificacao($med_uti['id'],$med_uti['id'],'processado',$med['id']);
                     }
                 } else {
                     echo "Erro: O vídeo não foi convertido.";

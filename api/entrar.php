@@ -6,7 +6,7 @@ require_once('../vendor/autoload.php');
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
 #Base de dados
-include_once('bd.php');
+require_once('bd.php');
 
 #Torna os inputs em variáveis
 $nut = $_POST["nut"];
