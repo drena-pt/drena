@@ -15,7 +15,7 @@ async function send(){
     }).then((pushSubscription) => {
 
         //Subscreve
-        result = api("not",{"ac":"subscrever","subscription":JSON.stringify(pushSubscription)});
+        result = api("not_sub",{"subscription":JSON.stringify(pushSubscription)});
         if (result['est']=='sucesso'){
             console.log('Notificações ativas');
         } else {
