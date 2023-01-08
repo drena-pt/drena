@@ -98,17 +98,14 @@
 				";
 				?>
 				<script>
-				console.debug("Notification.premission: "+Notification.permission);
-				
 				function Not_denied(){
 					$('#info_not').html('<span><i class="bi bi-exclamation-triangle-fill"></i> As notificações estão bloqueadas, ative nas definições do Browser</span>');
 					$('#info_not').addClass('alert-vermelho');
 					$('#info_not').removeClass('alert-dark');
-					$('#notificacoes').prop('disabled', true);
 				}
 
-				function Not_ask(){
-					$('#info_not').html('<span><i class="bi bi-info-circle-fill"></i> As notificações estão inativas neste Browser</span><button id="btn_not_ati" class="btn btn-primary m-0">Ativar</button>');
+				function Not_default(){
+					$('#info_not').html('<span><i class="bi bi-info-circle-fill"></i> As notificações estão inativas neste Browser</span>');
 					$('#info_not').addClass('alert-dark');
 				}
 
@@ -116,8 +113,6 @@
 					$('#info_not').html('<span><i class="bi bi-check-circle-fill"></i> As notificações estão ativas neste Browser</span>');
 					$('#info_not').addClass('alert-primary');
 					$('#info_not').removeClass('alert-dark');
-					$('#notificacoes').prop('checked', true);
-					$('#notificacoes').prop('disabled', true);
 					//Obtem se está subscrito ou não
 					not_sub("ob").then((res) => {
 						console.debug("Está subscrito? "+res);
@@ -126,27 +121,20 @@
 						}
 					});
 				}
-
-				if (!('Notification' in window)) {
-					console.warn('This browser does not support desktop notification');
-					$('#notificacoes').prop('disabled', true);
-				} else if (Notification.permission === 'default') {
-					Not_ask();
-				} else if (Notification.permission === 'granted') {
-					Not_granted();
-				} else {
-					Not_denied();
+				
+				function Not_unsuported(){
+					console.error('Este Browser não tem suporte para notificações');
+					$('#info_not').html('<span><i class="bi bi-check-circle-fill"></i> Este Browser não tem suporte para notificações</span>');
 				}
 
-				$('#btn_not_ati').click(function() {
-					Notification.requestPermission().then((permission) => {
-						if (permission === 'denied') {
-							Not_denied();
-						} else if (permission === 'granted') {
-							Not_granted();
-						}
-					});
-				});
+				function checar(){
+					console.debug("Notification.premission: "+Notification.permission);
+					if (!('Notification' in window)) { Not_unsuported();
+					} else if (Notification.permission === 'default') { Not_default();
+					} else if (Notification.permission === 'granted') { Not_granted();
+					} else { Not_denied(); }
+				}
+				checar();
 
 				$('#switch_not_uti').change(function() {
 					result = api('not',{'ac':'receber'});
@@ -155,11 +143,10 @@
 
 				$('#switch_not_sub').change(function() {
 					not_sub("ac").then((res) => {
-						if (res=='true'){
-							$('#switch_not_sub').prop('checked', true);
-						} else {
-							$('#switch_not_sub').prop('checked', false);
+						if (res!='true'){
+							$(this).prop('checked', false);
 						}
+						checar();
 					});
 				});
 				</script>

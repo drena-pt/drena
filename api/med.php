@@ -63,7 +63,7 @@ if ($med){ #Se a média existir
         }
         exit;
 
-    } else if ($uti['car']==2) { #Se for o utilizador for moderador
+    } else if ($uti['car']==2) { #Se o utilizador for moderador
 
         if ($ac=='mod'){ #Se a ação for moderar
 
