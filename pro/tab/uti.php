@@ -8,6 +8,7 @@ mai INT,                                #ID do email
 fpe VARCHAR(8) DEFAULT 'padrao',        #ID da foto de perfil
 ati BOOLEAN NOT NULL DEFAULT 1,         #Ativo (1:ativo;0:desativado)
 car INT NOT NULL DEFAULT 0,             #Cargo (0:utilizador;1:administrador;2:moderador)
+rno BOOLEAN NOT NULL DEFAULT 1,         #Receber notificações (1:sim;0:não)
 dcr DATETIME DEFAULT CURRENT_TIMESTAMP  #Data de criação
 )";
 if ($bd->query($sql) === TRUE) {

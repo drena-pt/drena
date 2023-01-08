@@ -1,26 +1,36 @@
 const publicVapidKey = 'BPPvOxxaLpZ9EWAWALLfZUhmOQv-6jXDCVnt8yat4n4bcdvVJ1n0n1gHPa3WNw_P4W5lS_J5E0THSinXYo2yyVk';
 
-// Verifica se é possivel utilizar o service Worker
-if('serviceWorker' in navigator){
-    send().catch(err => console.error(err));
-}
-
-async function send(){
+async function not_sub(metodo){
+    if(!'serviceWorker' in navigator){
+        return console.error('Service worker não disponivel');
+    }
     //Regista o Service Worker
     const register = await navigator.serviceWorker.register('/js/worker.js');
 
-    await register.pushManager.subscribe({
+    return await register.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
     }).then((pushSubscription) => {
-
-        //Subscreve
-        result = api("not_sub",{"subscription":JSON.stringify(pushSubscription)});
-        if (result['est']=='sucesso'){
-            console.log('Notificações ativas');
-        } else {
-            console.debug(result['est']);
+        
+        switch (metodo){
+            case 'ac':
+                result = api("not",{"ac":"subscrever","sub":JSON.stringify(pushSubscription)});
+                if (result['est']=='true'){
+                    console.log('Subscrito com sucesso');
+                } else if (result['est']=='false'){
+                    console.log('Subscrição removida');
+                }
+                return result['est'];
+                break;
+            case 'ob':
+                result = api("not",{"ob":"subscrever","sub":JSON.stringify(pushSubscription)});
+                return result['est'];
+                break;
+            default:
+                break;
         }
+
+        return;
 
     }, (error) => {
         console.error(error);

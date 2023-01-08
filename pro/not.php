@@ -16,15 +16,20 @@ function notificacao($uti_a_id, $uti_b_id, $tipo, $med_id = null, $extra = null)
     global $url_media;
     global $url_site;
 
+    #Se A e B forem o mesmo utilizador (não envia para ele mesmo né)
+    #Mas envia caso seja uma notificação de compressão do vídeo!
+    if ($uti_a_id==$uti_b_id AND $tipo!='processado'){
+        return '{"est": "Notificação não enviada, pois o utilizador é o mesmo"}';
+    }
+
     #Informações do utilizador A
     $uti_a = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$uti_a_id."';"));
     #Informações do utilizador B
     $uti_b = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$uti_b_id."';"));
 
-    #Se A e B forem o mesmo utilizador (não envia para ele mesmo né)
-    #Mas envia caso seja uma notificação de compressão do vídeo!
-    if ($uti_a_id==$uti_b_id AND $tipo!='processado'){
-        return '{"est": "Notificação não enviada, pois o utilizador é o mesmo"}';
+    #Se o utilizador B tiver as notificações desativadas (rno = Receber Notificações)
+    if ($uti_b['rno']!='1'){
+        return '{"est": "Utilizador B desativou as notificações"}';
     }
 
     #Subscrições de notificação do utilizador B
@@ -158,7 +163,7 @@ function notificacao($uti_a_id, $uti_b_id, $tipo, $med_id = null, $extra = null)
 
                 if ($report->isSuccess()) {
                     #Do nothing
-                    return '{"est": "sucesso"}';
+                    #return '{"est": "sucesso"}';
                 } else {
                     #echo '{"est": "Message failed to sent for subscription ('.$endpoint.')"}';
                     #SQL - Elimina a subscrição

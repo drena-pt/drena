@@ -1,11 +1,8 @@
 <?php 
 require('head.php');
 
-# script 'notificacoes.js é o registo no sistema de notificações
 if ($uti){
-    echo "
-    <script src='/js/api.min.js'></script>
-    <script src='/js/notificacoes.js'></script>";
+    echo "<script src='/js/api.min.js'></script>";
 }
 ?>
     <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
