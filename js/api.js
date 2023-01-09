@@ -10,13 +10,15 @@ function api(api_url, api_data, api_processData=true, api_contentType) {
             xhr.setRequestHeader ('Authorization', Cookies.get('drena_token'));
         },
         error: function (jqXHR, exception) {
-            var err = '';
+            var err = null;
             if (jqXHR.status === 0) {
                 err = 'Not connect. Verify Network.';
             } else if (jqXHR.status == 404) {
                 err = 'Requested page not found. [404]';
             } else if (jqXHR.status == 500) {
                 err = 'Internal Server Error [500].';
+            } else if (jqXHR.status == 429) {
+                console.warn('Too Many Requests [429].');
             } else if (exception === 'parsererror') {
                 err = 'Requested JSON parse failed.';
             } else if (exception === 'timeout') {
@@ -26,7 +28,7 @@ function api(api_url, api_data, api_processData=true, api_contentType) {
             } else {
                 err = 'Uncaught Error.' + jqXHR.responseText;
             }
-            alert(err);
+            if (err){alert(err);}
         }
     });
     var result = JSON.parse(jqXHR.responseText);

@@ -9,6 +9,8 @@ Criada por Guilherme Albuquerque.
 
 Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
 
+    limit_req_zone $binary_remote_addr zone=main:10m rate=29r/m;
+    limit_req_zone $binary_remote_addr zone=fast:10m rate=3r/s;
     server {
         root /home/user/drena/pasta/;
         index index.php index.html;
@@ -21,15 +23,25 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
         location @extensionless-php {
             rewrite ^(.*)$ $1.php last;
         }
+        location ~ /api/ {
+            try_files $uri $uri/ @extensionless-php;
+            location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+            }
+            limit_req zone=main burst=20 nodelay;
+            limit_req zone=fast;
+            limit_req_status 429;
+        }
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
-            fastcgi_pass unix:/run/php/php8.0-fpm.sock;
+            fastcgi_pass unix:/run/php/php8.1-fpm.sock;
         }
     }
 
 ### Configuração das variáveis PHP
 
-Alterar as variáveis no php.ini `/etc/php/8.x/fpm/php.ini`:
+Alterar as variáveis no php.ini `/etc/php/8.1/fpm/php.ini`:
 
     upload_max_filesize=2G
     post_max_size=2G
@@ -73,13 +85,15 @@ Alterar as variáveis no php.ini `/etc/php/8.x/fpm/php.ini`:
     #Diretórios
     $dir_site   ='/home/user/drena/pasta/';
     $dir_media  ='/home/user/drena/pasta_media/';
+    #API
+    $api_key    ='RandomKey';
     ```
 
 4. Cria as pastas necessárias para armazenar a média.
 
         cd /home/user/drena/pasta_media/
-        mkdir comp | mkdir conv | mkdir img | mkdir ori | mkdir som | mkdir thumb
-        sudo chown -R www-data:www-data *
+        mkdir comp conv fpe img ori som thumb
+        chown -R www-data:www-data *
 
 ### Configurar a base de dados
 
