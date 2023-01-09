@@ -5,7 +5,7 @@ require_once('validar.php');
 
 $ac = $_POST['ac']; #Ação
 $ob = $_POST['ob']; #Obter
-$sub = $_POST['sub'];
+$sub = $_POST['sub']; #Subscrição
 
 if ($ac=='receber'){
 

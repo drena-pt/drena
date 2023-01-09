@@ -9,7 +9,6 @@
     "@silvermine/videojs-quality-selector": "^1.2.5",
     "animejs": "^3.2.1",
     "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.5.0",
     "video.js": "^7.12.1",
     "videojs-titleoverlay": "^1.1.0"
   }

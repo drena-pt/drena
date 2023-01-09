@@ -1,8 +1,7 @@
 ﻿<?php
-#API - Média (Gostos)
+#API - Médias (Gostos)
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
 require_once('validar.php');
-
 #Função de Notificações
 require('../pro/not.php');
 

@@ -7,8 +7,8 @@ $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut=
 
 if ($uti_perfil){
 
-	#Se houver uma sessão iniciada do dono do perfil carrega o script da API
-	if ($uti['nut']==$uti_perfil['nut']){
+	#Se houver uma sessão carrega o script da API
+	if ($uti){
 		echo "<script src='./js/api.min.js'></script>";
 	}
 
@@ -149,35 +149,43 @@ if ($uti_perfil){
 			</script>
 			";
 		} else if ($uti){
-			$ami_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM ami WHERE (a_id='".$uti["id"]."' AND b_id='".$uti_perfil["id"]."') OR (a_id='".$uti_perfil["id"]."' AND b_id='".$uti["id"]."')"));
-			echo "<a id='ami' class='float-end btn btn-light' href='pro/ami.php?uti=".$uti_perfil['nut']."'>";
-			if (!$ami_uti['id']){
-				echo _('Adicionar conhecido')." <i class='bi bi-person-plus-fill'></i></a>";
-			} else {
-				if ($ami_uti['sim']==1){ #Se já forem conhecidos
-					echo _('São conhecidos')." <i class='bi bi-person-check-fill'></i></a>
-					<script>
-					$('#ami').hover(function(){
-						$(this).html(\""._('Remover conhecido')." <i class='bi bi-person-x-fill'></i>\");
-						}, function(){
-						$(this).html(\""._('São conhecidos')." <i class='bi bi-person-check-fill'></i>\");
-					});
-					</script>";
-				} else {
-					if ($ami_uti['a_id']==$uti['id']){
-						echo _('Pedido enviado')." <i class='bi bi-person-fill'></i></a>
-						<script>
-						$('#ami').hover(function(){
-							$(this).html(\""._('Cancelar pedido')." <i class='bi bi-person-x-fill'></i>\");
-							}, function(){
-							$(this).html(\""._('Pedido enviado')." <i class='bi bi-person-fill'></i>\");
-						});
-						</script>";
-					} else if ($ami_uti['b_id']==$uti['id']){
-						echo _('Aceitar pedido')." <i class='bi bi-person-check-fill'></i></a>";
-					}
+			echo "<button id='btn_ami' class='float-end btn btn-light'></button>
+			
+			<script>
+			ami_result = api('ami', {'ac':'ob','uti':'".$uti_perfil['nut']."'});
+			var ami = ami_result['est'];
+			console.debug('Nivel de amizade '+ami);
+
+			$('#btn_ami').click(function(){
+				ami_result = api('ami', {'uti':'".$uti_perfil['nut']."'});
+				ami = ami_result['est'];
+				console.debug('Nivel de amizade '+ami);
+				btn_ami();
+			});
+
+			function btn_ami(){
+				switch(ami){
+				  case '0':
+					$('#btn_ami').html('Adicionar conhecido <i class=\"bi bi-person-fill-add\"></i>')
+					.unbind('mouseenter mouseleave'); break;
+				  case '1':
+					text_d = 'São conhecidos <i class=\"bi bi-person-fill-check\"></i>';
+					text_h = 'Remover conhecido <i class=\"bi bi-person-fill-x\"></i>';
+					$('#btn_ami').html(text_d)
+					.hover(function(){ $(this).html(text_h); }, function(){ $(this).html(text_d); }); break;
+				  case '2':
+					text_d = 'Pedido enviado <i class=\"bi bi-person-fill\"></i>';
+					text_h = 'Cancelar pedido <i class=\"bi bi-person-fill-x\"></i>';
+					$('#btn_ami').html(text_d)
+					.hover(function(){ $(this).html(text_h); }, function(){ $(this).html(text_d); }); break;
+				  case '3':
+					$('#btn_ami').html('Aceitar pedido <i class=\"bi bi-person-fill-check\"></i>')
+					.unbind('mouseenter mouseleave'); break;
 				}
 			}
+			btn_ami();
+			</script>
+			";
 		}
 		
 		echo "<h1 style='font-size:calc(2.2rem + 1.4vw);'>".$uti_perfil['nut']."</h1>

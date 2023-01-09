@@ -1,12 +1,13 @@
 <?php
-#error_reporting(E_ALL);
-#ini_set('display_errors', 'On');
-
+#API - Feed
 #Headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
-
+#Base de dados
 require_once('bd.php');
+
+/* error_reporting(E_ALL);
+ini_set('display_errors', 'On'); */
 
 $output = array();
 

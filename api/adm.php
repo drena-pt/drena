@@ -1,4 +1,5 @@
 ﻿<?php
+#API - Administrar
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
 require_once('validar.php');
 
