@@ -27,43 +27,35 @@ if ($ami_uti_a['id']){ #Se o utilizador enviou o pedido ########################
 	$ami = $ami_uti_a;
 	if ($ami_uti_a['sim']==1){
 		$est = 1;
-		#norma: São conhecidos
-		#hover: Remover conhecido
 	} else {
 		$est = 2;
-		#norma: Pedido enviado
-		#hover: Cancelar pedido
 	}
 } else if ($ami_uti_b['id']){ #Se o utilizador recebeu o pedido
 	$ami = $ami_uti_b;
 	if ($ami_uti_b['sim']==1){	#Se já aceitou
 		$est = 1;
-		#norma: São conhecidos
-		#hover: Remover conhecido
 	} else {
 		$est = 3;
-		#norma: Aceitar pedido
 	}
 } else { #Enviar pedido de conhecido
 	$est = 0;
-	#norma: Adicionar conhecido
 }
 
 if ($ac=='ob'){ #Se a ação for apenas obter o resultado atual
 	echo '{"est": "'.$est.'"}';
 } else {
 	switch ($est){
-		case 0:
+		case 0: #Adicionar conhecido
 			$bd->query("INSERT INTO ami (a_id, b_id) VALUES ('".$uti['id']."', '".$uti_b['id']."')");
 			notificacao($uti['id'],$uti_b['id'],'ami_pedido');
 			$est = 2;
 			break;
-		case 1:
-		case 2:
+		case 1: #São conhecidos
+		case 2: #Pedido enviado
 			$bd->query("DELETE FROM ami WHERE id='".$ami['id']."'");
 			$est = 0;
 			break;
-		case 3:
+		case 3: #Aceitar pedido
 			$bd->query("UPDATE ami SET sim='1', b_dat='".date("Y-m-d H:i:s")."' WHERE id='".$ami_uti_b['id']."'"); #Aceitar amizade.
 			notificacao($uti['id'],$uti_b['id'],'ami_aceite');
 			$est = 1;

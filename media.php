@@ -83,7 +83,7 @@ if ($med){
 							echo "
 							<div class='mw-100'>
 								<div style='position:relative;padding-bottom:56.25%;'>
-									<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$med['id']."&titulo=0'></iframe>
+									<iframe id='iframe_med' style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=".$med['id']."&titulo=0'></iframe>
 								</div>
 							</div>";
 							
@@ -114,25 +114,21 @@ if ($med){
 									echo "<div class='p-xl-5 p-4 bg-primary'><text class='h5 my-auto me-auto'><i class='bi bi-info-circle'></i> "._('O vídeo está a ser processado...')."</text></div>";
 								}
 							}
-
-							echo "<div class='p-xl-5 p-4'>";
-
 							break;
 						case 2: # Áudio
 							$t_eliminar = _('Eliminar áudio');
 							$t_cor = 'rosa';
-							echo "<iframe height='180px' class='w-100' src='/embed?id=".$med['id']."&titulo=0'></iframe>
-							<div class='p-xl-5 p-4'>";
+							echo "<iframe id='iframe_med' height='180px' class='w-100' src='/embed?id=".$med['id']."&titulo=0'></iframe>";
 							break;
 						case 3: # Imagem
 							$t_eliminar = _('Eliminar imagem');
 							$t_cor = 'ciano';
 							echo "
-							<iframe style='min-height:50vh;' class='w-100' src='/embed?id=".$med['id']."'></iframe>
-							<div class='p-xl-5 p-4'>";
+							<iframe id='iframe_med' style='min-height:50vh;' class='w-100' src='/embed?id=".$med['id']."'></iframe>";
 							break;
 					}
 					echo "
+					<div class='p-xl-5 p-4'>
 						<div class='row mb-3'>
 							<div class='col-12 col-md d-flex'>
 								<text id='med_tit' class='h5 my-auto'>".$med_tit."</text>
@@ -144,64 +140,40 @@ if ($med){
 						if ($uti['id']==$med_uti['id']){ # Botões de gestão de média, para o utilizador dono
 							if ($med['tip']=='1' OR $med['tip']=='2'){ # Caso seja um vídeo ou um áudio, para mudar thumbnail
 								echo "
-								<style>
-								#thumb_a_carregar {
-									text-align: center;
-									padding: 0 20px;
-									max-height: 24px;
-								}
-								.box {
-									position: relative;
-									width: 16px;
-									height: 16px;
-									margin: 4px;
-									display: inline-block;
-									background-color: #000;
-								}
-								</style>
-								<span><label for='input_thu' role='button' class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
-									<span id='thumb_carregar'><i class='bi bi-file-earmark-image'></i></span>
-									<div id='thumb_a_carregar' style='display:none;' data-placement='bottom' data-toggle='tooltip' title=\""._('A carregar...')."\">
-										<div class='box'></div>
-									</div>
-								</label></span>
-								<form hidden enctype='multipart/form-data' action='#' method='post'>
-									<input type='file' id='input_thu' name='thu' accept='image/*'/>
+								<span>
+									<label for='input_thu' role='button' class='btn btn-light me-1 my-auto'>
+										<span id='thu_carregar' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
+											<i class='bi bi-file-earmark-image'></i>
+										</span>
+										<span id='thu_a_carregar' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('A carregar...')."\" style='display:none;'>
+											<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
+										</span>
+									</label>
+
+								</span>
+
+								<form hidden enctype='multipart/form-data'>
+									<input type='file' accept='image/*' id='input_thu'/>
 									<input type='submit'/>
 								</form>
+
 								<script>
-								$('#input_thu').change(function(objEvent) {
-									var objFormData = new FormData();
-									var objFile = $(this)[0].files[0];
-									objFormData.append('thu', objFile);
-									$('#thumb_a_carregar').show();
-									$('#thumb_carregar').hide();
-									$.ajax({
-										url: '/pro/med_thu.php?med=".$med['id']."',
-										type: 'POST',
-										contentType: false,
-										data: objFormData,
-										processData: false,
-										success: function(output){
-											if (output){
-												alert(output);
-											}
-											location.reload();
+								$('#input_thu').change(function() {
+									$('#thu_a_carregar').show();
+									$('#thu_carregar').hide();
+									var form_thu = new FormData();
+									var thu = $(this)[0].files[0];
+									form_thu.append('thu', thu);
+									form_thu.append('med', '".$med['id']."');
+									setTimeout(function(){
+										result = api('med_thu', form_thu, false, false);
+										console.debug(result);
+										$('#thu_a_carregar').hide();
+										$('#thu_carregar').show();
+										if (result['est']=='sucesso'){
+											$('#iframe_med').attr('src', function(i, val){ return val; });
 										}
-									});
-								});
-								anime({
-									targets: '.box',
-									keyframes: [
-										{translateX: 16, rotate: '90deg'},
-										{translateX: 0, rotate: '0deg'},
-										{translateX: -16, rotate: '-90deg'},
-										{translateX: 0, rotate: '0deg'}
-									],
-									duration: '3500',
-									loop: true,
-									easing: 'easeInOutBack',
-									direction: 'normal'
+									}, 800);
 								});
 								</script>
 								";
@@ -341,18 +313,14 @@ if ($med){
 									$('#privar').tooltip('hide')
 										.attr('data-original-title', '"._('Tornar privado')."')
 										.tooltip('show');
-									$('#privar').removeClass('btn-primary');
-									$('#privar').addClass('btn-light');
-									$('#icon_privar').removeClass('bi-lock');
-									$('#icon_privar').addClass('bi-unlock');
+									$('#privar').removeClass('btn-primary').addClass('btn-light');
+									$('#icon_privar').removeClass('bi-lock').addClass('bi-unlock');
 								} else if (result['est']=='privado'){
 									$('#privar').tooltip('hide')
 										.attr('data-original-title', '"._('Tornar público')."')
 										.tooltip('show');
-									$('#privar').removeClass('btn-light');
-									$('#privar').addClass('btn-primary');
-									$('#icon_privar').removeClass('bi-unlock');
-									$('#icon_privar').addClass('bi-lock');
+									$('#privar').removeClass('btn-light').addClass('btn-primary');
+									$('#icon_privar').removeClass('bi-unlock').addClass('bi-lock');
 								}
 							});
 							
