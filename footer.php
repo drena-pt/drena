@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm">
             <img src="imagens/logo.png" height="32" title="drena" loading="lazy"><br>
-            <text>Copyright © 2022 | drena</text><br>
+            <text>Copyright © 2023 | drena</text><br>
             <a class="small text-light" href="politicas.php">Termos e condições</a>
         </div>
     </div>

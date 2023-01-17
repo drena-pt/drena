@@ -128,11 +128,11 @@
                 while ($campo = $resultado->fetch_assoc()) {
                     if ($campo['tit']){$imagem_tit = $campo['tit'];} else {$imagem_tit = $campo['nom'];}
                     echo "
-                    <div class='col mb-4 container'>
+                    <div class='col mb-4 contentor'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
 							<div class='rounded-xl inset-shadow'>
 								<img class='rounded-xl w-100 shadow' src='".$url_media."thumb/".$campo['thu'].".jpg'>
-								<div class='texto-container-bottom h6'>".encurtarNome($imagem_tit)."</div>
+								<div class='texto-contentor-bottom h6'>".encurtarNome($imagem_tit)."</div>
 							</div>
                         </a>
                     </div>

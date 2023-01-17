@@ -61,11 +61,11 @@ if (!$oq){
         while ($campo = $resultado->fetch_assoc()) {
             if ($campo['tit']){$imagem_tit = $campo['tit'];} else {$imagem_tit = $campo['nom'];}
             echo "
-            <div class='col mb-4 container'>
+            <div class='col mb-4 contentor'>
                 <a class='text-light' href='/media?id=".$campo['id']."'>
                     <div class='rounded-xl inset-shadow'>
                         <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
-                        <div class='texto-container-bottom h6'>".encurtarNome($imagem_tit)."</div>
+                        <div class='texto-contentor-bottom h6'>".encurtarNome($imagem_tit)."</div>
                     </div>
                 </a>
             </div>
@@ -83,11 +83,11 @@ if (!$oq){
         while ($campo = $resultado->fetch_assoc()) {
             if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
             echo "
-            <div class='col mb-4 container'>
+            <div class='col mb-4 contentor'>
                 <a class='text-light' href='/media?id=".$campo['id']."'>
                     <div class='rounded-xl inset-shadow'>
                         <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
-                        <div class='texto-container-bottom h6'>".encurtarNome($video_tit)."</div>
+                        <div class='texto-contentor-bottom h6'>".encurtarNome($video_tit)."</div>
                     </div>
                 </a>
             </div>
@@ -107,11 +107,11 @@ if (!$oq){
             $uti_aud = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$campo['uti']."';"));
             if ($campo['thu']){$audio_thu = $url_media."thumb/".$campo['thu'].".jpg";} else {$audio_thu = $url_media."fpe/".$uti_aud['fpe'].".jpg";}
             echo "
-            <div class='col mb-4 container'>
+            <div class='col mb-4 contentor'>
                 <a class='text-light' href='/media?id=".$campo['id']."'>
                     <div class='rounded-xl inset-shadow'>
                         <img class='shadow rounded-xl w-100' src='".$audio_thu."'>
-                        <div class='texto-container-bottom h6'>".encurtarNome($audio_tit)."</div>
+                        <div class='texto-contentor-bottom h6'>".encurtarNome($audio_tit)."</div>
                     </div>
                 </a>
             </div>

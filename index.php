@@ -34,33 +34,34 @@ if ($uti){
                 </span>
                 <a href='/registo' role='button' class='btn btn-primary'>"._('Criar uma conta')."</a>
                 </h1>
-    
-                
             </div>
     
-            <div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3 text-center'>
-                <h1 class='display-3 m-5'>".strtoupper(_('Ultimos vídeos'))."</h1>
-                <div class='row row-cols-2 row-cols-md-3 mw-100'>
+            <div class='p-0 my-3 col-xl-6 offset-xl-3'>
+                <section id='section_med' class='mx-sm-0 mx-1 mw-sm-100 mw-auto row row-cols-2 row-cols-md-3'>
                 ";
-                $pesquisa = "SELECT * FROM med WHERE tip='1' AND pri=0 ORDER by den DESC LIMIT 12";
-                if ($resultado = $bd->query($pesquisa)) {
+                if ($resultado = $bd->query("SELECT * FROM med WHERE pri=0 ORDER by den DESC LIMIT 12")) {
                     while ($campo = $resultado->fetch_assoc()) {
-                        if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
-                        echo "
-                        <div class='col mb-4 container'>
-                            <a class='text-light' href='/media?id=".$campo['id']."'>
-                                <div class='rounded-xl inset-shadow'>
-                                    <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
-                                    <div class='texto-container-bottom'><text class='h6'>".encurtarNome($video_tit)."</text></div>
+                        switch ($campo['tip']) {
+                            case '1': $tip_icon='camera-video'; $tip_cor='primary'; break;
+                            case '2': $tip_icon='soundwave'; $tip_cor='rosa'; break;
+                            case '3': $tip_icon='image'; $tip_cor='ciano'; break;
+                        }
+                        echo '
+                        <div class="col p-1 p-sm-2">
+                        <a class="text-light ratio ratio-4x3 text-decoration-none" href="/media?id='.$campo['id'].'">
+                            <div class="bg-rosa contentor_med h-100 rounded-xl d-flex" style="background-image:url('.$url_media.'thumb/'.$campo['thu'].'.jpg);">
+                                <div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
+                                    <span class="mx-1 text-'.$tip_cor.'"><i class="bi bi-'.$tip_icon.'"></i></span>
+                                    <span class="ms-2">'.encurtarNome($campo['tit']).'</span>
                                 </div>
-                            </a>
-                        </div>
-                        ";
+                            </div>
+                        </a>
+                        </div>';
                     } 
                     $resultado->free();
                 }
                 echo "
-                </div>
+                </section>
             </div>";
             require "footer.php";
         } else {

@@ -1,4 +1,6 @@
-<?php
+﻿<?php
+##############################################APAGAR NO FUTURO
+#Antigo e a ser subsituido pela API ob_med
 /* error_reporting(E_ALL);
 ini_set('display_errors', 'On'); */
 $funcoes['requerSessao'] = 0;
@@ -33,11 +35,11 @@ if ($ac=='lista'){
                 while ($campo = $resultado->fetch_assoc()) {
                     if ($campo['tit']){$video_tit = $campo['tit'];} else {$video_tit = $campo['nom'];}
                     echo "
-                    <div class='col mb-4 container'>
+                    <div class='col mb-4 contentor'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
                             <div class='rounded-xl inset-shadow'>
                                 <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
-                                <div class='texto-container-bottom h6'>".encurtarNome($video_tit)."</div>
+                                <div class='texto-contentor-bottom h6'>".encurtarNome($video_tit)."</div>
                             </div>
                         </a>
                     </div>
@@ -59,11 +61,11 @@ if ($ac=='lista'){
                     if ($campo['tit']){$audio_tit = $campo['tit'];} else {$audio_tit = $campo['nom'];}
                     if ($campo['thu']){$audio_thu = $url_media."thumb/".$campo['thu'].".jpg";} else {$audio_thu = $url_media."fpe/".$uti_perfil['fpe'].".jpg";}
                     echo "
-                    <div class='col mb-4 container'>
+                    <div class='col mb-4 contentor'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
                             <div class='rounded-xl inset-shadow'>
                                 <img class='shadow rounded-xl w-100' src='".$audio_thu."'>
-                                <div class='texto-container-bottom h6'>".encurtarNome($audio_tit)."</div>
+                                <div class='texto-contentor-bottom h6'>".encurtarNome($audio_tit)."</div>
                             </div>
                         </a>
                     </div>
@@ -108,11 +110,11 @@ if ($ac=='lista'){
                 while ($campo = $resultado->fetch_assoc()) {
                     if ($campo['tit']){$imagem_tit = $campo['tit'];} else {$imagem_tit = $campo['nom'];}
                     echo "
-                    <div class='col mb-4 container'>
+                    <div class='col mb-4 contentor'>
                         <a class='text-light' href='/media?id=".$campo['id']."'>
                             <div class='rounded-xl inset-shadow'>
                                 <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
-                                <div class='texto-container-bottom h6'>".encurtarNome($imagem_tit)."</div>
+                                <div class='texto-contentor-bottom h6'>".encurtarNome($imagem_tit)."</div>
                             </div>
                         </a>
                     </div>
@@ -179,10 +181,10 @@ if ($ac=='lista'){
                     while ($campo = $resultado->fetch_assoc()) {
                         if ($campo['tit']){$imagem_tit = $campo['tit'];} else {$imagem_tit = $campo['nom'];}
                         echo "
-                        <div class='col mb-4 container'>
+                        <div class='col mb-4 contentor'>
                             <div role='button' class='rounded-xl inset-shadow' onclick='adicionar_med(\"".$campo['id']."\")'>
                                 <img class='shadow rounded-xl w-100' src='".$url_media."thumb/".$campo['thu'].".jpg'>
-                                <div class='texto-container' id='circulo_".$campo['id']."'>";
+                                <div class='texto-contentor' id='circulo_".$campo['id']."'>";
                                 if ($campo['alb']==$alb['id']){
                                     echo "<i class='h2 bi bi-x-circle-fill text-primary'></i>";
                                 } else {
@@ -190,7 +192,7 @@ if ($ac=='lista'){
                                 }
                                 echo "
                                 </div>
-                                <div class='texto-container-bottom h6'>".encurtarNome($imagem_tit)."</div>
+                                <div class='texto-contentor-bottom h6'>".encurtarNome($imagem_tit)."</div>
                             </div>
                         </div>
                         ";

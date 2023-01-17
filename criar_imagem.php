@@ -69,9 +69,9 @@
 									var erro = response[index]['erro'];
 									var thumb = response[index]['thumb'];
 									if (erro){
-										$('#preview').prepend(\"<div class='col mb-4 container'><div class='rounded-xl'><img class='shadow rounded-xl w-100' src='imagens/thumb_imagem.jpg'><div class='texto-container h6'>\"+erro+\"</div></div></div>\");
+										$('#preview').prepend(\"<div class='col mb-4 contentor'><div class='rounded-xl'><img class='shadow rounded-xl w-100' src='imagens/thumb_imagem.jpg'><div class='texto-contentor h6'>\"+erro+\"</div></div></div>\");
 									} else {
-										$('#preview').prepend(\"<div class='col mb-4 container'><a class='text-light' href='\"+link+\"'><div class='rounded-xl inset-shadow'><img class='shadow rounded-xl w-100' src='\"+thumb+\"'><div class='texto-container-bottom h6'>\"+tit+\"</div></div></a></div>\");
+										$('#preview').prepend(\"<div class='col mb-4 contentor'><a class='text-light' href='\"+link+\"'><div class='rounded-xl inset-shadow'><img class='shadow rounded-xl w-100' src='\"+thumb+\"'><div class='texto-contentor-bottom h6'>\"+tit+\"</div></div></a></div>\");
 									}
 								}
 							}

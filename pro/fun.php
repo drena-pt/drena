@@ -71,10 +71,10 @@ function numeroParaCor($num){
 	}
 }
 
-# Encurtar nome
-function encurtarNome($nome, $tamanho=25){
+#Encurtar nome
+function encurtarNome($nome, $tamanho=19){
     if (strlen($nome)>=$tamanho){
-        return (substr($nome, 0, $tamanho-2)."…");
+        return (mb_substr($nome, 0, $tamanho-1)."…");
     } else {
         return ($nome);
     }

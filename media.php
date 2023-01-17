@@ -395,42 +395,24 @@ if ($med){
 
 							<script>
 							function moderar(mod_ac){
-								if (mod_ac === undefined){
-									result = api('med',{'med':'".$med['id']."', 'ac':'mod'});
-								} else {
-									result = api('med',{'med':'".$med['id']."', 'ac':'mod', 'mod':mod_ac});
-								}
-								console.log(result);
+								if (mod_ac === undefined){ result = api('med',{'med':'".$med['id']."', 'ac':'mod'});
+								} else { result = api('med',{'med':'".$med['id']."', 'ac':'mod', 'mod':mod_ac}); }
+								console.debug(result);
 
-								if(result['ac_mod'].indexOf(0) !== -1){
-									$('#btn_discordo').attr('disabled', true);
-								}else{
-									$('#btn_discordo').attr('onclick', 'moderar(0)');
-								}
+								if(result['ac_mod'].indexOf(0) !== -1){ $('#btn_discordo').attr('disabled', true);
+								}else{ $('#btn_discordo').attr('onclick', 'moderar(0)'); }
 
-								if(result['ac_mod'].indexOf(1) !== -1){
-									$('#btn_sensivel').attr('disabled', true);
-								}else{
-									$('#btn_sensivel').attr('onclick', 'moderar(1)');
-								}
+								if(result['ac_mod'].indexOf(1) !== -1){ $('#btn_sensivel').attr('disabled', true);
+								} else { $('#btn_sensivel').attr('onclick', 'moderar(1)'); }
 
-								if(result['ac_mod'].indexOf(2) !== -1){
-									$('#btn_inaceitavel').attr('disabled', true);
-								}else{
-									$('#btn_inaceitavel').attr('onclick', 'moderar(2)');
-								}
+								if(result['ac_mod'].indexOf(2) !== -1){ $('#btn_inaceitavel').attr('disabled', true);
+								} else { $('#btn_inaceitavel').attr('onclick', 'moderar(2)'); }
 
-								if (result['nmo']<=2){
-									$('#btn_inaceitavel').show();
-								} else {
-									$('#btn_inaceitavel').hide();
-								}
+								if (result['nmo']<=2){ $('#btn_inaceitavel').show();
+								} else { $('#btn_inaceitavel').hide(); }
 
-								if (result['nmo']==0){
-									$('#btn_sensivel').show();
-								} else {
-									$('#btn_sensivel').hide();
-								}
+								if (result['nmo']==0){ $('#btn_sensivel').show();
+								} else { $('#btn_sensivel').hide(); }
 
 								//Se houver um pedido de um moderador ativo
 								if (result['nmo']!==0 && result['nmo']!==2){

@@ -14,6 +14,8 @@
 					echo "<li class='nav-item'><a class='nav-link' href='/adm'><span class='text-rosa'>"._('Administrar')." <i class='bi bi-person-lines-fill'></i></span></a></li>";
 				} else if ($uti['car']==2){
 					echo "<li class='nav-item'><a class='nav-link' href='/mod'><span class='text-ciano'>"._('Moderar')." <i class='bi bi-clipboard-check'></i></span></a></li>";
+				} else if ($uti['car']==3){
+					echo "<li class='nav-item'><a class='nav-link' href='/mod'><span class='text-amarelo'>"._('Estatisticas')." <i class='bi bi-bar-chart-line'></i></span></a></li>";
 				}
 				echo "
 				<li class='nav-item'><span data-toggle='modal' data-target='#modal_procurar'><a class='nav-link' href='#' data-toggle='tooltip' data-placement='bottom' title='"._('Procurar')."'><span class='d-sm-none'>"._('Procurar')." </span><i class='bi bi-search'></i></a></span></li>";
@@ -24,8 +26,18 @@
 					#<li class='nav-item'><a class='nav-link' href='/escritura.php'>"._('Escritura')."</a></li>
 					echo "
 					<li class='nav-item'><a class='nav-link' href='/criar' data-toggle='tooltip' data-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
-					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Definições')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>
-					<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."'><img id='fpe' data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-0 ms-sm-2 rounded-circle' src='".$url_media."fpe/".$uti['fpe'].".jpg' width='40' height='40'></a></li>";
+					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Definições')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>";
+					
+					$num_pedidos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM ami WHERE b_id='".$uti["id"]."' AND sim=0"));
+					
+					echo "<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."'><img id='fpe' data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-2 rounded-circle' src='".$url_media."fpe/".$uti['fpe'].".jpg' width='40' height='40'>";
+					#Coloca a bolinha de aviso caso haja pedidos de amizade
+					if ($num_pedidos){
+						echo "<span  class='position-absolute translate-middle-x p-1 bg-primary rounded-circle'>
+							<span class='visually-hidden'>Novos pedidos</span>
+						</span>";
+					}
+					echo "</a></li>";
 				}
 			echo "</ul>
 		</div>
