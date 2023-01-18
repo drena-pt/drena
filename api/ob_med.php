@@ -1,10 +1,8 @@
 <?php
 #API - Obter médias (das páginas de prefil dos utilizadores)
-#Headers
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json; charset=utf-8');
-#Base de dados
-require_once('bd.php');
+#Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
+$api_noauth=true; #Não é obrigatório autenticação
+require_once('validar.php');
 
 /* error_reporting(E_ALL);
 ini_set('display_errors', 'On'); */
@@ -29,10 +27,17 @@ function encurtarNome($nome, $tamanho=19){
 
 #Informações da média por onde deve começar a pesquisa
 $depois = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_POST['depois']."'"));
+
+#Oculta publicações privadas se não for o mesmo utilizador
+if ($uti['nut']!=$uti_perfil['nut']){
+    $pri_med = "AND pri=0";
+}
+
+#SQL Pesquisa
 if ($depois){
-    $med_pesquisa = "SELECT id,thu,tip,tit FROM med WHERE den < '".$depois['den']."' AND uti='".$uti_perfil['id']."' AND pri=0 ORDER BY den DESC LIMIT 6";
+    $med_pesquisa = "SELECT id,thu,tip,tit,pri FROM med WHERE den < '".$depois['den']."' AND uti='".$uti_perfil['id']."' ".$pri_med." ORDER BY den DESC LIMIT 6";
 } else {
-    $med_pesquisa = "SELECT id,thu,tip,tit FROM med WHERE uti='".$uti_perfil['id']."' AND pri=0 ORDER BY den DESC LIMIT 6";
+    $med_pesquisa = "SELECT id,thu,tip,tit,pri FROM med WHERE uti='".$uti_perfil['id']."' ".$pri_med." ORDER BY den DESC LIMIT 6";
 }
 
 if ($resultado = $bd->query($med_pesquisa)) {

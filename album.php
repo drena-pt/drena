@@ -34,7 +34,7 @@
 					"._('Adicionar')." <i class='bi bi-plus-circle'></i>
 					</button>
 					
-					<button id='header_btn_concluido' style='display: none;'' class='btn btn-dark text-light'>
+					<button id='header_btn_concluido' style='display: none;' class='btn btn-dark text-light'>
 					"._('Concluído')." <i class='bi bi-check-circle'></i>
 					</button>
 

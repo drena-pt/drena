@@ -52,7 +52,7 @@ if ($uti){
                             <div class="bg-rosa contentor_med h-100 rounded-xl d-flex" style="background-image:url('.$url_media.'thumb/'.$campo['thu'].'.jpg);">
                                 <div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
                                     <span class="mx-1 text-'.$tip_cor.'"><i class="bi bi-'.$tip_icon.'"></i></span>
-                                    <span class="ms-2">'.encurtarNome($campo['tit']).'</span>
+                                    <span class="overflow-hidden">'.encurtarNome($campo['tit']).'</span>
                                 </div>
                             </div>
                         </a>
@@ -103,9 +103,7 @@ if ($uti){
                 } else {
                     $api_link = $url_site."/api/feed.php?tip=global";
                 }
-                    echo "<!--<a href='feed?tip=global' role='button' class='btn btn-light'>Explorar <i class='bi bi-compass'></i></a>-->
-                </div>
-                ";
+                echo "</div>";
 
                 if ($_GET['feed']!='global' AND $conhecidos){
                     echo "

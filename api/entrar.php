@@ -55,7 +55,7 @@ if ($nut){
 			$api_key, #Obtem das variáveis
 			'HS512'
 		);
-		setcookie('drena_token', $token, $jwt_expire_at, '/', $url_dominio, true);
+		setcookie('drena_token', $token, $jwt_expire_at, '/');
 
 		echo '{"est":"sucesso","token":"'.$token.'"}';
 		exit;

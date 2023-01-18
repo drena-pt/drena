@@ -11,7 +11,7 @@
 		<?php
 		echo "
 		<div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
-			<h1 class='py-xl-5 py-4'>"._('Criar')."</h1>
+			<h1 class='py-xl-5 py-4 px-xl-0 px-3'>"._('Criar')."</h1>
 
 			<div class='row row-cols-1 row-cols-md-2'>
 

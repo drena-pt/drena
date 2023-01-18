@@ -44,6 +44,7 @@ if ($uti_perfil){
 			";
 		}
 		
+		#INICIO - Caixa do utilizador
 		echo "
 		<div class='shadow p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
 			<div class='bg-primary bg-cover text-light p-xl-5 p-4 caixa-perfil-foto'>";
@@ -174,31 +175,6 @@ if ($uti_perfil){
 				return ($nut);
 			}
 		}
-		
-		/* $uti_perfil_projetos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM pro WHERE uti='".$uti_perfil['id']."';"));
-		$uti_perfil_audios = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE tip=2 AND uti='".$uti_perfil['id']."';"));
-		$uti_perfil_imagens = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE tip=3 AND uti='".$uti_perfil['id']."';"));
-		$uti_perfil_videos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM med WHERE tip=1 AND uti='".$uti_perfil['id']."';"));
-
-		if ($uti_perfil_projetos!=0 OR $uti_perfil_audios!=0 OR $uti_perfil_imagens!=0 OR $uti_perfil_videos!=0){
-		echo "
-		<div class='bg-dark text-light p-3'>
-			<section class='row'>";
-			if ($uti_perfil_projetos!=0){
-				echo "<a href='#conteudo' onclick='mostrarConteudo(0)' class='col-6 col-sm-3 text-decoration-none text-center text-light'><span class='badge rounded-pill bg-opacity-75 bg-light text-dark'>".$uti_perfil_projetos."</span> "._('Projetos')."</a>";
-			}
-			if ($uti_perfil_audios!=0){
-				echo "<a href='#conteudo' onclick='mostrarConteudo(2)' class='col-6 col-sm-3 text-decoration-none text-center text-light'><span class='badge rounded-pill bg-opacity-75 bg-rosa'>".$uti_perfil_audios."</span> "._('Áudios')."</a>";
-			}
-			if ($uti_perfil_imagens!=0){
-				echo "<a href='#conteudo' onclick='mostrarConteudo(3)' class='col-6 col-sm-3 text-decoration-none text-center text-light'><span class='badge rounded-pill bg-opacity-75 bg-ciano'>".$uti_perfil_imagens."</span> "._('Imagens')."</a>";
-			}
-			if ($uti_perfil_videos!=0){
-				echo "<a href='#conteudo' onclick='mostrarConteudo(1)' class='col-6 col-sm-3 text-decoration-none text-center text-light'><span class='badge rounded-pill bg-opacity-75 bg-primary'>".$uti_perfil_videos."</span> "._('Vídeos')."</a>";
-			}
-		echo "</section>
-		</div>";
-		} */
 
 		#Secção conhecidos
 		$sql_conhecidos = "SELECT a_id, b_id FROM ami WHERE a_id='".$uti_perfil["id"]."' AND sim='1' OR b_id='".$uti_perfil["id"]."' AND sim='1' ORDER by b_dat DESC";
@@ -365,41 +341,70 @@ if ($uti_perfil){
 			}
 			#FIM - Secção todos os conhecidos
 		}
-		#Fim da caixa do utilizador V
-		echo "</div>
+		echo "</div>";
+		#FIM - Caixa do utilizador
 
+		$perfil_num_med = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM med WHERE pri=0 AND uti='".$uti_perfil['id']."';"));
+		$perfil_num_alb = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM med_alb WHERE uti='".$uti_perfil['id']."';"));
+		
+		#INICIO - Publicações, Albúns
+		echo "
 		<div class='p-0 mt-4 col-xl-6 offset-xl-3'>
-			<section id='section_med' class='mx-sm-0 mx-1 mw-sm-100 mw-auto row row-cols-2 row-cols-md-3'></section>
-			<section class='my-4 text-center'><button onclick='carregar_med()' id='btn_carregar' class='btn btn-light'>Carregar mais <i class='bi bi-plus-lg'></i></button></section>
+			<section class='text-center my-3'>";
+			#Mostrar botões de Publicações e Albúns se houver Albúns
+			if ($perfil_num_alb){
+				echo "
+				<button id='btn_ver_med' onclick='ver(\"med\")' class='btn btn-primary m-0 ps-3'><span class='badge rounded-pill mt-1 bg-dark text-light bg-opacity-50'>".$perfil_num_med."</span> Publicações <i class='bi bi-play-btn'></i></button>
+				<button id='btn_ver_alb' onclick='ver(\"alb\")' class='btn btn-light m-0 ps-3'><span class='badge rounded-pill mt-1 bg-dark text-light bg-opacity-50'>".$perfil_num_alb."</span> Albuns <i class='bi bi bi-collection'></i></button>
+				";
+			}
+			echo"
+			</section>
+			<section id='section_med'>
+				<section id='row_med' class='mx-sm-0 mx-1 mw-sm-100 mw-auto row row-cols-2 row-cols-md-3'></section>
+				<section class='my-4 text-center'>
+					<button id='btn_carregar' onclick='carregar_med()' class='btn btn-light'>Carregar mais <i class='bi bi-plus-lg'></i></button>
+				</section>
+			</section>
+			<section id='section_alb' class='mx-sm-0 mx-1 mw-sm-100 mw-auto mb-3 row row-cols-1 row-cols-md-2' style='display: none;'></section>
 		</div>
 		";
-
+		
 		$append_med = '
 		<div class="col p-1 p-sm-2">
 			<a class="text-light ratio ratio-4x3 text-decoration-none" href="/media?id=\'+data.id+\'">
 				<div class="bg-rosa contentor_med h-100 rounded-xl d-flex" style="background-image:url(\'+data.thu+\');">
 					<div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
 						<span id="icon_\'+data.id+\'_tip" class="mx-1"></span>
-						<span alt="\'+data.tit+\'" class="ms-2">\'+data.tit_curto+\'</span>
+						<span alt="\'+data.tit+\'" class="overflow-hidden">\'+data.tit_curto+\'</span>
 					</div>
 				</div>
 			</a>
 		</div>';
-		
+		$append_alb = '
+		<div class="col p-1 p-sm-2"><a class="text-decoration-none" href="/album?id=\'+data.id+\'">
+			<div class="bg-light bg-cover text-dark p-4 rounded-xl shadow d-flex justify-content-between align-items-center" style="background-image:linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.6)),url(\'+data.thu+\');">
+            <text class="h5 m-0">\'+data.tit+\'</text><span class="badge rounded-pill bg-dark text-light">\'+data.num_med+\'</span></div>
+		</a></div>';
+
 		echo "
 		<script>
 		var depois_med;
+		var albuns_carregados = false;
 		function carregar_med(){
 			result = api('ob_med',{'uti':'".$uti_perfil['nut']."','depois':depois_med});
 			if (!result['err']){
 				$.each(result, function (key, data) {
-					$('#section_med').append('".trim(preg_replace('/\s\s+/', ' ', $append_med))."');
-					switch (data.tip) {
+					$('#row_med').append('".trim(preg_replace('/\s\s+/', ' ', $append_med))."');
+					switch (data.tip){
 						case '1': tip_icon='camera-video'; tip_cor='primary'; break;
 						case '2': tip_icon='soundwave'; tip_cor='rosa'; break;
 						case '3': tip_icon='image'; tip_cor='ciano'; break;
 					}
 					$('#icon_'+data.id+'_tip').html('<i class=\"bi bi-'+tip_icon+'\"></i>').addClass('text-'+tip_cor);
+					if (data.pri==1){
+						$('#icon_'+data.id+'_tip').after(\"<span><i class='bi bi-lock-fill'></i></span>\");
+					}
 				})
 				if (depois_med){
 					$([document.documentElement, document.body]).animate({
@@ -411,6 +416,32 @@ if ($uti_perfil){
 			}
 		}
 		carregar_med();
+
+		function ver(oqA){
+			var classA = 'btn-primary';
+			var classB = 'btn-light';
+			if (oqA=='med'){
+				oqB='alb';
+			} else if (oqA=='alb'){
+				oqB='med';
+			}
+			$('#section_'+oqA).show();
+			$('#section_'+oqB).hide();
+			$('#btn_ver_'+oqA).removeClass(classB).addClass(classA);
+			$('#btn_ver_'+oqB).removeClass(classA).addClass(classB);
+			if (albuns_carregados==false){
+				carregar_alb();
+			}
+		}
+		function carregar_alb(){
+			result = api('ob_alb',{'uti':'".$uti_perfil['nut']."'});
+			if (!result['err']){
+				$.each(result, function (key, data) {
+					$('#section_alb').append('".trim(preg_replace('/\s\s+/', ' ', $append_alb))."');
+				})
+				albuns_carregados = true;
+			}
+		}
 		</script>
 		";
 
