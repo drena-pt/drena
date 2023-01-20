@@ -64,42 +64,40 @@ if ($uti_perfil){
 			<div class='modal fade' id='modal_fpe' tabindex='-1' role='dialog' aria-labelledby='modal_fpe_label' aria-hidden='true'>
 				<div class='modal-dialog' role='document'>
 					<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
-						<form action='#' method='post'>
-							<div class='modal-header mb-3'>
-								<h2 class='modal-title' id='modal_fpe_label'>Alterar foto<br></h2><br>
-								<button type='button' class='text-light btn-close' data-dismiss='modal' aria-label='"._('Fechar')."'><i class='bi bi-x-lg'></i></button>
-							</div>
-							<div class='modal-body'>
+						<div class='modal-header mb-3'>
+							<h2 class='modal-title' id='modal_fpe_label'>Alterar foto<br></h2><br>
+							<button type='button' class='text-light btn-close' data-dismiss='modal' aria-label='"._('Fechar')."'><i class='bi bi-x-lg'></i></button>
+						</div>
+						<div class='modal-body'>
+							";
+							$pesquisa = "SELECT * FROM uti_fpe WHERE uti='".$uti['id']."' ORDER BY den DESC";
+							if ($resultado = $bd->query($pesquisa)){
+								echo "<div class='m-0 row row-cols-3 mw-100'>
+								
+								<div class='col p-2 align-self-center'>
+									<label role='button' for='fpe_input'>
+										<div class='rounded-xl bg-light text-dark text-center py-3'>
+											"._('Carregar foto')."<i class='bi bi-upload'></i>
+										</div>
+									</label>
+								</div>
 								";
-								$pesquisa = "SELECT * FROM uti_fpe WHERE uti='".$uti['id']."' ORDER BY den DESC";
-								if ($resultado = $bd->query($pesquisa)){
-									echo "<div class='m-0 row row-cols-3 mw-100'>
-									
-									<div class='col p-2 align-self-center'>
-										<label role='button' for='fpe_input'>
-											<div class='rounded-xl bg-light text-dark text-center py-3'>
-												"._('Carregar foto')."<i class='bi bi-upload'></i>
-											</div>
-										</label>
+								while ($campo = $resultado->fetch_assoc()){
+									$fpe_atual = NULL;
+									if ($uti['fpe']==$campo['id']){
+										$fpe_atual = 'border';
+									}
+									echo "
+									<div class='col p-md-2 p-1'>
+										<img id='fpe_".$campo['id']."' role='button' onclick=\"mudar_fpe('".$campo['id']."')\" class='".$fpe_atual." rounded-xl w-100' src='".$url_media."fpe/".$campo['id'].".jpg'>
 									</div>
 									";
-									while ($campo = $resultado->fetch_assoc()){
-										$fpe_atual = NULL;
-										if ($uti['fpe']==$campo['id']){
-											$fpe_atual = 'border';
-										}
-										echo "
-										<div class='col p-md-2 p-1'>
-											<img id='fpe_".$campo['id']."' role='button' onclick=\"mudar_fpe('".$campo['id']."')\" class='".$fpe_atual." rounded-xl w-100' src='".$url_media."fpe/".$campo['id'].".jpg'>
-										</div>
-										";
-									}
-									$resultado->free();
-									echo "</div>";
 								}
-								echo "
-							</div>
-						</form>
+								$resultado->free();
+								echo "</div>";
+							}
+							echo "
+						</div>
 					</div>
 				</div>
 			</div>

@@ -10,4 +10,11 @@ if (!$bd) {
 }
 $bd->set_charset("utf8mb4");
 ob_get_clean();
+
+#Converter todos os scripts imbutidos em html
+if (isset($_POST)){
+    foreach ($_POST as $name => $val){
+        $_POST[$name] = addslashes(htmlentities($val));
+    }
+}
 ?>
