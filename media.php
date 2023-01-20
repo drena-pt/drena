@@ -213,22 +213,22 @@ if ($med){
 																</a>";
 															} else {
 																echo "
-																<a href='/pro/med_alb.php?ac=adicionar&redirect=1&alb=".$campo['id']."&med=".$med['id']."' class='list-group-item bg-transparent px-0'>
+																<li onclick='med_alb(\"".$campo['id']."\")' role='button' class='list-group-item bg-transparent px-0'>
 																	<section class='p-4 bg-light bg-cover text-dark rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"".$url_media."thumb/".$campo['thu'].".jpg\");'>
 																		<h5 class='m-0'>".$alb_tit."</h5>
 																		<span class='badge rounded-pill bg-dark text-light'>".$alb_num_med."</span>
 																	</section>
-																</a>";
+																</li>";
 															}
 
 														}
 														$resultado->free();
 														echo "
-														<a href='/pro/med_alb.php?ac=criar&med=".$med['id']."' class='list-group-item bg-transparent px-0'>
+														<li onclick='criar_alb()' role='button' class='list-group-item bg-transparent px-0'>
 															<section class='p-2 px-4 bg-light text-dark rounded-xl shadow d-flex justify-content-between align-items-center'>
-																<h5 class='m-0'>"._('Criar álbum')."</h5><i class='bi bi-plus-circle'></i>
+																<h5 class='m-0'>"._('Criar álbum')."</h5><h5 class='bi bi-plus-circle'></h5>
 															</section>
-														</a>
+														</li>
 														</ul>";
 													}
 													echo "
@@ -239,7 +239,23 @@ if ($med){
 											</form>
 										</div>
 									</div>
-								</div>";
+								</div>
+								<script>
+								function med_alb(alb){
+									result = api('med_alb',{'alb': alb,'med': '".$med['id']."','ac': 'med'});
+									if (result.est=='true'){
+										window.location.href = '/album?id='+btoa(alb);
+									}
+								}
+
+								function criar_alb(){
+									result = api('med_alb',{'med':'".$med['id']."','ac':'criar'});
+									if (result.est=='sucesso'){
+										window.location.href = '/album?id='+result.alb;
+									}
+								}
+								</script>
+								";
 							}
 							echo "
 							<span data-toggle='modal' data-target='#modal_alerar_tit'>
