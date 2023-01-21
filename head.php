@@ -10,7 +10,7 @@ require __DIR__.'/pro/fun.php';
 		<!-- Coisas básicas -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" type="image/png" href="imagens/favicon.png"/>
+		<link rel="icon" type="image/png" href="/imagens/favicon.png"/>
 		<meta property="og:site_name" content="drena"/>
 		<?php if ($site_tit!='off') echo "<title>drena</title>"; ?>
 		<meta name="theme-color" content="#111111"/>
@@ -33,9 +33,6 @@ require __DIR__.'/pro/fun.php';
 				$(function (){ $('[data-toggle="tooltip"]').tooltip() })
 			}
 		</script>
-		
-		<!-- AnimeJS -->
-		<script src="node_modules/animejs/lib/anime.min.js"></script>
 
 		<!-- iFrame Resizer -->
 		<script src="https://cdn.jsdelivr.net/npm/iframe-resizer@latest/js/iframeResizer.min.js"></script>
