@@ -2,7 +2,7 @@
 		require('head.php');
 		if ($uti['car']!=1){ header("Location: /"); exit; }	#Sair da página se não for administrador
 		?>
-        <script src='./js/api.min.js'></script>
+        <script src='/js/api.min.js'></script>
 	</head>
 	<body>
 	    <?php require('cabeçalho.php'); ?>
@@ -80,7 +80,7 @@
                                 <tr>
                                     <th scope='row'>".$campo['id']."</th>
                                     <td><img class='rounded-circle' src='".$url_media."fpe/".$campo['fpe'].".jpg' width='40' height='40'></td>
-                                    <td><a href='/perfil?uti=".$campo['nut']."'>".$campo['nut']."</a></td>
+                                    <td><a href='/u/".$campo['nut']."'>".$campo['nut']."</a></td>
                                     <td>".$campo['nco']."</td>
                                     <td>".$campo['dcr']."</td>
                                     <td><div class='form-check form-switch'>
@@ -156,7 +156,7 @@
                                 echo "
                                 <tr>
                                     <th scope='row'>".$campo['id']."</th>
-                                    <td><a href='/perfil?uti=".$pro_uti['nut']."' title='".$pro_uti['nut']."'><img class='rounded-circle' src='".$url_media."fpe/".$pro_uti['fpe'].".jpg' width='40' height='40'></a></td>
+                                    <td><a href='/u/".$pro_uti['nut']."' title='".$pro_uti['nut']."'><img class='rounded-circle' src='".$url_media."fpe/".$pro_uti['fpe'].".jpg' width='40' height='40'></a></td>
                                     <td><a href='/projeto?id=".base64_encode($campo['id'])."'>".$campo['tit']."</a></td>
                                     <td>".$campo['cor']."</td>
                                     <td>".$campo['pri']."</td>

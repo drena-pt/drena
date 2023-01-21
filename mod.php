@@ -69,7 +69,7 @@ function mini_nut($nut){
                             echo "
                             <tr>
                                 <th scope='row'><img class='shadow rounded-xl' width='128' src='".$url_media."thumb/".$campo['thu'].".jpg'></th>
-                                <td><a href='/media?id=".$campo['id']."'>".$med_tit."</a></td>
+                                <td><a href='/m/".$campo['id']."'>".$med_tit."</a></td>
                                 <td>";
                                 switch($campo['tip']){
                                     case 1: echo "<i class='bi bi-film text-primary'></i>"; break;

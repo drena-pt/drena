@@ -1,6 +1,6 @@
 function api(api_url, api_data, api_processData=true, api_contentType) {
     var jqXHR = $.ajax({
-        url: 'api/'+api_url+'.php',
+        url: '/api/'+api_url+'.php',
         type: 'post',
         data: api_data,
         contentType: api_contentType,

@@ -34,7 +34,7 @@ if (!$oq){
         }
         return "
         <div class='col p-1 p-sm-2'>
-        <a class='text-light ratio ratio-4x3 text-decoration-none' href='/media?id=".$id."'>
+        <a class='text-light ratio ratio-4x3 text-decoration-none' href='/m/".$id."'>
             <div class='bg-rosa contentor_med h-100 rounded-xl d-flex' style='background-image:url(".$url_media."thumb/".$thu.".jpg);'>
                 <div class='rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2'>
                     <span class='mx-1 text-".$tip_cor."'><i class='bi bi-".$tip_icon."'></i></span>
@@ -67,7 +67,7 @@ if (!$oq){
         <section class='row m-0 mw-100'>";
         while ($campo = $resultado->fetch_assoc()) {
             echo "<div class='col-md-2 col-4 my-3 text-center'>
-            <a class='perfil' href='/perfil?uti=".$campo['nut']."'>
+            <a class='perfil' href='/u/".$campo['nut']."'>
             <img class='mx-1 rounded-circle' src='".$url_media."fpe/".$campo['fpe'].".jpg' width='64'><br>".mini_nut($campo['nut'])."</a>
             </div>";
         }

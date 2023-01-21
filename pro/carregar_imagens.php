@@ -103,7 +103,7 @@ for($index = 0;$index < $countfiles;$index++){
                $bd->query("INSERT INTO med (id, uti, nom, tit, tip, thu) VALUES('".$codigo."', '".$uti['id']."', '".$nom."', '".$tit."', '3', '".$codigoThumb."');");
 
                # Adiciona ao Json
-               $files_arr[] = array("link"=>$url_site."media?id=".$codigo,"thumb"=>$url_media."thumb/".$codigoThumb.".jpg","tit"=>$tit);
+               $files_arr[] = array("link"=>$url_site."m/".$codigo,"thumb"=>$url_media."thumb/".$codigoThumb.".jpg","tit"=>$tit);
                
             } else {
                $erro = "Não foi possivel carregar o ficheiro.";

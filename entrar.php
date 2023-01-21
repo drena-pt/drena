@@ -1,5 +1,5 @@
 		<?php require('head.php') ?>
-		<script src='./js/api.min.js'></script>
+		<script src='/js/api.min.js'></script>
 	</head>
 	<body>
 		<?php require('cabeçalho.php'); ?>

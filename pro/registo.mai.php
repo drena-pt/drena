@@ -70,7 +70,7 @@ if ($_SESSION["pre_uti"] OR $_SESSION["uti"]){ # Se houver sessão de utilizador
 			$_SESSION["pre_uti"] = null;
 			$_SESSION["uti"] = $uti['nut'];
 			setcookie('bem-vindo', 1, time() + (4), "/");
-			header("Location: ../perfil?uti=".$uti['nut']);
+			header("Location: ../u/".$uti['nut']);
 			exit;
 		} else {
 			$erro_cod=6;

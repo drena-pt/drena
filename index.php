@@ -48,7 +48,7 @@ if ($uti){
                         }
                         echo '
                         <div class="col p-1 p-sm-2">
-                        <a class="text-light ratio ratio-4x3 text-decoration-none" href="/media?id='.$campo['id'].'">
+                        <a class="text-light ratio ratio-4x3 text-decoration-none" href="/m/'.$campo['id'].'">
                             <div class="bg-rosa contentor_med h-100 rounded-xl d-flex" style="background-image:url('.$url_media.'thumb/'.$campo['thu'].'.jpg);">
                                 <div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
                                     <span class="mx-1 text-'.$tip_cor.'"><i class="bi bi-'.$tip_icon.'"></i></span>
@@ -110,7 +110,7 @@ if ($uti){
                     <div class='mx-0 mx-xl-2'>";
                     if ($resultado = $bd->query("SELECT * FROM uti WHERE id IN (".$lista_feed.") ORDER by id DESC LIMIT 8")){
                         while ($campo_uti = $resultado->fetch_assoc()){
-                            echo "<a data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."' href='/perfil?uti=".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mx-1 rounded-circle' width='32'></a>";
+                            echo "<a data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."' href='/u/".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mx-1 rounded-circle' width='32'></a>";
                         }
                     }
                     echo "
@@ -173,7 +173,7 @@ if ($uti){
                                     
                                     //Carrega a média apenas se não for repetida
                                     if (!$('#med_'+data[index].med.id+'_conteudo').length){
-                                        $('#medias').append(\"<section class='bg-dark bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col d-flex'><text class='h5 my-auto text-start' id='med_tit'>\"+data[index].med.tit+\"</text></div><div class='col my-0 d-flex flex-row-reverse'><a href='/media?id=\"+data[index].med.id+\"' role='button' class='btn btn-light me-1 my-auto'>"._('Abrir')." <i class='bi bi-box-arrow-in-right'></i></a></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/perfil?uti=\"+data[index].uti.nut+\"'><img src='\"+data[index].uti.fpe+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><span onclick='gosto(`\"+data[index].med.id+\"`)' role='button'><i id='svg_gosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i><i id='svg_naoGosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up'></i></span></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><i class='bi bi-calendar4-week'></i></div><div class='col d-flex'>".sprintf(_('há %s'),"\"+tempoPassado(data[index].med.den)+\"")."</div></div></section></div></section>\");
+                                        $('#medias').append(\"<section class='bg-dark bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col d-flex'><text class='h5 my-auto text-start' id='med_tit'>\"+data[index].med.tit+\"</text></div><div class='col my-0 d-flex flex-row-reverse'><a href='/m/\"+data[index].med.id+\"' role='button' class='btn btn-light me-1 my-auto'>"._('Abrir')." <i class='bi bi-box-arrow-in-right'></i></a></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/u/\"+data[index].uti.nut+\"'><img src='\"+data[index].uti.fpe+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><span onclick='gosto(`\"+data[index].med.id+\"`)' role='button'><i id='svg_gosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i><i id='svg_naoGosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up'></i></span></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><i class='bi bi-calendar4-week'></i></div><div class='col d-flex'>".sprintf(_('há %s'),"\"+tempoPassado(data[index].med.den)+\"")."</div></div></section></div></section>\");
                                         
                                         if (data[index].uti.gos==1){
                                             $('#svg_naoGosto_'+data[index].med.id).attr('hidden', true);

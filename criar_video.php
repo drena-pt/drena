@@ -150,7 +150,7 @@
 							status.html('"._('Carregamento completo')."');
 							imagem.attr('src','".$url_media."thumb/'+json.thumb+'.jpg');
 							$('#botao_ver_video').removeAttr('hidden');
-							$('#botao_ver_video').attr('href', '/media?id='+json.codigo);
+							$('#botao_ver_video').attr('href', '/m/'+json.codigo);
 							if (json.estado==4){
 								$('#video_info_estado').html('"._('O vídeo está a ser convertido porque a codificação não é suportada.')."');
 							}

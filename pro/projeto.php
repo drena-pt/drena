@@ -38,7 +38,7 @@ if ($ac=='criar'){
 			} else if ($bd->query("DELETE FROM pro WHERE id='".$pro['id']."'") === FALSE) {
 				echo "Erro: ".$bd->error;
 			} else {
-				header("Location: /perfil?uti=".$uti['nut']);
+				header("Location: /u/".$uti['nut']);
 			}
 		} else if ($ac=='cor'){
 	

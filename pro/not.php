@@ -42,7 +42,7 @@ function notificacao($uti_a_id, $uti_b_id, $tipo, $med_id = null, $extra = null)
             $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$med_id."';"));
     
             $not_image = $url_media.'thumb/'.$med['thu'].'.jpg';
-            $not_action = $url_site."media?id=".$med['id'];
+            $not_action = $url_site."m/".$med['id'];
         }
 
         #Escolhe o tipo de notificação
@@ -101,14 +101,14 @@ function notificacao($uti_a_id, $uti_b_id, $tipo, $med_id = null, $extra = null)
 
                 $not_body = $uti_a['nut'].' quer ser teu conhecido';
                 $not_title = 'Pedido de '.$uti_a['nut'];
-                $not_action = $url_site."perfil?uti=".$uti_a['nut'];
+                $not_action = $url_site."u/".$uti_a['nut'];
                 break;
 
             case 'ami_aceite': #Pedido de amizade aceite
 
                 $not_body = $uti_a['nut'].' agora é teu conhecido';
                 $not_title = 'Pedido aceite';
-                $not_action = $url_site."perfil?uti=".$uti_a['nut'];
+                $not_action = $url_site."u/".$uti_a['nut'];
                 break;
 
             default:

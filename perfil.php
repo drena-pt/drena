@@ -15,7 +15,7 @@ if ($uti_perfil){
 	<title>drena</title>";
 }
 ?>
-		<script src='./js/api.min.js'></script>
+		<script src='/js/api.min.js'></script>
 	</head>
 	<body>
 	<?php require('cabeçalho.php'); ?>
@@ -198,7 +198,7 @@ if ($uti_perfil){
 						echo "
 						<div id='pedido_".$uti_a['nut']."' class='col pt-0 pb-2 p-1'>
 							<div class='alert border-primary bg-primary bg-opacity-25 d-flex align-items-center p-1 m-0' role='alert'>
-								<a class='perfil' href='/perfil?uti=".$uti_a['nut']."'>
+								<a class='perfil' href='/u/".$uti_a['nut']."'>
 								<img class='rounded-circle me-2' src='".$url_media."fpe/".$uti_a['fpe'].".jpg' width='64'>
 								".$uti_a['nut']."</a>
 								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-light ms-auto m-0 me-2'>Aceitar <i class='bi bi-person-fill-check'></i></button>
@@ -209,7 +209,7 @@ if ($uti_perfil){
 				</section>";
 
 				$append_lista_ami = '
-				<div class="me-2 my-2 text-center"><a class="perfil" href="/perfil?uti=\'+uti+\'">
+				<div class="me-2 my-2 text-center"><a class="perfil" href="/u/\'+uti+\'">
 					<img class="mx-3 rounded-circle" src="'.$url_media.'fpe/\'+fpe+\'.jpg" width="64"><br>\'+uti+\'
 				</a></div>';
 
@@ -251,7 +251,7 @@ if ($uti_perfil){
 					} else {
 						$campo_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[0]."'"));
 					}
-					echo "<a href='/perfil?uti=".$campo_uti['nut']."' data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mb-2 me-2 rounded-circle' width='32'></a>";
+					echo "<a href='/u/".$campo_uti['nut']."' data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mb-2 me-2 rounded-circle' width='32'></a>";
 				}
 				if ($num_conhecidos>6){
 					echo "<button data-toggle='collapse' data-target='#section_ami' aria-expanded='false' class='badge rounded-pill bg-light text-dark'>+".($num_conhecidos-6)."</button>";
@@ -330,7 +330,7 @@ if ($uti_perfil){
 						} else {
 							$row_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[0]."'"));
 						}
-						echo "<div class='me-2 my-2 text-center'><a class='perfil' href='/perfil?uti=".$row_uti['nut']."'>
+						echo "<div class='me-2 my-2 text-center'><a class='perfil' href='/u/".$row_uti['nut']."'>
 						<img class='mx-3 rounded-circle' src='".$url_media."fpe/".$row_uti['fpe'].".jpg' width='64'><br>".mini_nut($row_uti['nut'])."</a>
 						</div>";
 					}
@@ -370,7 +370,7 @@ if ($uti_perfil){
 		
 		$append_med = '
 		<div class="col p-1 p-sm-2">
-			<a class="text-light ratio ratio-4x3 text-decoration-none" href="/media?id=\'+data.id+\'">
+			<a class="text-light ratio ratio-4x3 text-decoration-none" href="/m/\'+data.id+\'">
 				<div class="bg-rosa contentor_med h-100 rounded-xl d-flex" style="background-image:url(\'+data.thu+\');">
 					<div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
 						<span id="icon_\'+data.id+\'_tip" class="mx-1"></span>

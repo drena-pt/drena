@@ -1,7 +1,7 @@
 <header class='sticky-top bg-dark shadow'>
 	<nav class="px-4 px-xl-0 col-xl-6 offset-xl-3 navbar navbar-dark navbar-expand-sm">
 		<a class="navbar-brand" href="/">
-			<img src="imagens/logo.png" height="32" alt="" loading="lazy">
+			<img src="/imagens/logo.png" height="32" alt="" loading="lazy">
 		</a>
 		<button class="navbar-toggler px-0" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abtir menu">
 			<span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
 					
 					$num_pedidos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM ami WHERE b_id='".$uti["id"]."' AND sim=0"));
 					
-					echo "<li class='nav-item'><a href='/perfil?uti=".$uti['nut']."'><img id='fpe' data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-2 rounded-circle' src='".$url_media."fpe/".$uti['fpe'].".jpg' width='40' height='40'>";
+					echo "<li class='nav-item'><a href='/u/".$uti['nut']."'><img id='fpe' data-toggle='tooltip' data-placement='bottom' title='"._('Perfil')."' class='ms-2 rounded-circle' src='".$url_media."fpe/".$uti['fpe'].".jpg' width='40' height='40'>";
 					#Coloca a bolinha de aviso caso haja pedidos de amizade
 					if ($num_pedidos){
 						echo "<span  class='position-absolute translate-middle-x p-1 bg-primary rounded-circle'>

@@ -148,7 +148,7 @@
 						} else {
 							status.html('"._('Carregamento completo')."');
 							$('#botao_ver_audio').removeAttr('hidden');
-							$('#botao_ver_audio').attr('href', '/media?id='+json.codigo);
+							$('#botao_ver_audio').attr('href', '/m/'+json.codigo);
 						}
 					}
 				});

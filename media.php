@@ -5,7 +5,7 @@ $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET
 
 #Se houver uma sessão iniciada carrega o script da API
 if ($uti){
-	echo "<script src='./js/api.min.js'></script>";
+	echo "<script src='/js/api.min.js'></script>";
 }
 
 function tempoPassado($ptime){
@@ -46,7 +46,7 @@ if ($med){
 	<!-- Tags de motor de pequisa -->
 	<meta property='og:title' content='".$med_tit."'/>
 	<meta property='og:description' content='".$med_uti['nut'].", ".sprintf(_('há %s'),tempoPassado(strtotime($med['den']))).", ".$med['gos']." "._('gostos')."'/>
-	<meta property='og:url' content='".$url_site."media?id=".$med['id']."'/>
+	<meta property='og:url' content='".$url_site."m/".$med['id']."'/>
 	<meta property='og:image' content='".$url_media."thumb/".$med['thu'].".jpg'/>
 
 	<title>".$med_tit." - drena</title>
@@ -456,7 +456,7 @@ if ($med){
 									$('#btn_discordo').show();
 									$('#btn_concordo').show();
 									$('#texto_pedido_mod').html(texto_pedido_mod);
-									$('#url_pedido_mod').attr('href', 'perfil?uti='+result['u_mod_uti']['nut']);
+									$('#url_pedido_mod').attr('href', '/u/'+result['u_mod_uti']['nut']);
 									$('#img_pedido_mod').attr('src', result['u_mod_uti']['fpe']);
 									$('#nut_pedido_mod').html(result['u_mod_uti']['nut']);
 									$('#caixa_pedido_mod').show();
@@ -486,7 +486,7 @@ if ($med){
 							</div>-->
 							<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
-									<a href='/perfil?uti=".$med_uti['nut']."'><img src='".$url_media."fpe/".$med_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
+									<a href='/u/".$med_uti['nut']."'><img src='".$url_media."fpe/".$med_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
 									<span class='justify-content-center align-self-center'>"._('Publicado por')." ".$med_uti['nut']."</span>
@@ -554,7 +554,7 @@ if ($med){
 					</div>
 					<div class='row mb-1'>
 						<div class='col-auto pe-0 text-center'>
-							<a href='/perfil?uti=".$uti['nut']."'><img src='".$url_media."fpe/".$uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
+							<a href='/u/".$uti['nut']."'><img src='".$url_media."fpe/".$uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 						</div>
 						<div class='col d-flex'>
 							<span class='justify-content-center align-self-center'>"._('Comentado por')." ".$uti['nut']."</span>
@@ -679,7 +679,7 @@ if ($med){
 							</div>
 							<div class='row mb-1'>
 								<div class='col-auto pe-0 text-center'>
-									<a href='/perfil?uti=".$com_uti['nut']."'><img src='".$url_media."fpe/".$com_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
+									<a href='/u/".$com_uti['nut']."'><img src='".$url_media."fpe/".$com_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
 									<span class='justify-content-center align-self-center'>"._('Comentado por')." ".$com_uti['nut']."</span>

@@ -20,6 +20,12 @@ Exemplo de site `/etc/nginx/sites-available/exemplo.com`:
         location / {
             try_files $uri $uri/ @extensionless-php;
         }
+        location /u/ {
+            rewrite ^/u/(.*)$ /perfil.php?uti=$1 last;
+        }
+        location /m/ {
+            rewrite ^/m/(.*)$ /media.php?id=$1 last;
+        }
         location @extensionless-php {
             rewrite ^(.*)$ $1.php last;
         }
