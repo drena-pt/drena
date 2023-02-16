@@ -2,7 +2,6 @@
 $sql = "CREATE TABLE med(
 id VARCHAR(16) NOT NULL PRIMARY KEY,
 uti INT NOT NULL,                       #ID do utilizador
-nom VARCHAR(255),                       #Nome do ficheiro quando carregado
 tit VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,  #Título
 tip INT NOT NULL,                       #Tipo (1:video;2:áudio;3:imagem) 
 est INT DEFAULT 0,                      #Estado

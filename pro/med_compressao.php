@@ -29,8 +29,9 @@ if ($med){
             'timeout'          => 36000
         ));
 
-        $med_ext = end(explode(".", $med['nom'])); # Extensão do vídeo
-        $caminho_ori = $dir_media."ori/".$med['id'].".".$med_ext; # Caminho do vídeo original
+        #Obtem o ficheiro original e descobre a extensão
+		$med_file = basename(glob($dir_media."ori/".$med['id']."*")[0]);
+        $caminho_ori = $dir_media."ori/".$med_file; # Caminho do vídeo original
         $caminho_comprimido = $dir_media."comp/".$med['id'].".mp4"; # Caminho do vídeo comprimido
         $caminho_convertido = $dir_media."conv/".$med['id'].".mp4"; # Caminho do vídeo comprimido
 

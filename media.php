@@ -38,7 +38,7 @@ function tempoPassado($ptime){
 }
 
 if ($med){
-	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}															# Definir título
+	$med_tit = $med['tit'];#Definir título
 	$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									# Utilizador dono
 	$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$med["id"]."' AND uti='".$uti['id']."';"));	# Informações do gosto do utilizador logado
 
@@ -54,13 +54,16 @@ if ($med){
 
 	#Se for um vídeo
 	if ($med['tip']==1){
+		$med_file = basename(glob($dir_media."ori/".$med['id']."*")[0]);
+		$med_ori = $url_media."ori/".$med_file;
+
 		echo "<meta property='og:type' content='video' />";
 		if ($med['est']==3){ #Estado 3 (comprimido).
 			echo "<meta property='og:video' content='".$url_media."comp/".$med["id"].".mp4' />";					
 		} else if ($med['est']==5){ #Estado 5 (convertido).
 			echo "<meta property='og:video' content='".$url_media."conv/".$med["id"].".mp4' />";					
 		} else { #Todos os outros estados.
-			echo "<meta property='og:video' content='".$url_media."ori/".$med["id"].".".end(explode(".", $med['nom']))."' />";
+			echo "<meta property='og:video' content='".$med_ori."' />";
 		}
 	}
 }

@@ -4,8 +4,9 @@ $funcoes['requerSessao'] = 0;
 require_once('pro/fun.php');
 
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
-$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));	# Utilizador dono
 if ($med){
+
+	$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));	# Utilizador dono
 
 	# Formatar Bytes
 	function formatSizeUnits($bytes){
@@ -25,8 +26,8 @@ if ($med){
 		return $bytes;
 	}
 
-	if ($med['tit']){$med_tit = $med['tit'];} else {$med_tit = $med['nom'];}	# Definir título
-	if ($_GET['titulo']=='0'){$tem_titulo='//';}								# Se a variavel passada pelo o url "titulo" for 0, comenta o script.
+	$med_tit = $med['tit'];#Definir título
+	if ($_GET['titulo']=='0'){$tem_titulo='//';}# Se a variavel passada pelo o url "titulo" for 0, comenta o script.
 	echo "
 		<head>
 			<title>".$med_tit."</title> 
@@ -68,18 +69,23 @@ if ($med){
 		</head>
 		<body>";
 			if ($med['tip']==1){
+				#Obtem o ficheiro original e descobre a extensão
+				$med_ori = basename(glob($dir_media."ori/".$med['id']."*")[0]);
+				$med_ori_dir = $dir_media."ori/".$med_ori;
+				$med_ori_url = $url_media."ori/".$med_ori;
+
 				echo "
 				<video-js poster='".$url_media."thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-drena js-focus-invisible vjs-16-9' controls preload='auto'>
 					";
 					if ($med['est']=='3'){ # Se o estado for 3 (comprimido).
 						echo "<source src='".$url_media."comp/".$med["id"].".mp4' label='Comprimido <br>".formatSizeUnits(filesize($dir_media."comp/".$med["id"].".mp4"))."' selected='true'>";
-						echo "<source src='".$url_media."ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original <br>".formatSizeUnits(filesize($dir_media."ori/".$med["id"].".".end(explode(".", $med['nom']))))."'>";
+						echo "<source src='".$med_ori_url."' label='Original <br>".formatSizeUnits(filesize($med_ori_dir))."'>";
 					} else {
 						$tem_seletorQualidade='//';
 						if ($med['est']=='5'){ # Se o estado for 5 (convertido).
 							echo "<source src='".$url_media."conv/".$med["id"].".mp4' label='Convertido <br>".formatSizeUnits(filesize($dir_media."conv/".$med["id"].".mp4"))."'>";
 						} else {
-							echo "<source src='".$url_media."ori/".$med["id"].".".end(explode(".", $med['nom']))."' label='Original <br>".formatSizeUnits(filesize($dir_media."ori/".$med["id"].".".end(explode(".", $med['nom']))))."'>";
+							echo "<source src='".$med_ori_url."' label='Original <br>".formatSizeUnits(filesize($med_ori_dir))."'>";
 						}
 					}
 					echo "
@@ -104,6 +110,9 @@ if ($med){
 				</script>
 				";
 			} else if ($med['tip']==2){
+				$med_file = basename(glob($dir_media."som/".$med['id']."*")[0]);
+				$med_som = $url_media."som/".$med_file;
+
 				if ($med['thu']){
 					$audio_botao_play = "<td role='button' class='align-middle text-light' onclick='wavesurfer.playPause()' style=\"background-image:url('".$url_media."thumb/".$med['thu'].".jpg');background-size:cover;\">";
 				} else {
@@ -143,12 +152,15 @@ if ($med){
 						$('#botao').addClass('bi-pause');
 						$('#botao').removeClass('bi-play');
 					});
-					wavesurfer.load('".$url_media."som/".$_GET['id'].".".end(explode(".", $med['nom']))."');
+					wavesurfer.load('".$med_som."');
 				</script>";
 			} else if ($med['tip']==3){
+				$med_file = basename(glob($dir_media."img/".$med['id']."*")[0]);
+				$med_img = $url_media."img/".$med_file;
+
 				echo "
 				<section class='d-flex flex-wrap align-items-center justify-content-center bg-dark h-100'>
-					<img style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='".$url_media."img/".$med['id'].".".end(explode(".", $med['nom']))."'></img>
+					<img style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='".$med_img."'></img>
 				</section>";
 			}
 			echo "

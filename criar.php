@@ -34,11 +34,11 @@
 						background-repeat: no-repeat;
 						transform: rotate(10deg);
 					}
-					#cartao_1:before{background-image: url('node_modules/bootstrap-icons/icons/blockquote-left.svg');}
-					#cartao_2:before{background-image: url('node_modules/bootstrap-icons/icons/camera-reels.svg');}
-					#cartao_3:before{background-image: url('node_modules/bootstrap-icons/icons/camera.svg');}
-					#cartao_4:before{background-image: url('node_modules/bootstrap-icons/icons/volume-up.svg');}
-					#cartao_5:before{background-image: url('node_modules/bootstrap-icons/icons/file-earmark-text.svg');}
+					#cartao_1:before{background-image: url('https://icons.getbootstrap.com/assets/icons/blockquote-left.svg');}
+					#cartao_2:before{background-image: url('https://icons.getbootstrap.com/assets/icons/camera-reels.svg');}
+					#cartao_3:before{background-image: url('https://icons.getbootstrap.com/assets/icons/camera.svg');}
+					#cartao_4:before{background-image: url('https://icons.getbootstrap.com/assets/icons/volume-up.svg');}
+					#cartao_5:before{background-image: url('https://icons.getbootstrap.com/assets/icons/file-earmark-text.svg');}
 				</style>
 
 				<div class='col'><a class='text-decoration-none' href='pro/projeto.php?ac=criar'>

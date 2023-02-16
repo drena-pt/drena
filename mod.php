@@ -54,8 +54,6 @@ function mini_nut($nut){
                     $pesquisa = "SELECT * FROM med WHERE nmo IN (1,3,4)";
                     if ($resultado = $bd->query($pesquisa)) {
                         while ($campo = $resultado->fetch_assoc()){
-                            #Define o título
-                            if ($campo['tit']){$med_tit = $campo['tit'];} else {$med_tit = $campo['nom'];}
 
                             #Define a ação a tomar em texto
                             if ($campo['nmo']==1){
@@ -69,7 +67,7 @@ function mini_nut($nut){
                             echo "
                             <tr>
                                 <th scope='row'><img class='shadow rounded-xl' width='128' src='".$url_media."thumb/".$campo['thu'].".jpg'></th>
-                                <td><a href='/m/".$campo['id']."'>".$med_tit."</a></td>
+                                <td><a href='/m/".$campo['id']."'>".$campo['tit']."</a></td>
                                 <td>";
                                 switch($campo['tip']){
                                     case 1: echo "<i class='bi bi-film text-primary'></i>"; break;

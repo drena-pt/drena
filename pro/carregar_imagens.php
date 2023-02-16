@@ -100,7 +100,7 @@ for($index = 0;$index < $countfiles;$index++){
                $bd->query("INSERT INTO med_thu (id, med) VALUES('".$codigoThumb."', '".$codigo."');");
 
                #Regista a imagem na base de dados
-               $bd->query("INSERT INTO med (id, uti, nom, tit, tip, thu) VALUES('".$codigo."', '".$uti['id']."', '".$nom."', '".$tit."', '3', '".$codigoThumb."');");
+               $bd->query("INSERT INTO med (id, uti, tit, tip, thu) VALUES('".$codigo."', '".$uti['id']."', '".$tit."', '3', '".$codigoThumb."');");
 
                # Adiciona ao Json
                $files_arr[] = array("link"=>$url_site."m/".$codigo,"thumb"=>$url_media."thumb/".$codigoThumb.".jpg","tit"=>$tit);

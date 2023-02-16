@@ -10,8 +10,6 @@ $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_POS
 
 if ($med){ #Se a média existir
 
-    $med_ext = end(explode(".",$med['nom'])); #Extensão do ficheiro
-
     if ($med['uti']==$uti['id']){ #Se for o dono da média
         
         if ($ac=='eliminar'){ #Se a ação for eliminar
@@ -170,11 +168,12 @@ if ($med['est']=='2'){ # Se o estado da média for 2 (processando)
     echo '{"err": "Não podes eliminar a média enquanto está a ser processada."}';
     exit;
 }
-$caminho_ori = $dir_media.'ori/'.$med['id'].'.'.$med_ext;
+
+$caminho_ori = glob($dir_media.'ori/'.$med['id'].'.*')[0];
 unlink($caminho_ori);        #Original
-$caminho_som = $dir_media.'som/'.$med['id'].'.'.$med_ext;
+$caminho_som = glob($dir_media.'som/'.$med['id'].'.*')[0];
 unlink($caminho_som);        #Som
-$caminho_img = $dir_media.'img/'.$med['id'].'.'.$med_ext;
+$caminho_img = glob($dir_media.'img/'.$med['id'].'.*')[0];
 unlink($caminho_img);        #Imagem
 $caminho_comprimido = $dir_media.'comp/'.$med['id'].'.mp4';
 unlink($caminho_comprimido); #Comprimido
