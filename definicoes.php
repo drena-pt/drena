@@ -30,7 +30,7 @@
 
 			</div>
 			<div class="p-xl-5 p-4 bg-light text-dark">
-				<h2 class='pb-3'>Definições</h2>
+				<h2 class='pb-3'><?php echo _('Configurações'); ?></h2>
 
 				
 				<?php
@@ -54,7 +54,7 @@
 
 				echo "
 				<div class='mb-4'>
-					Email<br>
+					"._('Email')."<br>
 					<div class='row'>
 						<div class='col-6 col-sm-4 mr-auto'>
 							<input class='form-control text-dark border-0 disabled' disabled value='".$uti_mai['mai']."'>

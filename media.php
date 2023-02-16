@@ -557,7 +557,7 @@ if ($med){
 							<a href='/u/".$uti['nut']."'><img src='".$url_media."fpe/".$uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 						</div>
 						<div class='col d-flex'>
-							<span class='justify-content-center align-self-center'>"._('Comentado por')." ".$uti['nut']."</span>
+							<span class='justify-content-center align-self-center'>".sprintf(_('Comentado por %s'), $uti['nut'])."</span>
 						</div>
 					</div>
 					<div class='row mb-1'>
@@ -682,7 +682,7 @@ if ($med){
 									<a href='/u/".$com_uti['nut']."'><img src='".$url_media."fpe/".$com_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
 								</div>
 								<div class='col d-flex'>
-									<span class='justify-content-center align-self-center'>"._('Comentado por')." ".$com_uti['nut']."</span>
+									<span class='justify-content-center align-self-center'>".sprintf(_('Comentado por %s'), $com_uti['nut'])."</span>
 								</div>
 							</div>
 							<div class='row mb-1'>

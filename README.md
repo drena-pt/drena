@@ -109,3 +109,11 @@ Alterar as variáveis no php.ini `/etc/php/8.1/fpm/php.ini`:
 Abrir a página no navegador. Substituir `https://exemplo.com/` com o URL do site definido em `$url_site` na página de funções.
 
        https://exemplo.com/pro/tab/INSTALAR.php
+
+### Ativar o GETTEXT para as traduções
+
+Deves instalar o Gettext e verificar a compatibilidade com o PHP
+Também é necessário ativar cada língua.
+Exemplo (para Alemão da Suiça):
+
+        sudo locale-gen de_CH.UTF-8

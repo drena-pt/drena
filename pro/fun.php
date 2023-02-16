@@ -53,9 +53,11 @@ switch (get_browser_language()) {
     case 'it': $locale = "it_IT.UTF-8"; break;
     case 'fr': $locale = "fr_CH.UTF-8"; break;
 }
+putenv("LANG=$locale");
+putenv("LANGUAGE=$locale");
 setlocale(LC_ALL, $locale);
-bindtextdomain("messages", "locale");
 textdomain("messages");
+bindtextdomain("messages", "locale");
 
 # Número para cor
 function numeroParaCor($num){

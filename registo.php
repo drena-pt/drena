@@ -160,7 +160,7 @@
 					</div>
 
 					<div class='form-group text-center'>
-						<button class='text-ciano btn btn-light'>"._("Criar conta")."</button>
+						<button class='text-ciano btn btn-light'>"._("Criar uma conta")."</button>
 					</div>
 				</form>
 			</div>

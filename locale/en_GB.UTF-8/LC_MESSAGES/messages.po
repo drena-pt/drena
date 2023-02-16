@@ -100,6 +100,9 @@ msgstr "Your current email is %s, register your new email here"
 
 #. -------- MAIN --------
 
+msgid "Abrir"
+msgstr "Open"
+
 msgid "Criar"
 msgstr "Create"
 
@@ -156,8 +159,14 @@ msgstr "Change photo"
 msgid "Utilizador desde %s de"
 msgstr "User since %s"
 
-msgid "Lista de conhecidos"
-msgstr "Acquaintances list"
+msgid "Todos os conhecidos"
+msgstr "All acquaintances"
+
+msgid "Conhecidos"
+msgstr "Acquaintances"
+
+msgid "Conhecido"
+msgstr "Acquaintance"
 
 msgid "São conhecidos"
 msgstr "Are acquaintances"
@@ -267,6 +276,9 @@ msgstr "Upload complete"
 
 msgid "Publicado por"
 msgstr "Published by"
+
+msgid "Publicações"
+msgstr "Posts"
 
 msgid "gostos"
 msgstr "likes"
@@ -430,6 +442,9 @@ msgstr "Welcome!"
 msgid "A carregar..."
 msgstr "Uploading..."
 
+msgid "Carregar mais"
+msgstr "Load more"
+
 msgid "Procurar"
 msgstr "Search"
 
@@ -519,7 +534,10 @@ msgstr "Section"
 
 
 
-#. -------- ALBUMS --------
+#. -------- ÁLBUNS --------
+
+msgid "Álbuns"
+msgstr "Albums"
 
 msgid "Adicionar a um álbum"
 msgstr "Add to Album"

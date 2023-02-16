@@ -26,7 +26,7 @@
 					#<li class='nav-item'><a class='nav-link' href='/escritura.php'>"._('Escritura')."</a></li>
 					echo "
 					<li class='nav-item'><a class='nav-link' href='/criar' data-toggle='tooltip' data-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
-					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Definições')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>";
+					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Configurações')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>";
 					
 					$num_pedidos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM ami WHERE b_id='".$uti["id"]."' AND sim=0"));
 					
@@ -48,7 +48,7 @@
 <div class='modal fade' id='modal_procurar' tabindex='-1' role='dialog' aria-labelledby='modal_procurar_label' aria-hidden='true'>
 	<div class='modal-dialog' role='document'>
 		<div class='modal-content bg-primary bg-gradient rounded-xl shadow p-5 text-light'>
-			<form action='procurar' method='get'>
+			<form action='/procurar' method='get'>
 				<div class='modal-header'>
 					<h1 class='modal-title' id='modal_procurar_label'>"._('Procurar')."<br></h1><br>
 				</div>

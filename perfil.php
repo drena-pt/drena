@@ -241,9 +241,9 @@ if ($uti_perfil){
 			if ($num_conhecidos){
 				echo "<div><span id='num_ami'>".$num_conhecidos."</span>";
 				if ($num_conhecidos==1){
-					echo " Conhecido<br>";
+					echo " "._("Conhecido")."<br>";
 				} else {
-					echo " Conhecidos<br>";
+					echo " "._("Conhecidos")."<br>";
 				}
 				while ($row = $poucos_conhecidos->fetch_row()){
 					if ($row[0]==$uti_perfil["id"]){
@@ -287,8 +287,8 @@ if ($uti_perfil){
 						.unbind('mouseenter mouseleave')
 						.removeClass('btn-vermelho').addClass('btn-light'); break;
 					  case '1':
-						text_d = 'São conhecidos <i class=\"bi bi-person-fill-check\"></i>';
-						text_h = 'Remover conhecido <i class=\"bi bi-person-fill-x\"></i>';
+						text_d = '"._('São conhecidos')." <i class=\"bi bi-person-fill-check\"></i>';
+						text_h = '"._('Remover conhecido')." <i class=\"bi bi-person-fill-x\"></i>';
 						$('#btn_ami').html(text_d)
 						.hover(function(){
 							$(this).html(text_h).removeClass('btn-primary').addClass('btn-vermelho');
@@ -296,8 +296,8 @@ if ($uti_perfil){
 							$(this).html(text_d).removeClass('btn-vermelho').addClass('btn-primary');
 						}).removeClass('btn-light').addClass('btn-primary'); break;
 					  case '2':
-						text_d = 'Pedido enviado <i class=\"bi bi-person-fill\"></i>';
-						text_h = 'Cancelar pedido <i class=\"bi bi-person-fill-x\"></i>';
+						text_d = '"._('Pedido enviado')." <i class=\"bi bi-person-fill\"></i>';
+						text_h = '"._('Cancelar pedido')." <i class=\"bi bi-person-fill-x\"></i>';
 						$('#btn_ami').html(text_d)
 						.hover(function(){
 							$(this).html(text_h).removeClass('btn-light').addClass('btn-vermelho');
@@ -305,7 +305,7 @@ if ($uti_perfil){
 							$(this).html(text_d).removeClass('btn-vermelho').addClass('btn-light');
 						}).removeClass('btn-vermelho').addClass('btn-light'); break;
 					  case '3':
-						$('#btn_ami').html('Aceitar pedido <i class=\"bi bi-person-fill-check\"></i>')
+						$('#btn_ami').html('"._('Aceitar pedido')." <i class=\"bi bi-person-fill-check\"></i>')
 						.unbind('mouseenter mouseleave')
 						.addClass('btn-light'); break;
 					}
@@ -321,7 +321,7 @@ if ($uti_perfil){
 			if ($num_conhecidos>6){
 				echo "
 				<section id='section_ami' class='bg-dark collapse'>
-					Todos os conhecidos
+					"._("Todos os conhecidos")."
 					<button type='button' class='btn-close text-light p-0' data-toggle='collapse' data-target='#section_ami' aria-expanded='false'><i class='bi bi-x-lg'></i></button>
 					<div id='lista_ami' class='d-flex flex-wrap'>";
 					while ($row = $todos_conhecidos->fetch_row()){
@@ -352,8 +352,8 @@ if ($uti_perfil){
 			#Mostrar botões de Publicações e Albúns se houver Albúns
 			if ($perfil_num_alb){
 				echo "
-				<button id='btn_ver_med' onclick='ver(\"med\")' class='btn btn-primary m-0 ps-3'><span class='badge rounded-pill mt-1 bg-dark text-light bg-opacity-50'>".$perfil_num_med."</span> Publicações <i class='bi bi-play-btn'></i></button>
-				<button id='btn_ver_alb' onclick='ver(\"alb\")' class='btn btn-light m-0 ps-3'><span class='badge rounded-pill mt-1 bg-dark text-light bg-opacity-50'>".$perfil_num_alb."</span> Albuns <i class='bi bi bi-collection'></i></button>
+				<button id='btn_ver_med' onclick='ver(\"med\")' class='btn btn-primary m-0 ps-3'><span class='badge rounded-pill mt-1 bg-dark text-light bg-opacity-50'>".$perfil_num_med."</span> "._('Publicações')." <i class='bi bi-play-btn'></i></button>
+				<button id='btn_ver_alb' onclick='ver(\"alb\")' class='btn btn-light m-0 ps-3'><span class='badge rounded-pill mt-1 bg-dark text-light bg-opacity-50'>".$perfil_num_alb."</span> "._('Álbuns')." <i class='bi bi bi-collection'></i></button>
 				";
 			}
 			echo"
@@ -361,7 +361,7 @@ if ($uti_perfil){
 			<section id='section_med'>
 				<section id='row_med' class='mx-sm-0 mx-1 mw-sm-100 mw-auto row row-cols-2 row-cols-md-3'></section>
 				<section class='my-4 text-center'>
-					<button id='btn_carregar' onclick='carregar_med()' class='btn btn-light'>Carregar mais <i class='bi bi-plus-lg'></i></button>
+					<button id='btn_carregar' onclick='carregar_med()' class='btn btn-light'>"._("Carregar mais")." <i class='bi bi-plus-lg'></i></button>
 				</section>
 			</section>
 			<section id='section_alb' class='mx-sm-0 mx-1 mw-sm-100 mw-auto mb-3 row row-cols-1 row-cols-md-2' style='display: none;'></section>
