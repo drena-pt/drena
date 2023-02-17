@@ -32,12 +32,10 @@ if ($uti_perfil){
 			echo "
 			<div id='bem_vindo' class='collapse show'>
 				<div class='bg-rosa bg-gradient shadow p-4 p-xl-5 rounded-xl my-4 col-xl-4 col-sm-8 offset-xl-4 offset-sm-2'>
-					<text class='h2'>
-						"._('Bem vindo!')."
-						<button type='button' class='btn close text-light' data-toggle='collapse' href='#bem_vindo' role='button' aria-expanded='false' aria-controls='bem_vindo'>
-							<i class='bi bi-x-square-fill'></i>
-						</button>
-					</text>
+					<div class='d-flex justify-content-between'>
+						<text class='h2'>"._('Bem vindo!')."</text>
+						<button type='button' class='btn-close p-2' data-toggle='collapse' href='#bem_vindo'></button>
+					</div>
 					<p>"._('Obrigado por te registares na drena, fica à vontade para partilhares as tuas coisas.')."</p>
 				</div>
 			</div>
@@ -65,8 +63,8 @@ if ($uti_perfil){
 				<div class='modal-dialog' role='document'>
 					<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
 						<div class='modal-header mb-3'>
-							<h2 class='modal-title' id='modal_fpe_label'>Alterar foto<br></h2><br>
-							<button type='button' class='text-light btn-close' data-dismiss='modal' aria-label='"._('Fechar')."'><i class='bi bi-x-lg'></i></button>
+							<h2 class='modal-title' id='modal_fpe_label'>"._('Alterar foto')."<br></h2><br>
+							<button type='button' class='btn-close p-2' data-dismiss='modal'></button>
 						</div>
 						<div class='modal-body'>
 							";
@@ -322,16 +320,16 @@ if ($uti_perfil){
 				echo "
 				<section id='section_ami' class='bg-dark collapse'>
 					"._("Todos os conhecidos")."
-					<button type='button' class='btn-close text-light p-0' data-toggle='collapse' data-target='#section_ami' aria-expanded='false'><i class='bi bi-x-lg'></i></button>
-					<div id='lista_ami' class='d-flex flex-wrap'>";
+					<button type='button' class='btn-close p-2' data-toggle='collapse' data-target='#section_ami'></button>
+					<section class='row m-0 mw-100 row-cols-4 row-cols-md-6'>";
 					while ($row = $todos_conhecidos->fetch_row()){
 						if ($row[0]==$uti_perfil["id"]){
 							$row_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[1]."'"));
 						} else {
 							$row_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[0]."'"));
 						}
-						echo "<div class='me-2 my-2 text-center'><a class='perfil' href='/u/".$row_uti['nut']."'>
-						<img class='mx-3 rounded-circle' src='".$url_media."fpe/".$row_uti['fpe'].".jpg' width='64'><br>".mini_nut($row_uti['nut'])."</a>
+						echo "<div class='col p-0 my-3 text-center'><a class='perfil' href='/u/".$row_uti['nut']."'>
+						<img class='rounded-circle' src='".$url_media."fpe/".$row_uti['fpe'].".jpg' width='64'><br>".mini_nut($row_uti['nut'])."</a>
 						</div>";
 					}
 					echo "</div>

@@ -55,7 +55,7 @@ if ($alb_uti['id']==$uti['id']){
 						<div class='modal-dialog modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
 							<div class='modal-header mb-3'>
 								<h2 class='modal-title'>Adicionar<br></h2><br>
-								<button type='button' class='text-light btn-close' data-dismiss='modal'><i class='bi bi-x-lg'></i></button>
+								<button type='button' class='btn-close p-2' data-dismiss='modal'></button>
 							</div>
 							<div class='modal-body'>
 								<div class='m-0 row row-cols-3 mw-100'></div>
