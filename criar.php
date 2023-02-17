@@ -41,11 +41,11 @@
 					#cartao_5:before{background-image: url('https://icons.getbootstrap.com/assets/icons/file-earmark-text.svg');}
 				</style>
 
-				<div class='col'><a class='text-decoration-none' href='pro/projeto.php?ac=criar'>
+				<!--<div class='col'><a class='text-decoration-none' href='pro/projeto.php?ac=criar'>
 					<div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
 						<h2>"._('Projeto')."</h2>
 					</div></a>
-				</div>
+				</div>-->
 
 				<div class='col'><a class='text-decoration-none' href='/criar_video'>
 					<div id='cartao_2' class='bg-primary text-light p-xl-5 p-4 mb-4 rounded-xl shadow'>
@@ -63,6 +63,12 @@
 					<div id='cartao_4' class='bg-rosa text-light p-xl-5 p-4 mb-4 rounded-xl shadow'>
 						<h2>"._('Áudio')."</h2>
 					</div></a>
+				</div>
+
+				<div class='col opacity-50'>
+					<div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
+						<h2>"._('Projeto')."</h2>
+					</div>
 				</div>
 
 

@@ -1,4 +1,4 @@
-﻿<?php
+﻿<?php /*
 $funcoes['requerSessao'] = 1;
 require 'fun.php'; #Funções
 
@@ -9,4 +9,4 @@ if (!$_GET['url']){
 }
 
 exit;
-?>
+*/ ?>

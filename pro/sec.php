@@ -1,4 +1,4 @@
-<?php
+<?php /*
 require 'fun.php'; #Funções
 
 # Procura por uma secção e/ou define o projeto.
@@ -88,4 +88,4 @@ if ($pro AND $pro['uti']==$uti['id']){
 }
 
 exit;
-?>
+*/ ?>

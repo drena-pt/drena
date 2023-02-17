@@ -1,4 +1,4 @@
-﻿<?php
+﻿<?php /*
 require 'fun.php'; #Funções
 $ac = $_GET['ac']; #Ação
 
@@ -66,4 +66,4 @@ if ($ac=='criar'){
 	}
 }
 exit;
-?>
+*/ ?>
