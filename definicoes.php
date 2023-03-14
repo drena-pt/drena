@@ -72,7 +72,7 @@
 							<input class='form-control text-dark border-0 disabled' disabled value='••••••••••••'>
 							
 						</div>
-						<div class='col-auto p-0'><a href='/entrar?ac=alterarPasse&uti=".$uti['nut']."&cod=".$uti_mai['cod']."' role='button' class='btn btn-dark'>"._('Alterar')."</a></div>
+						<div class='col-auto p-0'><a href='/entrar?ac=alterarPasse' role='button' class='btn btn-dark'>"._('Alterar')."</a></div>
 					</div>
 				</div>
 

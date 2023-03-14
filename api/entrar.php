@@ -1,13 +1,10 @@
 ﻿<?php
 #API - Entrar (Login)
-#Composer
+#Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
+$api_noauth=true; #Não é obrigatório autenticação
+include_once('validar.php');
+#JWT
 use Firebase\JWT\JWT;
-require_once('../vendor/autoload.php');
-#Headers
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json; charset=utf-8');
-#Base de dados
-require_once('bd.php');
 
 #Torna os inputs em variáveis
 $nut = $_POST["nut"];
@@ -25,21 +22,9 @@ if ($nut){
 
 	if(password_verify($ppa, $uti['ppa'])){
 
+		session_destroy();#Destroi a sessão para evitar que haja uma sessão Pre Utilizador
 		session_start();
 		$uti_mai = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id='".$uti['mai']."'"));
-
-		#Se o mail não foi confirmado:
-		if ($uti_mai['con']==0){
-			#Inicia sessão pre-utilizador sem mail confirmado.
-			$_SESSION["pre_uti"] = $nut;
-			$bd->query("UPDATE uti_mai SET ree=1 WHERE id='".$uti_mai['id']."'");
-			echo '{"est":"registo"}';
-			exit;
-		}
-		
-		#Se o mail está confirmado:
-		#Inicia sessão do utilizador.
-		$_SESSION["uti"] = $uti['nut'];
 
 		#Cria o Token JWT
 		$jwt_date      = new DateTimeImmutable();
@@ -55,9 +40,21 @@ if ($nut){
 			$api_key, #Obtem das variáveis
 			'HS512'
 		);
-		setcookie('drena_token', $token, $jwt_expire_at, '/');
+		setcookie('drena_token', $token, $jwt_expire_at, '/', '.'.$url_dominio);
 
-		echo '{"est":"sucesso","token":"'.$token.'"}';
+		#Se o mail não foi confirmado:
+		if ($uti_mai['con']==0){
+			#Inicia sessão pre-utilizador sem mail confirmado.
+			$_SESSION["pre_uti"] = $nut;
+			$bd->query("UPDATE uti_mai SET ree=1 WHERE id='".$uti_mai['id']."'");
+			echo '{"est":"registo"}';
+
+		#Se o mail está confirmado:
+		} else {
+			#Inicia sessão do utilizador.
+			$_SESSION["uti"] = $uti['nut'];
+			echo '{"est":"sucesso"}';
+		}
 		exit;
 
 	} else {
@@ -70,7 +67,7 @@ if ($nut){
 	$erro_nut=1;
 }
 
-#Se houver erros, volta para a página com um cookie dos erros.
+#ERROS
 erros:
 $erros = array(
 	"nut" => $erro_nut,
