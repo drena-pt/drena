@@ -2,12 +2,12 @@
 #Composer
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-require_once('../vendor/autoload.php');
+require_once(__DIR__.'/../vendor/autoload.php');
 #Headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
 #Base de dados
-require_once('bd.php');
+require_once(__DIR__.'/bd.php');
 #Token JWT
 $jwt = $_SERVER['HTTP_AUTHORIZATION'];
 
@@ -16,9 +16,15 @@ if ($api_noauth and (!$jwt or $jwt=='undefined')){
     #Não acontece nada, pois não há um token
 } else { #O token é obrigatório
     if (!$jwt or $jwt=='undefined'){
-        header('HTTP/1.0 400 Bad Request'); exit;
+        header('HTTP/1.1 401 Unauthorized'); exit;
     }
-    $token = JWT::decode($jwt, new Key($api_key, 'HS512'));
+    
+    try {
+        $token = JWT::decode($jwt, new Key($api_key, 'HS512'));
+    } catch (Exception $e) {
+        header('HTTP/1.1 401 Unauthorized'); exit;
+    }
+
     #Verifica se é válido
     $now = new DateTimeImmutable();
     if ($token->iss !== $url_dominio ||

@@ -11,7 +11,7 @@
 		require('cabeçalho.php');
 		echo "
 		<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
-			<h1>Escritura</h1>
+			<text><span class='h1 fw-bold'>Escritura </span><span class='badge rounded-pill bg-white text-dark'>Beta</span></text>
 			<section class='text-start'>
 				<button class='btn btn-dark text-light' data-toggle='collapse' data-target='#collapseExample' aria-expanded='true' aria-controls='collapseExample'>
 				Criar novo roteiro <i class='bi bi-plus-circle'></i>
