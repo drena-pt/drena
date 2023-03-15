@@ -53,7 +53,7 @@ if ($nut){
 		} else {
 			#Inicia sessão do utilizador.
 			$_SESSION["uti"] = $uti['nut'];
-			echo '{"est":"sucesso"}';
+			echo '{"est":"sucesso","token":"'.$token.'"}';
 		}
 		exit;
 
