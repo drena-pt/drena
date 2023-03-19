@@ -4,7 +4,6 @@
 $api_noauth=true; #Não é obrigatório autenticação
 require_once('validar.php');
 
-#Carregar publicações do perfil
 if ($_POST["uti"]){
 
     #Informações do perfil
