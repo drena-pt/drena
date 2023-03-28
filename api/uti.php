@@ -7,7 +7,7 @@ require_once('validar.php');
 if ($_POST["uti"]){
 
     #Informações do perfil
-    $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut='".$_POST["uti"]."'"));
+    $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT id, nut, nco, fpe FROM uti WHERE nut='".$_POST["uti"]."'"));
     if (!$uti_perfil){
         echo '{"err": "Utilizador não encontrado."}';
         header('HTTP/1.1 400 Bad Request'); exit;
@@ -17,16 +17,29 @@ if ($_POST["uti"]){
         header('HTTP/1.1 400 Bad Request'); exit;
     } */
 
-    unset($uti_perfil['id']);
-    unset($uti_perfil['ppa']);
-    unset($uti_perfil['mai']);
-    unset($uti_perfil['rno']);
-    unset($uti_perfil['ati']);
-    unset($uti_perfil['car']);
     $uti_perfil['fpe'] = $url_media.'fpe/'.$uti_perfil['fpe'].'.jpg';
 
     #Renderiza o output em json
     echo json_encode($uti_perfil);
+
+
+} else if ($_POST["utis"]){
+
+    $lista_utis = json_decode(html_entity_decode($_POST["utis"]), true);
+    $array_utis = array();
+
+    foreach ($lista_utis as $utis) {
+        #Informações do perfil
+        $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT id, nut, nco, fpe FROM uti WHERE nut='".$utis."'"));
+        if ($uti_perfil){
+            $uti_perfil['fpe'] = $url_media.'fpe/'.$uti_perfil['fpe'].'.jpg';
+            $array_utis[] = $uti_perfil;
+        }
+    }
+
+    #Renderiza o output em json
+    echo json_encode($array_utis);
+
 
 #Pedido inválido
 } else {
