@@ -7,7 +7,7 @@ require_once('validar.php');
 if ($_POST["uti"]){
 
     #Informações do perfil
-    $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT id, nut, nco, fpe FROM uti WHERE nut='".$_POST["uti"]."'"));
+    $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT nut, nco, fpe, dcr FROM uti WHERE nut='".$_POST["uti"]."'"));
     if (!$uti_perfil){
         echo '{"err": "Utilizador não encontrado."}';
         header('HTTP/1.1 400 Bad Request'); exit;
@@ -30,7 +30,7 @@ if ($_POST["uti"]){
 
     foreach ($lista_utis as $utis) {
         #Informações do perfil
-        $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT id, nut, nco, fpe FROM uti WHERE nut='".$utis."'"));
+        $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT nut, nco, fpe, dcr FROM uti WHERE nut='".$utis."'"));
         if ($uti_perfil){
             $uti_perfil['fpe'] = $url_media.'fpe/'.$uti_perfil['fpe'].'.jpg';
             $array_utis[] = $uti_perfil;
