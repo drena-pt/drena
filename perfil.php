@@ -46,10 +46,10 @@ if ($uti_perfil){
 		echo "
 		<div class='shadow p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
 			<div class='bg-primary bg-cover text-light p-xl-5 p-4 caixa-perfil-foto'>";
-		
+
 		if ($uti_perfil['id']==$uti['id']){
 			echo "
-			<button data-toggle='modal' data-target='#modal_fpe' class='btn btn-light float-end'>
+			<button data-toggle='modal' data-target='#modal_fpe' class='btn btn-light float-end ms-2'>
 				<span id='fpe_carregar'>
 					"._('Alterar foto')." <i class='bi bi-image'></i>
 				</span>
@@ -139,6 +139,16 @@ if ($uti_perfil){
 			</script>
 			";
 		}
+
+		#INICIO - Emblema
+		if ($uti_perfil['car']==1){
+			echo "<span class='badge bg-rosa float-end'><i class='bi bi-shield-check'></i><small>Administrador </small></span>";
+		} else if ($uti_perfil['car']==2){
+			echo "<span class='badge bg-ciano float-end'><i class='bi bi-shield-check'></i><small>Moderador </small></span>";
+		} else if ($uti_perfil['car']==3){
+			echo "<span class='badge bg-amarelo float-end'><i class='bi bi-shield-check'></i><small>Segurança </small></span>";
+		}
+		#FIM - Emblema
 		
 		echo "<h1 style='font-size:calc(2.2rem + 1.4vw);'>".$uti_perfil['nut']."</h1>
 		<text class='h2'>".$uti_perfil['nco']."</text>";
