@@ -3,7 +3,7 @@
 		<a class="navbar-brand" href="/">
 			<img src="/imagens/logo.png" height="32" alt="" loading="lazy">
 		</a>
-		<button class="navbar-toggler px-0" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abtir menu">
+		<button class="navbar-toggler px-0" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<?php
@@ -25,6 +25,7 @@
 					#Botão para a futura escritura
 					#<li class='nav-item'><a class='nav-link' href='/escritura.php'>"._('Escritura')."</a></li>
 					echo "
+					<li class='nav-item'><a class='nav-link' href='https://conversa.drena.pt' data-toggle='tooltip' data-placement='bottom' title='"._('Conversas')."'><span class='d-sm-none'>"._('Conversas')." </span><i class='bi bi-chat-left-text'></i></a></span></li>
 					<li class='nav-item'><a class='nav-link' href='/criar' data-toggle='tooltip' data-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
 					<li class='nav-item'><a class='nav-link' href='/definicoes' data-toggle='tooltip' data-placement='bottom' title='"._('Configurações')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>";
 					

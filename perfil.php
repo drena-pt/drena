@@ -148,6 +148,9 @@ if ($uti_perfil){
 		} else if ($uti_perfil['car']==3){
 			echo "<span class='badge bg-amarelo float-end'><i class='bi bi-shield-check'></i><small>Segurança </small></span>";
 		}
+		if ($uti_perfil['id']==100){ #Emblema de utilizador número 100 para o Eemeli
+			echo "<span style='background-color:#ffe85a;' class='badge text-dark float-end'><small>Nº100</small></span>";
+		}
 		#FIM - Emblema
 		
 		echo "<h1 style='font-size:calc(2.2rem + 1.4vw);'>".$uti_perfil['nut']."</h1>
