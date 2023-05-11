@@ -86,13 +86,18 @@ Alterar as variáveis no php.ini `/etc/php/8.1/fpm/php.ini`:
     $bd_pw='password';
     $bd_db='database';
     #URL's
-    $url_site   ='https://exemplo.com/';
-    $url_media  ='https://media.exemplo.com/';
+    $url_dominio='exemplo.com';
+    $url_site   ='https://'.$url_dominio.'/';
+    $url_media  ='https://media.'.$url_dominio.'/';
     #Diretórios
     $dir_site   ='/home/user/drena/pasta/';
     $dir_media  ='/home/user/drena/pasta_media/';
     #API
-    $api_key    ='RandomKey';
+    $api_key    ='secret_random_key';
+    #Email
+    $ema_host   ='exemplo.com';
+    $ema_user   ='mail@exemplo.com';
+    $ema_psswd  ='password';
     ```
 
 4. Cria as pastas necessárias para armazenar a média.

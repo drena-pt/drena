@@ -15,14 +15,14 @@ function email($mail_address, $mail_subject, $mail_body){
 	$mail = new PHPMailer(true);
 	try {
 		$mail->isSMTP();
-		$mail->Host       = 'box.altadrena.com';
+		$mail->Host       = $ema_host;
 		$mail->SMTPAuth   = true;
-		$mail->Username   = 'auto@drena.pt';
-		$mail->Password   = 'N5ponx5t56A2';
+		$mail->Username   = $ema_host;
+		$mail->Password   = $ema_psswd;
 		$mail->Port       = 587;
 		$mail->CharSet    = 'UTF-8';
 		$mail->Encoding   = 'base64';
-		$mail->setFrom('auto@drena.pt', 'drena');
+		$mail->setFrom($ema_host, 'drena');
 		$mail->addAddress($mail_address);
 		$mail->isHTML(true);
 		$mail->Subject    = $mail_subject;

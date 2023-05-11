@@ -13,4 +13,8 @@ $dir_site   ='/home/user/drena/pasta/';
 $dir_media  ='/home/user/drena/pasta_media/';
 #API
 $api_key    ='secret_random_key';
+#Email
+$ema_host   ='exemplo.com';
+$ema_user   ='mail@exemplo.com';
+$ema_psswd  ='password';
 ?>
