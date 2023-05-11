@@ -12,6 +12,9 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 function email($mail_address, $mail_subject, $mail_body){
+	global $ema_host;
+	global $ema_user;
+	global $ema_psswd;
 	$mail = new PHPMailer(true);
 	try {
 		$mail->isSMTP();
