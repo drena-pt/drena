@@ -17,12 +17,12 @@ function email($mail_address, $mail_subject, $mail_body){
 		$mail->isSMTP();
 		$mail->Host       = $ema_host;
 		$mail->SMTPAuth   = true;
-		$mail->Username   = $ema_host;
+		$mail->Username   = $ema_user;
 		$mail->Password   = $ema_psswd;
 		$mail->Port       = 587;
 		$mail->CharSet    = 'UTF-8';
 		$mail->Encoding   = 'base64';
-		$mail->setFrom($ema_host, 'drena');
+		$mail->setFrom($ema_user, 'drena');
 		$mail->addAddress($mail_address);
 		$mail->isHTML(true);
 		$mail->Subject    = $mail_subject;
