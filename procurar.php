@@ -47,7 +47,7 @@ if (!$oq){
 
     echo "
     <div class='bg-primary bg-gradient d-flex align-items-center text-center justify-content-center p-5'>
-		<h1 class='display-3'>".$num_total." resultados:<span class='h2'><br>\"".$oq."\"</span></h1>
+		<h1 class='display-3'>".$num_total." "._('resultados').":<span class='h2'><br>\"".$oq."\"</span></h1>
     </div>
     
     <div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
@@ -108,7 +108,7 @@ if (!$oq){
         echo "</section>";
     }
 
-    if (mysqli_num_rows($resultado = $bd->query($pesquisa_pro))) {
+    /* if (mysqli_num_rows($resultado = $bd->query($pesquisa_pro))) {
 
         echo "
         <h2 class='pt-xl-5 pt-4 px-xl-0 px-3'>"._('Projetos')."</h2>
@@ -126,7 +126,7 @@ if (!$oq){
         $resultado->free();
         
         echo "</div>";
-    }
+    } */
 
     echo "</section>";
 	?>

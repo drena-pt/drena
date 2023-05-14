@@ -82,14 +82,14 @@
 					<div class='form-check form-switch'>
 						<input type='checkbox' role='switch' class='form-check-input' ".$uti_rno." id='switch_not_uti'>
 						<label class='form-check-label' for='switch_not_uti'>
-						Receber notificações
+						"._('Receber notificações')."
 						</label>
 					</div>
 
 					<div class='form-check form-switch'>
                         <input type='checkbox' role='switch' class='form-check-input' id='switch_not_sub'>
                         <label class='form-check-label' for='switch_not_sub'>
-						Notificações subscritas neste dispositivo
+						"._('Notificações subscritas neste dispositivo')."
 						</label>
                     </div>
 				</div>
@@ -99,18 +99,18 @@
 				?>
 				<script>
 				function Not_denied(){
-					$('#info_not').html('<span><i class="bi bi-exclamation-triangle-fill"></i> As notificações estão bloqueadas, ative nas definições do Browser</span>');
+					$('#info_not').html('<span><i class="bi bi-exclamation-triangle-fill"></i> <?php echo _('As notificações estão bloqueadas, ative nas definições do Browser'); ?></span>');
 					$('#info_not').addClass('alert-vermelho');
 					$('#info_not').removeClass('alert-dark');
 				}
 
 				function Not_default(){
-					$('#info_not').html('<span><i class="bi bi-info-circle-fill"></i> As notificações estão inativas neste Browser</span>');
+					$('#info_not').html('<span><i class="bi bi-info-circle-fill"></i> <?php echo _('As notificações estão inativas neste Browser'); ?></span>');
 					$('#info_not').addClass('alert-dark');
 				}
 
 				function Not_granted(){
-					$('#info_not').html('<span><i class="bi bi-check-circle-fill"></i> As notificações estão ativas neste Browser</span>');
+					$('#info_not').html('<span><i class="bi bi-check-circle-fill"></i> <?php echo _('As notificações estão ativas neste Browser'); ?></span>');
 					$('#info_not').addClass('alert-primary');
 					$('#info_not').removeClass('alert-dark');
 					//Obtem se está subscrito ou não

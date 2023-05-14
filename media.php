@@ -319,7 +319,7 @@ if ($med){
 										</div>
 										<div class='modal-footer text-end'>
 											<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
-											<button id='eliminar_med' type='button' class='btn btn-vermelho text-light'>Eliminar</a>
+											<button id='eliminar_med' type='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
 										</div>
 									</div>
 								</div>

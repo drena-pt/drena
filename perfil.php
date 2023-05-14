@@ -212,7 +212,7 @@ if ($uti_perfil){
 								<a class='perfil' href='/u/".$uti_a['nut']."'>
 								<img class='rounded-circle me-2' src='".$url_media."fpe/".$uti_a['fpe'].".jpg' width='64'>
 								".$uti_a['nut']."</a>
-								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-light ms-auto m-0 me-2'>Aceitar <i class='bi bi-person-check'></i></button>
+								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-light ms-auto m-0 me-2'>"._('Aceitar pedido')." <i class='bi bi-person-check'></i></button>
 							</div>
 						</div>";
 					}
@@ -269,9 +269,9 @@ if ($uti_perfil){
 				}
 				echo "</div>";
 			} else {
-				echo "Ainda não tem conhecidos";
+				echo _("Ainda não tem conhecidos");
 				if ($uti['id']==$uti_perfil['id']){ #Mostrar o botão de procurar caso seja o próprio utilizador
-					echo "<button class='m-0 btn btn-primary' data-toggle='modal' data-target='#modal_procurar'>Procurar utilizadores <i class='bi bi-person-plus-fill'></i></button>";
+					echo "<button class='m-0 btn btn-primary' data-toggle='modal' data-target='#modal_procurar'>"._("Procurar utilizadores")." <i class='bi bi-person-plus-fill'></i></button>";
 				}
 			}
 
@@ -294,7 +294,7 @@ if ($uti_perfil){
 				function btn_ami(){
 					switch(ami){
 					  case '0':
-						$('#btn_ami').html('Adicionar conhecido <i class=\"bi bi-person-add\"></i>')
+						$('#btn_ami').html('"._('Adicionar conhecido')." <i class=\"bi bi-person-add\"></i>')
 						.unbind('mouseenter mouseleave')
 						.removeClass('btn-vermelho').addClass('btn-light'); break;
 					  case '1':

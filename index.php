@@ -83,7 +83,7 @@ if ($uti){
                 }
             } else {
                 echo "<div class='my-4'>
-                <h2>Ainda não tens conhecidos</h2>
+                <h2>"._('Ainda não tens conhecidos')."</h2>
                 <span data-toggle='modal' data-target='#modal_procurar'><button class='btn btn-primary'>"._('Procurar')."<i class='bi bi-search'></i></button></span>
                 </div>";
             }
@@ -93,12 +93,12 @@ if ($uti){
                 if ($conhecidos){
                     if ($_GET['feed']=='global'){
                         $api_link = $url_site."api/feed.php?uti=".$uti['id']."&tip=global";
-                        echo "<a href='/' class='btn btn-light' role='button'>Feed <i class='bi bi-view-stacked'></i></a>
-                        <a class='btn btn-primary' role='button'>Feed global <i class='bi bi-globe'></i></a>";
+                        echo "<a href='/' class='btn btn-light' role='button'>"._('Feed')." <i class='bi bi-view-stacked'></i></a>
+                        <a class='btn btn-primary' role='button'>"._('Feed global')." <i class='bi bi-globe'></i></a>";
                     } else {
                         $api_link = $url_site."api/feed.php?uti=".$uti['id'];
-                        echo "<a class='btn btn-primary' role='button'>Feed <i class='bi bi-view-stacked'></i></a>
-                        <a href='/?feed=global' class='btn btn-light' role='button'>Feed global <i class='bi bi-globe'></i></a>";
+                        echo "<a class='btn btn-primary' role='button'>"._('Feed')." <i class='bi bi-view-stacked'></i></a>
+                        <a href='/?feed=global' class='btn btn-light' role='button'>"._('Feed global')." <i class='bi bi-globe'></i></a>";
                     }
                 } else {
                     $api_link = $url_site."/api/feed.php?tip=global";
