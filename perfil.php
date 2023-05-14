@@ -212,7 +212,7 @@ if ($uti_perfil){
 								<a class='perfil' href='/u/".$uti_a['nut']."'>
 								<img class='rounded-circle me-2' src='".$url_media."fpe/".$uti_a['fpe'].".jpg' width='64'>
 								".$uti_a['nut']."</a>
-								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-light ms-auto m-0 me-2'>Aceitar <i class='bi bi-person-fill-check'></i></button>
+								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-light ms-auto m-0 me-2'>Aceitar <i class='bi bi-person-check'></i></button>
 							</div>
 						</div>";
 					}
@@ -294,12 +294,12 @@ if ($uti_perfil){
 				function btn_ami(){
 					switch(ami){
 					  case '0':
-						$('#btn_ami').html('Adicionar conhecido <i class=\"bi bi-person-fill-add\"></i>')
+						$('#btn_ami').html('Adicionar conhecido <i class=\"bi bi-person-add\"></i>')
 						.unbind('mouseenter mouseleave')
 						.removeClass('btn-vermelho').addClass('btn-light'); break;
 					  case '1':
-						text_d = '"._('São conhecidos')." <i class=\"bi bi-person-fill-check\"></i>';
-						text_h = '"._('Remover conhecido')." <i class=\"bi bi-person-fill-x\"></i>';
+						text_d = '"._('São conhecidos')." <i class=\"bi bi-person-check\"></i>';
+						text_h = '"._('Remover conhecido')." <i class=\"bi bi-person-x\"></i>';
 						$('#btn_ami').html(text_d)
 						.hover(function(){
 							$(this).html(text_h).removeClass('btn-primary').addClass('btn-vermelho');
@@ -307,8 +307,8 @@ if ($uti_perfil){
 							$(this).html(text_d).removeClass('btn-vermelho').addClass('btn-primary');
 						}).removeClass('btn-light').addClass('btn-primary'); break;
 					  case '2':
-						text_d = '"._('Pedido enviado')." <i class=\"bi bi-person-fill\"></i>';
-						text_h = '"._('Cancelar pedido')." <i class=\"bi bi-person-fill-x\"></i>';
+						text_d = '"._('Pedido enviado')." <i class=\"bi bi-person\"></i>';
+						text_h = '"._('Cancelar pedido')." <i class=\"bi bi-person-x\"></i>';
 						$('#btn_ami').html(text_d)
 						.hover(function(){
 							$(this).html(text_h).removeClass('btn-light').addClass('btn-vermelho');
@@ -316,7 +316,7 @@ if ($uti_perfil){
 							$(this).html(text_d).removeClass('btn-vermelho').addClass('btn-light');
 						}).removeClass('btn-vermelho').addClass('btn-light'); break;
 					  case '3':
-						$('#btn_ami').html('"._('Aceitar pedido')." <i class=\"bi bi-person-fill-check\"></i>')
+						$('#btn_ami').html('"._('Aceitar pedido')." <i class=\"bi bi-person-check\"></i>')
 						.unbind('mouseenter mouseleave')
 						.addClass('btn-light'); break;
 					}

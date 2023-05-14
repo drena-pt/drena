@@ -1,5 +1,5 @@
 ﻿<?php
-#API - Entrar (Login)
+#API / PHP APP - Entrar (Login)
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
 $api_noauth=true; #Não é obrigatório autenticação
 include_once('validar.php');

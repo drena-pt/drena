@@ -1,6 +1,8 @@
 ﻿<?php
 #API - Subscrever nas notificações
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
+$bd_convert=false; #Não converte caracteres especiais
+#(Isto é necessário pois é necessário armazenar JSONs com caracteres especiais na base de dados)
 require_once('validar.php');
 
 $ac = $_POST['ac']; #Ação

@@ -2,8 +2,6 @@
 #API - Pedidos de amizade
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
 require_once('validar.php');
-#Função de Notificações
-require('../pro/not.php');
 
 /* error_reporting(E_ALL);
 ini_set('display_errors', 'On'); */
@@ -46,6 +44,7 @@ if ($ac=='ob'){ #Se a ação for apenas obter o resultado atual
 } else {
 	switch ($est){
 		case 0: #Adicionar conhecido
+			require('../pro/not.php'); #Função de Notificações
 			$bd->query("INSERT INTO ami (a_id, b_id) VALUES ('".$uti['id']."', '".$uti_b['id']."')");
 			notificacao($uti['id'],$uti_b['id'],'ami_pedido');
 			$est = 2;
@@ -56,6 +55,7 @@ if ($ac=='ob'){ #Se a ação for apenas obter o resultado atual
 			$est = 0;
 			break;
 		case 3: #Aceitar pedido
+			require('../pro/not.php'); #Função de Notificações
 			$bd->query("UPDATE ami SET sim='1', b_dat='".date("Y-m-d H:i:s")."' WHERE id='".$ami_uti_b['id']."'"); #Aceitar amizade.
 			notificacao($uti['id'],$uti_b['id'],'ami_aceite');
 			$est = 1;
