@@ -60,7 +60,7 @@ Alterar as variáveis no php.ini `/etc/php/8.1/fpm/php.ini`:
 
 1. Obtem o código. O nome da `pasta` é alterável:
 
-       git clone https://git.nadaradical.com/guilhae/drena.pt.git pasta
+       git clone https://github.com/guilhae/drena.git pasta
        cd pasta
 
 2. Instalar as dependências do `nodejs` e `composer`:

@@ -1,7 +1,7 @@
 {
   "name": "drena.pt",
-  "version": "1.0.1",
-  "description": "Rede social drena",
+  "version": "2.0.1",
+  "description": "A melhor rede social",
   "author": "Guilherme Albuquerque",
   "license": "MIT",
   "dependencies": {

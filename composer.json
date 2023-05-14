@@ -3,6 +3,6 @@
         "phpmailer/phpmailer": "^6.2",
         "php-ffmpeg/php-ffmpeg": "^0.17.0",
         "firebase/php-jwt": "^6.3",
-        "minishlink/web-push": "^7.0"
+        "minishlink/web-push": "^8.0"
     }
 }
