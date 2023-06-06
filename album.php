@@ -166,7 +166,8 @@ if ($alb_uti['id']==$uti['id']){
 			#INICIO - Secção médias no albúm
 			$append_med = '
 			<div id="med_\'+data.id+\'" class="col p-1 p-sm-2">
-				<a id="a_med_\'+data.id+\'" class="text-light ratio ratio-4x3 text-decoration-none" href="/m/\'+data.id+\'">
+			<div class="ratio ratio-4x3">
+				<a id="a_med_\'+data.id+\'" class="text-light text-decoration-none" href="/m/\'+data.id+\'">
 					<div class="bg-rosa contentor_med rounded-xl d-flex" style="background-image:url(\'+data.thu+\');">
 						<div onclick="med_alb(`\'+data.id+\'`)" class="efeito_remover d-none rounded-xl d-flex align-items-center text-center position-absolute h-100 w-100 bg-dark bg-opacity-50">
 							<i role="button" class="bi bi-x-circle-fill h2 text-light container h-25"></i>
@@ -177,6 +178,7 @@ if ($alb_uti['id']==$uti['id']){
 						</div>
 					</div>
 				</a>
+				</div>
 			</div>';
 
 			echo "

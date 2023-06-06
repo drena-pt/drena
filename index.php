@@ -48,7 +48,8 @@ if ($uti){
                         }
                         echo '
                         <div class="col p-1 p-sm-2">
-                        <a class="text-light ratio ratio-4x3 text-decoration-none" href="/m/'.$campo['id'].'">
+			            <div class="ratio ratio-4x3">
+                        <a class="text-light text-decoration-none" href="/m/'.$campo['id'].'">
                             <div class="bg-rosa contentor_med h-100 rounded-xl d-flex" style="background-image:url('.$url_media.'thumb/'.$campo['thu'].'.jpg);">
                                 <div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
                                     <span class="mx-1 text-'.$tip_cor.'"><i class="bi bi-'.$tip_icon.'"></i></span>
@@ -56,6 +57,7 @@ if ($uti){
                                 </div>
                             </div>
                         </a>
+                        </div>
                         </div>';
                     } 
                     $resultado->free();

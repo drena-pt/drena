@@ -9,6 +9,19 @@
 	<body>
 		<?php require('cabeçalho.php'); ?>
 		<?php
+		$append_med = "
+		<div class='col p-1 p-sm-2'><div class='ratio ratio-4x3'>
+			<a class='text-light text-decoration-none' href='\"+link+\"'>
+				<div class='bg-rosa contentor_med h-100 rounded-xl d-flex' style='background-image:url(\"+thumb+\");'>
+					<div class='rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2'>
+						<span class='mx-1 text-ciano'><i class='bi bi-image'></i></span>
+						<span class='overflow-hidden'>\"+tit+\"</span>
+					</div>
+				</div>
+			</a>
+		</div></div>
+		";
+		
 		echo "
 		<div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
 			<div class='shadow p-0 my-0 mb-xl-4'>
@@ -71,7 +84,7 @@
 									if (erro){
 										$('#preview').prepend(\"<div class='col mb-4 contentor'><div class='rounded-xl'><img class='shadow rounded-xl w-100' src='imagens/thumb_imagem.jpg'><div class='texto-contentor h6'>\"+erro+\"</div></div></div>\");
 									} else {
-										$('#preview').prepend(\"<div class='col mb-4 contentor'><a class='text-light' href='\"+link+\"'><div class='rounded-xl inset-shadow'><img class='shadow rounded-xl w-100' src='\"+thumb+\"'><div class='texto-contentor-bottom h6'>\"+tit+\"</div></div></a></div>\");
+										$('#preview').prepend(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
 									}
 								}
 							}
