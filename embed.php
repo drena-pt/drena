@@ -43,7 +43,7 @@ if ($med){
 			<meta property='og:image' content='".$url_media."thumb/".$med["thu"].".jpg' />
 	
 			<!-- Wavesurfer -->
-			<script src='https://unpkg.com/wavesurfer.js'></script>
+			<script src='https://unpkg.com/wavesurfer.js@6.2.0/dist/wavesurfer.min.js'></script>
 	
 			<!-- VideoJS -->
 			<link href='node_modules/video.js/dist/video-js.css' rel='stylesheet'/>
@@ -133,7 +133,7 @@ if ($med){
 				</table>
 				<script>
 					var wavesurfer = WaveSurfer.create({
-						container: document.querySelector('#waveform'),
+						container: '#waveform',
 						waveColor: '#333',
 						progressColor: '#ff4fff',
 						cursorColor: '#ff4fff',
@@ -152,7 +152,16 @@ if ($med){
 						$('#botao').addClass('bi-pause');
 						$('#botao').removeClass('bi-play');
 					});
-					wavesurfer.load('".$med_som."');
+					wavesurfer.load('".$med_som."')
+					
+					wavesurfer.on('ready',(e)=>{
+						console.debug('READY')
+					})
+					
+					window.addEventListener('resize', () => {
+						wavesurfer.drawer.containerWidth = wavesurfer.drawer.container.clientWidth;
+						wavesurfer.drawBuffer();
+					});
 				</script>";
 			} else if ($med['tip']==3){
 				$med_file = basename(glob($dir_media."img/".$med['id']."*")[0]);
