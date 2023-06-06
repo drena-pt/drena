@@ -602,17 +602,15 @@ if ($med){
 				});
 
 				function gosto(){
-					var gostos = +$('#texto_gostos').text();
 					result = api('med_gos',{'med':'".$med['id']."'});
-					if (result['gos']=='false'){
-						$('#botao_gosto').attr('hidden', true);
-						$('#botao_naogosto').removeAttr('hidden');
-						$('#texto_gostos').text(gostos-1);
-					} else if (result['gos']=='true'){
+					$('#texto_gostos').text(result.num);
+                    if (result.gos=='true'){
 						$('#botao_gosto').removeAttr('hidden');
 						$('#botao_naogosto').attr('hidden', true);
-						$('#texto_gostos').text(gostos+1);
-					}
+                    } else {
+						$('#botao_gosto').attr('hidden', true);
+						$('#botao_naogosto').removeAttr('hidden');
+                    }
 				}
 
 				function eliminar_com(com_id){

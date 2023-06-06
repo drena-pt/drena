@@ -19,7 +19,7 @@ if ($med){ #Se a media existir
 		if ($bd->query("UPDATE med SET gos=gos-1 WHERE id='".$med["id"]."'") === FALSE) {
             echo '{"err": "'.$bd->error.'"}'; exit;
 		} else {
-			echo '{"gos":"false"}'; exit;
+			echo '{"gos":"false","num":'.($med['gos']-1).'}'; exit;
 		}
 	} else {
 		$bd->query("INSERT INTO med_gos (uti, med) VALUES('".$uti['id']."', '".$med["id"]."');");
@@ -27,7 +27,7 @@ if ($med){ #Se a media existir
             echo '{"err": "'.$bd->error.'"}'; exit;
 		} else {
 			notificacao($uti['id'],$med['uti'],'gos',$med['id']);
-			echo '{"gos":"true"}'; exit;
+			echo '{"gos":"true","num":'.($med['gos']+1).'}'; exit;
 		}
 	}
 } else {

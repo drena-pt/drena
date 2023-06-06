@@ -206,15 +206,13 @@ if ($uti){
 
                 function gosto(med_id){
 					result = api('med_gos',{'med':med_id});
-					var gostos = +$('#med_'+med_id+'_numGostos').text();
-                    if (result['gos']=='false'){
-                        $('#svg_gosto_'+med_id).attr('hidden', true);
-                        $('#svg_naoGosto_'+med_id).removeAttr('hidden');
-                        $('#med_'+med_id+'_numGostos').text(gostos-1);
-                    } else {
+                    $('#med_'+med_id+'_numGostos').text(result.num);
+                    if (result.gos=='true'){
                         $('#svg_gosto_'+med_id).removeAttr('hidden');
                         $('#svg_naoGosto_'+med_id).attr('hidden', true);
-                        $('#med_'+med_id+'_numGostos').text(gostos+1);
+                    } else {
+                        $('#svg_gosto_'+med_id).attr('hidden', true);
+                        $('#svg_naoGosto_'+med_id).removeAttr('hidden');
                     }
 				}
 
