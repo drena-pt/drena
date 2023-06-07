@@ -48,6 +48,8 @@ if ($med){
 	<meta property='og:description' content='".$med_uti['nut'].", ".sprintf(_('há %s'),tempoPassado(strtotime($med['den']))).", ".$med['gos']." "._('gostos')."'/>
 	<meta property='og:url' content='".$url_site."m/".$med['id']."'/>
 	<meta property='og:image' content='".$url_media."thumb/".$med['thu'].".jpg'/>
+	<!-- Image larger -->
+	<meta name='twitter:card' content='summary_large_image'>
 
 	<title>".$med_tit." - drena</title>
 	";
