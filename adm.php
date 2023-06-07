@@ -10,7 +10,14 @@
 
         $num_uti = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM uti;"));
         $num_med = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM med;"));
-        $num_ami = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM ami;"));
+        function folderSize($f){
+            $io = popen ( '/usr/bin/du -sh ' . $f, 'r' );
+            $size = fgets ( $io, 4096);
+            $size = substr ( $size, 0, strpos ( $size, "\t" ) );
+            pclose ( $io );
+            return $size;
+        }
+        $tam_media = folderSize($dir_media);
 
 		echo "
 		<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
@@ -32,9 +39,9 @@
                     </div>
                     <div class='col text-center'>
                         <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-rosa border-rosa' style='height: 100px; width: 100px'>
-                        ".$num_ami."
+                        ".$tam_media."
                         </div>
-                        Amigos
+                        Espaço usado
                     </div>
                 </div>
 			</div>
