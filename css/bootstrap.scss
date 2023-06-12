@@ -6,7 +6,7 @@ $ciano:	#00cee9;
 $rosa:	#ff4fff;
 $black:	#111;
 $white:	#fff;
-$cinza:	#222222;
+$cinza:	#222;
 $conversa:	#3c00ff;
 //Mais cores
 $azul:	#0066ff;
@@ -125,12 +125,14 @@ $form-feedback-margin-top: 0px;
 	margin-bottom: 10px !important;
 }
 
-$tooltip-font-size: $font-size-base !default;
-$tooltip-arrow-color: transparent !default;
+//Lists Group
+$list-group-border-width: none;
 
+//Cards
 $card-deck-margin: 0px;
 $card-border-radius: 0px;
 
+//Modals
 $modal-content-border-radius: 10px;
 $modal-content-border-width: 0;
 $modal-inner-padding: 0;
@@ -140,6 +142,9 @@ $alert-border-radius:	10rem; //Deixa a borda redonda em vez de semi-redonda (10p
 
 //Tooltips
 $tooltip-border-radius:	10rem;
+$tooltip-font-size: $font-size-base !default;
+$tooltip-color: $white;
+$tooltip-arrow-color: null;
 
 //Badges
 $badge-font-size:		1em;

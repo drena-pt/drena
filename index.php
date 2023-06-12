@@ -86,7 +86,7 @@ if ($uti){
             } else {
                 echo "<div class='my-4'>
                 <h2>"._('Ainda não tens conhecidos')."</h2>
-                <span data-toggle='modal' data-target='#modal_procurar'><button class='btn btn-primary'>"._('Procurar')."<i class='bi bi-search'></i></button></span>
+                <span data-bs-toggle='modal' data-bs-target='#modal_procurar'><button class='btn btn-primary'>"._('Procurar')."<i class='bi bi-search'></i></button></span>
                 </div>";
             }
 
@@ -112,7 +112,7 @@ if ($uti){
                     <div class='mx-0 mx-xl-2'>";
                     if ($resultado = $bd->query("SELECT * FROM uti WHERE id IN (".$lista_feed.") ORDER by id DESC LIMIT 8")){
                         while ($campo_uti = $resultado->fetch_assoc()){
-                            echo "<a data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."' href='/u/".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mx-1 rounded-circle' width='32'></a>";
+                            echo "<a data-bs-toggle='tooltip' data-bs-placement='bottom' title='".$campo_uti['nut']."' href='/u/".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mx-1 rounded-circle' width='32'></a>";
                         }
                     }
                     echo "
@@ -125,46 +125,6 @@ if ($uti){
                 let scrollLoad = true;
                 let api_link = '".$api_link."';
 
-                function tempoPassado(tempo) {
-                    var atual = Date.now();
-                    var publicado = new Date.parse(tempo, 'YYYY-MM-ddTHH:mm:ss');
-                    var passado = atual - publicado;
-
-                    var mspSEG = 1000;
-                    var mspMIN = mspSEG * 60;
-                    var mspHOR = mspMIN * 60;
-                    var mspDIA = mspHOR * 24;
-                    var mspSEM = mspDIA * 7;
-                    var mspMES = mspDIA * 30;
-                    var mspANO = mspDIA * 365;
-
-                    const tTempo = {
-                        'mspSEG':['"._('segundo')."','"._('segundos')."'],
-                        'mspMIN':['"._('minuto')."','"._('minutos')."'],
-                        'mspHOR':['"._('hora')."','"._('horas')."'],
-                        'mspDIA':['"._('dia')."','"._('dias')."'],
-                        'mspSEM':['"._('semana')."','"._('semanas')."'],
-                        'mspMES':['"._('mês')."','"._('meses')."'],
-                        'mspANO':['"._('ano')."','"._('anos')."']
-                    };
-                    
-                    if (passado < mspMIN) { uTempo='mspSEG'; }
-                    else if (passado < mspHOR) { uTempo='mspMIN'; }
-                    else if (passado < mspDIA) { uTempo='mspHOR'; }
-                    else if (passado < mspSEM) { uTempo='mspDIA'; }
-                    else if (passado < mspMES) { uTempo='mspSEM'; }
-                    else if (passado < mspANO) { uTempo='mspMES'; }
-                    else { uTempo='mspANO'; }
-
-                    vuTempo = eval(window['uTempo']);
-
-                    if (passado/vuTempo<2){
-                        return (Math.floor(passado/vuTempo)+' '+tTempo[uTempo][0]);
-                    } else {
-                        return (Math.floor(passado/vuTempo)+' '+tTempo[uTempo][1]);
-                    } 
-                }
-
                 function carregarMedia(url){
                     $.get(url, function(data) {
                         if (data){
@@ -175,7 +135,7 @@ if ($uti){
                                     
                                     //Carrega a média apenas se não for repetida
                                     if (!$('#med_'+data[index].med.id+'_conteudo').length){
-                                        $('#medias').append(\"<section class='bg-dark bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col d-flex'><text class='h5 my-auto text-start' id='med_tit'>\"+data[index].med.tit+\"</text></div><div class='col my-0 d-flex flex-row-reverse'><a href='/m/\"+data[index].med.id+\"' role='button' class='btn btn-light me-1 my-auto'>"._('Abrir')." <i class='bi bi-box-arrow-in-right'></i></a></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/u/\"+data[index].uti.nut+\"'><img src='\"+data[index].uti.fpe+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><span onclick='gosto(`\"+data[index].med.id+\"`)' role='button'><i id='svg_gosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i><i id='svg_naoGosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up'></i></span></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><i class='bi bi-calendar4-week'></i></div><div class='col d-flex'>".sprintf(_('há %s'),"\"+tempoPassado(data[index].med.den)+\"")."</div></div></section></div></section>\");
+                                        $('#medias').append(\"<section class='bg-dark bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col d-flex'><text class='h5 my-auto text-start' id='med_tit'>\"+data[index].med.tit+\"</text></div><div class='col my-0 d-flex flex-row-reverse'><a href='/m/\"+data[index].med.id+\"' role='button' class='btn btn-light me-1 my-auto'>"._('Abrir')." <i class='bi bi-box-arrow-in-right'></i></a></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/u/\"+data[index].uti.nut+\"'><img src='\"+data[index].uti.fpe+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><span onclick='gosto(`\"+data[index].med.id+\"`)' role='button'><i id='svg_gosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i><i id='svg_naoGosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up'></i></span></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><i class='bi bi-calendar4-week'></i></div><div class='col d-flex'>\"+dayjs.tz(data[index].med.den, 'UTC').fromNow()+\"</div></div></section></div></section>\");
                                         
                                         if (data[index].uti.gos==1){
                                             $('#svg_naoGosto_'+data[index].med.id).attr('hidden', true);

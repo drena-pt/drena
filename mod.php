@@ -9,21 +9,27 @@ function mini_nut($nut){
     }
 }
 ?>
+        <style>
+        table {
+            font-size: .875em;
+        }
+        </style>
 	</head>
 	<body>
 	<?php require('cabeçalho.php'); ?>
 	<?php
 	echo "
-	<div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
+	<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
 
-        <div class='text-center'>
-            <h1 class='m-xl-5 m-4 text-ciano'>"._('Ferramentas de Moderador')."</h1>
-        </div>
+        <div class='p-xl-5 p-4 bg-dark text-light'>
+			<h2 class='text-ciano'>"._('Ferramentas de Moderador')."</h2>
+		</div>
 
-		<div class='p-xl-5 p-4 bg-light text-dark'>
-            <div class='d-flex bd-highlight mb-3'>
+		<div class='bg-light text-dark'>
+
+            <div class='d-flex bd-highlight p-xl-5 p-4'>
                 <div class='me-auto p-2 bd-highlight'><h3>Média por confirmar</h3></div>
-                <div class='my-auto p-2 bd-highlight'><span role='button' data-toggle='modal' data-target='#modal_info1'><i class='bi bi-info-circle-fill text-primary' data-toggle='tooltip' data-html='true' title='"._('Informação')."'></i></span></div>
+                <div class='my-auto p-2 bd-highlight'><span role='button' data-bs-toggle='modal' data-bs-target='#modal_info1'><i class='bi bi-info-circle-fill text-primary' data-bs-toggle='tooltip' data-bs-html='true' title='"._('Informação')."'></i></span></div>
                 
                 <!-- Modal info (Média por confirmar) -->
                 <div class='modal fade' id='modal_info1' tabindex='-1' role='dialog' aria-hidden='true'>
@@ -42,8 +48,8 @@ function mini_nut($nut){
                 </div>
             </div>
 
-            <div class='table-responsive'>
-                <table class='table text-dark'>
+            <div class='table-responsive px-2'>
+                <table class='table table-light'>
                     <tr>
                     <th scope='col'>Thumbnail</th>
                     <th scope='col'>Título</th>

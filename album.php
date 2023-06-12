@@ -41,13 +41,13 @@ if ($alb_uti['id']==$uti['id']){
 			if ($uti_per){
 				echo "
 				<section class='text-start'>
-					<button class='btn btn-dark text-light' data-toggle='collapse' data-target='#section_config' aria-expanded='false' aria-controls='section_config'>
+					<button class='btn btn-dark text-light' data-bs-toggle='collapse' data-bs-target='#section_config' aria-expanded='false' aria-controls='section_config'>
 					"._('Configurações')." <i class='bi bi-sliders'></i>
 					</button>
 					<button id='btn_remover' class='btn btn-dark text-light'>
 					"._('Remover')." <i class='bi bi-x-circle'></i>
 					</button>
-					<button id='btn_adicionar' data-toggle='modal' data-target='#modal_med_adicionar' class='btn btn-dark text-light'>
+					<button id='btn_adicionar' data-bs-toggle='modal' data-bs-target='#modal_med_adicionar' class='btn btn-dark text-light'>
 					"._('Adicionar')." <i class='bi bi-plus-circle'></i>
 					</button>
 
@@ -55,7 +55,7 @@ if ($alb_uti['id']==$uti['id']){
 						<div class='modal-dialog modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
 							<div class='modal-header mb-3'>
 								<h2 class='modal-title'>Adicionar<br></h2><br>
-								<button type='button' class='btn-close p-2' data-dismiss='modal'></button>
+								<button type='button' class='btn-close p-2' data-bs-dismiss='modal'></button>
 							</div>
 							<div class='modal-body'>
 								<div class='m-0 row row-cols-3 mw-100'></div>
@@ -111,7 +111,7 @@ if ($alb_uti['id']==$uti['id']){
 					</form>
 					<br>
 
-					<button class='btn btn-vermelho ml-1' data-toggle='modal' data-target='#modal_eliminar_alb'>
+					<button class='btn btn-vermelho ml-1' data-bs-toggle='modal' data-bs-target='#modal_eliminar_alb'>
 					"._('Eliminar álbum')." <i class='bi bi-trash'></i>
 					</button>
 
@@ -146,7 +146,7 @@ if ($alb_uti['id']==$uti['id']){
 							<text><span class='h5'>".$alb_tit."</span><br>"._('Esta ação é irreversível!')."</text>
 						</div>
 						<div class='modal-footer text-end'>
-							<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
+							<button type='button' class='btn btn-light' data-bs-dismiss='modal'>"._('Cancelar')."</button>
 							<button onclick='eliminar_alb()' class='btn btn-vermelho text-light'>"._('Eliminar')."</button>
 						</div>
 					</div>
@@ -166,18 +166,18 @@ if ($alb_uti['id']==$uti['id']){
 			#INICIO - Secção médias no albúm
 			$append_med = '
 			<div id="med_\'+data.id+\'" class="col p-1 p-sm-2">
-			<div class="ratio ratio-4x3">
-				<a id="a_med_\'+data.id+\'" class="text-light text-decoration-none" href="/m/\'+data.id+\'">
-					<div class="bg-rosa contentor_med rounded-xl d-flex" style="background-image:url(\'+data.thu+\');">
-						<div onclick="med_alb(`\'+data.id+\'`)" class="efeito_remover d-none rounded-xl d-flex align-items-center text-center position-absolute h-100 w-100 bg-dark bg-opacity-50">
-							<i role="button" class="bi bi-x-circle-fill h2 text-light container h-25"></i>
+				<div class="ratio ratio-4x3">
+					<a id="a_med_\'+data.id+\'" class="text-light text-decoration-none" href="/m/\'+data.id+\'">
+						<div class="bg-rosa contentor_med h-100 rounded-xl d-flex" style="background-image:url(\'+data.thu+\');">
+							<div onclick="med_alb(`\'+data.id+\'`)" class="efeito_remover d-none rounded-xl d-flex align-items-center text-center position-absolute h-100 w-100 bg-dark bg-opacity-50">
+								<i role="button" class="bi bi-x-circle-fill h2 text-light container h-25"></i>
+							</div>
+							<div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
+								<span class="mx-1 text-\'+tip_cor+\'"><i class="bi bi-\'+tip_icon+\'"></i></span>
+								\'+pri_icon+\'<span class="overflow-hidden">\'+data.tit_curto+\'</span>
+							</div>
 						</div>
-						<div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
-							<span class="mx-1 text-\'+tip_cor+\'"><i class="bi bi-\'+tip_icon+\'"></i></span>
-							\'+pri_icon+\'<span class="overflow-hidden">\'+data.tit_curto+\'</span>
-						</div>
-					</div>
-				</a>
+					</a>
 				</div>
 			</div>';
 

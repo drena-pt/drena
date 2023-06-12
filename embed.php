@@ -36,36 +36,48 @@ if ($med){
 	
 			<!-- JQuery -->
 			<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-			
-			<!-- Tags de motor de pequisa -->
-			<meta property='og:title' content='".$med_tit."'/>
-			<meta property='og:type' content='video.other' />
-			<meta property='og:image' content='".$url_media."thumb/".$med["thu"].".jpg' />
-	
-			<!-- Wavesurfer -->
-			<script src='https://unpkg.com/wavesurfer.js@6.2.0/dist/wavesurfer.min.js'></script>
-	
-			<!-- VideoJS -->
-			<link href='node_modules/video.js/dist/video-js.css' rel='stylesheet'/>
-			<script src='node_modules/video.js/dist/video.min.js'></script>
-			<link href='node_modules/@silvermine/videojs-quality-selector/dist/css/quality-selector.css' rel='stylesheet'>
-			<script src='node_modules/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js'></script>
-	
-			<!-- VideoJS Tema Personalisado -->
-			<link href='css/videojs-theme-drena.css' rel='stylesheet' type='text/css'>
-			
-			<!-- Bootstrap -->
-			<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous'></script>
-			<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV' crossorigin='anonymous'></script>
-			<link rel='stylesheet' type='text/css' href='/css/bootstrap.css'>
-			<link rel='stylesheet' type='text/css' href='/css/bootstrap-icons.css'>
-			<script>
-				$(function (){ $(\"[data-toggle='tooltip']\").tooltip() })
-			</script>
 	
 			<!-- iFrame Resizer contentWindow -->
 			<script src='https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.2/js/iframeResizer.contentWindow.min.js'></script>
-			
+
+			<!-- Tags de motor de pequisa -->
+			<meta property='og:title' content='".$med_tit."'/>
+			<meta property='og:image' content='".$url_media."thumb/".$med["thu"].".jpg' />
+			";
+			if ($med['tip']==1){
+				echo "
+				<meta property='og:type' content='video.other'/>
+
+				<!-- VideoJS -->
+				<link href='node_modules/video.js/dist/video-js.css' rel='stylesheet'/>
+				<script src='node_modules/video.js/dist/video.min.js'></script>
+				<link href='node_modules/@silvermine/videojs-quality-selector/dist/css/quality-selector.css' rel='stylesheet'>
+				<script src='node_modules/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js'></script>
+		
+				<!-- VideoJS Tema Personalisado -->
+				<link href='css/videojs-theme-drena.css' rel='stylesheet' type='text/css'>
+				";
+			} else if ($med['tip']==2){
+				echo "
+				<meta property='og:type' content='music.song'/>
+				
+				<!-- Wavesurfer -->
+				<script src='https://unpkg.com/wavesurfer.js@6.2.0/dist/wavesurfer.min.js'></script>
+				
+				<!-- Bootstrap -->
+				<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous'></script>
+				<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV' crossorigin='anonymous'></script>
+				<link rel='stylesheet' type='text/css' href='/css/bootstrap.css'>
+				<link rel='stylesheet' type='text/css' href='/css/bootstrap-icons.css'>
+				<script>
+					$(function (){ $(\"[data-bs-toggle='tooltip']\").tooltip() })
+				</script>
+				";
+			} else if ($med['tip']==3){
+				echo "
+				";
+			}
+			echo"
 		</head>
 		<body>";
 			if ($med['tip']==1){
@@ -91,12 +103,12 @@ if ($med){
 					echo "
 				</video-js>
 		
-				<script src='node_modules/videojs-titleoverlay/videojs-titleoverlay.js'></script>
+				<script src='/js/videojs-titleoverlay.js'></script>
 				<script>
 				videojs('video', {}, function() {
 					var player = this;
 					".$tem_seletorQualidade."player.controlBar.addChild('QualitySelector');
-					".$tem_titulo."player.titleoverlay({title: '".$med_tit."'});
+					".$tem_titulo."player.titleoverlay({title: '".$med_tit."', debug: true});
 				});
 				if ('mediaSession' in navigator) {
 					navigator.mediaSession.metadata = new MediaMetadata({
@@ -168,8 +180,8 @@ if ($med){
 				$med_img = $url_media."img/".$med_file;
 
 				echo "
-				<section class='d-flex flex-wrap align-items-center justify-content-center bg-dark h-100'>
-					<img style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='".$med_img."'></img>
+				<section style='align-items:center;background-color:#111111;display:flex;flex-wrap:wrap;justify-content:center;height:100%;'>
+					<img loading='lazy' style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='".$med_img."'></img>
 				</section>";
 			}
 			echo "

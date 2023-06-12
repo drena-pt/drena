@@ -34,7 +34,7 @@ if ($uti_perfil){
 				<div class='bg-rosa bg-gradient shadow p-4 p-xl-5 rounded-xl my-4 col-xl-4 col-sm-8 offset-xl-4 offset-sm-2'>
 					<div class='d-flex justify-content-between'>
 						<text class='h2'>"._('Bem vindo!')."</text>
-						<button type='button' class='btn-close p-2' data-toggle='collapse' href='#bem_vindo'></button>
+						<button type='button' class='btn-close p-2' data-bs-toggle='collapse' href='#bem_vindo'></button>
 					</div>
 					<p>"._('Obrigado por te registares na drena, fica à vontade para partilhares as tuas coisas.')."</p>
 				</div>
@@ -49,7 +49,7 @@ if ($uti_perfil){
 
 		if ($uti_perfil['id']==$uti['id']){
 			echo "
-			<button data-toggle='modal' data-target='#modal_fpe' class='btn btn-light float-end ms-2'>
+			<button data-bs-toggle='modal' data-bs-target='#modal_fpe' class='btn btn-light float-end ms-2'>
 				<span id='fpe_carregar'>
 					"._('Alterar foto')." <i class='bi bi-image'></i>
 				</span>
@@ -64,7 +64,7 @@ if ($uti_perfil){
 					<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
 						<div class='modal-header mb-3'>
 							<h2 class='modal-title' id='modal_fpe_label'>"._('Alterar foto')."<br></h2><br>
-							<button type='button' class='btn-close p-2' data-dismiss='modal'></button>
+							<button type='button' class='btn-close p-2' data-bs-dismiss='modal'></button>
 						</div>
 						<div class='modal-body'>
 							";
@@ -262,16 +262,16 @@ if ($uti_perfil){
 					} else {
 						$campo_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$row[0]."'"));
 					}
-					echo "<a href='/u/".$campo_uti['nut']."' data-toggle='tooltip' data-placement='bottom' title='".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mb-2 me-2 rounded-circle' width='32'></a>";
+					echo "<a href='/u/".$campo_uti['nut']."' data-bs-toggle='tooltip' data-bs-placement='bottom' title='".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mb-2 me-2 rounded-circle' width='32'></a>";
 				}
 				if ($num_conhecidos>6){
-					echo "<button data-toggle='collapse' data-target='#section_ami' aria-expanded='false' class='badge rounded-pill bg-light text-dark'>+".($num_conhecidos-6)."</button>";
+					echo "<button data-bs-toggle='collapse' data-bs-target='#section_ami' aria-expanded='false' class='badge rounded-pill bg-light text-dark'>+".($num_conhecidos-6)."</button>";
 				}
 				echo "</div>";
 			} else {
 				echo _("Ainda não tem conhecidos");
 				if ($uti['id']==$uti_perfil['id']){ #Mostrar o botão de procurar caso seja o próprio utilizador
-					echo "<button class='m-0 btn btn-primary' data-toggle='modal' data-target='#modal_procurar'>"._("Procurar utilizadores")." <i class='bi bi-person-plus-fill'></i></button>";
+					echo "<button class='m-0 btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_procurar'>"._("Procurar utilizadores")." <i class='bi bi-person-plus-fill'></i></button>";
 				}
 			}
 
@@ -333,7 +333,7 @@ if ($uti_perfil){
 				echo "
 				<section id='section_ami' class='bg-dark collapse'>
 					"._("Todos os conhecidos")."
-					<button type='button' class='btn-close p-2' data-toggle='collapse' data-target='#section_ami'></button>
+					<button type='button' class='btn-close p-2' data-bs-toggle='collapse' data-bs-target='#section_ami'></button>
 					<section class='row m-0 mw-100 row-cols-4 row-cols-md-6'>";
 					while ($row = $todos_conhecidos->fetch_row()){
 						if ($row[0]==$uti_perfil["id"]){

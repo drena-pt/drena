@@ -106,9 +106,9 @@
 					if ($uti_mai['ree']<=2 AND $tempoUltimoEmail>=300){
 						echo "<button id='btn_reenviar' class='btn btn-light text-ciano'>"._("Reenviar email")."</button>";
 					} else if ($uti_mai['ree']<=2){
-						echo "<span data-toggle='tooltip' data-placement='bottom' title='"._("Espera 5 minutos antes de reenviar um email").".'><a class='disabled btn btn-light text-ciano'>"._("Reenviar email")."</a></span>";
+						echo "<span data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._("Espera 5 minutos antes de reenviar um email").".'><a class='disabled btn btn-light text-ciano'>"._("Reenviar email")."</a></span>";
 					} else {
-						echo "<span data-toggle='tooltip' data-placement='bottom' title='"._("Excedeste o limite de emails.")."'><a class='disabled btn btn-light text-ciano'>"._("Reenviar email")."</a></span>";
+						echo "<span data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._("Excedeste o limite de emails.")."'><a class='disabled btn btn-light text-ciano'>"._("Reenviar email")."</a></span>";
 					}
 					echo "
 					<a href='/registo?ac=alterarMail' class='btn btn-light text-ciano'>"._("Alterar email")."</a>

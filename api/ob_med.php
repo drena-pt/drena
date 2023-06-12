@@ -67,12 +67,15 @@ if ($_POST["uti"]){
     }
 
     #SQL Pesquisa
-    $alb_pesquisa = "SELECT id,thu,tip,tit,pri FROM med WHERE alb='".$alb['id']."' ".$pri_med." ORDER BY den DESC";
+    $alb_pesquisa = "SELECT id,thu,tip,tit,pri,gos,den FROM med WHERE alb='".$alb['id']."' ".$pri_med." ORDER BY den DESC";
 
     if ($resultado = $bd->query($alb_pesquisa)) {
         while ($med = $resultado->fetch_assoc()) {
             $med['tit_curto'] = encurtarNome($med['tit']);
             $med['thu'] = $url_media.'thumb/'.$med['thu'].'.jpg'; #Coloca o url completo, em vez de apenas o id
+            #Procura por um gosto do utilizador
+            $med['tem_gos'] = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$uti['id']."'"));
+            
             $output[] = $med;
         }
     }

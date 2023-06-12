@@ -38,7 +38,7 @@ if ($_POST['pro_tit']){
 			
 				echo "
 				<section class='text-start'>
-					<button class='btn btn-light text-".numeroParaCor($pro['cor'])."' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample' id='header_btn'>
+					<button class='btn btn-light text-".numeroParaCor($pro['cor'])."' data-bs-toggle='collapse' data-bs-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample' id='header_btn'>
 					"._('Configurações')." <i class='bi bi-sliders'></i>
 					</button>
 
@@ -96,7 +96,7 @@ if ($_POST['pro_tit']){
 						</section>
 						<br>
 
-						<button class='btn btn-light ml-1' data-toggle='modal' data-target='#modal_eliminar_pro'>
+						<button class='btn btn-light ml-1' data-bs-toggle='modal' data-bs-target='#modal_eliminar_pro'>
 							"._('Eliminar projeto')." <i class='bi bi-trash'></i>
 						</button>
 
@@ -147,7 +147,7 @@ if ($_POST['pro_tit']){
 								<text><span class='h5'>".$pro_tit."</span><br>"._('Esta ação é irreversível!')."</text>
 							</div>
 							<div class='modal-footer text-end'>
-								<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
+								<button type='button' class='btn btn-light' data-bs-dismiss='modal'>"._('Cancelar')."</button>
 								<a href='pro/projeto.php?ac=eliminar&id=".$_GET['id']."' role='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
 							</div>
 						</div>
@@ -181,23 +181,23 @@ if ($_POST['pro_tit']){
 							echo "
 							<div class='d-flex flex-row-reverse mb-3'>
 								<div>
-									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Visibilidade')."\" onclick=\"visibilidade('".base64_encode($campo['id'])."',".$num_sec.")\">
+									<button class='btn btn-light ml-1' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('Visibilidade')."\" onclick=\"visibilidade('".base64_encode($campo['id'])."',".$num_sec.")\">
 										<i class='bi bi-eye'></i>
 									</button>
 
-									<button onclick=\"editarSeccao('".$campo['id']."')\" class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Editar texto')."\">
+									<button onclick=\"editarSeccao('".$campo['id']."')\" class='btn btn-light ml-1' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('Editar texto')."\">
 										<i class='bi bi-pencil'></i>
 									</button>
 
-									<button class='btn btn-light ml-1' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Eliminar')."\" onclick=\"eliminar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
+									<button class='btn btn-light ml-1' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('Eliminar')."\" onclick=\"eliminar_sec('".base64_encode($campo['id'])."',".$num_sec.")\">
 										<i class='bi bi-trash'></i>
 									</button>
 
 									<div class='btn-group ml-1' role='group' aria-label='Basic example'>
-										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverBaixo' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Mover para baixo')."\">
+										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverBaixo' role='button' class='btn btn-light' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('Mover para baixo')."\">
 											<i class='bi bi-arrow-down'></i>
 										</a>
-										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverCima' role='button' class='btn btn-light' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Mover para cima')."\">
+										<a href='pro/sec.php?sec=".base64_encode($campo['id'])."&ac=moverCima' role='button' class='btn btn-light' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('Mover para cima')."\">
 											<i class='bi bi-arrow-up'></i>
 										</a>
 									</div>

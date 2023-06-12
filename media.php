@@ -39,7 +39,7 @@ function tempoPassado($ptime){
 
 if ($med){
 	$med_tit = $med['tit'];#Definir título
-	$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));									# Utilizador dono
+	$med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med['uti']."'"));								# Utilizador dono
 	$med_gos = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_gos WHERE med='".$med["id"]."' AND uti='".$uti['id']."';"));	# Informações do gosto do utilizador logado
 
 	echo "
@@ -147,10 +147,10 @@ if ($med){
 								echo "
 								<span>
 									<label for='input_thu' role='button' class='btn btn-light me-1 my-auto'>
-										<span id='thu_carregar' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Alterar miniatura')."\">
+										<span id='thu_carregar' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('Alterar miniatura')."\">
 											<i class='bi bi-file-earmark-image'></i>
 										</span>
-										<span id='thu_a_carregar' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('A carregar...')."\" style='display:none;'>
+										<span id='thu_a_carregar' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('A carregar...')."\" style='display:none;'>
 											<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
 										</span>
 									</label>
@@ -183,8 +183,8 @@ if ($med){
 								</script>
 								";
 							} else if ($med['tip']=='3'){ # Caso seja uma imagem, para adicionar a um album
-								echo "<span data-toggle='modal' data-target='#modal_albuns'>
-									<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Adicionar a um álbum')."\">
+								echo "<span data-bs-toggle='modal' data-bs-target='#modal_albuns'>
+									<button class='btn btn-light me-1 my-auto' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('Adicionar a um álbum')."\">
 										<i class='bi bi-collection'></i>
 									</button>
 								</span>
@@ -239,7 +239,7 @@ if ($med){
 													echo "
 												</div>
 												<div class='modal-footer text-end'>
-													<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
+													<button type='button' class='btn btn-light' data-bs-dismiss='modal'>"._('Fechar')."</button>
 												</div>
 											</form>
 										</div>
@@ -263,13 +263,13 @@ if ($med){
 								";
 							}
 							echo "
-							<span data-toggle='modal' data-target='#modal_alerar_tit'>
-								<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Alterar título')."'>
+							<span data-bs-toggle='modal' data-bs-target='#modal_alerar_tit'>
+								<button class='btn btn-light me-1 my-auto' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title='"._('Alterar título')."'>
 									<i class='bi bi-input-cursor-text'></i>
 								</button>
 							</span>
-							<span data-toggle='modal' data-target='#modal_eliminar_med'>
-								<button class='btn btn-light me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_eliminar."\">
+							<span data-bs-toggle='modal' data-bs-target='#modal_eliminar_med'>
+								<button class='btn btn-light me-1 my-auto' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\"".$t_eliminar."\">
 									<i class='bi bi-trash'></i>
 								</button>
 							</span>";
@@ -285,7 +285,7 @@ if ($med){
 							}
 							echo "
 							<span>
-								<button id='privar' class='btn btn-".$bg_privado." me-1 my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\"".$t_privado."\">
+								<button id='privar' class='btn btn-".$bg_privado." me-1 my-auto' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\"".$t_privado."\">
 									<i id='icon_privar' class='bi bi-".$i_privado."'></i>
 								</button>
 							</span>
@@ -302,7 +302,7 @@ if ($med){
 												<input id='input_tit' type='text' class='form-control' name='tit' placeholder='"._('Título')."' autocomplete='off' value='".$med_tit."'>
 											</div>
 											<div class='modal-footer text-end'>
-												<button id='fechar_titulo' type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
+												<button id='fechar_titulo' type='button' class='btn btn-light' data-bs-dismiss='modal'>"._('Fechar')."</button>
 												<button type='submit' class='btn btn-".$t_cor." text-light'>"._('Alterar')."</button>
 											</div>
 										</form>
@@ -320,7 +320,7 @@ if ($med){
 											<text><span id='med_tit' class='h5'>".$med_tit."</span><br>"._('Esta ação é irreversível!')."</text>
 										</div>
 										<div class='modal-footer text-end'>
-											<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
+											<button type='button' class='btn btn-light' data-bs-dismiss='modal'>"._('Cancelar')."</button>
 											<button id='eliminar_med' type='button' class='btn btn-vermelho text-light'>"._('Eliminar')."</a>
 										</div>
 									</div>
@@ -332,13 +332,13 @@ if ($med){
 								result = api('med',{'med':'".$med['id']."','ac':'privar'});
 								if (result['est']=='publico'){
 									$('#privar').tooltip('hide')
-										.attr('data-original-title', '"._('Tornar privado')."')
+										.attr('data-bs-original-title', '"._('Tornar privado')."')
 										.tooltip('show');
 									$('#privar').removeClass('btn-primary').addClass('btn-light');
 									$('#icon_privar').removeClass('bi-lock').addClass('bi-unlock');
 								} else if (result['est']=='privado'){
 									$('#privar').tooltip('hide')
-										.attr('data-original-title', '"._('Tornar público')."')
+										.attr('data-bs-original-title', '"._('Tornar público')."')
 										.tooltip('show');
 									$('#privar').removeClass('btn-light').addClass('btn-primary');
 									$('#icon_privar').removeClass('bi-unlock').addClass('bi-lock');
@@ -371,7 +371,7 @@ if ($med){
 							";
 						} else if ($uti['car']==2){ #Ferramenta do moderador
 							echo "
-							<span data-toggle='modal' data-target='#modal_moderador'>
+							<span data-bs-toggle='modal' data-bs-target='#modal_moderador'>
 								<button class='btn btn-ciano text-light me-1 my-auto'>
 									"._('Moderar')." ";
 									if ($med['nmo']==0){
@@ -408,7 +408,7 @@ if ($med){
 											<button id='btn_inaceitavel' style='display:none' class='btn btn-vermelho text-light'>"._('Reportar como contéudo inaceitável')." <i class='bi bi-x-octagon'></i></button>
 										</div>
 										<div class='modal-footer text-end'>
-											<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Fechar')."</button>
+											<button type='button' class='btn btn-light' data-bs-dismiss='modal'>"._('Fechar')."</button>
 										</div>
 									</div>
 								</div>
@@ -534,8 +534,8 @@ if ($med){
 				$caixa_cometario = "
 				<section id='com_\"+com_id+\"' class='my-4 p-xl-5 p-4 bg-light text-dark rounded-xl shadow'>
 					<div class='d-flex flex-row-reverse mb-3'>
-						<span data-toggle='modal' data-target='#modal_eliminar_com\"+com_id+\"'>
-							<button class='btn btn-dark my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title='"._('Eliminar comentário')."'>
+						<span data-bs-toggle='modal' data-bs-target='#modal_eliminar_com\"+com_id+\"'>
+							<button class='btn btn-dark my-auto' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title='"._('Eliminar comentário')."'>
 								<i class='bi bi-trash'></i>
 							</button>
 						</span>
@@ -549,8 +549,8 @@ if ($med){
 										<text><span class='h5'>\"+com+\"</span><br>"._('Esta ação é irreversível!')."</text>
 									</div>
 									<div class='modal-footer text-end'>
-										<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
-										<button onclick='eliminar_com(\"+com_id+\")' type='button' class='btn btn-vermelho text-light' data-dismiss='modal'>"._('Eliminar')."</button>
+										<button type='button' class='btn btn-light' data-bs-dismiss='modal'>"._('Cancelar')."</button>
+										<button onclick='eliminar_com(\"+com_id+\")' type='button' class='btn btn-vermelho text-light' data-bs-dismiss='modal'>"._('Eliminar')."</button>
 									</div>
 								</div>
 							</div>
@@ -654,8 +654,8 @@ if ($med){
 							<div class='d-flex flex-row-reverse mb-3'>
 							";
 								if ($com_uti['id']==$uti['id']){ #Modal Eliminar Comentário
-									echo "<span data-toggle='modal' data-target='#modal_eliminar_com".$campo['id']."'>
-									<button class='btn btn-dark my-auto' data-toggle='tooltip' data-placement='bottom' data-original-title=\""._('Eliminar comentário')."\">
+									echo "<span data-bs-toggle='modal' data-bs-target='#modal_eliminar_com".$campo['id']."'>
+									<button class='btn btn-dark my-auto' data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-original-title=\""._('Eliminar comentário')."\">
 										<i class='bi bi-trash'></i>
 									</button>
 									</span>
@@ -669,8 +669,8 @@ if ($med){
 													<text><span class='h5'>".$campo['tex']."</span><br>"._('Esta ação é irreversível!')."</text>
 												</div>
 												<div class='modal-footer text-end'>
-													<button type='button' class='btn btn-light' data-dismiss='modal'>"._('Cancelar')."</button>
-													<button onclick='eliminar_com(".$campo['id'].")' type='button' class='btn btn-vermelho text-light' data-dismiss='modal'>"._('Eliminar')."</button>
+													<button type='button' class='btn btn-light' data-bs-dismiss='modal'>"._('Cancelar')."</button>
+													<button onclick='eliminar_com(".$campo['id'].")' type='button' class='btn btn-vermelho text-light' data-bs-dismiss='modal'>"._('Eliminar')."</button>
 												</div>
 											</div>
 										</div>

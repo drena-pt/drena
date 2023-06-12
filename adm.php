@@ -3,6 +3,11 @@
 		if ($uti['car']!=1){ header("Location: /"); exit; }	#Sair da página se não for administrador
 		?>
         <script src='/js/api.min.js'></script>
+        <style>
+        table {
+            font-size: .875em;
+        }
+        </style>
 	</head>
 	<body>
 	    <?php require('cabeçalho.php'); ?>
@@ -22,7 +27,7 @@
 		echo "
 		<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
 			<div class='p-xl-5 p-4 bg-dark text-light'>
-				<h2>Ferramentas de Administrador</h2>
+				<h2>"._('Ferramentas de Administrador')."</h2>
 
                 <div class='row row-cols-3 mt-4'>
                     <div class='col text-center'>
@@ -46,8 +51,8 @@
                 </div>
 			</div>
 
-			<div class='p-xl-5 p-4 bg-light text-dark'>
-                <div class='d-md-flex mb-3'>
+			<div class='bg-light text-dark'>
+                <div class='d-md-flex p-xl-5 p-4'>
                     <div class=''>
                         <h3>Utilizadores</h3>
                     </div>
@@ -64,8 +69,8 @@
                         </form>
                     </div>
                 </div>
-                <div class='table-responsive'>
-                    <table class='table text-dark'>
+                <div class='table-responsive px-2'>
+                    <table class='table table-light'>
                         <tr>
                         <th scope='col'>#</th>
                         <th scope='col'>Foto</th>
@@ -73,7 +78,7 @@
                         <th scope='col'>Nome</th>
                         <th scope='col'>Data de criação</th>
                         <th scope='col'>Ativo</th>
-                        <th scope='col'>Moderador</th>
+                        <th scope='col'>Mod</th>
                         </tr>
                         ";
                         if ($_GET['pesquisa']){
@@ -87,7 +92,7 @@
                                 <tr>
                                     <th scope='row'>".$campo['id']."</th>
                                     <td><img class='rounded-circle' src='".$url_media."fpe/".$campo['fpe'].".jpg' width='40' height='40'></td>
-                                    <td><a href='/u/".$campo['nut']."'>".$campo['nut']."</a></td>
+                                    <td><a class='text-primary' href='/u/".$campo['nut']."'>".$campo['nut']."</a></td>
                                     <td>".$campo['nco']."</td>
                                     <td>".$campo['dcr']."</td>
                                     <td><div class='form-check form-switch'>
@@ -121,8 +126,8 @@
                 <span id='data'></span>
 			</div>
 
-            <div class='p-xl-5 p-4 bg-light text-dark'>
-                <div class='d-md-flex mb-3'>
+            <div class='bg-light text-dark'>
+                <div class='d-md-flex p-xl-5 p-4'>
                     <div class=''>
                         <h3>Projetos</h3>
                     </div>
@@ -139,8 +144,8 @@
                         </form>
                     </div>
                 </div>
-                <div class='table-responsive'>
-                    <table class='table text-dark'>
+                <div class='table-responsive px-2'>
+                    <table class='table table-light'>
                         <tr>
                         <th scope='col'>#</th>
                         <th scope='col'>Utilizador</th>
