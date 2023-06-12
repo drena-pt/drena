@@ -16,12 +16,16 @@ if ($api_noauth and (!$jwt or $jwt=='undefined')){
     #Não acontece nada, pois não há um token
 } else { #O token é obrigatório
     if (!$jwt or $jwt=='undefined'){
+        echo "{'err': 'Token obrigatório'}";
         header('HTTP/1.1 401 Unauthorized'); exit;
     }
     
     try {
         $token = JWT::decode($jwt, new Key($api_key, 'HS512'));
     } catch (Exception $e) {
+        echo "{'err': 'Erro ao decodificar token'}";
+        #Processo - Terminar sessão
+        include_once(__DIR__.'/../pro/sair.php');
         header('HTTP/1.1 401 Unauthorized'); exit;
     }
 
@@ -31,6 +35,9 @@ if ($api_noauth and (!$jwt or $jwt=='undefined')){
         $token->iat > $now->getTimestamp() ||
         $token->exp < $now->getTimestamp())
     {
+        echo "{'err': 'Token inválido'}";
+        #Processo - Terminar sessão
+        include_once(__DIR__.'/../pro/sair.php');
         header('HTTP/1.1 401 Unauthorized'); exit;
     }
     #Utilizador
