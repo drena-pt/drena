@@ -16,7 +16,7 @@ function mini_nut($nut){
         </style>
 	</head>
 	<body>
-	<?php require('cabeçalho.php'); ?>
+	<?php require('header.php'); ?>
 	<?php
 	echo "
 	<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>

@@ -8,7 +8,7 @@
 		<script src='/js/notificacoes.js'></script>
 	</head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<div class="shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3">
 			<div class="p-xl-5 p-4 bg-dark text-light">
 

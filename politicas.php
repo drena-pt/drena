@@ -13,7 +13,7 @@ require('head.php');
 		</style>
 	</head>
 	<body>
-	<?php require('cabeçalho.php'); ?>
+	<?php require('header.php'); ?>
     <div class='jumbotron bg-dark d-flex align-items-center text-center justify-content-center align-items-center'>
         <span>
 			<h1 class='display-4'><?php echo _('Política de Privacidade<br> e Termos de Utilização'); ?></h1>

@@ -23,7 +23,7 @@ if ($_POST['pro_tit']){
 		<script src="js/edjsHTML.browser.js"></script>
 	</head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<?php
 		if ($pro AND $vis){ #Se o projeto existir e for visivel.
 

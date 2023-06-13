@@ -72,7 +72,7 @@ if ($med){
 ?>
 </head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<?php
 		if (!$med OR ($med['pri']==1 AND $med['uti']!=$uti['id'])){
 			echo "<h2 class='my-5 text-center'>"._('Média não encontrada!')." 😵</h2>‍";

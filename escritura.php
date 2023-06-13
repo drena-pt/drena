@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<?php 
-		require('cabeçalho.php');
+		require('header.php');
 		echo "
 		<div class='p-0 mt-0 mt-xl-4 col-xl-6 offset-xl-3'>
 			<text><span class='h1 fw-bold'>Escritura </span><span class='badge rounded-pill bg-white text-dark'>Beta</span></text>

@@ -18,7 +18,7 @@ if ($uti_perfil){
 		<script src='/js/api.min.js'></script>
 	</head>
 	<body>
-	<?php require('cabeçalho.php'); ?>
+	<?php require('header.php'); ?>
 	<?php
 	if ($uti_perfil){
 		echo "

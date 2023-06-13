@@ -7,7 +7,7 @@
 		?>
 	</head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<?php
 		echo "
 		<div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>

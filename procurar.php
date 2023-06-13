@@ -9,7 +9,7 @@ if (!$oq){
 	</head>
 	<body>
 	<?php
-    require('cabeçalho.php');
+    require('header.php');
 
     $pesquisa_uti = "SELECT * FROM uti WHERE nut LIKE '%".$oq."%' OR nco LIKE '%".$oq."%' ORDER by id DESC;";
     $pesquisa_med = "SELECT * FROM med WHERE tit LIKE '%".$oq."%' AND pri=0;";

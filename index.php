@@ -8,7 +8,7 @@ if ($uti){
     <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
     </head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<style>
 		.jumbotron{
 			height: 90vh;

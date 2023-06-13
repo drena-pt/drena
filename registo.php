@@ -2,7 +2,7 @@
 		<script src='/js/api.min.js'></script>
 	</head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<?php
 		#Se existir uma sessão aberta
 		if ($_SESSION['pre_uti'] OR $uti){

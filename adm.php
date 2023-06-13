@@ -10,7 +10,7 @@
         </style>
 	</head>
 	<body>
-	    <?php require('cabeçalho.php'); ?>
+	    <?php require('header.php'); ?>
 	    <?php
 
         $num_uti = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM uti;"));

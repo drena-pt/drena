@@ -29,7 +29,7 @@ if ($alb_uti['id']==$uti['id']){
 		<script src='/js/api.min.js'></script>
 	</head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<div class='offset-xl-3 col-xl-6'>
 		<?php
 		if ($alb){ #Se o álbum existir

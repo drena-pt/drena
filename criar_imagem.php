@@ -7,7 +7,7 @@
 		?>
 	</head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<?php
 		$append_med = "
 		<div class='col p-1 p-sm-2'><div class='ratio ratio-4x3'>

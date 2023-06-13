@@ -2,7 +2,7 @@
 		<script src='/js/api.min.js'></script>
 	</head>
 	<body>
-		<?php require('cabeçalho.php'); ?>
+		<?php require('header.php'); ?>
 		<?php
 		if ($_GET['ac']=='recuperar') { # Se a ação for recuperar a conta
 			if ($_COOKIE['mailEnviado']){
