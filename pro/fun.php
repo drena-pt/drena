@@ -1,6 +1,6 @@
 <?php
 # Define o tempo para Portugal
-//date_default_timezone_set('Europe/Lisbon');
+date_default_timezone_set("UTC");
 
 # Obtem as variáveis
 require_once('fun_var.php');
