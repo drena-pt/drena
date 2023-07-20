@@ -3,11 +3,17 @@
 		<a class="navbar-brand" href="/">
 			<img src="/imagens/logo.png" height="32" alt="" loading="lazy">
 		</a>
-		<button class="navbar-toggler px-0" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
-			<span class="navbar-toggler-icon"></span>
-		</button>
 		<?php
+		echo "<span class='d-flex align-items-center'>";
+		if ($uti){
+			echo "<a class='d-sm-none text-white mx-3' href='/criar'><i style='font-size:28px' class='bi bi-plus-lg'></i></a>";
+		}
 		echo "
+			<button class='navbar-toggler px-0' type='button' data-bs-toggle='collapse' data-bs-target='#menu' aria-controls='menu' aria-expanded='false' aria-label='Abrir menu'>
+				<span class='navbar-toggler-icon'></span>
+			</button>
+		</span>
+
 		<div class='collapse navbar-collapse justify-content-end text-end p-sm-0 pb-2 pe-1' id='menu'>
 			<ul class='navbar-nav'>";
 				if ($uti['car']==1){
@@ -26,7 +32,7 @@
 					#<li class='nav-item'><a class='nav-link' href='/escritura.php'>"._('Escritura')."</a></li>
 					echo "
 					<li class='nav-item'><a class='nav-link' href='https://conversa.drena.pt' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Conversas')."'><span class='d-sm-none'>"._('Conversas')." </span><i class='bi bi-chat-left-text'></i></a></span></li>
-					<li class='nav-item'><a class='nav-link' href='/criar' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
+					<li class='nav-item d-none d-sm-block'><a class='nav-link' href='/criar' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
 					<li class='nav-item'><a class='nav-link' href='/definicoes' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Configurações')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>";
 					
 					$num_pedidos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM ami WHERE b_id='".$uti["id"]."' AND sim=0"));
