@@ -1,9 +1,9 @@
 ﻿<?php
-#API - Administrar
+#API (ADMIN) - Administrar (Ativar e desativar utilizadores / Tornar moderador)
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
 require_once('validar.php');
 
-if ($uti['car']!=1){
+if ($uti['car']!=1){ #Apenas para Administradores
     header('HTTP/1.1 401 Unauthorized'); exit;
 }
 

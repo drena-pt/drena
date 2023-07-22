@@ -1,4 +1,7 @@
-<?php 
+<?php
+        /* error_reporting(E_ALL);
+        ini_set('display_errors', 'On'); */
+
 		require('head.php');
 		if ($uti['car']!=1){ header("Location: /"); exit; }	#Sair da página se não for administrador
 		?>
@@ -26,6 +29,7 @@
 
 		echo "
 		<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
+
 			<div class='p-xl-5 p-4 bg-dark text-light'>
 				<h2>"._('Ferramentas de Administrador')."</h2>
 
@@ -50,11 +54,73 @@
                     </div>
                 </div>
 			</div>
+            ";
 
+            #Número de media em estado 2 (A comprimir)
+            $num_med_est_2 = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM med WHERE est=2;"));
+
+            #Erros de compressão
+            if ($num_med_est_2!=0){
+            echo "
+            <div class='bg-light text-dark'>
+
+                <div class='d-md-flex p-xl-5 p-4'>
+                    <div>
+                        <h4>A comprimir</h4>
+                    </div>
+                </div>
+
+                <div class='table-responsive px-2'>
+                    <table class='table table-light'>
+                        <tr>
+                        <th scope='col'>Thumb</th>
+                        <th scope='col'>Título</th>
+                        <th scope='col'>U</th>
+                        <th scope='col'>Tam. ori</th>
+                        <th scope='col'>Tam. comp</th>
+                        <th scope='col'>Tam. conv</th> 
+                        </tr>
+                        ";
+
+                        if ($resultado = $bd->query("SELECT * FROM med WHERE est=2;")) {
+                            while ($med = $resultado->fetch_assoc()){
+
+                                $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id=".$med['uti'].";"));
+
+                                $caminho_ori = glob($dir_media.'ori/'.$med['id'].'.*')[0];  #Caminho original
+                                $caminho_comp = $dir_media.'comp/'.$med['id'].'.mp4'; #Caminho comprimido
+                                $caminho_conv = $dir_media.'conv/'.$med['id'].'.mp4'; #Caminho convertido
+
+                                echo "
+                                <tr>
+                                    <th scope='row'><img class='shadow rounded-xl' width='64' src='".$url_media."thumb/".$med['thu'].".jpg'></th>
+                                    <td><a class='text-primary text-decoration-none' href='/m/".$med['id']."'><b>".$med['tit']."</b></a></td>
+                                    <td><a class='text-primary text-decoration-none' href='/u/".$med_uti['nut']."'><b>".$med_uti['nut']."</b></a></td>
+                                    <td>".filesize($caminho_ori)."</td>
+                                    <td>".filesize($caminho_comp)."</td>
+                                    <td>".filesize($caminho_conv)."</td>
+                                    <td><button id='btn_reset_".$med['id']."' onclick='reset(`".$med['id']."`)' class='btn btn-primary'><i class='bi bi-arrow-clockwise'></i></button></td>
+                                </tr>
+                                ";
+
+                            } 
+                            $resultado->free();
+                        }
+
+                        echo "
+                    </table>
+                </div>
+                
+            </div>
+            ";
+            }
+
+            #Utilizadores
+            echo "
 			<div class='bg-light text-dark'>
                 <div class='d-md-flex p-xl-5 p-4'>
                     <div class=''>
-                        <h3>Utilizadores</h3>
+                        <h4>Utilizadores</h4>
                     </div>
                     <div class='ms-auto'>
                         <form method='get'>
@@ -117,82 +183,26 @@
                         echo "
                     </table>
                 </div>
-                <script>
-                $(':checkbox').change(function(){
-					result = api('adm',{'campo':this.id});
-                    console.log(result);
-                });   
-                </script>
-                <span id='data'></span>
 			</div>
 
-            <div class='bg-light text-dark'>
-                <div class='d-md-flex p-xl-5 p-4'>
-                    <div class=''>
-                        <h3>Projetos</h3>
-                    </div>
-                    <div class='ms-auto'>
-                        <form method='get'>
-                            <div class='row'>
-                                <div class='col-auto'>
-                                    <input name='pesquisa_pro' class='border-0 form-control bg-dark' type='text' placeholder='Pesquisar...'></input>
-                                </div>
-                                <div class='col-auto d-flex'>
-                                    <button type='submit' class='justify-content-center align-self-center btn btn-primary'>Pesquisar <i class='bi bi-search'></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class='table-responsive px-2'>
-                    <table class='table table-light'>
-                        <tr>
-                        <th scope='col'>#</th>
-                        <th scope='col'>Utilizador</th>
-                        <th scope='col'>Título</th>
-                        <th scope='col'>Cor</th>
-                        <th scope='col'>Privado</th>
-                        <th scope='col'>Ativo</th>
-                        <th scope='col'>Secções</th>
-                        <th scope='col'>Data de criação</th>
-                        </tr>
-                        ";
-                        if ($_GET['pesquisa_pro']){
-                            $pesquisa_pro = "SELECT * FROM pro WHERE tit LIKE '%".$_GET['pesquisa_pro']."%'";
-                        } else {
-                            $pesquisa_pro = "SELECT * FROM pro";
-                        }
-                        if ($resultado_pro = $bd->query($pesquisa_pro)) {
-                            while ($campo = $resultado_pro->fetch_assoc()) {
-                                $pro_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$campo["uti"]."'"));	
-                                echo "
-                                <tr>
-                                    <th scope='row'>".$campo['id']."</th>
-                                    <td><a href='/u/".$pro_uti['nut']."' title='".$pro_uti['nut']."'><img class='rounded-circle' src='".$url_media."fpe/".$pro_uti['fpe'].".jpg' width='40' height='40'></a></td>
-                                    <td><a href='/projeto?id=".base64_encode($campo['id'])."'>".$campo['tit']."</a></td>
-                                    <td>".$campo['cor']."</td>
-                                    <td>".$campo['pri']."</td>
-                                    <td>".$campo['ati']."</td>
-                                    <td>";
-                                    if ($resultado_pro_sec = $bd->query("SELECT * FROM pro_sec WHERE pro='".$campo['id']."'")) {
-                                        while ($campo = $resultado_pro_sec->fetch_assoc()) {
-                                            echo $campo['id']." ";
-                                        }
-                                    }
-                                    echo "</td>
-                                    <td>".$campo['dcr']."</td>
-                                </tr>
-                                ";
-                            } 
-                            $resultado_pro->free();
-                        }
-                        echo "
-                    </table>
-                </div>
-                <span id='data'></span>
-			</div>
 		</div>
 		";
 		?>
+
+        <script>
+            $(':checkbox').change(function(){
+				res = api('adm',{'campo':this.id});
+                console.debug(res);
+            });
+
+            function reset(med){
+				res = api('err_comp',{'med':med});
+                console.debug(res);
+                if (res.est=='sucesso'){
+                    $("#btn_reset_"+med).html("<i class='bi bi-check2'></i>");
+                }
+            }
+        </script>
+
 	</body>
 </html>

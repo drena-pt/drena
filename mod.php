@@ -91,6 +91,7 @@ function mini_nut($nut){
                     echo "
                 </table>
             </div>
+            
 		</div>
 	</div>
 	";
