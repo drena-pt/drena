@@ -119,6 +119,47 @@ if ($uti){
                     </div>";
                 }
 
+                $append_med = "
+                <section class='bg-dark bg-gradient shadow my-4'>
+                    <div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div>
+                    <div class='p-xl-5 p-4 text-start'>
+
+                        <section class='row mb-3'>
+                            <div class='col-auto pe-0'>
+                                <a href='/u/\"+data[index].uti.nut+\"'><img src='\"+data[index].uti.fpe+\"' class='rounded-circle' width='40'></a>
+                            </div>
+                            
+                            <div class='col'>
+                                <text id='med_tit' class='h5'>\"+data[index].med.tit+\"</text><br>
+                                <span>"._('Publicado por')." \"+data[index].uti.nut+\"</span>
+                            </div>
+
+                            <div class='col my-0 d-flex flex-row-reverse'>
+                                <a href='/m/\"+data[index].med.id+\"' role='button' class='btn btn-light my-auto'>
+                                    "._('Abrir')." <i class='bi bi-box-arrow-in-right'></i>
+                                </a>
+                            </div>
+                        </section>
+
+                        <section>
+                            <span class='badge bg-primary py-1 pe-3' role='button' onclick='gosto(`\"+data[index].med.id+\"`)'  id='btn_gos_\"+data[index].med.id+\"'>
+                                <span>
+                                    <i id='svg_gos1_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i>
+                                    <i id='svg_gos0_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up'></i>
+                                </span>
+                                <span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."
+                            </span>
+
+                            <span class='badge bg-light bg-opacity-10 py-1 pe-3'>
+                                <i class='bi bi-calendar4-week'></i>
+                                \"+dayjs.tz(data[index].med.den, 'UTC').fromNow()+\"
+                            </span>
+                        </section>
+
+                    </div>
+                </section>
+                ";
+
                 echo "
                 <div id='medias'></div>
                 <script>
@@ -135,12 +176,14 @@ if ($uti){
                                     
                                     //Carrega a média apenas se não for repetida
                                     if (!$('#med_'+data[index].med.id+'_conteudo').length){
-                                        $('#medias').append(\"<section class='bg-dark bg-gradient shadow my-4'><div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div><div class='p-xl-5 p-4'><div class='row mb-3'><div class='col d-flex'><text class='h5 my-auto text-start' id='med_tit'>\"+data[index].med.tit+\"</text></div><div class='col my-0 d-flex flex-row-reverse'><a href='/m/\"+data[index].med.id+\"' role='button' class='btn btn-light me-1 my-auto'>"._('Abrir')." <i class='bi bi-box-arrow-in-right'></i></a></div></div><section class='mt-auto'><div class='row mb-1'><div class='col-auto pe-0 text-center'><a href='/u/\"+data[index].uti.nut+\"'><img src='\"+data[index].uti.fpe+\"' class='rounded-circle' width='40'></a></div><div class='col d-flex'><span class='justify-content-center align-self-center'>"._('Publicado por')." \"+data[index].uti.nut+\"</span></div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><span onclick='gosto(`\"+data[index].med.id+\"`)' role='button'><i id='svg_gosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i><i id='svg_naoGosto_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up'></i></span></div><div class='col d-flex'><span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."</div></div><div class='row mb-1'><div class='col-auto pe-0 text-center'><i class='bi bi-calendar4-week'></i></div><div class='col d-flex'>\"+dayjs.tz(data[index].med.den, 'UTC').fromNow()+\"</div></div></section></div></section>\");
+                                        $('#medias').append(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
                                         
                                         if (data[index].uti.gos==1){
-                                            $('#svg_naoGosto_'+data[index].med.id).attr('hidden', true);
+                                            $('#svg_gos0_'+data[index].med.id).attr('hidden', true);
+                                            $('#btn_gos_'+data[index].med.id).addClass('bg-opacity-50');
                                         } else {
-                                            $('#svg_gosto_'+data[index].med.id).attr('hidden', true);
+                                            $('#svg_gos1_'+data[index].med.id).attr('hidden', true);
+                                            $('#btn_gos_'+data[index].med.id).addClass('bg-opacity-25');
                                         }
     
                                         if (data[index].med.tip==1){
@@ -170,11 +213,13 @@ if ($uti){
 					result = api('med_gos',{'med':med_id});
                     $('#med_'+med_id+'_numGostos').text(result.num);
                     if (result.gos=='true'){
-                        $('#svg_gosto_'+med_id).removeAttr('hidden');
-                        $('#svg_naoGosto_'+med_id).attr('hidden', true);
+                        $('#svg_gos1_'+med_id).removeAttr('hidden');
+                        $('#svg_gos0_'+med_id).attr('hidden', true);
+                        $('#btn_gos_'+med_id).addClass('bg-opacity-50').removeClass('bg-opacity-25');
                     } else {
-                        $('#svg_gosto_'+med_id).attr('hidden', true);
-                        $('#svg_naoGosto_'+med_id).removeAttr('hidden');
+                        $('#svg_gos1_'+med_id).attr('hidden', true);
+                        $('#svg_gos0_'+med_id).removeAttr('hidden');
+                        $('#btn_gos_'+med_id).addClass('bg-opacity-25').removeClass('bg-opacity-50');
                     }
 				}
 

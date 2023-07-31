@@ -134,15 +134,48 @@ if ($med){
 					}
 					echo "
 					<div class='p-xl-5 p-4'>
-						<div class='row mb-3'>
-							<div class='col-12 col-md d-flex'>
-								<text id='med_tit' class='h5 my-auto'>".$med_tit."</text>
+
+						<section class='mt-auto'>
+							<div class='row mb-3'>
+								<div class='col-auto pe-0'>
+									<a href='/u/".$med_uti['nut']."'><img src='".$url_media."fpe/".$med_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
+								</div>
+								<div class='col'>
+									<text id='med_tit' class='h5'>".$med_tit."</text><br>
+									<span>"._('Publicado por')." ".$med_uti['nut']."</span>
+								</div>
 							</div>
 
-							<div class='col-md my-md-0 my-2 d-flex flex-md-row-reverse flex-row'>
-							";
+							<div>
+								<span class='badge bg-primary ";if($med_gos){echo"bg-opacity-50";}else{echo"bg-opacity-25";}echo" py-1 pe-3' role='button' onclick='gosto()' id='btn_gos'>
+									<span>
+										<i id='svg_gos1' class='bi bi-hand-thumbs-up-fill' ";if(!$med_gos){echo"hidden";}echo"></i>
+										<i id='svg_gos0' class='bi bi-hand-thumbs-up' ";if($med_gos){echo"hidden";}echo"></i>
+									</span>
+									<span id='tex_gos'>".$med['gos']."</span> "._('gostos')."
+								</span>
 
-						if ($uti['id']==$med_uti['id']){ # Botões de gestão de média, para o utilizador dono
+								<span class='badge bg-light bg-opacity-10 py-1 pe-3'>
+									<i class='bi bi-calendar4-week'></i>
+									".sprintf(_('há %s'),tempoPassado(strtotime($med['den'])))."
+								</span>
+
+								";
+								if ($med['nmo']==2){
+									echo "
+									<span class='badge py-1 pe-3 text-muted'>
+										<i class='bi bi-eye-slash ms-0'></i>Sensível
+									</span>";
+								}
+								echo "
+							</div>
+						</section>
+						";
+
+						#SECÇÃO - Botões de gestão
+						if ($uti['id']==$med_uti['id']){ #Botões de gestão de média, para o utilizador dono
+							echo "<div class='row'><div class='col-md my-2 d-flex flex-row'>";
+							
 							if ($med['tip']=='1' OR $med['tip']=='2'){ # Caso seja um vídeo ou um áudio, para mudar thumbnail
 								echo "
 								<span>
@@ -368,9 +401,13 @@ if ($med){
 								$('#med_tit').text($(this).val());
 							});
 							</script>
-							";
+							
+							</div>
+						</div>
+						";
 						} else if ($uti['car']==2){ #Ferramenta do moderador
-							echo "
+							echo "<div class='row'><div class='col-md my-2 d-flex flex-row'>
+							
 							<span data-bs-toggle='modal' data-bs-target='#modal_moderador'>
 								<button class='btn btn-ciano text-light me-1 my-auto'>
 									"._('Moderar')." ";
@@ -474,55 +511,13 @@ if ($med){
 							}
 							moderar();
 							</script>
-							";
+							
+							</div>
+						</div>";
 						}
-						echo "
-							</div>
-						</div>
+						#FIM SECÇÃO - Botões de gestão
 
-						<section class='mt-auto'>
-							<!--<div class='row mb-1'>
-								<div class='col-auto pe-0 text-center'>
-									<i class='bi bi-bar-chart'></i>
-								</div>
-								<div class='col'>
-									visualizações
-								</div>
-							</div>-->
-							<div class='row mb-1'>
-								<div class='col-auto pe-0 text-center'>
-									<a href='/u/".$med_uti['nut']."'><img src='".$url_media."fpe/".$med_uti['fpe'].".jpg' class='rounded-circle' width='40'></a>
-								</div>
-								<div class='col d-flex'>
-									<span class='justify-content-center align-self-center'>"._('Publicado por')." ".$med_uti['nut']."</span>
-								</div>
-							</div>
-							<div class='row mb-1'>
-								<div class='col-auto pe-0 text-center'>
-									<span role='button' onclick='gosto()'>
-										<i id='botao_gosto' class='bi bi-hand-thumbs-up-fill' ";if(!$med_gos){echo"hidden";}echo"></i>
-										<i id='botao_naogosto' class='bi bi-hand-thumbs-up' ";if($med_gos){echo"hidden";}echo"></i>
-									</span>
-								</div>
-								<div class='col' >
-									<span id='texto_gostos'>".$med['gos']."</span> "._('gostos')."
-								</div>
-							</div>
-							<div class='row mb-1'>
-								<div class='col-auto pe-0 text-center'>
-									<i class='bi bi-calendar4-week'></i>
-								</div>
-								<div class='col'>
-									".sprintf(_('há %s'),tempoPassado(strtotime($med['den'])))."
-								</div>";
-								if ($med['nmo']==2){
-									echo "<div class='col d-flex flex-row-reverse flex-row text-muted'>
-										<i class='bi bi-eye-slash'></i>Sensível
-									</div>";
-								}
-								echo "
-							</div>
-						</section>
+					echo "
 					</div>
 
 				</section>
@@ -604,14 +599,17 @@ if ($med){
 				});
 
 				function gosto(){
-					result = api('med_gos',{'med':'".$med['id']."'});
-					$('#texto_gostos').text(result.num);
-                    if (result.gos=='true'){
-						$('#botao_gosto').removeAttr('hidden');
-						$('#botao_naogosto').attr('hidden', true);
+					res = api('med_gos',{'med':'".$med['id']."'});
+
+					$('#tex_gos').text(res.num);
+                    if (res.gos=='true'){
+						$('#btn_gos').addClass('bg-opacity-50').removeClass('bg-opacity-25');
+						$('#svg_gos1').removeAttr('hidden');
+						$('#svg_gos0').attr('hidden', true);
                     } else {
-						$('#botao_gosto').attr('hidden', true);
-						$('#botao_naogosto').removeAttr('hidden');
+						$('#btn_gos').addClass('bg-opacity-25').removeClass('bg-opacity-50');
+						$('#svg_gos1').attr('hidden', true);
+						$('#svg_gos0').removeAttr('hidden');
                     }
 				}
 

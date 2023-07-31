@@ -25,9 +25,8 @@ function api(api_url, api_data, api_processData=true, api_contentType) {
         }
     });
     var result = JSON.parse(jqXHR.responseText);
-    if (result['err']){
-        alert(result['err']);
-    } else {
-        return result;
+    if (result.err){
+        alert(result.err);
     }
+    return result;
 }
