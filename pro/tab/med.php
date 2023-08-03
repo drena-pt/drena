@@ -6,7 +6,7 @@ tit VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,  #Título
 tip INT NOT NULL,                       #Tipo (1:video;2:áudio;3:imagem) 
 est INT DEFAULT 0,                      #Estado
 thu VARCHAR(16),                        #ID da Thumbnail
-alb INT,                                #ID do album
+alb VARCHAR(6),                         #ID do album
 pri BOOLEAN NOT NULL DEFAULT 0,         #Privado (1:privado;0:público)
 nmo INT DEFAULT 0,                      #Nivel de moderação
 gos INT DEFAULT 0,                      #Número de gostos

@@ -243,7 +243,7 @@ if ($med){
 															#Se a média estiver nesse album
 															if ($med['alb']==$campo['id']){
 																echo "
-																<a href='/album?id=".base64_encode($campo['id'])."' class='list-group-item bg-transparent px-0'>
+																<a href='/album?id=".$campo['id']."' class='list-group-item bg-transparent px-0'>
 																<section class='p-4 bg-light bg-cover text-primary rounded-xl shadow d-flex justify-content-between align-items-center' style='background-image: linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.8)), url(\"".$url_media."thumb/".$campo['thu'].".jpg\");'>
 																		<h5 class='m-0'>".$alb_tit."</h5>
 																		<span class='badge rounded-pill bg-primary text-light'>".$alb_num_med."</span>
@@ -282,7 +282,7 @@ if ($med){
 								function med_alb(alb){
 									result = api('med_alb',{'alb': alb,'med': '".$med['id']."','ac': 'med'});
 									if (result.est=='true'){
-										window.location.href = '/album?id='+btoa(alb);
+										window.location.href = '/album?id='+alb;
 									}
 								}
 

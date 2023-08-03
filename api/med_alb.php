@@ -5,6 +5,14 @@ require_once('validar.php');
 
 $ac = $_POST['ac']; #Ação
 
+#Função para gerar um código
+function gerarCodigo($length){   
+    $charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    for($i=0; $i<$length; $i++) 
+        $key .= $charset[(mt_rand(0,(strlen($charset)-1)))];
+    return $key;
+}
+
 if ($_POST['alb']){
     #Informações do albúm
     $alb = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_alb WHERE id='".$_POST['alb']."'"));
@@ -70,14 +78,20 @@ if ($ac=='med' AND $med AND $alb){
 #AÇÃO: Criar albúm
 } else if ($ac=='criar' AND $med){
 
+	#Gera código unico
+	gerarCodigo:
+	$codigo = gerarCodigo(6);
+	#Verifica na base de dados se já existe esse código, se sim repete.
+	if(mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_alb WHERE id='".$codigo."'"))){
+		goto gerarCodigo;
+	}
+
     #Cria um novo álbum
-    if (mysqli_query($bd, "INSERT INTO med_alb (uti, tip, thu) VALUES ('".$uti['id']."', '".$med['tip']."', '".$med['thu']."');")){
-        #Obtem o registo feito na base de dados
-        $alb_id = mysqli_insert_id($bd);
+    if (mysqli_query($bd, "INSERT INTO med_alb (id, uti, thu) VALUES ('".$codigo."', '".$uti['id']."', '".$med['thu']."');")){
 
         #Adiciona a média ao album
-        if (mysqli_query($bd, "UPDATE med SET alb='".$alb_id."' WHERE id='".$med["id"]."';")){
-            echo '{"est": "sucesso", "alb": "'.base64_encode($alb_id).'"}';
+        if (mysqli_query($bd, "UPDATE med SET alb='".$codigo."' WHERE id='".$med["id"]."';")){
+            echo '{"est": "sucesso", "alb": "'.$codigo.'"}';
         } else {
             echo '{"err": "'.$bd->error.'"}';
         }

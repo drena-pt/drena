@@ -16,12 +16,16 @@ if (!$uti_perfil){
     header('HTTP/1.1 400 Bad Request'); exit;
 }
 
-$alb_pesquisa = "SELECT id,tit,thu FROM med_alb WHERE uti='".$uti_perfil['id']."' ORDER BY dcr;";
+$alb_pesquisa = "SELECT id,uti,tit,thu FROM med_alb WHERE uti='".$uti_perfil['id']."' ORDER BY dcr;";
 
 if ($resultado = $bd->query($alb_pesquisa)) {
     while ($alb = $resultado->fetch_assoc()) {
+		$alb_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT nut FROM uti WHERE id='".$alb['uti']."';"));
+        if (!$alb['tit']){
+            $alb['tit'] = sprintf(_('Álbum de %s'),$alb_uti['nut']);
+        }
+        
 		$alb['num_med'] = mysqli_num_rows(mysqli_query($bd, "SELECT id FROM med WHERE alb='".$alb['id']."';"));
-		$alb['id'] = base64_encode($alb['id']);
         $alb['thu'] = $url_media.'thumb/'.$alb['thu'].'.jpg'; #Coloca o url completo, em vez de apenas o id
         $output[] = $alb;
     }

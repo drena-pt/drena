@@ -2,7 +2,7 @@
 $site_tit = 'off';
 require('head.php');
 #Informações Álbum
-$alb = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_alb WHERE id='".base64_decode($_GET["id"])."'"));
+$alb = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_alb WHERE id='".$_GET["id"]."'"));
 
 #Verifica se o albúm existe
 if ($alb){
@@ -200,26 +200,27 @@ if ($alb_uti['id']==$uti['id']){
 			function carregar_med(sec){
 				if (sec=='alb'){
 					result = api('ob_med',{'alb':'".$alb['id']."'});
+					meds = result.meds
 				} else if (sec=='adicionar'){
-					result = api('ob_med',{'uti':'".$uti['nut']."','depois':depois_med});
+					meds = api('ob_med',{'uti':'".$uti['nut']."','depois':depois_med});
 				}
-				if (!result['err']){
-					$.each(result, function (key, data) {
-						$('#row_med_'+sec).append(gerar_med(data));
-						if (sec=='adicionar'){
-							$('#a_med_'+data.id).removeAttr('href').attr({
-								onclick: 'med_alb(`'+data.id+'`)',
-								role: 'button',
-							});;
-						}
-					})
-				}
+				
+				$.each(meds, function (key, data) {
+					$('#row_med_'+sec).append(gerar_med(data));
+					if (sec=='adicionar'){
+						$('#a_med_'+data.id).removeAttr('href').attr({
+							onclick: 'med_alb(`'+data.id+'`)',
+							role: 'button',
+						});;
+					}
+				})
+
 				if (sec=='adicionar'){
-					if (result.length < 6) { 
+					if (meds.length < 6) { 
 						$('#btn_carregar_mais').hide();
 					} else { 
 						$('#btn_carregar_mais').show();
-						depois_med = result[result.length-1].id;
+						depois_med = meds[meds.length-1].id;
 					}
 				}
 			}

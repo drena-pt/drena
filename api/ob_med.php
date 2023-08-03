@@ -58,7 +58,7 @@ if ($_POST["uti"]){
     $alb = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med_alb WHERE id='".$_POST["alb"]."'"));
     if (!$alb){
         echo '{"err": "Albúm não encontrado."}';
-        header('HTTP/1.1 400 Bad Request'); exit;
+        header('HTTP/1.0 404 Not Found'); exit;
     }
 
     #Oculta publicações privadas se não for o mesmo utilizador
@@ -66,19 +66,24 @@ if ($_POST["uti"]){
         $pri_med = "AND pri=0";
     }
 
-    #SQL Pesquisa
+    #Informações do Dono do albúm
+    $alb_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$alb["uti"]."'"));
+
+    #Pesquisa Medias do albúm
     $alb_pesquisa = "SELECT id,thu,tip,tit,pri,gos,den FROM med WHERE alb='".$alb['id']."' ".$pri_med." ORDER BY den DESC";
 
+    $meds = array();
     if ($resultado = $bd->query($alb_pesquisa)) {
         while ($med = $resultado->fetch_assoc()) {
             $med['tit_curto'] = encurtarNome($med['tit']);
             $med['thu'] = $url_media.'thumb/'.$med['thu'].'.jpg'; #Coloca o url completo, em vez de apenas o id
             #Procura por um gosto do utilizador
             $med['tem_gos'] = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$uti['id']."'"));
-            
-            $output[] = $med;
+            $meds[] = $med;
         }
     }
+    $alb_uti_info = array('nut' => $alb_uti['nut'], 'fpe' => $url_media.'fpe/'.$alb_uti['fpe'].'.jpg');
+    $output = array('uti' => $alb_uti_info, 'meds' => $meds);
 
 #Pedido inválido
 } else {
