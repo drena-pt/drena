@@ -25,7 +25,7 @@ if ($_POST["uti"]){
 
 } else if ($_POST["utis"]){
 
-    $lista_utis = json_decode(html_entity_decode($_POST["utis"]), true);
+    $lista_utis = array_unique(json_decode(html_entity_decode($_POST["utis"]), true));
     $array_utis = array();
 
     foreach ($lista_utis as $utis) {
