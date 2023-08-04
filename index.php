@@ -94,16 +94,15 @@ if ($uti){
                 <div class='my-4'>";
                 if ($conhecidos){
                     if ($_GET['feed']=='global'){
-                        $api_link = $url_site."api/feed.php?uti=".$uti['id']."&tip=global";
+                        $feed_tip = 'global';
                         echo "<a href='/' class='btn btn-light' role='button'>"._('Feed')." <i class='bi bi-view-stacked'></i></a>
                         <a class='btn btn-primary' role='button'>"._('Feed global')." <i class='bi bi-globe'></i></a>";
                     } else {
-                        $api_link = $url_site."api/feed.php?uti=".$uti['id'];
                         echo "<a class='btn btn-primary' role='button'>"._('Feed')." <i class='bi bi-view-stacked'></i></a>
                         <a href='/?feed=global' class='btn btn-light' role='button'>"._('Feed global')." <i class='bi bi-globe'></i></a>";
                     }
                 } else {
-                    $api_link = $url_site."/api/feed.php?tip=global";
+                    $feed_tip = 'global';
                 }
                 echo "</div>";
 
@@ -121,38 +120,38 @@ if ($uti){
 
                 $append_med = "
                 <section class='bg-dark bg-gradient shadow my-4'>
-                    <div class='mw-100' id='med_\"+data[index].med.id+\"_conteudo'></div>
+                    <div class='mw-100' id='med_\"+api_feed[index].med.id+\"_conteudo'></div>
                     <div class='p-xl-5 p-4 text-start'>
 
                         <section class='row mb-3'>
                             <div class='col-auto pe-0'>
-                                <a href='/u/\"+data[index].uti.nut+\"'><img src='\"+data[index].uti.fpe+\"' class='rounded-circle' width='40'></a>
+                                <a href='/u/\"+api_feed[index].uti.nut+\"'><img src='\"+api_feed[index].uti.fpe+\"' class='rounded-circle' width='40'></a>
                             </div>
                             
                             <div class='col'>
-                                <text id='med_tit' class='h5'>\"+data[index].med.tit+\"</text><br>
-                                <span>"._('Publicado por')." \"+data[index].uti.nut+\"</span>
+                                <text id='med_tit' class='h5'>\"+api_feed[index].med.tit+\"</text><br>
+                                <span>"._('Publicado por')." \"+api_feed[index].uti.nut+\"</span>
                             </div>
 
                             <div class='col my-0 d-flex flex-row-reverse'>
-                                <a href='/m/\"+data[index].med.id+\"' role='button' class='btn btn-light my-auto'>
+                                <a href='/m/\"+api_feed[index].med.id+\"' role='button' class='btn btn-light my-auto'>
                                     "._('Abrir')." <i class='bi bi-box-arrow-in-right'></i>
                                 </a>
                             </div>
                         </section>
 
                         <section>
-                            <span class='badge bg-primary py-1 pe-3' role='button' onclick='gosto(`\"+data[index].med.id+\"`)'  id='btn_gos_\"+data[index].med.id+\"'>
+                            <span class='badge bg-primary py-1 pe-3' role='button' onclick='gosto(`\"+api_feed[index].med.id+\"`)'  id='btn_gos_\"+api_feed[index].med.id+\"'>
                                 <span>
-                                    <i id='svg_gos1_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i>
-                                    <i id='svg_gos0_\"+data[index].med.id+\"' class='bi bi-hand-thumbs-up'></i>
+                                    <i id='svg_gos1_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i>
+                                    <i id='svg_gos0_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up'></i>
                                 </span>
-                                <span id='med_\"+data[index].med.id+\"_numGostos'>\"+data[index].med.gos+\"</span>&nbsp;"._('gostos')."
+                                <span id='med_\"+api_feed[index].med.id+\"_numGostos'>\"+api_feed[index].med.gos+\"</span>&nbsp;"._('gostos')."
                             </span>
 
                             <span class='badge bg-light bg-opacity-10 py-1 pe-3'>
                                 <i class='bi bi-calendar4-week'></i>
-                                \"+dayjs.tz(data[index].med.den, 'UTC').fromNow()+\"
+                                \"+dayjs.tz(api_feed[index].med.den, 'UTC').fromNow()+\"
                             </span>
                         </section>
 
@@ -164,50 +163,46 @@ if ($uti){
                 <div id='medias'></div>
                 <script>
                 let scrollLoad = true;
-                let api_link = '".$api_link."';
 
-                function carregarMedia(url){
-                    $.get(url, function(data) {
-                        if (data){
-                            if (data.erro!=null){
-                                console.log('ERRO: '+data.erro);
-                            } else {
-                                for(var index = 0; index < data.length; index++) {
+                var feed_tip = '".$feed_tip."';
+                var feed_depois;
+                function carregarMedia(){
+                    api_feed = api('feed',{'tip':feed_tip,'depois':feed_depois});
+                    if (!api_feed.err){
+                        for(var index = 0; index < api_feed.length; index++) {
                                     
-                                    //Carrega a média apenas se não for repetida
-                                    if (!$('#med_'+data[index].med.id+'_conteudo').length){
-                                        $('#medias').append(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
-                                        
-                                        if (data[index].uti.gos==1){
-                                            $('#svg_gos0_'+data[index].med.id).attr('hidden', true);
-                                            $('#btn_gos_'+data[index].med.id).addClass('bg-opacity-50');
-                                        } else {
-                                            $('#svg_gos1_'+data[index].med.id).attr('hidden', true);
-                                            $('#btn_gos_'+data[index].med.id).addClass('bg-opacity-25');
-                                        }
-    
-                                        if (data[index].med.tip==1){
-                                            $('#med_'+data[index].med.id+'_conteudo').html(\"<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe></div>\");
-                                        } else if (data[index].med.tip==2){
-                                            $('#med_'+data[index].med.id+'_conteudo').html(\"<iframe height='180px' class='w-100' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe>\");
-                                        } else {
-                                            $('#med_'+data[index].med.id+'_conteudo').html(\"<iframe style='min-height:50vh;' class='w-100' src='/embed?id=\"+data[index].med.id+\"&titulo=0'></iframe>\");
-                                        }
-                                        api_link = '".$api_link."&depois='+data[index].med.id;
-                                        scrollLoad = true;
-                                    } else {
-                                        //console.log(data[index].med.id+' Média repetida ocultada');
-                                        if (index+1==data.length){
-                                            console.log('Aviso: Fim da lista.');
-                                            scrollLoad = false;
-                                        }
-                                    }
+                            //Carrega a média apenas se não for repetida
+                            if (!$('#med_'+api_feed[index].med.id+'_conteudo').length){
+                                $('#medias').append(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
+                                
+                                if (api_feed[index].uti.gos==1){
+                                    $('#svg_gos0_'+api_feed[index].med.id).attr('hidden', true);
+                                    $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-50');
+                                } else {
+                                    $('#svg_gos1_'+api_feed[index].med.id).attr('hidden', true);
+                                    $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-25');
+                                }
+
+                                if (api_feed[index].med.tip==1){
+                                    $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe></div>\");
+                                } else if (api_feed[index].med.tip==2){
+                                    $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<iframe height='180px' class='w-100' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe>\");
+                                } else {
+                                    $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<iframe style='min-height:50vh;' class='w-100' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe>\");
+                                }
+                                feed_depois = api_feed[index].med.id;
+                                scrollLoad = true;
+                            } else {
+                                //console.log(api_feed[index].med.id+' Média repetida ocultada');
+                                if (index+1==api_feed.length){
+                                    console.log('Aviso: Fim da lista.');
+                                    scrollLoad = false;
                                 }
                             }
                         }
-                    });
+                    }
                 }
-                carregarMedia(api_link);
+                carregarMedia();
 
                 function gosto(med_id){
 					result = api('med_gos',{'med':med_id});
@@ -226,7 +221,7 @@ if ($uti){
                 $(window).scroll(function(){
                     if (scrollLoad && ($(document).height() - $(window).height())-$(window).scrollTop()<=400){
                         scrollLoad = false;
-                        carregarMedia(api_link);
+                        carregarMedia();
                     }
                 });
                 </script>
