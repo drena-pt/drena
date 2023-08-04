@@ -50,6 +50,9 @@ if ($alb_uti['id']==$uti['id']){
 					<button id='btn_adicionar' data-bs-toggle='modal' data-bs-target='#modal_med_adicionar' class='btn btn-dark text-light'>
 					"._('Adicionar')." <i class='bi bi-plus-circle'></i>
 					</button>
+					<a role='button' class='btn btn-primary' href='/alb?id=".$alb['id']."'>
+					"._('Vizualizar')." <i class='bi bi-box-arrow-in-up-right'></i>
+					</a>
 
 					<div id='modal_med_adicionar' class='modal fade' tabindex='-1'>
 						<div class='modal-dialog modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
@@ -248,12 +251,10 @@ if ($alb_uti['id']==$uti['id']){
 					lista_adicionar = false;
 				} else if (result.est=='true'){
 					$('#med_'+med_id).prependTo('#row_med_alb');
-					setTimeout(
-						function() 
-						{
-							$('#a_med_'+med_id).attr('href', '/m/'+med_id)
-							.removeAttr('onclick');
-						}, 500);
+					setTimeout(function(){
+						$('#a_med_'+med_id).attr('href', '/m/'+med_id)
+						.removeAttr('onclick');
+					}, 500);
 				}
 			}
 

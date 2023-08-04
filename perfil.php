@@ -393,7 +393,7 @@ if ($uti_perfil){
 		</div>
 		</div>';
 		$append_alb = '
-		<div class="col p-1 p-sm-2"><a class="text-decoration-none" href="/album?id=\'+data.id+\'">
+		<div class="col p-1 p-sm-2"><a class="text-decoration-none" href="/alb?id=\'+data.id+\'">
 			<div class="bg-light bg-cover text-dark p-4 rounded-xl shadow d-flex justify-content-between align-items-center" style="background-image:linear-gradient(-45deg,rgba(255,255,255,0.2),rgba(255,255,255,0.6)),url(\'+data.thu+\');">
             <text class="h5 m-0">\'+data.tit+\'</text><span class="badge rounded-pill bg-dark text-light">\'+data.num_med+\'</span></div>
 		</a></div>';
