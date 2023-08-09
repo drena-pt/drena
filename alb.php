@@ -33,7 +33,7 @@ require('head.php');
             width: 64px;
             height: 48px;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 8.5px;
         }
         .alb_seletor{
             width: 67px;

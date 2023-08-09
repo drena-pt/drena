@@ -38,19 +38,19 @@
                         <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-ciano border-ciano' style='height: 100px; width: 100px'>
                         ".$num_uti."
                         </div>
-                        Utilizadores
+                        <i class='bi bi-people'></i><br>"._("Utilizadores")."
                     </div>
                     <div class='col text-center'>
                         <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-primary border-primary' style='height: 100px; width: 100px'>
                         ".$num_med."
                         </div>
-                        Médias
+                        <i class='bi bi-play-btn'></i><br>"._("Médias")."
                     </div>
                     <div class='col text-center'>
                         <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-rosa border-rosa' style='height: 100px; width: 100px'>
                         ".$tam_media."
                         </div>
-                        Espaço usado
+                        <i class='bi bi-hdd'></i><br>"._("Espaço usado")."
                     </div>
                 </div>
 			</div>

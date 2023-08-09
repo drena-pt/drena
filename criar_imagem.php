@@ -82,7 +82,7 @@
 									var erro = response[index]['erro'];
 									var thumb = response[index]['thumb'];
 									if (erro){
-										$('#preview').prepend(\"<div class='col mb-4 contentor'><div class='rounded-xl'><img class='shadow rounded-xl w-100' src='imagens/thumb_imagem.jpg'><div class='texto-contentor h6'>\"+erro+\"</div></div></div>\");
+										$('#preview').prepend(\"<div class='col mb-4 contentor'><div class='rounded-xl'><img class='shadow rounded-xl w-100' src='imagens/carregar_imagem.jpg'><div class='texto-contentor h6'>\"+erro+\"</div></div></div>\");
 									} else {
 										$('#preview').prepend(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
 									}

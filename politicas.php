@@ -17,7 +17,7 @@ require('head.php');
     <div class='jumbotron bg-dark d-flex align-items-center text-center justify-content-center align-items-center'>
         <span>
 			<h1 class='display-4'><?php echo _('Política de Privacidade<br> e Termos de Utilização'); ?></h1>
-			<br><a role='button' class='btn btn-primary'>Versão 1.0 - 28 de julho de 2021</a>
+			<br><span class='badge bg-primary'>Versão 1.0 - 28 de julho de 2021</span>
 		</span>
     </div>
 
@@ -52,5 +52,6 @@ require('head.php');
 
 		</div>
     </div>
+	<?php require "footer.php"; ?>
 	</body>
 </html>

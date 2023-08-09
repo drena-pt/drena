@@ -128,15 +128,9 @@ if ($uti){
                                 <a href='/u/\"+api_feed[index].uti.nut+\"'><img src='\"+api_feed[index].uti.fpe+\"' class='rounded-circle' width='40'></a>
                             </div>
                             
-                            <div class='col'>
-                                <text id='med_tit' class='h5'>\"+api_feed[index].med.tit+\"</text><br>
+                            <div class='col'>                            
+                                <a id='med_tit' href='/m/\"+api_feed[index].med.id+\"' class='h5 text-decoration-none text-light' data-bs-original-title='"._('Abrir')."' data-bs-toggle='tooltip' data-bs-placement='right'>\"+api_feed[index].med.tit+\"</a><br>
                                 <span>"._('Publicado por')." \"+api_feed[index].uti.nut+\"</span>
-                            </div>
-
-                            <div class='col my-0 d-flex flex-row-reverse'>
-                                <a href='/m/\"+api_feed[index].med.id+\"' role='button' class='btn btn-light my-auto'>
-                                    "._('Abrir')." <i class='bi bi-box-arrow-in-right'></i>
-                                </a>
                             </div>
                         </section>
 
