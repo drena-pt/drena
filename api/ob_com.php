@@ -22,7 +22,7 @@ if ($_POST["med"]){
     if ($resultado = $bd->query("SELECT * FROM med_com WHERE med='".$med['id']."'")) {
         while ($com = $resultado->fetch_assoc()) {
             
-            $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$med["uti"]."'"));
+            $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$com["uti"]."'"));
             $com['uti'] = $med_uti['nut'];
             $output[] = $com;
         }
