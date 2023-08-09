@@ -142,14 +142,14 @@ if ($uti_perfil){
 
 		#INICIO - Emblema
 		if ($uti_perfil['car']==1){
-			echo "<span class='badge bg-rosa float-end'><i class='bi bi-shield-check'></i><small>Administrador </small></span>";
+			echo "<span class='badge bg-rosa float-end'><i class='bi bi-shield-check'></i>Administrador </span>";
 		} else if ($uti_perfil['car']==2){
-			echo "<span class='badge bg-ciano float-end'><i class='bi bi-shield-check'></i><small>Moderador </small></span>";
+			echo "<span class='badge bg-ciano float-end'><i class='bi bi-shield-check'></i>Moderador </span>";
 		} else if ($uti_perfil['car']==3){
-			echo "<span class='badge bg-amarelo float-end'><i class='bi bi-shield-check'></i><small>Segurança </small></span>";
+			echo "<span class='badge bg-amarelo float-end'><i class='bi bi-shield-check'></i>Segurança </span>";
 		}
 		if ($uti_perfil['id']==100){ #Emblema de utilizador número 100 para o Eemeli
-			echo "<span style='background-color:#ffe85a;' class='badge text-dark float-end'><small>Nº100</small></span>";
+			echo "<span style='background-color:#ffe85a;' class='badge text-dark float-end'>Nº100</span>";
 		}
 		#FIM - Emblema
 		
@@ -208,11 +208,11 @@ if ($uti_perfil){
 						$uti_a = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$pedido[0]."'"));
 						echo "
 						<div id='pedido_".$uti_a['nut']."' class='col pt-0 pb-2 p-1'>
-							<div class='alert border-primary bg-primary bg-opacity-25 d-flex align-items-center p-1 m-0' role='alert'>
+							<div class='alert border-0 bg-primary bg-opacity-25 d-flex align-items-center p-3 m-0' role='alert'>
 								<a class='perfil' href='/u/".$uti_a['nut']."'>
-								<img class='rounded-circle me-2' src='".$url_media."fpe/".$uti_a['fpe'].".jpg' width='64'>
+								<img class='rounded-circle me-2' src='".$url_media."fpe/".$uti_a['fpe'].".jpg' width='40'>
 								".$uti_a['nut']."</a>
-								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-light ms-auto m-0 me-2'>"._('Aceitar pedido')." <i class='bi bi-person-check'></i></button>
+								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-primary ms-auto m-0 me-2'>"._('Aceitar pedido')." <i class='bi bi-person-check'></i></button>
 							</div>
 						</div>";
 					}
