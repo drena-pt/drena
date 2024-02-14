@@ -1,6 +1,14 @@
 <?php 
 $site_tit = 'off';
 require('head.php');
+
+/* error_reporting(E_ALL);
+ini_set('display_errors', 'On');  */
+
+function utis($u) {
+	global $bd;
+	return mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE nut = '$u';"));
+}
 ?>
     	<meta name="description" content="Sobre">
 		<title>drena - Sobre</title>
@@ -29,30 +37,72 @@ require('head.php');
 		A <b>drena</b> é um projeto criado por Guilherme Ribeiro Albuquerque
 		<br><br><br>
 
-		<div class="mb-4">
-			<span class="h5">Guilherme Albuquerque</span><br>
-			<span class="opacity-75">• Desenvolvimento Web • Design • Hostpedagem</span>
+		<div class="alert border-0 bg-primary bg-opacity-10 mb-3">
+			<?php
+			echo "
+			<a href='/u/guilhae'>
+			<img class='rounded-circle me-2' src='".$url_media."fpe/".utis('guilhae')['fpe'].".jpg' width='40' height='40'></a>
+			";
+			?>
+			<span class='h5'>Guilherme Albuquerque</span>
+			<section class="text-end">
+				<span class="opacity-75">• Desenvolvimento Web • Design • Hostpedagem</span>
+			</section>
 		</div>
 
-		<div class="mb-4">
-			<span class="h5">João Devesa</span><br>
-			<span class="opacity-75">• Desenvolvimento Mobile</span>
+		<div class="alert border-0 bg-primary bg-opacity-10 mb-3">
+			<?php
+			echo "
+			<a href='/u/devas'>
+			<img class='rounded-circle me-2' src='".$url_media."fpe/".utis('devas')['fpe'].".jpg' width='40' height='40'></a>
+			";
+			?>
+			<span class='h5'>João Devesa</span>
+			<section class="text-end">
+				<span class="opacity-75">• Desenvolvimento Mobile</span>
+			</section>
 		</div>
 
-		<div class="mb-4">
-			<span class="h5">João Sá</span><br>
-			<span class="opacity-75">• Desenvolvimento Mobile</span>
+		
+		<div class="alert border-0 bg-primary bg-opacity-10 mb-3">
+			<?php
+			echo "
+			<a href='/u/phi19'>
+			<img class='rounded-circle me-2' src='".$url_media."fpe/".utis('phi19')['fpe'].".jpg' width='40' height='40'></a>
+			";
+			?>
+			<span class='h5'>João Sá</span>
+			<section class="text-end">
+				<span class="opacity-75">• Desenvolvimento Mobile</span>
+			</section>
 		</div>
 
-		<div class="mb-4">
-			<span class="h5">João Oliveira</span><br>
-			<span class="opacity-75">• Resolução de problemas</span>
+		<div class="alert border-0 bg-primary bg-opacity-10 mb-3">
+			<?php
+			echo "
+			<a href='/u/fxvnder'>
+			<img class='rounded-circle me-2' src='".$url_media."fpe/".utis('fxvnder')['fpe'].".jpg' width='40' height='40'></a>
+			";
+			?>
+			<span class='h5'>João Oliveira</span>
+			<section class="text-end">
+				<span class="opacity-75">• Resolução de problemas</span>
+			</section>
+		</div>
+
+		<div class="alert border-0 bg-primary bg-opacity-10 mb-3">
+			<?php
+			echo "
+			<a href='/u/v'>
+			<img class='rounded-circle me-2' src='".$url_media."fpe/".utis('v')['fpe'].".jpg' width='40' height='40'></a>
+			";
+			?>
+			<span class='h5'>@deepcut</span>
+			<section class="text-end">
+				<span class="opacity-75">• Resolução de problemas</span>
+			</section>
 		</div>
 		
-		<div class="mb-4">
-			<span class="h5">@deepcut</span><br>
-			<span class="opacity-75">• Resolução de problemas</span>
-		</div>
     </div>
 	<?php require "footer.php"; ?>
 	</body>

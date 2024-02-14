@@ -95,11 +95,11 @@ if ($uti){
                 if ($conhecidos){
                     if ($_GET['feed']=='global'){
                         $feed_tip = 'global';
-                        echo "<a href='/' class='btn btn-light' role='button'>"._('Feed')." <i class='bi bi-view-stacked'></i></a>
-                        <a class='btn btn-primary' role='button'>"._('Feed global')." <i class='bi bi-globe'></i></a>";
+                        echo "<a href='/' class='btn btn-light' role='button'><i class='bi bi-view-list'></i>"._('Feed')."</a>
+                        <a class='btn btn-primary' role='button'><i class='bi bi-globe'></i>"._('Feed global')."</a>";
                     } else {
-                        echo "<a class='btn btn-primary' role='button'>"._('Feed')." <i class='bi bi-view-stacked'></i></a>
-                        <a href='/?feed=global' class='btn btn-light' role='button'>"._('Feed global')." <i class='bi bi-globe'></i></a>";
+                        echo "<a class='btn btn-primary' role='button'><i class='bi bi-view-list'></i>"._('Feed')."</a>
+                        <a href='/?feed=global' class='btn btn-light' role='button'><i class='bi bi-globe'></i>"._('Feed global')."</a>";
                     }
                 } else {
                     $feed_tip = 'global';
@@ -135,7 +135,7 @@ if ($uti){
                         </section>
 
                         <section>
-                            <span class='badge bg-primary py-1 pe-3' role='button' onclick='gosto(`\"+api_feed[index].med.id+\"`)'  id='btn_gos_\"+api_feed[index].med.id+\"'>
+                            <span class='badge bg-primary py-1' role='button' onclick='gosto(`\"+api_feed[index].med.id+\"`)'  id='btn_gos_\"+api_feed[index].med.id+\"'>
                                 <span>
                                     <i id='svg_gos1_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i>
                                     <i id='svg_gos0_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up'></i>
@@ -143,7 +143,7 @@ if ($uti){
                                 <span id='med_\"+api_feed[index].med.id+\"_numGostos'>\"+api_feed[index].med.gos+\"</span>&nbsp;"._('gostos')."
                             </span>
 
-                            <span class='badge bg-light bg-opacity-10 py-1 pe-3'>
+                            <span class='badge bg-light bg-opacity-10 py-1'>
                                 <i class='bi bi-calendar4-week'></i>
                                 \"+dayjs.tz(api_feed[index].med.den, 'UTC').fromNow()+\"
                             </span>

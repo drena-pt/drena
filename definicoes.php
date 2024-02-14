@@ -24,7 +24,7 @@
 							<text>"._('Criação da conta').": ".substr($uti["dcr"], 0, -9)."</text>
 						</div>
 						<div class='col-12 col-sm-4 p-sm-0 pt-2'>
-							<a class='float-sm-end btn btn-light' href='/pro/sair'>"._('Sair')."<i class='bi bi-box-arrow-right'></i></a>
+							<a class='float-sm-end btn btn-vermelho' href='/pro/sair'><i class='bi bi-box-arrow-right'></i>"._('Sair')."</a>
 						</div>
 					</div>
 				</div>
@@ -103,9 +103,9 @@
 			<section class='p-xl-5 p-4 bg-dark text-light'>
 
 				<h2>"._("Informação")."</h2>
-				<!--<a href='/sobre' class='btn btn-primary'>Sobre a drena <i class='bi bi-info-circle'></i></a>-->
-				<a href='/politicas' class='btn btn-light'>"._("Políticas de Privacidade")."<i class='bi bi-shield-lock'></i></a>
-				<!--<a class='btn btn-light'>APP <i class='bi bi-app-indicator'></i></a>-->
+				<a href='/sobre' class='btn btn-primary'><i class='bi bi-info-circle'></i>Sobre a drena</a>
+				<a href='/politicas' class='btn btn-light'><i class='bi bi-shield-lock'></i>"._("Políticas de Privacidade")."</a>
+				<a href='https://play.google.com/store/apps/details?id=pt.drena' class='btn btn-light'><i class='bi bi-app-indicator'></i>APP</a>
 
 			</section>
 			";

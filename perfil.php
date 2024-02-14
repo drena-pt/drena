@@ -51,7 +51,7 @@ if ($uti_perfil){
 			echo "
 			<button data-bs-toggle='modal' data-bs-target='#modal_fpe' class='btn btn-light float-end ms-2'>
 				<span id='fpe_carregar'>
-					"._('Alterar foto')." <i class='bi bi-image'></i>
+					<i class='bi bi-image'></i>"._('Alterar foto')."
 				</span>
 				<span id='fpe_a_carregar' style='display:none;'>
 					A carregar⠀
@@ -61,7 +61,7 @@ if ($uti_perfil){
 
 			<div class='modal fade' id='modal_fpe' tabindex='-1' role='dialog' aria-labelledby='modal_fpe_label' aria-hidden='true'>
 				<div class='modal-dialog' role='document'>
-					<div class='modal-content bg-dark bg-gradient rounded-xl shadow p-5 text-light'>
+					<div class='modal-content bg-cinza bg-gradient rounded-xl shadow p-4 p-xl-5 text-light'>
 						<div class='modal-header mb-3'>
 							<h2 class='modal-title' id='modal_fpe_label'>"._('Alterar foto')."<br></h2><br>
 							<button type='button' class='btn-close p-2' data-bs-dismiss='modal'></button>
@@ -73,10 +73,8 @@ if ($uti_perfil){
 								echo "<div class='m-0 row row-cols-3 mw-100'>
 								
 								<div class='col p-2 align-self-center'>
-									<label role='button' for='fpe_input'>
-										<div class='rounded-xl bg-light text-dark text-center py-3'>
-											"._('Carregar foto')."<i class='bi bi-upload'></i>
-										</div>
+									<label role='button' for='fpe_input' class='rounded-xl bg-light text-dark text-center py-3 w-100'>
+										<i class='bi bi-upload'></i><br>"._('Carregar foto')."
 									</label>
 								</div>
 								";
@@ -142,11 +140,11 @@ if ($uti_perfil){
 
 		#INICIO - Emblema
 		if ($uti_perfil['car']==1){
-			echo "<span class='badge bg-rosa float-end'><i class='bi bi-shield-check'></i>Administrador </span>";
+			echo "<span class='badge bg-rosa float-end'><i class='bi bi-shield-check'></i>Administrador</span>";
 		} else if ($uti_perfil['car']==2){
-			echo "<span class='badge bg-ciano float-end'><i class='bi bi-shield-check'></i>Moderador </span>";
+			echo "<span class='badge bg-ciano float-end'><i class='bi bi-shield-check'></i>Moderador</span>";
 		} else if ($uti_perfil['car']==3){
-			echo "<span class='badge bg-amarelo float-end'><i class='bi bi-shield-check'></i>Segurança </span>";
+			echo "<span class='badge bg-amarelo float-end'><i class='bi bi-shield-check'></i>Segurança</span>";
 		}
 		if ($uti_perfil['id']==100){ #Emblema de utilizador número 100 para o Eemeli
 			echo "<span style='background-color:#ffe85a;' class='badge text-dark float-end'>Nº100</span>";
@@ -212,7 +210,7 @@ if ($uti_perfil){
 								<a class='perfil' href='/u/".$uti_a['nut']."'>
 								<img class='rounded-circle me-2' src='".$url_media."fpe/".$uti_a['fpe'].".jpg' width='40'>
 								".$uti_a['nut']."</a>
-								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-primary ms-auto m-0 me-2'>"._('Aceitar pedido')." <i class='bi bi-person-check'></i></button>
+								<button onclick='pedido_ami(\"".$uti_a['nut']."\",\"".$uti_a['fpe']."\")' class='btn btn-primary ms-auto m-0 me-2'><i class='bi bi-person-check'></i>"._('Aceitar pedido')."</button>
 							</div>
 						</div>";
 					}
@@ -271,7 +269,7 @@ if ($uti_perfil){
 			} else {
 				echo _("Ainda não tem conhecidos");
 				if ($uti['id']==$uti_perfil['id']){ #Mostrar o botão de procurar caso seja o próprio utilizador
-					echo "<button class='m-0 btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_procurar'>"._("Procurar utilizadores")." <i class='bi bi-person-plus-fill'></i></button>";
+					echo "<button class='m-0 btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_procurar'><i class='bi bi-person-plus-fill'></i>"._("Procurar utilizadores")."</button>";
 				}
 			}
 
@@ -294,12 +292,12 @@ if ($uti_perfil){
 				function btn_ami(){
 					switch(ami){
 					  case '0':
-						$('#btn_ami').html('"._('Adicionar conhecido')." <i class=\"bi bi-person-add\"></i>')
+						$('#btn_ami').html('<i class=\"bi bi-person-add\"></i>"._('Adicionar conhecido')."')
 						.unbind('mouseenter mouseleave')
 						.removeClass('btn-vermelho').addClass('btn-light'); break;
 					  case '1':
-						text_d = '"._('São conhecidos')." <i class=\"bi bi-person-check\"></i>';
-						text_h = '"._('Remover conhecido')." <i class=\"bi bi-person-x\"></i>';
+						text_d = '<i class=\"bi bi-person-check\"></i>"._('São conhecidos')."';
+						text_h = '<i class=\"bi bi-person-x\"></i>"._('Remover conhecido')."';
 						$('#btn_ami').html(text_d)
 						.hover(function(){
 							$(this).html(text_h).removeClass('btn-primary').addClass('btn-vermelho');
@@ -307,8 +305,8 @@ if ($uti_perfil){
 							$(this).html(text_d).removeClass('btn-vermelho').addClass('btn-primary');
 						}).removeClass('btn-light').addClass('btn-primary'); break;
 					  case '2':
-						text_d = '"._('Pedido enviado')." <i class=\"bi bi-person\"></i>';
-						text_h = '"._('Cancelar pedido')." <i class=\"bi bi-person-x\"></i>';
+						text_d = '<i class=\"bi bi-person\"></i>"._('Pedido enviado')."';
+						text_h = '<i class=\"bi bi-person-x\"></i>"._('Cancelar pedido')."';
 						$('#btn_ami').html(text_d)
 						.hover(function(){
 							$(this).html(text_h).removeClass('btn-light').addClass('btn-vermelho');
@@ -316,9 +314,9 @@ if ($uti_perfil){
 							$(this).html(text_d).removeClass('btn-vermelho').addClass('btn-light');
 						}).removeClass('btn-vermelho').addClass('btn-light'); break;
 					  case '3':
-						$('#btn_ami').html('"._('Aceitar pedido')." <i class=\"bi bi-person-check\"></i>')
+						$('#btn_ami').html('<i class=\"bi bi-person-check\"></i>"._('Aceitar pedido')."')
 						.unbind('mouseenter mouseleave')
-						.addClass('btn-light'); break;
+						.addClass('btn-primary'); break;
 					}
 				}
 				btn_ami();
@@ -363,8 +361,8 @@ if ($uti_perfil){
 			#Mostrar botões de Publicações e Albúns se houver Albúns
 			if ($perfil_num_alb){
 				echo "
-				<button id='btn_ver_med' onclick='ver(\"med\")' class='btn btn-primary m-0 ps-3'><span class='badge rounded-pill mt-1 bg-dark text-light bg-opacity-50'>".$perfil_num_med."</span> "._('Publicações')." <i class='bi bi-play-btn'></i></button>
-				<button id='btn_ver_alb' onclick='ver(\"alb\")' class='btn btn-light m-0 ps-3'><span class='badge rounded-pill mt-1 bg-dark text-light bg-opacity-50'>".$perfil_num_alb."</span> "._('Álbuns')." <i class='bi bi bi-collection'></i></button>
+				<button id='btn_ver_med' onclick='ver(\"med\")' class='btn btn-primary m-0 ps-3'><span class='badge rounded-pill mt-1 me-2 bg-dark text-light bg-opacity-50'>".$perfil_num_med."</span><i class='bi bi-play-btn'></i>"._('Publicações')."</button>
+				<button id='btn_ver_alb' onclick='ver(\"alb\")' class='btn btn-light m-0 ps-3'><span class='badge rounded-pill mt-1 me-2 bg-dark text-light bg-opacity-50'>".$perfil_num_alb."</span><i class='bi bi bi-collection'></i>"._('Álbuns')."</button>
 				";
 			}
 			echo"

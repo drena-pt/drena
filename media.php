@@ -147,7 +147,7 @@ if ($med){
 							</div>
 
 							<div>
-								<span class='badge bg-primary ";if($med_gos){echo"bg-opacity-50";}else{echo"bg-opacity-25";}echo" py-1 pe-3' role='button' onclick='gosto()' id='btn_gos'>
+								<span class='badge bg-primary ";if($med_gos){echo"bg-opacity-50";}else{echo"bg-opacity-25";}echo" py-1' role='button' onclick='gosto()' id='btn_gos'>
 									<span>
 										<i id='svg_gos1' class='bi bi-hand-thumbs-up-fill' ";if(!$med_gos){echo"hidden";}echo"></i>
 										<i id='svg_gos0' class='bi bi-hand-thumbs-up' ";if($med_gos){echo"hidden";}echo"></i>
@@ -155,7 +155,7 @@ if ($med){
 									<span id='tex_gos'>".$med['gos']."</span> "._('gostos')."
 								</span>
 
-								<span class='badge bg-light bg-opacity-10 py-1 pe-3'>
+								<span class='badge bg-light bg-opacity-10 py-1'>
 									<i class='bi bi-calendar4-week'></i>
 									".sprintf(_('há %s'),tempoPassado(strtotime($med['den'])))."
 								</span>
@@ -163,7 +163,7 @@ if ($med){
 								";
 								if ($med['nmo']==2){
 									echo "
-									<span class='badge py-1 pe-3 text-muted'>
+									<span class='badge py-1 text-muted'>
 										<i class='bi bi-eye-slash ms-0'></i>Sensível
 									</span>";
 								}
