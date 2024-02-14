@@ -59,7 +59,7 @@ if ($erro_nut OR $erro_nco OR $erro_ppa OR $erro_rppa){												# Se houver e
 	#Inicia sessão pre-utilizador sem mail confirmado.
 	session_start();
 	$_SESSION["pre_uti"] = $nut;
-	echo '{"est":"sucesso"}';
+	echo '{"est":"sucesso","token":"'.$token.'"}';
 }
 exit; 
 ?>
