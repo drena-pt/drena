@@ -4,7 +4,7 @@ $funcoes['requerSessao'] = 0;
 require __DIR__.'/pro/fun.php';
 ?>
 <!doctype html>
-<!-- Desenvolvido por Guilherme Albuquerque 2018/2023 -->
+<!-- Desenvolvido por Guilherme Albuquerque 2018/2024 -->
 <html lang="<?php echo get_browser_language(); ?>">
 	<head>
 		<!-- Coisas básicas -->
