@@ -17,9 +17,9 @@
 		<div class='collapse navbar-collapse justify-content-end text-end p-sm-0 pb-2 pe-1' id='menu'>
 			<ul class='navbar-nav'>";
 				if ($uti['car']==1){
-					echo "<li class='nav-item'><a class='nav-link' href='/adm' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Administrar')."'><span class='d-sm-none text-rosa'>"._('Administrar')." </span><i class='bi bi-person-workspace text-rosa'></i></a></li>";
+					echo "<li class='nav-item'><a class='nav-link' href='/adm' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Administrar')."'><span class='d-sm-none text-rosa'>"._('Administrar')." </span><i class='bi bi-shield-check text-rosa'></i></a></li>";
 				} else if ($uti['car']==2){
-					echo "<li class='nav-item'><a class='nav-link' href='/mod' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Moderar')."'><span class='d-sm-none text-ciano'>"._('Administrar')." </span><i class='bi bi-clipboard-check text-ciano'></i></a></li>";
+					echo "<li class='nav-item'><a class='nav-link' href='/mod' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Moderar')."'><span class='d-sm-none text-ciano'>"._('Administrar')." </span><i class='bi bi-shield-check text-ciano'></i></a></li>";
 				}
 				/*  else if ($uti['car']==3){
 					echo "<li class='nav-item'><a class='nav-link' href='/mod'><span class='text-amarelo'>"._('Estatisticas')." <i class='bi bi-bar-chart-line'></i></span></a></li>";
@@ -28,11 +28,11 @@
 				if (!$uti){
 					echo "<li class='nav-item'><a class='nav-link' href='/entrar'>"._('Entrar')."</a></li>";
 				} else {
-					#Botão para a futura escritura
+					#Botão para a futura escritura e conversa
 					#<li class='nav-item'><a class='nav-link' href='/escritura.php'>"._('Escritura')."</a></li>
+					#<li class='nav-item'><a class='nav-link' href='https://conversa.drena.pt' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Conversas')."'><span class='d-sm-none'>"._('Conversas')." </span><i class='bi bi-chat-left-text'></i></a></span></li>
 					echo "
 					<li class='nav-item d-none d-sm-block'><a class='nav-link' href='/criar' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
-					<li class='nav-item'><a class='nav-link' href='https://conversa.drena.pt' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Conversas')."'><span class='d-sm-none'>"._('Conversas')." </span><i class='bi bi-chat-left-text'></i></a></span></li>
 					<li class='nav-item'><a class='nav-link' href='/definicoes' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Configurações')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>
 					";
 			

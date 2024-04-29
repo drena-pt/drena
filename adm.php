@@ -35,22 +35,22 @@
 
                 <div class='row row-cols-3 mt-4'>
                     <div class='col text-center'>
-                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-ciano border-ciano' style='height: 100px; width: 100px'>
-                        ".$num_uti."
+                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-ciano border-ciano' style='height: 124px; width: 124px'>
+                        <i class='me-2 bi bi-people'></i>".$num_uti."
                         </div>
-                        <i class='bi bi-people'></i><br>"._("Utilizadores")."
+                        "._("Utilizadores")."
                     </div>
                     <div class='col text-center'>
-                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-primary border-primary' style='height: 100px; width: 100px'>
-                        ".$num_med."
+                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-primary border-primary' style='height: 124px; width: 124px'>
+                        <i class='me-2 bi bi-play-btn'></i>".$num_med."
                         </div>
-                        <i class='bi bi-play-btn'></i><br>"._("Médias")."
+                        "._("Médias")."
                     </div>
                     <div class='col text-center'>
-                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-rosa border-rosa' style='height: 100px; width: 100px'>
-                        ".$tam_media."
+                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-rosa border-rosa' style='height: 124px; width: 124px'>
+                        <i class='me-2 bi bi-hdd'></i>".$tam_media."
                         </div>
-                        <i class='bi bi-hdd'></i><br>"._("Espaço usado")."
+                        "._("Espaço usado")."
                     </div>
                 </div>
 			</div>

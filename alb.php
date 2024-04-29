@@ -39,6 +39,7 @@ require('head.php');
             width: 67px;
             height: 51px;
             margin-top: 28px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -75,7 +76,7 @@ require('head.php');
 
             <section id="alb_`+alb_id+`_scroll" class="overflow-auto w-100 scrollbar">
                 <div class="flex-row d-flex">
-                    <span class="alb_seletor position-absolute start-50 translate-middle rounded border-light border"></span>
+                    <span class="alb_seletor position-absolute start-50 translate-middle border-light border"></span>
                     <div style="flex: 0 0 auto;width: calc(50% - 36px);"></div>
 
                     <span id="alb_`+alb_id+`_thumb" class="flex-row d-flex">
