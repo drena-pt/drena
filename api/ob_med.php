@@ -1,8 +1,10 @@
 <?php
-#API - Obter médias (das páginas de prefil dos utilizadores)
+#API - Obter médias (do prefil de um utilizador ou de um álbum)
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
 $api_noauth=true; #Não é obrigatório autenticação
 require_once('validar.php');
+
+############################# Organizar isto para o futuro.
 
 /* error_reporting(E_ALL);
 ini_set('display_errors', 'On'); */

@@ -65,11 +65,24 @@ if ($_POST['tip']=='global'){
 
 if ($resultado = $bd->query($sql_media)) {
     while ($med = $resultado->fetch_assoc()) {
-        #Obtem dados do utilizador dono da média
-        $assoc_uti = ($bd->query("SELECT * FROM uti WHERE id='".$med['uti']."'")->fetch_assoc());
-        #Procura por um registo de gosto do utilizador
-        $assoc_gos = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$uti['id']."'"));
-        $output[] = array("med"=>$med,"uti"=>["nut"=>$assoc_uti['nut'],"fpe"=>$url_media."fpe/".$assoc_uti['fpe'].".jpg","gos"=>$assoc_gos]);
+        #Obtém os dados do utilizador dono da média
+        $med_uti = ($bd->query("SELECT * FROM uti WHERE id='".$med['uti']."'")->fetch_assoc());
+        #Obtém o gosto do utilizador logado (0 ou 1)
+        $med_gos = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$uti['id']."'"));
+        
+        $med_com = array();
+        #SQL: Obtém todos os comentários da média
+        if ($r_med_com = $bd->query("SELECT * FROM med_com WHERE med='".$med['id']."'")) {
+            while ($com = $r_med_com->fetch_assoc()) {
+                $com_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$com["uti"]."'"));
+                $com['uti'] = $com_uti['nut'];
+                $com['uti_fpe'] = $url_media.'fpe/'.$com_uti['fpe'].'.jpg';
+                $med_com[] = $com;
+            }
+        }
+
+        #######Mudar como isto está organizado, tirar o gos dentro do uti.
+        $output[] = array("med"=>$med,"uti"=>["nut"=>$med_uti['nut'],"fpe"=>$url_media."fpe/".$med_uti['fpe'].".jpg","gos"=>$med_gos],"gos"=>$med_gos,"com"=>$med_com);
     }
 }
 

@@ -1,10 +1,10 @@
 <?php
-#API - Obter dados de um utilizador
+#API - Obter dados de um ou mais utilizadores
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
 $api_noauth=true; #Não é obrigatório autenticação
 require_once('validar.php');
 
-if ($_POST["uti"]){
+if ($_POST["uti"]){   #########CHECAR MAIS TARDE PARA APAGAR ESTA FUNÇÃO
 
     #Informações do perfil
     $uti_perfil = mysqli_fetch_assoc(mysqli_query($bd, "SELECT id, nut, nco, fpe, dcr FROM uti WHERE nut='".$_POST["uti"]."'"));
