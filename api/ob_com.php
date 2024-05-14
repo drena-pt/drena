@@ -19,11 +19,13 @@ if ($_POST["med"]){
         header('HTTP/1.0 404 Not Found'); exit;
     }
 
+    #SQL: Procura todos os comentários da média
     if ($resultado = $bd->query("SELECT * FROM med_com WHERE med='".$med['id']."'")) {
         while ($com = $resultado->fetch_assoc()) {
             
-            $med_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$com["uti"]."'"));
-            $com['uti'] = $med_uti['nut'];
+            $com_uti = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti WHERE id='".$com["uti"]."'"));
+            $com['uti'] = $com_uti['nut'];
+            $com['uti_fpe'] = $url_media.'fpe/'.$com_uti['fpe'].'.jpg';
             $output[] = $com;
         }
     }

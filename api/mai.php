@@ -16,12 +16,12 @@ $mai_atual = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE i
 #AÇÃO: Registar Mail
 if ($ac=='registar'){
 
-	if (!$post_mai){$erro_mai=1;goto erros;}						#ERRO: Se o campo de email estiver vaziu
-	if ($mai_atual['mai']==$post_mai){$erro_mai=7;goto erros;}		#ERRO: Se o novo email for o mesmo que o atual
+	if (!$post_mai){$aviso_mai=1;goto avisos;}						#AVISO: Se o campo de email estiver vaziu
+	if ($mai_atual['mai']==$post_mai){$aviso_mai=7;goto avisos;}		#AVISO: Se o novo email for o mesmo que o atual
 
 	#Procurar na base de dados se o email já foi confirmado
 	$mai_confirmado = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE mai='".$post_mai."' AND con=1"));
-	if ($mai_confirmado){$erro_mai=3;goto erros;}					#ERRO: Se o email já estiver confirmado e em uso
+	if ($mai_confirmado){$aviso_mai=3;goto avisos;}					#AVISO: Se o email já estiver confirmado e em uso
 
 	#SQL - Define o email atual como não confirmado (pois já não vai ser usado)
 	if ($bd->query("UPDATE uti_mai SET con=0 WHERE id='".$mai_atual['id']."'") === FALSE){
@@ -90,8 +90,8 @@ if ($ac=='registar'){
 		#Sucesso
 		echo '{"est":"sucesso"}'; exit;
 	} else {
-		$erro_cod=6;
-		goto erros;
+		$aviso_cod=6;
+		goto avisos;
 	}
 
 }
@@ -125,18 +125,18 @@ if (email($mai['mai'], $mail_subject, $mail_body)==true){
 
 } else {
 	echo '{"err":"Não foi possível enviar o email"}';
+	header('HTTP/1.1 503 Service Temporarily Unavailable');
 }
 exit;
 
 
-erros:
-$erros = array(
-	"mai" => $erro_mai,
-	"cod" => $erro_cod,
-	"ppa" => $erro_ppa,
-	"rppa" => $erro_rppa
+avisos:
+$avisos = array(
+	"mai" => $aviso_mai,
+	"cod" => $aviso_cod,
+	"ppa" => $aviso_ppa,
+	"rppa" => $aviso_rppa
 );
 #Envia um 'avi' (Aviso) porque o 'err' (Erro) faz um alert no browser.
-echo '{"avi":'.json_encode($erros).'}';
-exit;
+echo '{"avi":'.json_encode($avisos).'}'; exit;
 ?>
