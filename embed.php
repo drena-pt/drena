@@ -26,7 +26,9 @@ if ($med){
 		return $bytes;
 	}
 
-	$med_tit = $med['tit'];#Definir título
+	$med_tit = $med['tit'];#Título
+	$med_thu = $url_media."thumb/".$med["thu"].".jpg";#Thumbnail
+
 	if ($_GET['titulo']=='0'){$tem_titulo='//';}# Se a variavel passada pelo o url "titulo" for 0, comenta o script.
 	echo "
 		<head>
@@ -42,7 +44,7 @@ if ($med){
 
 			<!-- Tags de motor de pequisa -->
 			<meta property='og:title' content='".$med_tit."'/>
-			<meta property='og:image' content='".$url_media."thumb/".$med["thu"].".jpg' />
+			<meta property='og:image' content='".$med_thu."' />
 			";
 			if ($med['tip']==1){
 				echo "
@@ -87,7 +89,7 @@ if ($med){
 				$med_ori_url = $url_media."ori/".$med_ori;
 
 				echo "
-				<video-js poster='".$url_media."thumb/".$med["thu"].".jpg' id='video' class='vjs-theme-drena js-focus-invisible vjs-16-9' controls preload='auto'>
+				<video-js poster='".$med_thu."' id='video' class='vjs-theme-drena js-focus-invisible vjs-16-9' controls preload='auto'>
 					";
 					if ($med['est']=='3'){ # Se o estado for 3 (comprimido).
 						echo "<source src='".$url_media."comp/".$med["id"].".mp4' label='Comprimido <br>".formatSizeUnits(filesize($dir_media."comp/".$med["id"].".mp4"))."' selected='true'>";
@@ -115,7 +117,7 @@ if ($med){
 					title: '".$med_tit."',
 					artist: '".$med_uti['nut']."',
 					artwork: [
-						{ src: '".$url_media."thumb/".$med["thu"].".jpg', sizes: '800x450',   type: 'image/png' },
+						{ src: '".$med_thu."', sizes: '800x450',   type: 'image/png' },
 					]
 					});
 				}
@@ -181,7 +183,7 @@ if ($med){
 
 				echo "
 				<section style='align-items:center;background-color:#111111;display:flex;flex-wrap:wrap;justify-content:center;height:100%;'>
-					<img loading='lazy' style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='".$med_img."'></img>
+					<img loading='lazy' style='width:auto;height:auto;max-height:100vh!important;max-width:100vw!important;' src='".$med_thu."' onLoad=\"this.src='".$med_img."';this.onload=new Function();\"></img>
 				</section>";
 			}
 			echo "
