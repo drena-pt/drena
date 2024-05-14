@@ -169,7 +169,7 @@ if ($uti){
                             if (!$('#med_'+api_feed[index].med.id+'_conteudo').length){
                                 $('#medias').append(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
                                 
-                                if (api_feed[index].uti.gos==1){
+                                if (api_feed[index].gos==1){
                                     $('#svg_gos0_'+api_feed[index].med.id).attr('hidden', true);
                                     $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-50');
                                 } else {

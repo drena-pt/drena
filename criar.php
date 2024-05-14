@@ -5,82 +5,122 @@
 			exit;
 		}
 		?>
-	</head>
-	<body>
-		<?php require('header.php'); ?>
-		<?php
-		echo "
-		<div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
-			<h1 class='py-xl-5 py-4 px-xl-0 px-3'>"._('Criar')."</h1>
+		<style>
+		#criar_header {
+			background-image: linear-gradient(-70deg,#00cee9,#6c4fff,#ff4fff);
+		}
+		.dz-preview .dz-image, .dz-preview.dz-image-preview{
+			border-radius: 10px !important;
+		}
+		.dropzone {
+			cursor: pointer;
+				}
+				.dropzone .dz-message .dz-button {
+			background: none;
+			color: inherit;
+			border: none;
+			padding: 0;
+			font: inherit;
+			outline: inherit;
+		}
+		.dropzone .dz-message {
+			width: 100%;
+			text-align: center;
+			margin: 2em 0;
+		}
+		</style>
+		
+		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 
-			<div class='row row-cols-1 row-cols-md-2'>
-
-				<style>
-					#cartao_1, #cartao_2, #cartao_3, #cartao_4, #cartao_5{
-						position: relative;
-						overflow: hidden;
-					}
-					#cartao_1:before, #cartao_2:before, #cartao_3:before, #cartao_4:before, #cartao_5:before{
-						content: '';
-						width: 200%;
-						height: 200%;
-						position: absolute;
-						top: -50%;
-						left: -30%;
-						z-index: 4;
-						opacity: 0.4;
-						background-position: center;
-						background-size: 9em;
-						background-repeat: no-repeat;
-						transform: rotate(10deg);
-					}
-					#cartao_1:before{background-image: url('https://icons.getbootstrap.com/assets/icons/blockquote-left.svg');}
-					#cartao_2:before{background-image: url('https://icons.getbootstrap.com/assets/icons/camera-reels.svg');}
-					#cartao_3:before{background-image: url('https://icons.getbootstrap.com/assets/icons/camera.svg');}
-					#cartao_4:before{background-image: url('https://icons.getbootstrap.com/assets/icons/volume-up.svg');}
-					#cartao_5:before{background-image: url('https://icons.getbootstrap.com/assets/icons/file-earmark-text.svg');}
-				</style>
-
-				<!--<div class='col'><a class='text-decoration-none' href='pro/projeto.php?ac=criar'>
-					<div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h2>"._('Projeto')."</h2>
-					</div></a>
-				</div>-->
-
-				<div class='col'><a class='text-decoration-none' href='/criar_video'>
-					<div id='cartao_2' class='bg-primary text-light p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h2>"._('Vídeo')."</h2>
-					</div></a>
-				</div>
-
-				<div class='col'><a class='text-decoration-none' href='/criar_imagem'>
-					<div id='cartao_3' class='bg-ciano text-light p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h2>"._('Imagem')."</h2>
-					</div></a>
-				</div>
-
-				<div class='col'><a class='text-decoration-none' href='/criar_audio'>
-					<div id='cartao_4' class='bg-rosa text-light p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h2>"._('Áudio')."</h2>
-					</div></a>
-				</div>
-
-				<div class='col opacity-50'>
-					<div id='cartao_1' class='bg-light text-dark p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h2>"._('Projeto')."</h2>
+		<!-- Custom Dropzone preview template -->
+		<script id="drena-preview-template" type="text/html">
+			<a class="text-light text-decoration-none col p-1 p-sm-2">
+				<div class="ratio ratio-4x3">
+					<div class="dz-preview dz-file-preview">
+						<div class="dz-thumb bg-primary contentor_med h-100 rounded-xl d-flex">
+						<section class="rounded-bottom d-flex w-100 align-self-end bg-dark bg-opacity-75">
+							<div class="w-100">
+								<div class="dz-upload position-static bg-light bg-opacity-75" style="height:4px;width: 0%;" data-dz-uploadprogress></div>
+								<div class="m-2 overflow-hidden">
+									<i class="bi mx-1 dz-icon"></i><span class="overflow-hidden" data-dz-name></span>
+									<br><i class="bi bi-hdd mx-1 text-light"></i><span data-dz-size></span>
+								</div>
+							<div>
+						</section>
+						</div>
 					</div>
 				</div>
+			</a>
+		</script>
 
+	</head>
+	<body>
+		<?php require('header.php');
+		
+		echo "
+		<div class='p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>
+			<div class='shadow p-0 my-0 mb-xl-4'>
+				
+				<div id='criar_header' class='p-xl-5 p-4 bg-primary text-light'>
+					<h2>"._('Carregar médias')."</h2>
+					<span>
+						<span class='badge bg-light text-dark'><i class='bi bi-image'></i>"._("Imagens")."</span>
+						<span class='badge bg-light text-dark'><i class='bi bi-camera-video'></i>"._("Vídeos")."</span>
+						<span class='badge bg-light text-dark'><i class='bi bi-soundwave'></i>"._("Áudios")."</span>
+					</span>
+				</div>
 
-				<!--<div class='col'><a class='text-decoration-none' href='/escritura'>
-					<div id='cartao_5' class='bg-amarelo text-light p-xl-5 p-4 mb-4 rounded-xl shadow'>
-						<h2 class='mb-0'>"._('Roteiro')."</h2>
-						<span class='badge rounded-pill bg-white text-dark'>Beta</span>
-					</div></a>
-				</div>-->
-			</div>
-		</div>
+				<div class='text-light'>
+
+					<form class='dropzone bg-dark border-0 mx-sm-0 mx-1 mw-sm-100 mw-auto row row-cols-2 row-cols-md-3' id='dropzone_form'>
+					</form>
+
+					<script>
+					$('#dropzone_form').dropzone({
+						previewTemplate: $('#drena-preview-template').html(),
+						init: function() {
+							this.on('addedfile', function(file) {
+							  $('.dropzone .dz-message').after(file.previewElement);
+							});
+						  },
+						thumbnail: function(file, dataUrl) {
+							file.previewElement.querySelector('.dz-thumb').style.backgroundImage='url('+dataUrl+')';
+						},
+						url: '/api/carregar_med.php',
+						maxFilesize: 3072,
+						acceptedFiles: 'image/*,video/*,audio/*',
+						headers: {
+							'Authorization': Cookies.get('drena_token')
+						},
+						success: function(file, response) {
+							//Link para a média
+							file.previewElement.href = response.link;
+
+							file.previewElement.querySelector('.dz-thumb').style.backgroundImage='url('+response.thumb+')';
+
+							var med_icon = file.previewElement.querySelector('.dz-icon');
+							if (response.tip=='1') {
+								med_icon.classList.add('bi-camera-video', 'text-primary');
+							} else if (response.tip=='2') {
+								med_icon.classList.add('bi-soundwave', 'text-rosa');
+							} else if (response.tip=='3') {
+								med_icon.classList.add('bi-image', 'text-ciano');
+							}
+
+							file.previewElement.querySelector('.dz-upload').style.display='none';
+						}
+					});
+					
+					</script>
+
+					<div class='row row-cols-2 row-cols-md-3' id='preview'></div>
+
+				</div>
+
 		";
 		?>
+		</div>
+		</div>
+
 	</body>
 </html>

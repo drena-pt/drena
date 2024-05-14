@@ -381,7 +381,8 @@ if ($med){
 							$('#eliminar_med').click(function() {
 								result = api('med',{'med':'".$med['id']."','ac':'eliminar'});
 								if (result['est']=='eliminado'){
-									window.location.href = '/';
+									//Vai para as médias do utilizador
+									window.location.href = '/u/".$uti['nut']."#section_med';
 								}
 							});
 
