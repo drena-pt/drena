@@ -140,11 +140,11 @@ if ($uti_perfil){
 
 		#INICIO - Emblema
 		if ($uti_perfil['car']==1){
-			echo "<span class='badge bg-rosa float-end'><i class='bi bi-shield-check'></i>Administrador</span>";
+			echo "<span class='badge bg-rosa float-end'><i class='bi bi-shield-check'></i>"._('Administrador')."</span>";
 		} else if ($uti_perfil['car']==2){
-			echo "<span class='badge bg-ciano float-end'><i class='bi bi-shield-check'></i>Moderador</span>";
+			echo "<span class='badge bg-ciano float-end'><i class='bi bi-shield-check'></i>"._('Moderador')."</span>";
 		} else if ($uti_perfil['car']==3){
-			echo "<span class='badge bg-amarelo float-end'><i class='bi bi-shield-check'></i>Segurança</span>";
+			echo "<span class='badge bg-amarelo float-end'><i class='bi bi-shield-check'></i>"._('Segurança')."</span>";
 		}
 		if ($uti_perfil['id']==100){ #Emblema de utilizador número 100 para o Eemeli
 			echo "<span style='background-color:#ffe85a;' class='badge text-dark float-end'>Nº100</span>";

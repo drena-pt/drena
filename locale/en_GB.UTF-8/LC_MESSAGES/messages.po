@@ -99,18 +99,16 @@ msgstr "Your current email is %s, register your new email here"
 msgid "Concordo com as"
 msgstr "I agree with the"
 
-msgid "Políticas e Termos"
-msgstr "Policies and Terms"
 
 
 
 #. -------- MAIN --------
 
-msgid "Abrir"
-msgstr "Open"
+msgid "Políticas e Termos"
+msgstr "Policies and Terms"
 
-msgid "Criar"
-msgstr "Create"
+msgid "Configurações"
+msgstr "Settings"
 
 msgid "Mostra o que fazes."
 msgstr "Show what you make."
@@ -118,11 +116,66 @@ msgstr "Show what you make."
 msgid "Ultimos vídeos"
 msgstr "Latest videos"
 
-msgid "Administrar"
-msgstr "Manage"
+#. ---- %s is a variable
+msgid "Olá %s"
+msgstr "Hi %s"
 
-msgid "Configurações"
-msgstr "Settings"
+msgid "Criado por %s"
+msgstr "Created by %s"
+
+msgid "Bem vindo!"
+msgstr "Welcome!"
+
+msgid "Feed"
+msgstr "Feed"
+
+msgid "Feed global"
+msgstr "Global feed"
+
+msgid "Sobre a drena"
+msgstr "About drena"
+
+msgid "Utilizadores"
+msgstr "Users"
+
+msgid "resultados"
+msgstr "results"
+
+msgid "Ex: utilizador, vídeo, projeto..."
+msgstr "E.g. username, video, project..."
+
+msgid "Título"
+msgstr "Title"
+
+msgid "Aviso"
+msgstr "Warning"
+
+msgid "Concluído"
+msgstr "Done"
+
+msgid "Visibilidade"
+msgstr "Visibility"
+
+msgid "Invisível"
+msgstr "Invisible"
+
+#. -------- MAIN -------- END
+
+
+
+#. -------- ACTIONS -----
+
+msgid "Editar"
+msgstr "Edit"
+
+msgid "Vizualizar"
+msgstr "View"
+
+msgid "Abrir"
+msgstr "Open"
+
+msgid "Criar"
+msgstr "Create"
 
 msgid "Alterar título"
 msgstr "Change title"
@@ -145,54 +198,14 @@ msgstr "Confirm"
 msgid "Adicionar"
 msgstr "Add"
 
-msgid "Esta ação é irreversível!"
-msgstr "This action is irreversible!"
-
-#. ---- %s is a variable
-msgid "Olá %s"
-msgstr "Hi %s"
-
-msgid "Criado por %s"
-msgstr "Created by %s"
-
-msgid "Bem vindo!"
-msgstr "Welcome!"
-
-msgid "A carregar..."
-msgstr "Uploading..."
-
 msgid "Carregar mais"
 msgstr "Load more"
 
 msgid "Procurar"
 msgstr "Search"
 
-msgid "resultados"
-msgstr "results"
-
 msgid "Procurar utilizadores"
 msgstr "Search for users"
-
-msgid "Utilizadores"
-msgstr "Users"
-
-msgid "Ex: utilizador, vídeo, projeto..."
-msgstr "E.g. username, video, project..."
-
-msgid "Título"
-msgstr "Title"
-
-msgid "Aviso"
-msgstr "Warning"
-
-msgid "Concluído"
-msgstr "Done"
-
-msgid "Visibilidade"
-msgstr "Visibility"
-
-msgid "Invisível"
-msgstr "Invisible"
 
 msgid "Mover para baixo"
 msgstr "Move downwards"
@@ -203,37 +216,50 @@ msgstr "Move upwards"
 msgid "Guardar"
 msgstr "Save"
 
-msgid "Feed"
-msgstr "Feed"
+#. -------- ACTIONS -------- END
 
-msgid "Feed global"
-msgstr "Global feed"
 
-#. -------- MAIN ----------- END
+
+#. -------- INFO -------- END
+
+msgid "Esta ação é irreversível!"
+msgstr "This action is irreversible!"
+
+msgid "A carregar..."
+msgstr "Uploading..."
+
+#. -------- INFO -------- END
 
 
 
 #. -------- NOTIFICATIONS --
 
+msgid "Notificações"
+msgstr "Notifications"
+
 msgid "Receber notificações"
-msgstr "Receive notificaions"
+msgstr "Receive notifications"
 
 msgid "Notificações subscritas neste dispositivo"
 msgstr "Notifications subscribed on this device"
 
-msgid "As notificações estão ativas neste Browser"
+msgid "As notificações estão ativas neste browser"
 msgstr "Notifications are enabled in this browser"
 
-msgid "As notificações estão inativas neste Browser"
+msgid "As notificações estão inativas neste browser"
 msgstr "Notifications are disabled in this browser"
 
-msgid "As notificações estão bloqueadas, ative nas definições do Browser"
-msgstr "Notifications are blocked, enable in Browser settings"
+msgid "As notificações estão bloqueadas, ative nas definições do browser"
+msgstr "Notifications are blocked, enable in browser settings"
 
 #. -------- NOTIFICATIONS -- END
 
 
+
 #. -------- PROFILE --------
+
+msgid "Conta"
+msgstr "Account"
 
 msgid "Perfil"
 msgstr "Profile"
@@ -254,6 +280,24 @@ msgid "Obrigado por te registares na drena, fica à vontade para partilhares as 
 msgstr "Thank you for beeing a part of drena, be free to share your stuff."
 
 #. -------- PROFILE -------- END
+
+
+
+#. -------- ROLES ----------
+
+msgid "Administrar"
+msgstr "Manage"
+
+msgid "Administrador"
+msgstr "Administrator"
+
+msgid "Moderador"
+msgstr "Moderator"
+
+msgid "Segurança"
+msgstr "Security"
+
+#. -------- ROLES ---------- END
 
 
 
@@ -387,6 +431,9 @@ msgstr "The video is beeing converted due to unsuported codification."
 
 
 #. -------- MEDIA --------
+
+msgid "Carregar médias"
+msgstr "Upload media"
 
 msgid "carregado"
 msgstr "uploaded"

@@ -70,6 +70,7 @@ if(isset($ficheiro['name']) && $ficheiro['name'] != ''){
 
       #Informações do ficheiro (Tipo e Extensão)
       $ficheiro_type = $ficheiro['type'];
+      echo $ficheiro_type; exit;
       $ficheiro_ext = end(explode(".", $ficheiro['name']));
 
       #O tipo tem a string 'video'

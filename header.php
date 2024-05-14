@@ -33,7 +33,7 @@
 					#<li class='nav-item'><a class='nav-link' href='https://conversa.drena.pt' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Conversas')."'><span class='d-sm-none'>"._('Conversas')." </span><i class='bi bi-chat-left-text'></i></a></span></li>
 					echo "
 					<li class='nav-item d-none d-sm-block'><a class='nav-link' href='/criar' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Criar')."'><span class='d-sm-none'>"._('Criar')." </span><i class='bi bi-plus-square'></i></a></span></li>
-					<li class='nav-item'><a class='nav-link' href='/definicoes' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Configurações')."'><span class='d-sm-none'>"._('Definições')." </span><i class='bi bi-gear'></i></a></span></li>
+					<li class='nav-item'><a class='nav-link' href='/definicoes' data-bs-toggle='tooltip' data-bs-placement='bottom' title='"._('Configurações')."'><span class='d-sm-none'>"._('Configurações')." </span><i class='bi bi-gear'></i></a></span></li>
 					";
 			
 					$num_pedidos = mysqli_num_rows(mysqli_query($bd, "SELECT * FROM ami WHERE b_id='".$uti["id"]."' AND sim=0"));

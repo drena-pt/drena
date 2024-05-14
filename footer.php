@@ -2,8 +2,9 @@
     <div class="row">
         <div class="col-sm">
             <img src="imagens/logo.png" height="32" title="drena" loading="lazy"><br>
-            <text>Copyright © 2024 | drena</text><br>
-            <a class="small text-light" href="politicas.php"><?php echo _('Políticas e Termos'); ?></a>
+            <text>Copyright © 2024</text><br>
+            <a class="small text-light" href="politicas.php"><?php echo _('Políticas e Termos'); ?></a> | 
+            <a class="small text-light" href="sobre.php"><?php echo _('Sobre a drena'); ?></a>
         </div>
     </div>
     <div class="row mt-3">

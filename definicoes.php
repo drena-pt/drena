@@ -103,8 +103,8 @@
 			<section class='p-xl-5 p-4 bg-dark text-light'>
 
 				<h2>"._("Informação")."</h2>
-				<a href='/sobre' class='btn btn-primary'><i class='bi bi-info-circle'></i>Sobre a drena</a>
-				<a href='/politicas' class='btn btn-light'><i class='bi bi-shield-lock'></i>"._("Políticas de Privacidade")."</a>
+				<a href='/sobre' class='btn btn-primary'><i class='bi bi-info-circle'></i>"._("Sobre a drena")."</a>
+				<a href='/politicas' class='btn btn-light'><i class='bi bi-shield-lock'></i>"._("Políticas e Termos")."</a>
 				<a href='https://play.google.com/store/apps/details?id=pt.drena' class='btn btn-light'><i class='bi bi-app-indicator'></i>APP</a>
 
 			</section>
@@ -115,18 +115,18 @@
 
 		<script>
 		function Not_denied(){
-			$('#info_not').html('<span><i class="bi bi-exclamation-triangle-fill"></i> <?php echo _('As notificações estão bloqueadas, ative nas definições do Browser'); ?></span>');
+			$('#info_not').html('<span><i class="bi bi-exclamation-triangle-fill"></i> <?php echo _('As notificações estão bloqueadas, ative nas definições do browser'); ?></span>');
 			$('#info_not').addClass('alert-vermelho');
 			$('#info_not').removeClass('alert-dark');
 		}
 
 		function Not_default(){
-			$('#info_not').html('<span><i class="bi bi-info-circle-fill"></i> <?php echo _('As notificações estão inativas neste Browser'); ?></span>');
+			$('#info_not').html('<span><i class="bi bi-info-circle-fill"></i> <?php echo _('As notificações estão inativas neste browser'); ?></span>');
 			$('#info_not').addClass('alert-dark');
 		}
 
 		function Not_granted(){
-			$('#info_not').html('<span><i class="bi bi-check-circle-fill"></i> <?php echo _('As notificações estão ativas neste Browser'); ?></span>');
+			$('#info_not').html('<span><i class="bi bi-check-circle-fill"></i> <?php echo _('As notificações estão ativas neste browser'); ?></span>');
 			$('#info_not').addClass('alert-primary');
 			$('#info_not').removeClass('alert-dark');
 			//Obtem se está subscrito ou não
@@ -139,8 +139,8 @@
 		}
 		
 		function Not_unsuported(){
-			console.error('Este Browser não tem suporte para notificações');
-			$('#info_not').html('<span><i class="bi bi-check-circle-fill"></i> Este Browser não tem suporte para notificações</span>');
+			console.error('Este browser não tem suporte para notificações');
+			$('#info_not').html('<span><i class="bi bi-check-circle-fill"></i> Este browser não tem suporte para notificações</span>');
 		}
 
 		function checar(){

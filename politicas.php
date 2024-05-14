@@ -16,7 +16,7 @@ require('head.php');
 	<?php require('header.php'); ?>
     <div class='jumbotron bg-dark d-flex align-items-center text-center justify-content-center align-items-center'>
         <span>
-			<h1 class='display-4'><?php echo _('Política de Privacidade<br> e Termos de Utilização'); ?></h1>
+			<h1 class='display-4'>Política de Privacidade<br> e Termos de Utilização</h1>
 			<br><span class='badge bg-primary'>Versão 1.0 - 28 de julho de 2021</span>
 		</span>
     </div>
