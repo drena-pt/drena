@@ -1,6 +1,6 @@
 <?php
-        /* error_reporting(E_ALL);
-        ini_set('display_errors', 'On'); */
+        /*  error_reporting(E_ALL);
+        ini_set('display_errors', 'On');  */
 
 		require('head.php');
 		if ($uti['car']!=1){ header("Location: /"); exit; }	#Sair da página se não for administrador
@@ -8,7 +8,7 @@
         <script src='/js/api.min.js'></script>
         <style>
         table {
-            font-size: .875em;
+            font-size: 13px;
         }
         </style>
 	</head>
@@ -35,19 +35,19 @@
 
                 <div class='row row-cols-3 mt-4'>
                     <div class='col text-center'>
-                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-ciano border-ciano' style='height: 124px; width: 124px'>
+                        <div class='h5 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-ciano border-ciano' style='height: 110px; width: 110px'>
                         <i class='me-2 bi bi-people'></i>".$num_uti."
                         </div>
                         "._("Utilizadores")."
                     </div>
                     <div class='col text-center'>
-                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-primary border-primary' style='height: 124px; width: 124px'>
+                        <div class='h5 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-primary border-primary' style='height: 110px; width: 110px'>
                         <i class='me-2 bi bi-play-btn'></i>".$num_med."
                         </div>
                         "._("Médias")."
                     </div>
                     <div class='col text-center'>
-                        <div class='h4 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-rosa border-rosa' style='height: 124px; width: 124px'>
+                        <div class='h5 mb-2 m-auto d-flex align-items-center justify-content-center rounded-circle bg-opacity-10 border bg-rosa border-rosa' style='height: 110px; width: 110px'>
                         <i class='me-2 bi bi-hdd'></i>".$tam_media."
                         </div>
                         "._("Espaço usado")."
@@ -137,14 +137,13 @@
                 </div>
                 <div class='table-responsive px-2'>
                     <table class='table table-light'>
-                        <tr>
-                        <th scope='col'>#</th>
-                        <th scope='col'>Foto</th>
-                        <th scope='col'>Utilizador</th>
-                        <th scope='col'>Nome</th>
-                        <th scope='col'>Data de criação</th>
-                        <th scope='col'>Ativo</th>
-                        <th scope='col'>Mod</th>
+                        <tr class='opacity-75'>
+                            <th scope='col'>Foto</th>
+                            <th scope='col'>Utilizador</th>
+                            <th scope='col'>Email</th>
+                            <th scope='col'>Data de criação</th>
+                            <th scope='col'>Ativo</th>
+                            <th scope='col'>Mod</th>
                         </tr>
                         ";
                         if ($_GET['pesquisa']){
@@ -154,12 +153,23 @@
                         }
                         if ($resultado = $bd->query($pesquisa)) {
                             while ($campo = $resultado->fetch_assoc()) {
+
+                                if ($campo['mai']){
+                                    $mail = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM uti_mai WHERE id=".$campo['mai'].";"));
+                                    $campo['mai'] = $mail;
+                                }
+
+                                if ($campo['mai']['con']==1){
+                                    $mail_confirmado = "<span class='text-verde me-2'>⬤</span>";
+                                } else {
+                                    $mail_confirmado = "<span class='text-vermelho me-2'>⬤</span>";
+                                }
+                                
                                 echo "
                                 <tr>
-                                    <th scope='row'>".$campo['id']."</th>
-                                    <td><img class='rounded-circle' src='".$url_media."fpe/".$campo['fpe'].".jpg' width='40' height='40'></td>
-                                    <td><a class='text-primary' href='/u/".$campo['nut']."'>".$campo['nut']."</a></td>
-                                    <td>".$campo['nco']."</td>
+                                    <td><a class='text-primary' href='/u/".$campo['nut']."'><img class='rounded-circle' src='".$url_media."fpe/".$campo['fpe'].".jpg' width='40' height='40'></a></td>
+                                    <td><b>".$campo['nut']." </b> (".$campo['id'].")<br>".$campo['nco']."</td>
+                                    <td>".$mail_confirmado.$campo['mai']['mai']."</td>
                                     <td>".$campo['dcr']."</td>
                                     <td><div class='form-check form-switch'>
                                     <input type='checkbox' role='switch' class='form-check-input' ";
