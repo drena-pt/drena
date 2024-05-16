@@ -381,7 +381,7 @@ if ($uti_perfil){
 		<div class="col p-1 p-sm-2">
 		<div class="ratio ratio-4x3">
 			<a class="text-light text-decoration-none" href="/m/\'+data.id+\'">
-				<div class="bg-rosa contentor_med h-100 rounded-xl d-flex" style="background-image:url(\'+data.thu+\');">
+				<div class="bg-primary contentor_med h-100 rounded-xl d-flex" style="background-image:url(\'+data.thu+\');">
 					<div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
 						<span id="icon_\'+data.id+\'_tip" class="mx-1"></span>
 						<span alt="\'+data.tit+\'" class="overflow-hidden">\'+data.tit_curto+\'</span>

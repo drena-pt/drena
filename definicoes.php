@@ -104,8 +104,9 @@
 
 				<h2>"._("Informação")."</h2>
 				<a href='/sobre' class='btn btn-primary'><i class='bi bi-info-circle'></i>"._("Sobre a drena")."</a>
-				<a href='/politicas' class='btn btn-light'><i class='bi bi-shield-lock'></i>"._("Políticas e Termos")."</a>
-				<a href='https://play.google.com/store/apps/details?id=pt.drena' class='btn btn-light'><i class='bi bi-app-indicator'></i>APP</a>
+				<a href='/politicas' class='btn btn-light'><i class='bi bi-file-earmark-check'></i>"._("Políticas e Termos")."</a>
+				<a href='https://play.google.com/store/apps/details?id=pt.drena' class='btn btn-light'><i class='bi bi-android'></i>APP</a>
+				<a href='https://github.com/drena-pt/drena/' class='btn btn-light'><i class='bi bi-github'></i>GitHub</a>
 
 			</section>
 			";

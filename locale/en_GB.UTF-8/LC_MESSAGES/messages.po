@@ -220,7 +220,10 @@ msgstr "Save"
 
 
 
-#. -------- INFO -------- END
+#. -------- INFO --------
+
+msgid "Informação"
+msgstr "Info"
 
 msgid "Esta ação é irreversível!"
 msgstr "This action is irreversible!"

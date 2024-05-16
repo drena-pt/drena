@@ -36,7 +36,7 @@ if (!$oq){
         <div class='col p-1 p-sm-2'>
         <div class='ratio ratio-4x3'>
         <a class='text-light text-decoration-none' href='/m/".$id."'>
-            <div class='bg-rosa contentor_med h-100 rounded-xl d-flex' style='background-image:url(".$url_media."thumb/".$thu.".jpg);'>
+            <div class='bg-primary contentor_med h-100 rounded-xl d-flex' style='background-image:url(".$url_media."thumb/".$thu.".jpg);'>
                 <div class='rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2'>
                     <span class='mx-1 text-".$tip_cor."'><i class='bi bi-".$tip_icon."'></i></span>
                     <span class='overflow-hidden'>".encurtarNome($tit)."</span>

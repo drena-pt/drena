@@ -82,7 +82,7 @@ if ($resultado = $bd->query($sql_media)) {
         }
 
         #######Mudar como isto está organizado, tirar o gos dentro do uti.
-        $output[] = array("med"=>$med,"uti"=>["nut"=>$med_uti['nut'],"fpe"=>$url_media."fpe/".$med_uti['fpe'].".jpg","gos"=>$med_gos],"gos"=>$med_gos,"com"=>$med_com);
+        $output[] = array("med"=>$med,"uti"=>["nut"=>$med_uti['nut'],"fpe"=>$url_media."fpe/".$med_uti['fpe'].".jpg"],"gos"=>$med_gos,"com"=>$med_com);
     }
 }
 

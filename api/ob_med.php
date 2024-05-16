@@ -40,9 +40,9 @@ if ($_POST["uti"]){
 
     #SQL Pesquisa
     if ($depois){
-        $med_pesquisa = "SELECT id,thu,tip,tit,pri FROM med WHERE uti='".$uti_perfil['id']."' AND alb IS NULL ".$pri_med." AND den < '".$depois['den']."' ORDER BY den DESC LIMIT 6";
+        $med_pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND alb IS NULL ".$pri_med." AND den < '".$depois['den']."' ORDER BY den DESC LIMIT 6";
     } else {
-        $med_pesquisa = "SELECT id,thu,tip,tit,pri FROM med WHERE uti='".$uti_perfil['id']."' AND alb IS NULL ".$pri_med." ORDER BY den DESC LIMIT 6";
+        $med_pesquisa = "SELECT * FROM med WHERE uti='".$uti_perfil['id']."' AND alb IS NULL ".$pri_med." ORDER BY den DESC LIMIT 6";
     }
 
     if ($resultado = $bd->query($med_pesquisa)) {
