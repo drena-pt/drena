@@ -57,7 +57,7 @@
                     <!--<tt>?p=".$pasta."</tt>-->";
 
                     foreach ($pastas_tam as $pastas_nome => $tam) {
-                        $percentage = round(($tam / 1073741824) * 100, 2);
+                        $percentage = round(($tam / $pastas_tam) * 100, 2);
                         echo "
                         <tt class='d-flex justify-content-between'>".$pastas_nome."<small>".bytesParaHumano($tam)."</small></tt>
                         <div class='progress'>
