@@ -32,6 +32,7 @@
 
 			<div class='p-xl-5 p-4 bg-dark text-light'>
 				<h2>"._('Ferramentas de Administrador')."</h2>
+                <a href='/mod_espaco' class='btn btn-light'><i class='bi bi-hdd'></i>"._("Espaço usado")."</a>
 
                 <div class='row row-cols-3 mt-4'>
                     <div class='col text-center'>
@@ -93,7 +94,7 @@
 
                                 echo "
                                 <tr>
-                                    <th scope='row'><img class='shadow rounded-xl' width='64' src='".$url_media."thumb/".$med['thu'].".jpg'></th>
+                                    <th scope='row'><img class='shadow rounded-1' width='64' src='".$url_media."thumb/".$med['thu'].".jpg'></th>
                                     <td><a class='text-primary text-decoration-none' href='/m/".$med['id']."'><b>".$med['tit']."</b></a></td>
                                     <td><a class='text-primary text-decoration-none' href='/u/".$med_uti['nut']."'><b>".$med_uti['nut']."</b></a></td>
                                     <td>".filesize($caminho_ori)."</td>
@@ -120,17 +121,13 @@
 			<div class='bg-light text-dark'>
                 <div class='d-md-flex p-xl-5 p-4'>
                     <div class=''>
-                        <h4>Utilizadores</h4>
+                        <h4>"._("Utilizadores")."</h4>
                     </div>
                     <div class='ms-auto'>
                         <form method='get'>
-                            <div class='row'>
-                                <div class='col-auto'>
-                                    <input name='pesquisa' class='border-0 form-control bg-dark' type='text' placeholder='Pesquisar...'></input>
-                                </div>
-                                <div class='col-auto d-flex'>
-                                    <button type='submit' class='btn btn-primary'>Pesquisar <i class='bi bi-search'></i></button>
-                                </div>
+                            <div class='input-group'>
+                                <input name='p_uti' type='text' placeholder='"._("Procurar")."' value='".$_GET['p_uti']."' class='form-control bg-dark bg-opacity-50'>
+                                <button type='submit' class='btn btn-primary' id='button-addon2'><i class='bi bi-search'></i></button>
                             </div>
                         </form>
                     </div>
@@ -146,12 +143,12 @@
                             <th scope='col'>Mod</th>
                         </tr>
                         ";
-                        if ($_GET['pesquisa']){
-                            $pesquisa = "SELECT * FROM uti WHERE nut LIKE '%".$_GET['pesquisa']."%' OR nco LIKE '%".$_GET['pesquisa']."%'";
+                        if ($_GET['p_uti']){
+                            $p_uti = "SELECT * FROM uti WHERE nut LIKE '%".$_GET['p_uti']."%' OR nco LIKE '%".$_GET['p_uti']."%' ORDER BY dcr DESC;";
                         } else {
-                            $pesquisa = "SELECT * FROM uti";
+                            $p_uti = "SELECT * FROM uti ORDER BY dcr DESC;";
                         }
-                        if ($resultado = $bd->query($pesquisa)) {
+                        if ($resultado = $bd->query($p_uti)) {
                             while ($campo = $resultado->fetch_assoc()) {
 
                                 if ($campo['mai']){

@@ -3,13 +3,13 @@
         ini_set('display_errors', 'On'); */
 
 		require('head.php');
-		if ($uti['car']!=1){ header("Location: /"); exit; }	#Sair da página se não for administrador
+		if ($uti['car']==0){ header("Location: /"); exit; }	#Sair da página se não for ADMIN ou MOD
 		?>
         <script src='/js/api.min.js'></script>
         <style>
         table {
             font-size: 13px;
-            display: table-cell;
+            /* display: table-cell; */
             width: 100%;
             padding-left: 10px;
         }
@@ -31,15 +31,45 @@
 		echo "
 		<div class='shadow p-0 my-0 my-xl-4 col-xl-6 offset-xl-3'>";
 
-            #Média cleaner
+            function folderSize($dir){
+                $size = 0;
+                foreach (glob(rtrim($dir, '/').'/*', GLOB_NOSORT) as $each) {
+                    $size += is_file($each) ? filesize($each) : folderSize($each);
+                }
+                return $size;
+            }
+
+            $pastas = array("img","ori","comp","conv","fpe","som","thumb");
+            $pastas_tam = array();
+
+            $tam_total = folderSize($dir_media);
+
+            foreach ($pastas as $index => $value) {
+                $pastas_tam[$value] = folderSize($dir_media.$value);
+            }
+            asort($pastas_tam);
+
+            #Espaço
             echo "
 			<div class='bg-light text-dark'>
                 <section class='p-xl-5 p-4'>
-                    <h5>"._('Ferramentas de Administrador')."</h5>
-                    Média cleaner<br>
-                    <small>?p=<tt>".$pasta."</tt></small>
+                    <h3 class='mb-3'><i class='h2 bi bi-hdd'></i>"._('Espaço usado')."</h3>
+                    <!--<tt>?p=".$pasta."</tt>-->";
+
+                    foreach ($pastas_tam as $pastas_nome => $tam) {
+                        $percentage = round(($tam / 1073741824) * 100, 2);
+                        echo "
+                        <tt class='d-flex justify-content-between'>".$pastas_nome."<small>".bytesParaHumano($tam)."</small></tt>
+                        <div class='progress'>
+                            <div class='progress-bar bg-primary' role='progressbar' style='width: ".$percentage."%'></div>
+                        </div>
+                        ";
+                    }
+                    echo "<br><tt class='d-flex justify-content-between'>"._('Total')."<small>".bytesParaHumano($tam_total)."</small></tt>
+
                 </section>
-                <div class='table px-2'>
+
+                <div class='table p-xl-5 p-4'>
                     <table class='table table-light'>
                         <tr class='opacity-75'>
                             <th scope='col'>Ficheiro</th>

@@ -73,7 +73,7 @@ $border-width: 1.5px;
 	border-radius: 20px !important;
 }
 
-// Butões e inputs
+// Botões e inputs
 $btn-border-radius: $border-radius;
 $btn-box-shadow: $box-shadow;
 $btn-padding-y: 0.3rem !default;
@@ -161,6 +161,10 @@ $badge-font-size:		1em;
 $badge-font-weight:		500;
 $badge-padding-y:		.15em;
 $badge-padding-x:		.5em;
+
+//Progress bar
+$progress-height:			0.5rem;
+$progress-box-shadow:       none;
 
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";

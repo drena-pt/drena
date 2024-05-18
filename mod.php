@@ -23,6 +23,7 @@ function mini_nut($nut){
 
         <div class='p-xl-5 p-4 bg-dark text-light'>
 			<h2 class='text-ciano'>"._('Ferramentas de Moderador')."</h2>
+            <a href='/mod_espaco' class='btn btn-light'><i class='bi bi-hdd'></i>"._("Espaço usado")."</a>
 		</div>
 
 		<div class='bg-light text-dark'>
