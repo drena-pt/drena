@@ -99,7 +99,7 @@
                                 }
                                 echo "
                                 <tr>
-                                    <td><tt>".$file."</tt></td>
+                                    <td><tt>".substr($file, 0, 20)."</tt></td>
                                     <td><tt>".filesize($filePath)."</tt></td>
                                     <td><b>".bytesParaHumano(filesize($filePath))."</b></td>
                                     <td>".$estado_media."</td>
