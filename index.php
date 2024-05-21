@@ -1,4 +1,7 @@
-<?php 
+<?php
+/* error_reporting(E_ALL);
+ini_set('display_errors', 'On'); */
+
 require('head.php');
 
 if ($uti){
@@ -69,9 +72,24 @@ if ($uti){
         } else {
             echo "<div class='p-0 col-xl-6 offset-xl-3 text-center'>";
 
+            //Último post do utilizador
+            $uti_ultima_med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE uti='".$uti['id']."' ORDER by den DESC LIMIT 1;"));
+            echo "<div class='mt-4' id='uti_ultima_med'></div>
+            <script>
+                const now = dayjs.tz();
+                const ultima_med = dayjs.tz('".$uti_ultima_med['den']."');
+                const ultima_med_diff = now.diff(ultima_med, 'day');
+                if (ultima_med_diff > 5) {
+                    ultima_med_tempo = dayjs.tz('".$uti_ultima_med['den']."', 'UTC').fromNow(true)
+                    $('#uti_ultima_med').html(`"._('Não publicas nada desde há')." ` + ultima_med_tempo );
+                }
+            </script>
+            ";
+
             $sql_conhecidos = "SELECT * FROM ami WHERE a_id='".$uti['id']."' AND sim='1' OR b_id='".$uti['id']."' AND sim='1' ORDER by b_dat DESC";
             $conhecidos = mysqli_fetch_assoc(mysqli_query($bd, $sql_conhecidos));
             $lista_feed = $uti['id'];
+
             if ($conhecidos){
                 if ($resultado = $bd->query($sql_conhecidos)) {
                     while ($campo = $resultado->fetch_assoc()){
@@ -83,31 +101,18 @@ if ($uti){
                         }
                     }
                 }
-            } else {
-                echo "<div class='my-4'>
-                <h2>"._('Ainda não tens conhecidos')."</h2>
-                <span data-bs-toggle='modal' data-bs-target='#modal_procurar'><button class='btn btn-primary'>"._('Procurar')."<i class='bi bi-search'></i></button></span>
-                </div>";
-            }
 
-            echo "
-                <div class='my-4'>";
-                if ($conhecidos){
-                    if ($_GET['feed']=='global'){
-                        $feed_tip = 'global';
-                        echo "<a href='/' class='btn btn-light' role='button'><i class='bi bi-view-list'></i>"._('Feed')."</a>
-                        <a class='btn btn-primary' role='button'><i class='bi bi-globe'></i>"._('Feed global')."</a>";
-                    } else {
-                        echo "<a class='btn btn-primary' role='button'><i class='bi bi-view-list'></i>"._('Feed')."</a>
-                        <a href='/?feed=global' class='btn btn-light' role='button'><i class='bi bi-globe'></i>"._('Feed global')."</a>";
-                    }
-                } else {
+                echo "<div class='mt-4'>";
+                if ($_GET['feed']=='global'){
                     $feed_tip = 'global';
-                }
-                echo "</div>";
-
-                if ($_GET['feed']!='global' AND $conhecidos){
-                    echo "
+                    echo "<a href='/' class='btn btn-light' role='button'><i class='bi bi-view-list'></i>"._('Feed')."</a>
+                    <a class='btn btn-primary' role='button'><i class='bi bi-globe'></i>"._('Feed global')."</a>";
+                } else {
+                    echo "<a class='btn btn-primary' role='button'><i class='bi bi-view-list'></i>"._('Feed')."</a>
+                    <a href='/?feed=global' class='btn btn-light' role='button'><i class='bi bi-globe'></i>"._('Feed global')."</a>";
+                    //Lista com 8 amigos
+                    //######################TORNAR ISTO EM ALGO QUE DÊ PARA VER OS AMIGOS QUE POSTARAM MAIS RECENTEMENTE?
+                    /* echo "
                     <div class='mx-0 mx-xl-2'>";
                     if ($resultado = $bd->query("SELECT * FROM uti WHERE id IN (".$lista_feed.") ORDER by id DESC LIMIT 8")){
                         while ($campo_uti = $resultado->fetch_assoc()){
@@ -115,112 +120,126 @@ if ($uti){
                         }
                     }
                     echo "
-                    </div>";
+                    </div>"; */
                 }
+                echo "</div>";
 
-                $append_med = "
-                <section class='bg-dark bg-gradient shadow my-4'>
-                    <div class='mw-100' id='med_\"+api_feed[index].med.id+\"_conteudo'></div>
-                    <div class='p-xl-5 p-4 text-start'>
-
-                        <section class='row mb-3'>
-                            <div class='col-auto pe-0'>
-                                <a href='/u/\"+api_feed[index].uti.nut+\"'><img src='\"+api_feed[index].uti.fpe+\"' class='rounded-circle' width='40'></a>
-                            </div>
-                            
-                            <div class='col'>                            
-                                <a id='med_tit' href='/m/\"+api_feed[index].med.id+\"' class='h5 text-decoration-none text-light' data-bs-original-title='"._('Abrir')."' data-bs-toggle='tooltip' data-bs-placement='right'>\"+api_feed[index].med.tit+\"</a><br>
-                                <span>"._('Publicado por')." \"+api_feed[index].uti.nut+\"</span>
-                            </div>
-                        </section>
-
-                        <section>
-                            <span class='badge bg-primary py-1' role='button' onclick='gosto(`\"+api_feed[index].med.id+\"`)'  id='btn_gos_\"+api_feed[index].med.id+\"'>
-                                <span>
-                                    <i id='svg_gos1_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i>
-                                    <i id='svg_gos0_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up'></i>
-                                </span>
-                                <span id='med_\"+api_feed[index].med.id+\"_numGostos'>\"+api_feed[index].med.gos+\"</span>&nbsp;"._('gostos')."
-                            </span>
-
-                            <span class='badge bg-light bg-opacity-10 py-1'>
-                                <i class='bi bi-calendar4-week'></i>
-                                \"+dayjs.tz(api_feed[index].med.den, 'UTC').fromNow()+\"
-                            </span>
-                        </section>
-
-                    </div>
-                </section>
-                ";
-
+            } else {
                 echo "
-                <div id='medias'></div>
-                <script>
-                let scrollLoad = true;
+                <div class='alert d-flex align-items-center justify-content-between text-start border-0 bg-primary bg-opacity-10 mt-4' role='alert'>
+                    <span>
+                        <i class='bi bi-person-plus-fill'></i>
+                        "._('Ainda não tens conhecidos')."
+                    </span>
+                    <span data-bs-toggle='modal' data-bs-target='#modal_procurar'><button class='btn btn-primary m-0'><i class='bi bi-search'></i> "._("Procurar utilizadores")."</button></span>
+                </div>";
 
-                var feed_tip = '".$feed_tip."';
-                var feed_depois;
-                function carregarMedia(){
-                    api_feed = api('feed',{'tip':feed_tip,'depois':feed_depois});
-                    if (!api_feed.err){
-                        for(var index = 0; index < api_feed.length; index++) {
-                                    
-                            //Carrega a média apenas se não for repetida
-                            if (!$('#med_'+api_feed[index].med.id+'_conteudo').length){
-                                $('#medias').append(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
+                $feed_tip = 'global';
+            }
+
+            $append_med = "
+            <section class='bg-dark bg-gradient shadow my-4'>
+                <div class='mw-100' id='med_\"+api_feed[index].med.id+\"_conteudo'></div>
+                <div class='p-xl-5 p-4 text-start'>
+
+                    <section class='row mb-3'>
+                        <div class='col-auto pe-0'>
+                            <a href='/u/\"+api_feed[index].uti.nut+\"'><img src='\"+api_feed[index].uti.fpe+\"' class='rounded-circle' width='40'></a>
+                        </div>
+                        
+                        <div class='col'>                            
+                            <a id='med_tit' href='/m/\"+api_feed[index].med.id+\"' class='h5 text-decoration-none text-light' data-bs-original-title='"._('Abrir')."' data-bs-toggle='tooltip' data-bs-placement='right'>\"+api_feed[index].med.tit+\"</a><br>
+                            <span>"._('Publicado por')." \"+api_feed[index].uti.nut+\"</span>
+                        </div>
+                    </section>
+
+                    <section>
+                        <span class='badge bg-primary py-1' role='button' onclick='gosto(`\"+api_feed[index].med.id+\"`)'  id='btn_gos_\"+api_feed[index].med.id+\"'>
+                            <span>
+                                <i id='svg_gos1_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i>
+                                <i id='svg_gos0_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up'></i>
+                            </span>
+                            <span id='med_\"+api_feed[index].med.id+\"_numGostos'>\"+api_feed[index].med.gos+\"</span>&nbsp;"._('gostos')."
+                        </span>
+
+                        <span class='badge bg-light bg-opacity-10 py-1'>
+                            <i class='bi bi-calendar4-week'></i>
+                            \"+dayjs.tz(api_feed[index].med.den, 'UTC').fromNow()+\"
+                        </span>
+                    </section>
+
+                </div>
+            </section>
+            ";
+
+            echo "
+            <div id='medias'></div>
+
+            <script>
+            let scrollLoad = true;
+            var feed_tip = '".$feed_tip."';
+            var feed_depois;
+            function carregarMedia(){
+                api_feed = api('feed',{'tip':feed_tip,'depois':feed_depois});
+                if (!api_feed.err){
+                    for(var index = 0; index < api_feed.length; index++) {
                                 
-                                if (api_feed[index].gos==1){
-                                    $('#svg_gos0_'+api_feed[index].med.id).attr('hidden', true);
-                                    $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-50');
-                                } else {
-                                    $('#svg_gos1_'+api_feed[index].med.id).attr('hidden', true);
-                                    $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-25');
-                                }
-
-                                if (api_feed[index].med.tip==1){
-                                    $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe></div>\");
-                                } else if (api_feed[index].med.tip==2){
-                                    $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<iframe height='180px' class='w-100' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe>\");
-                                } else {
-                                    $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<iframe style='min-height:50vh;' class='w-100' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe>\");
-                                }
-                                feed_depois = api_feed[index].med.id;
-                                scrollLoad = true;
+                        //Carrega a média apenas se não for repetida
+                        if (!$('#med_'+api_feed[index].med.id+'_conteudo').length){
+                            $('#medias').append(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
+                            
+                            if (api_feed[index].gos==1){
+                                $('#svg_gos0_'+api_feed[index].med.id).attr('hidden', true);
+                                $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-50');
                             } else {
-                                //console.log(api_feed[index].med.id+' Média repetida ocultada');
-                                if (index+1==api_feed.length){
-                                    console.log('Aviso: Fim da lista.');
-                                    scrollLoad = false;
-                                }
+                                $('#svg_gos1_'+api_feed[index].med.id).attr('hidden', true);
+                                $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-25');
+                            }
+
+                            if (api_feed[index].med.tip==1){
+                                $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe></div>\");
+                            } else if (api_feed[index].med.tip==2){
+                                $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<iframe height='180px' class='w-100' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe>\");
+                            } else {
+                                $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<iframe style='min-height:50vh;' class='w-100' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe>\");
+                            }
+                            feed_depois = api_feed[index].med.id;
+                            scrollLoad = true;
+                        } else {
+                            //console.log(api_feed[index].med.id+' Média repetida ocultada');
+                            if (index+1==api_feed.length){
+                                console.log('Aviso: Fim da lista.');
+                                scrollLoad = false;
                             }
                         }
                     }
                 }
-                carregarMedia();
+            }
+            carregarMedia();
 
-                function gosto(med_id){
-					result = api('med_gos',{'med':med_id});
-                    $('#med_'+med_id+'_numGostos').text(result.num);
-                    if (result.gos=='true'){
-                        $('#svg_gos1_'+med_id).removeAttr('hidden');
-                        $('#svg_gos0_'+med_id).attr('hidden', true);
-                        $('#btn_gos_'+med_id).addClass('bg-opacity-50').removeClass('bg-opacity-25');
-                    } else {
-                        $('#svg_gos1_'+med_id).attr('hidden', true);
-                        $('#svg_gos0_'+med_id).removeAttr('hidden');
-                        $('#btn_gos_'+med_id).addClass('bg-opacity-25').removeClass('bg-opacity-50');
-                    }
-				}
+            function gosto(med_id){
+				result = api('med_gos',{'med':med_id});
+                $('#med_'+med_id+'_numGostos').text(result.num);
+                if (result.gos=='true'){
+                    $('#svg_gos1_'+med_id).removeAttr('hidden');
+                    $('#svg_gos0_'+med_id).attr('hidden', true);
+                    $('#btn_gos_'+med_id).addClass('bg-opacity-50').removeClass('bg-opacity-25');
+                } else {
+                    $('#svg_gos1_'+med_id).attr('hidden', true);
+                    $('#svg_gos0_'+med_id).removeAttr('hidden');
+                    $('#btn_gos_'+med_id).addClass('bg-opacity-25').removeClass('bg-opacity-50');
+                }
+			}
 
-                $(window).scroll(function(){
-                    if (scrollLoad && ($(document).height() - $(window).height())-$(window).scrollTop()<=400){
-                        scrollLoad = false;
-                        carregarMedia();
-                    }
-                });
-                </script>
+            $(window).scroll(function(){
+                if (scrollLoad && ($(document).height() - $(window).height())-$(window).scrollTop()<=400){
+                    scrollLoad = false;
+                    carregarMedia();
+                }
+            });
+            </script>
 
-            </div>";
+        </div>";
         }
 		?>
 	</body>

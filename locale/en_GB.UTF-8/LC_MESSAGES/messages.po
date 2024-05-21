@@ -450,6 +450,9 @@ msgstr "Posted by"
 msgid "Publicações"
 msgstr "Posts"
 
+msgid "Não publicas nada desde há"
+msgstr "You haven't posted anything in"
+
 msgid "gostos"
 msgstr "likes"
 
