@@ -55,6 +55,7 @@ require('head.php');
     if ($alb['uti']!=$uti['id']){
         $global_hide = "d-none"; ####################################################### Mudar o nome da variavel
     }
+    
     $append_alb = '
     <section id="alb_`+alb_id+`" class="bg-dark bg-gradient shadow my-4">
         <div class="mw-100">
@@ -205,7 +206,7 @@ require('head.php');
             //Partes interativas
             $("#alb_"+alb_id+"_gos").html(`<?php echo trim(preg_replace('/\s\s+/', ' ', $append_alb_gos)); ?>`);
                 //Verificar se tem gosto
-                if (med.tem_gos==1){
+                if (med.meu_gos==1){
                     $("#med_"+med_id+"_gos_svg1").removeAttr('hidden');
                     $("#med_"+med_id+"_gos_svg0").attr('hidden', true);
                     $("#med_"+med_id+"_gos").addClass('bg-opacity-50').removeClass('bg-opacity-25');

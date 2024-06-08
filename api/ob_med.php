@@ -80,7 +80,7 @@ if ($_POST["uti"]){
             $med['tit_curto'] = encurtarNome($med['tit']);
             $med['thu'] = $url_media.'thumb/'.$med['thu'].'.jpg'; #Coloca o url completo, em vez de apenas o id
             #Procura por um gosto do utilizador
-            $med['tem_gos'] = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$uti['id']."'"));
+            $med['meu_gos'] = mysqli_num_rows($bd->query("SELECT * FROM med_gos WHERE med='".$med['id']."' AND uti='".$uti['id']."'"));
             $meds[] = $med;
         }
     }

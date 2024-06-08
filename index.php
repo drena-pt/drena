@@ -5,14 +5,15 @@ ini_set('display_errors', 'On'); */
 require('head.php');
 
 if ($uti){
-    echo "<script src='/js/api.min.js'></script>";
+    echo "
+    <script src='/js/api.min.js'></script>
+    <script src='/js/api/gos.js'></script>
+    <script src='/js/api/med.js'></script>
+    ";
 }
 ?>
-    <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
-    </head>
-	<body>
-		<?php require('header.php'); ?>
 		<style>
+        /*  PÁGINA INICIAL  */
 		.jumbotron{
 			height: 90vh;
 			background-image: linear-gradient(-90deg,rgba(0,0,0,0.6),rgba(0,0,0,0),rgba(0,0,0,0.6)),url("imagens/fundo.jpg");
@@ -21,7 +22,14 @@ if ($uti){
 			background-size: cover;
 		}
 		</style>
+
+        <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
+    </head>
+	<body>
+		<?php require('header.php'); ?>
+
 		<?php
+        /////////////////////////////  PÁGINA INICIAL  /////////////////////////////
         if (!$uti){
             $index_titulos = ['pt' => "MOSTRA O QUE FAZES.",'en' => "SHOW WHAT YOU MAKE.",'de' => "ZEIG WAS DU MACHST.",'it' => "MOSTRA COSA FAI.",'fr' => "MONTREZ CE QUE VOUS FAITES."];
             unset($index_titulos[get_browser_language()]);
@@ -69,10 +77,141 @@ if ($uti){
                 </section>
             </div>";
             require "footer.php";
+            
+        /////////////////////////////  PÁGINA INICIAL  //////////////////////////FIM
         } else {
+        //////////////////////////////////  FEED  //////////////////////////////////
+
+
+
+        ///////////////////////////////   COISAS PARA ÁLBUNS   ///////////////////////////////
+
+        $append_alb = '
+        <section id="alb_`+alb_id+`" class="bg-alb shadow my-4">
+            <div class="mw-100">
+                
+                <div id="alb_`+alb_id+`_carrossel" class="carousel slide">
+                    <div id="alb_`+alb_id+`_carrossel_inner" class="carousel-inner">
+                    </div>
+
+                    <button data-bs-target="#alb_`+alb_id+`_carrossel" data-bs-slide="prev" class="carousel-control-prev" type="button">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button data-bs-target="#alb_`+alb_id+`_carrossel" data-bs-slide="next" class="carousel-control-next" type="button">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Seguinte</span>
+                    </button>
+
+                </div>
+
+                <section id="alb_`+alb_id+`_scroll" class="overflow-auto w-100 alb_scrollbar">
+                    <div class="flex-row d-flex">
+                        <span class="alb_seletor position-absolute start-50 translate-middle border-light border"></span>
+                        <div style="flex: 0 0 auto;width: calc(50% - 36px);"></div>
+
+                        <span id="alb_`+alb_id+`_thumb" class="flex-row d-flex">
+                        </span>
+
+                        <div style="flex: 0 0 auto;width: calc(50% - 36px);"></div>
+                    </div>
+                </section>
+
+            </div>
+            <div class="p-xl-5 p-4 pt-2 pt-xl-3 text-start">
+
+                <section class="row mb-3">
+                    <div class="col-auto pe-0">
+                        <a id="alb_`+alb_id+`_uti_link">
+                            <img id="alb_`+alb_id+`_uti_fpe" class="rounded-circle" width="40">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <text id="alb_`+alb_id+`_med_tit" class="h5">X</text><br>
+                        Publicado por <span id="alb_`+alb_id+`_uti_nut">X<span>
+                    </div>
+                </section>
+                
+                <section>
+                    <span id="alb_`+alb_id+`_gos">
+                    </span>
+                    
+                    <span class="badge bg-light bg-opacity-10 py-1 pe-3">
+                        <i class="bi bi-calendar4-week"></i>
+                        <text id="alb_`+alb_id+`_med_den">X</text>
+                    </span>
+                </section>
+                
+            </div>
+        </section>
+        ';
+
+        //Interior do botão de gosto
+        $append_med_gos = '
+        <span>
+            <i id="med_`+med.id+`_gos_svg1" class="bi bi-hand-thumbs-up-fill"></i>
+            <i id="med_`+med.id+`_gos_svg0" class="bi bi-hand-thumbs-up"></i>
+        </span>
+        <span id="med_`+med.id+`_gos_num"></span> gostos
+        ';
+        //Botão de gosto completo, pois está encapsulado dentro de um Albúm
+        //O botão é renderizado separadamente pois é interativo e padronizado para todos os posts
+        $append_alb_gos = '<span id="med_`+med.id+`_gos" onclick="gosto(\'`+med.id+`\')" class="badge bg-primary py-1 pe-3" role="button">
+            '.$append_med_gos.'</span>';
+
+
+
+        $append_alb_carrossel = "
+        <div class='carousel-item `+first_med+`'>
+            <iframe style='min-height:50vh;' class='w-100' src='/embed?id=`+med_id+`'></iframe>
+        </div>
+        ";
+
+        $append_alb_thumb = "
+        <button class='btn shadow-none p-1' data-bs-target='#alb_`+alb_id+`_carrossel' data-bs-slide-to='`+num+`'>
+            <img class='alb_thu' src='`+meds[med_id].thu+`'>
+        </button>
+        ";
+        ?>
+        <style>
+        /* ÁLBUNS */
+
+        /* Scrollbar dos Álbuns */
+        .alb_scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .alb_scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .alb_scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            border: none;
+        }
+        /* Albúm carrossel */
+        .alb_thu{
+            width: 64px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 8.5px;
+        }
+        .alb_seletor{
+            width: 68px;
+            height: 52px;
+            margin-top: 28px;
+            border-radius: 10px;
+        }
+        .bg-alb{
+            background-image: linear-gradient(-70deg,#17161F,#161033);
+        }
+        </style>
+        
+        <?php
+        ///////////////////////////////   COISAS PARA ÁLBUNS   ////////////////////////////FIM
+
             echo "<div class='p-0 col-xl-6 offset-xl-3 text-center'>";
 
-            //Último post do utilizador
+            //Mensagem sobre último post do utilizador
             $uti_ultima_med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE uti='".$uti['id']."' ORDER by den DESC LIMIT 1;"));
             echo "<div class='mt-4' id='uti_ultima_med'></div>
             <script>
@@ -86,21 +225,10 @@ if ($uti){
             </script>
             ";
 
+            //SQL: Verifica se o utilizador tem conhecidos para mostrar as opções de "Feed" e "Feed Global"
             $sql_conhecidos = "SELECT * FROM ami WHERE a_id='".$uti['id']."' AND sim='1' OR b_id='".$uti['id']."' AND sim='1' ORDER by b_dat DESC";
             $conhecidos = mysqli_fetch_assoc(mysqli_query($bd, $sql_conhecidos));
-            $lista_feed = $uti['id'];
-
             if ($conhecidos){
-                if ($resultado = $bd->query($sql_conhecidos)) {
-                    while ($campo = $resultado->fetch_assoc()){
-                        #Adiciona os utilizadores à lista
-                        if ($campo['a_id']==$uti['id']){
-                            $lista_feed .= ','.$campo['b_id'];
-                        } else {
-                            $lista_feed .= ','.$campo['a_id'];
-                        }
-                    }
-                }
 
                 echo "<div class='mt-4'>";
                 if ($_GET['feed']=='global'){
@@ -110,17 +238,6 @@ if ($uti){
                 } else {
                     echo "<a class='btn btn-primary' role='button'><i class='bi bi-view-list'></i>"._('Feed')."</a>
                     <a href='/?feed=global' class='btn btn-light' role='button'><i class='bi bi-globe'></i>"._('Feed global')."</a>";
-                    //Lista com 8 amigos
-                    //######################TORNAR ISTO EM ALGO QUE DÊ PARA VER OS AMIGOS QUE POSTARAM MAIS RECENTEMENTE?
-                    /* echo "
-                    <div class='mx-0 mx-xl-2'>";
-                    if ($resultado = $bd->query("SELECT * FROM uti WHERE id IN (".$lista_feed.") ORDER by id DESC LIMIT 8")){
-                        while ($campo_uti = $resultado->fetch_assoc()){
-                            echo "<a data-bs-toggle='tooltip' data-bs-placement='bottom' title='".$campo_uti['nut']."' href='/u/".$campo_uti['nut']."'><img src='".$url_media."fpe/".$campo_uti['fpe'].".jpg' class='mx-1 rounded-circle' width='32'></a>";
-                        }
-                    }
-                    echo "
-                    </div>"; */
                 }
                 echo "</div>";
 
@@ -139,107 +256,210 @@ if ($uti){
 
             $append_med = "
             <section class='bg-dark bg-gradient shadow my-4'>
-                <div class='mw-100' id='med_\"+api_feed[index].med.id+\"_conteudo'></div>
+                <div class='mw-100' id='med_\"+med.id+\"_conteudo'></div>
                 <div class='p-xl-5 p-4 text-start'>
 
                     <section class='row mb-3'>
                         <div class='col-auto pe-0'>
-                            <a href='/u/\"+api_feed[index].uti.nut+\"'><img src='\"+api_feed[index].uti.fpe+\"' class='rounded-circle' width='40'></a>
+                            <a href='/u/\"+med.uti.nut+\"'><img src='\"+med.uti.fpe+\"' class='rounded-circle' width='40'></a>
                         </div>
                         
                         <div class='col'>                            
-                            <a id='med_tit' href='/m/\"+api_feed[index].med.id+\"' class='h5 text-decoration-none text-light' data-bs-original-title='"._('Abrir')."' data-bs-toggle='tooltip' data-bs-placement='right'>\"+api_feed[index].med.tit+\"</a><br>
-                            <span>"._('Publicado por')." \"+api_feed[index].uti.nut+\"</span>
+                            <a id='med_tit' href='/m/\"+med.id+\"' class='h5 text-decoration-none text-light' data-bs-original-title='"._('Abrir')."' data-bs-toggle='tooltip' data-bs-placement='right'>\"+med.tit+\"</a><br>
+                            <span>"._('Publicado por')." \"+med.uti.nut+\"</span>
                         </div>
                     </section>
 
                     <section>
-                        <span class='badge bg-primary py-1' role='button' onclick='gosto(`\"+api_feed[index].med.id+\"`)'  id='btn_gos_\"+api_feed[index].med.id+\"'>
-                            <span>
-                                <i id='svg_gos1_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up-fill'></i>
-                                <i id='svg_gos0_\"+api_feed[index].med.id+\"' class='bi bi-hand-thumbs-up'></i>
-                            </span>
-                            <span id='med_\"+api_feed[index].med.id+\"_numGostos'>\"+api_feed[index].med.gos+\"</span>&nbsp;"._('gostos')."
+                        <span id='med_\"+med.id+\"_gos' onclick='gosto(`\"+med.id+\"`)' class='badge bg-primary py-1 pe-3' role='button'>
                         </span>
 
                         <span class='badge bg-light bg-opacity-10 py-1'>
                             <i class='bi bi-calendar4-week'></i>
-                            \"+dayjs.tz(api_feed[index].med.den, 'UTC').fromNow()+\"
+                            \"+dayjs.tz(med.den, 'UTC').fromNow()+\"
                         </span>
                     </section>
 
                 </div>
             </section>
             ";
-
-            echo "
-            <div id='medias'></div>
+            ?>
+            <div id='feed'></div>
 
             <script>
+            //ÁLBUNS
+
+            //Variáveis e constantes
+            const alb_thu_width = 72;
+            var alb = [];
+            var alb_carrossel = [];
+
+            function carregar_alb(alb_id){
+                
+                //Request à API
+                api_alb = api('ob_med',{'alb':alb_id});
+                if (!api_alb.err){
+
+                    //Guarda as informações do álbum localmente
+                    alb[alb_id] = api_alb;
+
+                    //Append do Álbum no feed
+                    $("#feed").append(`<?php echo trim(preg_replace('/\s\s+/', ' ', $append_alb)); ?>`);
+                    //Cria carrossel
+                    alb_carrossel[alb_id] = new bootstrap.Carousel("#alb_"+alb_id+"_carrossel");
+                
+                    first_med='active';
+
+                    //Carrega cada média a partir do output da api (api_alb)
+                    $.each(api_alb.meds, function (num, med) {
+                        //Adiciona a média à array meds[]
+                        med_id = med.id;
+                        meds[med_id] = med;
+                        //Limpa a informação da média no alb[] e apenas deixa o ID
+                        alb[alb_id].meds[num] = med_id;
+
+                        $("#alb_"+alb_id+"_carrossel_inner").append(`<?php echo trim(preg_replace('/\s\s+/', ' ', $append_alb_carrossel)); ?>`);
+                        $("#alb_"+alb_id+"_thumb").append(`<?php echo trim(preg_replace('/\s\s+/', ' ', $append_alb_thumb)); ?>`);
+                        first_med='';
+                    });
+
+                    //Renderiza a info da primeira média do carrossel
+                    alb_med_info(0,alb_id);
+                } else {
+                    $("#alb_"+alb_id).html("<text class='h4'>Álbum não encontrado</text>");
+                }
+
+                console.debug(alb);
+                
+            }
+
+            //Atualiza a informação no álbum sobre a média atual
+            function alb_med_info(num,alb_id){
+                med_id = alb[alb_id].meds[num];
+                med = meds[med_id];
+
+                //PARTES: Estáticas
+                $("#alb_"+alb_id+"_uti_nut").html(alb[alb_id].uti.nut);
+                $("#alb_"+alb_id+"_uti_fpe").attr('src', alb[alb_id].uti.fpe);
+                $("#alb_"+alb_id+"_uti_link").attr('href', '/u/'+alb[alb_id].uti.nut);
+                $("#alb_"+alb_id+"_med_tit").html(med.tit);
+                $("#alb_"+alb_id+"_med_den").html(dayjs.tz(med.den,'UTC').fromNow());
+
+                //PARTES: Interativas
+
+                //Renderiza o botão de gosto
+                $("#alb_"+alb_id+"_gos").html(`<?php echo trim(preg_replace('/\s\s+/', ' ', $append_alb_gos)); ?>`);
+                //Atualiza o estado do botão de gosto
+                gosto_estado(med.id);
+            }
+
+            function alb_scroll(num_med, alb_id) {
+                scroll_point = num_med * alb_thu_width;
+                console.debug("Scrolling "+alb_id+":"+scroll_point);
+                $("#alb_"+alb_id+"_scroll").stop().animate({
+                    scrollLeft: scroll_point
+                }, 300);
+            }
+        
+            $('body').on('slide.bs.carousel', '.carousel', event => {
+                elementId = event.target.id;
+                console.log(elementId);
+
+                alb_id = elementId.replace('alb_', '');
+                alb_id = alb_id.replace('_carrossel', '');
+                alb_slide_num = event.to;
+
+                alb_scroll(alb_slide_num, alb_id);
+                alb_med_info(alb_slide_num,alb_id);
+            });
+            
+            $(document).ready(function() {
+                var scrollTimer = null;
+                function attachScrollHandler() {
+                    $('.alb_scrollbar:not(.scroll-handler-attached)').on('scroll', function(e) {
+                        este = $(this);
+                if(scrollTimer!==null){clearTimeout(scrollTimer);}
+                scrollTimer = setTimeout(function() {
+                    position = $(este).scrollLeft();
+                    closest = Math.round(position/alb_thu_width);
+                    console.debug("Indo para: "+position+"px = "+closest);
+                    alb_scroll(closest);
+
+                    elementId = este[0].id;
+                    alb_id = elementId.replace('alb_', '');
+                    alb_id = alb_id.replace('_scroll', '');
+
+                    alb_carrossel[alb_id].to(closest);
+                }, 150);
+                    }).addClass('scroll-handler-attached');
+                }
+                attachScrollHandler();
+                setInterval(function() { attachScrollHandler(); }, 1000);
+            });
+            
+            </script>
+
+            <script>
+            //FEED
             let scrollLoad = true;
-            var feed_tip = '".$feed_tip."';
+            var feed_tip = '<?php echo $feed_tip ?>';
             var feed_depois;
-            function carregarMedia(){
-                api_feed = api('feed',{'tip':feed_tip,'depois':feed_depois});
+            function feed(){
+                api_feed = api('feed2',{'tip':feed_tip,'depois':feed_depois});
                 if (!api_feed.err){
-                    for(var index = 0; index < api_feed.length; index++) {
-                                
-                        //Carrega a média apenas se não for repetida
-                        if (!$('#med_'+api_feed[index].med.id+'_conteudo').length){
-                            $('#medias').append(\"".trim(preg_replace('/\s\s+/', ' ', $append_med))."\");
-                            
-                            if (api_feed[index].gos==1){
-                                $('#svg_gos0_'+api_feed[index].med.id).attr('hidden', true);
-                                $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-50');
+                    for(var i = 0; i < api_feed.length; i++) {
+
+                        obj = api_feed[i];
+
+                        //Vê que tipo de objeto é
+                        if (obj.tip=='med'){
+
+                            med = obj;
+                            //Adiciona a média à array meds[]
+                            meds[med.id] = med;
+
+                            //Carrega a média
+                            $('#feed').append("<?php echo trim(preg_replace('/\s\s+/', ' ', $append_med)); ?>");
+                            //Adiciona div do gosto #################################TENTAR DAR MERGE COM O CODIGO DO ALBUM PARA POUPAR CODIGO
+                            $("#med_"+med.id+"_gos").html(`<?php echo trim(preg_replace('/\s\s+/', ' ', $append_med_gos)); ?>`);
+                            //Atualiza o estado do botão de gosto
+                            gosto_estado(med.id);
+
+                            if (med.tip==1){
+                                $('#med_'+med.id+'_conteudo').html("<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id="+med.id+"&titulo=0'></iframe></div>");
+                            } else if (med.tip==2){
+                                $('#med_'+med.id+'_conteudo').html("<iframe height='180px' class='w-100' src='/embed?id="+med.id+"&titulo=0'></iframe>");
                             } else {
-                                $('#svg_gos1_'+api_feed[index].med.id).attr('hidden', true);
-                                $('#btn_gos_'+api_feed[index].med.id).addClass('bg-opacity-25');
+                                $('#med_'+med.id+'_conteudo').html("<iframe style='min-height:50vh;' class='w-100' src='/embed?id="+med.id+"&titulo=0'></iframe>");
                             }
 
-                            if (api_feed[index].med.tip==1){
-                                $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe></div>\");
-                            } else if (api_feed[index].med.tip==2){
-                                $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<iframe height='180px' class='w-100' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe>\");
-                            } else {
-                                $('#med_'+api_feed[index].med.id+'_conteudo').html(\"<iframe style='min-height:50vh;' class='w-100' src='/embed?id=\"+api_feed[index].med.id+\"&titulo=0'></iframe>\");
-                            }
-                            feed_depois = api_feed[index].med.id;
-                            scrollLoad = true;
-                        } else {
-                            //console.log(api_feed[index].med.id+' Média repetida ocultada');
-                            if (index+1==api_feed.length){
-                                console.log('Aviso: Fim da lista.');
-                                scrollLoad = false;
-                            }
+                        } else if (obj.tip=='depois'){
+                            feed_depois = obj.med;
+                            continue;
+                        } else if (obj.tip=='alb'){
+                            carregar_alb(obj.id);
+                            continue;
                         }
+
                     }
                 }
+                scrollLoad = true;
             }
-            carregarMedia();
-
-            function gosto(med_id){
-				result = api('med_gos',{'med':med_id});
-                $('#med_'+med_id+'_numGostos').text(result.num);
-                if (result.gos=='true'){
-                    $('#svg_gos1_'+med_id).removeAttr('hidden');
-                    $('#svg_gos0_'+med_id).attr('hidden', true);
-                    $('#btn_gos_'+med_id).addClass('bg-opacity-50').removeClass('bg-opacity-25');
-                } else {
-                    $('#svg_gos1_'+med_id).attr('hidden', true);
-                    $('#svg_gos0_'+med_id).removeAttr('hidden');
-                    $('#btn_gos_'+med_id).addClass('bg-opacity-25').removeClass('bg-opacity-50');
-                }
-			}
-
+            //Carrega o feed pela primeira vez ao entrar na página
+            feed();
+            //Carrega o feed quando dá scroll até ao fundo
             $(window).scroll(function(){
                 if (scrollLoad && ($(document).height() - $(window).height())-$(window).scrollTop()<=400){
                     scrollLoad = false;
-                    carregarMedia();
+                    feed();
                 }
             });
             </script>
 
-        </div>";
+            </div>
+
+        <?php
+        //////////////////////////////////  FEED  ///////////////////////////////FIM
         }
 		?>
 	</body>

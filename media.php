@@ -3,9 +3,12 @@ $site_tit = 'off';
 require('head.php');
 $med = mysqli_fetch_assoc(mysqli_query($bd, "SELECT * FROM med WHERE id='".$_GET["id"]."'"));
 
+############################################Fazer a média carregar completamente por API!!!!!!!!!!!!! (Como no feed)
+
 #Se houver uma sessão iniciada carrega o script da API
 if ($uti){
-	echo "<script src='/js/api.min.js'></script>";
+	echo "<script src='/js/api.min.js'></script>
+    <script src='/js/api/gos.js'></script>";
 }
 
 function tempoPassado($ptime){
@@ -52,6 +55,12 @@ if ($med){
 	<meta name='twitter:card' content='summary_large_image'>
 
 	<title>".$med_tit." - drena</title>
+
+	<script>
+	/* ############### PROVISORIO ############### */
+	meds = [];
+	meds['".$med["id"]."'] = {'gos':'','meu_gos':''};
+	</script>
 	";
 
 	#Se for um vídeo
@@ -147,12 +156,12 @@ if ($med){
 							</div>
 
 							<div>
-								<span class='badge bg-primary ";if($med_gos){echo"bg-opacity-50";}else{echo"bg-opacity-25";}echo" py-1' role='button' onclick='gosto()' id='btn_gos'>
+								<span id='med_".$med['id']."_gos' onclick='gosto(`".$med['id']."`)' class='badge bg-primary ";if($med_gos){echo"bg-opacity-50";}else{echo"bg-opacity-25";}echo" py-1' role='button'>
 									<span>
-										<i id='svg_gos1' class='bi bi-hand-thumbs-up-fill' ";if(!$med_gos){echo"hidden";}echo"></i>
-										<i id='svg_gos0' class='bi bi-hand-thumbs-up' ";if($med_gos){echo"hidden";}echo"></i>
+										<i id='med_".$med['id']."_gos_svg1' class='bi bi-hand-thumbs-up-fill' ";if(!$med_gos){echo"hidden";}echo"></i>
+										<i id='med_".$med['id']."_gos_svg0' class='bi bi-hand-thumbs-up' ";if($med_gos){echo"hidden";}echo"></i>
 									</span>
-									<span id='tex_gos'>".$med['gos']."</span> "._('gostos')."
+									<span id='med_".$med['id']."_gos_num'>".$med['gos']."</span> "._('gostos')."
 								</span>
 
 								<span class='badge bg-light bg-opacity-10 py-1'>
@@ -599,21 +608,6 @@ if ($med){
 					}
 				});
 
-				function gosto(){
-					res = api('med_gos',{'med':'".$med['id']."'});
-
-					$('#tex_gos').text(res.num);
-                    if (res.gos=='true'){
-						$('#btn_gos').addClass('bg-opacity-50').removeClass('bg-opacity-25');
-						$('#svg_gos1').removeAttr('hidden');
-						$('#svg_gos0').attr('hidden', true);
-                    } else {
-						$('#btn_gos').addClass('bg-opacity-25').removeClass('bg-opacity-50');
-						$('#svg_gos1').attr('hidden', true);
-						$('#svg_gos0').removeAttr('hidden');
-                    }
-				}
-
 				function eliminar_com(com_id){
 					setTimeout(function(){
 						result = api('med_com',{'ac':'eliminar','id':com_id});
@@ -637,9 +631,7 @@ if ($med){
 			} else {
 				echo "
 				<script>
-				function gosto(){
-					window.open('/entrar','_self');
-				}
+				function gosto(){ window.open('/entrar','_self'); }
 				</script>
 				";
 			}
