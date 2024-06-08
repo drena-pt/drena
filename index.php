@@ -412,7 +412,7 @@ if ($uti){
                         obj = api_feed[i];
 
                         //Vê que tipo de objeto é
-                        if (obj.tip=='med'){
+                        if (obj.obj_tip=='med'){
 
                             med = obj;
                             //Adiciona a média à array meds[]
@@ -425,18 +425,23 @@ if ($uti){
                             //Atualiza o estado do botão de gosto
                             gosto_estado(med.id);
 
+                            //tip: 1 (vídeo)
                             if (med.tip==1){
                                 $('#med_'+med.id+'_conteudo').html("<div style='position:relative;padding-bottom:56.25%;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;' src='/embed?id="+med.id+"&titulo=0'></iframe></div>");
+                            
+                            //tip: 2 (áudio)
                             } else if (med.tip==2){
                                 $('#med_'+med.id+'_conteudo').html("<iframe height='180px' class='w-100' src='/embed?id="+med.id+"&titulo=0'></iframe>");
+                            
+                            //tip: 3 (imagem)
                             } else {
                                 $('#med_'+med.id+'_conteudo').html("<iframe style='min-height:50vh;' class='w-100' src='/embed?id="+med.id+"&titulo=0'></iframe>");
                             }
 
-                        } else if (obj.tip=='depois'){
+                        } else if (obj.obj_tip=='depois'){
                             feed_depois = obj.med;
                             continue;
-                        } else if (obj.tip=='alb'){
+                        } else if (obj.obj_tip=='alb'){
                             carregar_alb(obj.id);
                             continue;
                         }

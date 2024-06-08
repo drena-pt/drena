@@ -94,7 +94,7 @@ if ($res = $bd->query($sql_media)) {
             if ($alb_ultima_med['id']==$med['id']){
 
                 #OUTPUT: Um álbum
-                $output[] = ["tip"=>"alb","id"=>$med['alb']];
+                $output[] = ["obj_tip"=>"alb","id"=>$med['alb']];
 
             #Se não for a média mais recente, dá skip
             } else {
@@ -120,7 +120,7 @@ if ($res = $bd->query($sql_media)) {
             }
 
             #Adiciona variáveis à med[]
-            $med['tip'] = "med";    #Define no output final o tipo de objeto
+            $med['obj_tip'] = "med";    #Define no output final o tipo de objeto
             $med['uti'] = ["nut"=>$med_uti['nut'],"fpe"=>$url_media."fpe/".$med_uti['fpe'].".jpg"];
             $med['meu_gos'] = $med_meu_gos;
             $med['com'] = $med_com;
@@ -150,7 +150,7 @@ if ($res = $bd->query($sql_media)) {
 output:
 if ($output!=null){#Se for nulo, significa que é a ultima media de todas
     #OUTPUT: Última média
-    $output[] = ["tip"=>"depois","med"=>$depois];
+    $output[] = ["obj_tip"=>"depois","med"=>$depois];
     #Renderiza o output em json
     echo json_encode($output);
 }
