@@ -4,9 +4,10 @@ ini_set('display_errors', 'On'); */
 
 require('head.php');
 
+echo "<script src='/js/api.min.js'></script>";
+
 if ($uti){
     echo "
-    <script src='/js/api.min.js'></script>
     <script src='/js/api/gos.js'></script>
     <script src='/js/api/med.js'></script>
     ";
@@ -15,8 +16,8 @@ if ($uti){
 		<style>
         /*  PÁGINA INICIAL  */
 		.jumbotron{
-			height: 90vh;
-			background-image: linear-gradient(-90deg,rgba(0,0,0,0.6),rgba(0,0,0,0),rgba(0,0,0,0.6)),url("imagens/fundo.jpg");
+			height: 93vh;
+			background-image: linear-gradient(-45deg,rgba(7, 0, 43, 0.7),rgba(25, 0, 149, 0.6)),url("imagens/padrao.jpg");
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -31,21 +32,79 @@ if ($uti){
 		<?php
         /////////////////////////////  PÁGINA INICIAL  /////////////////////////////
         if (!$uti){
-            $index_titulos = ['pt' => "MOSTRA O QUE FAZES.",'en' => "SHOW WHAT YOU MAKE.",'de' => "ZEIG WAS DU MACHST.",'it' => "MOSTRA COSA FAI.",'fr' => "MONTREZ CE QUE VOUS FAITES."];
-            unset($index_titulos[get_browser_language()]);
     
             echo "
-            <div class='jumbotron bg-dark d-flex align-items-center text-center justify-content-center align-items-center'>
-                <h1 class='display-4'>".strtoupper(_("Mostra o que fazes."))."<br>
-                <span class='text-outline'>";
-                foreach($index_titulos as $titulo){
-                    echo $titulo."<br>";
-                }
-                echo "
-                </span>
-                <a href='/registo' role='button' class='btn btn-primary'>"._('Criar uma conta')."</a>
-                </h1>
+            <div class='jumbotron d-flex justify-content-center'>
+
+                <div class='row p-md-0 p-4 d-flex align-items-center'>
+
+                    <div class='col-md-6 col-12 row m-md-0 my-5'>
+                        <h1 class='display-5'>
+                            Uma rede social<br>normal <img style='height:50px;' src='/imagens/smile.png'>
+                        </h1>
+                        <!--<span>"._('Mostra o que fazes.')."</span>--><br><br>
+                            
+                        <div class='d-flex justify-content-md-start justify-content-center'>
+                            <a href='/entrar' role='button' class='btn btn-primary'>"._('Entrar')." <i class='bi bi-arrow-right-circle'></i></a>
+                        </div>
+                    </div>
+
+                    <div class='d-none d-md-block col-md-6 col-12 m-0'>
+
+                        <section align='right' class='mb-3'>
+                            <span class='badge bg-light bg-opacity-10 py-1'>
+                                <i class='bi bi-calendar4-week'></i>
+                                <span id='med_aleatoria_den'></span>
+                            </span>
+
+                            <span class='badge bg-primary py-1 pe-3 bg-opacity-25'>
+                                <i class='bi bi-hand-thumbs-up'></i>
+                                <span id='med_aleatoria_gos'></span>
+                                "._('gostos')."
+                            </span>
+                        </section>
+                        
+                        <div class='bg-dark bg-opacity-50 shadow text-light w-100'>
+                            <iframe id='med_aleatoria_iframe' style='height:40vh;' class='w-100'></iframe>
+
+                            <div class='p-3 px-4 text-start'>
+                                <section class='row'>
+                                    <div class='col-auto pe-0'>
+                                        <img id='med_aleatoria_uti_fpe' src='' class='rounded-circle' width='40'>
+                                    </div>
+                                    <div class='col'>                            
+                                        <a id='med_aleatoria_tit' class='h5 text-decoration-none text-light' data-bs-original-title='"._('Abrir')."' data-bs-toggle='tooltip' data-bs-placement='right'></a><br>
+                                        <span>"._('Publicado por')." <span id='med_aleatoria_uti_nut'></span></span>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                        <script>
+                            //Carrega a média aleatória
+                            function ob_med_aleatoria(){
+                                r = api('ob_med_aleatoria');
+                                //Padrão de ID's
+                                p = '#med_aleatoria';
+
+                                $(p+'_tit').html(r.med.tit);
+                                $(p+'_tit').attr('href', '/m/'+r.med.id);
+                                $(p+'_uti_nut').html(r.uti.nut);
+                                $(p+'_uti_fpe').attr('src', r.uti.fpe);
+                                $(p+'_iframe').attr('src', '/embed?id='+r.med.id);
+                                $(p+'_den').html(dayjs.tz(r.med.den, 'UTC').fromNow());
+                                $(p+'_gos').html(r.med.gos);
+                            }
+                            ob_med_aleatoria();
+                        </script>
+                    </div>
+                </div>
+
             </div>
+            ";
+
+
+            echo "
     
             <div class='p-0 my-3 col-xl-6 offset-xl-3'>
                 <section id='section_med' class='mx-sm-0 mx-1 mw-sm-100 mw-auto row row-cols-2 row-cols-md-3'>

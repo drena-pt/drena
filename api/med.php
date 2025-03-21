@@ -1,4 +1,6 @@
 <?php
+######################MUDAR NOME PARA edi_med
+
 #API - Médias (Alterar o título/privacidade, Eliminar, Moderar, Comprimir vídeos)
 #Composer, Header json, Ligação bd, Vaildar Token JWT, Utilizador
 require_once('validar.php');
