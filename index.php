@@ -7,7 +7,7 @@ require('head.php');
 
 if ($uti){
     echo "
-    <script src='/js/api.min.js'></script>;
+    <script src='/js/api.min.js'></script>
     <script src='/js/api/gos.js'></script>
     <script src='/js/api/med.js'></script>
     ";
