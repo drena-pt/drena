@@ -4,10 +4,10 @@ ini_set('display_errors', 'On'); */
 
 require('head.php');
 
-echo "<script src='/js/api.min.js'></script>";
 
 if ($uti){
     echo "
+    <script src='/js/api.min.js'></script>;
     <script src='/js/api/gos.js'></script>
     <script src='/js/api/med.js'></script>
     ";
@@ -27,121 +27,35 @@ if ($uti){
         <meta name="description" content="Website de partilha de projetos, vídeo, música e imagens. Partilha o teu trabalho livremente na drena.">
     </head>
 	<body>
-		<?php require('header.php'); ?>
 
 		<?php
         /////////////////////////////  PÁGINA INICIAL  /////////////////////////////
         if (!$uti){
     
-            echo "
-            <div class='jumbotron d-flex justify-content-center'>
+        ?>
 
-                <div class='row p-md-0 p-4 d-flex align-items-center'>
+        <style>
+        </style>
 
-                    <div class='col-md-6 col-12 row m-md-0 my-5'>
-                        <h1 class='display-5'>
-                            Uma rede social<br>normal <img style='height:50px;' src='/imagens/smile.png'>
-                        </h1>
-                        <!--<span>"._('Mostra o que fazes.')."</span>--><br><br>
-                            
-                        <div class='d-flex justify-content-md-start justify-content-center'>
-                            <a href='/entrar' role='button' class='btn btn-primary'>"._('Entrar')." <i class='bi bi-arrow-right-circle'></i></a>
-                        </div>
-                    </div>
-
-                    <div class='d-none d-md-block col-md-6 col-12 m-0'>
-
-                        <section align='right' class='mb-3'>
-                            <span class='badge bg-light bg-opacity-10 py-1'>
-                                <i class='bi bi-calendar4-week'></i>
-                                <span id='med_aleatoria_den'></span>
-                            </span>
-
-                            <span class='badge bg-primary py-1 pe-3 bg-opacity-25'>
-                                <i class='bi bi-hand-thumbs-up'></i>
-                                <span id='med_aleatoria_gos'></span>
-                                "._('gostos')."
-                            </span>
-                        </section>
-                        
-                        <div class='bg-dark bg-opacity-50 shadow text-light w-100'>
-                            <iframe id='med_aleatoria_iframe' style='height:40vh;' class='w-100'></iframe>
-
-                            <div class='p-3 px-4 text-start'>
-                                <section class='row'>
-                                    <div class='col-auto pe-0'>
-                                        <img id='med_aleatoria_uti_fpe' src='' class='rounded-circle' width='40'>
-                                    </div>
-                                    <div class='col'>                            
-                                        <a id='med_aleatoria_tit' class='h5 text-decoration-none text-light' data-bs-original-title='"._('Abrir')."' data-bs-toggle='tooltip' data-bs-placement='right'></a><br>
-                                        <span>"._('Publicado por')." <span id='med_aleatoria_uti_nut'></span></span>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-
-                        <script>
-                            //Carrega a média aleatória
-                            function ob_med_aleatoria(){
-                                r = api('ob_med_aleatoria');
-                                //Padrão de ID's
-                                p = '#med_aleatoria';
-
-                                $(p+'_tit').html(r.med.tit);
-                                $(p+'_tit').attr('href', '/m/'+r.med.id);
-                                $(p+'_uti_nut').html(r.uti.nut);
-                                $(p+'_uti_fpe').attr('src', r.uti.fpe);
-                                $(p+'_iframe').attr('src', '/embed?id='+r.med.id);
-                                $(p+'_den').html(dayjs.tz(r.med.den, 'UTC').fromNow());
-                                $(p+'_gos').html(r.med.gos);
-                            }
-                            ob_med_aleatoria();
-                        </script>
-                    </div>
+            <div class="d-flex align-items-center justify-content-center" style="height: 100vh;width: 100vw;">
+                <div align="center">
+                <img height="64px" src="imagens/logo.png"><span style="position:relative;left:-10px;">.pt</span>
+                <br><br>
+                <small class="opacity-50">Um projeto de <a style="color: white;" href="https://www.instagram.com/guilhae/">@guilhae</a></small>
                 </div>
+             </div>
 
-            </div>
-            ";
+             <a style="position:absolute;bottom:15px;right:15px;text-decoration:none;" class="badge rounded-pill text-bg-primary bg-opacity-50" href="/entrar">Entrar</a>
 
 
-            echo "
-    
-            <div class='p-0 my-3 col-xl-6 offset-xl-3'>
-                <section id='section_med' class='mx-sm-0 mx-1 mw-sm-100 mw-auto row row-cols-2 row-cols-md-3'>
-                ";
-                if ($resultado = $bd->query("SELECT * FROM med WHERE pri=0 ORDER by den DESC LIMIT 12")) {
-                    while ($campo = $resultado->fetch_assoc()) {
-                        switch ($campo['tip']) {
-                            case '1': $tip_icon='camera-video'; $tip_cor='primary'; break;
-                            case '2': $tip_icon='soundwave'; $tip_cor='rosa'; break;
-                            case '3': $tip_icon='image'; $tip_cor='ciano'; break;
-                        }
-                        echo '
-                        <div class="col p-1 p-sm-2">
-			            <div class="ratio ratio-4x3">
-                        <a class="text-light text-decoration-none" href="/m/'.$campo['id'].'">
-                            <div class="bg-primary contentor_med h-100 rounded-xl d-flex" style="background-image:url('.$url_media.'thumb/'.$campo['thu'].'.jpg);">
-                                <div class="rounded-bottom d-flex w-100 align-items-center align-self-end bg-dark bg-opacity-75 p-2">
-                                    <span class="mx-1 text-'.$tip_cor.'"><i class="bi bi-'.$tip_icon.'"></i></span>
-                                    <span class="overflow-hidden">'.encurtarNome($campo['tit']).'</span>
-                                </div>
-                            </div>
-                        </a>
-                        </div>
-                        </div>';
-                    } 
-                    $resultado->free();
-                }
-                echo "
-                </section>
-            </div>";
-            require "footer.php";
+        <?php
             
         /////////////////////////////  PÁGINA INICIAL  //////////////////////////FIM
         } else {
         //////////////////////////////////  FEED  //////////////////////////////////
 
 
+		require('header.php');
 
         ///////////////////////////////   COISAS PARA ÁLBUNS   ///////////////////////////////
 
